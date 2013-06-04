@@ -27,7 +27,7 @@
         android:layout_below="@+id/textViewCampo"
         android:ems="10"
         android:hint="@string/campo_nome_hint"
-        android:inputType="text"
+        android:inputType="textCapWords"
         android:padding="@dimen/MargenPadrao"
         android:textColor="@color/Black" />
 
