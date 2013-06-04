@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,12 +13,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mCare.R;
 import com.mCare.ServicesListener.InformationServices;
+import com.mCare.configuracaoConsulta.CriaCampoView;
+import com.mCare.configuracaoConsulta.SelecionaCamposView;
 import com.mCare.paciente.ListaPacientes;
 import com.mCare.weatherServices.WeatherInfo;
 
@@ -117,6 +121,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		return true;
 	}
 	
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		switch(featureId){
+		case 0: {
+			Intent intent = new Intent(getApplicationContext(), SelecionaCamposView.class);
+			startActivity(intent);
+		}
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+
 	public void updateWeather(WeatherInfo info){
 		textTemp.setText(info.getForecast1TempLowC() + "º - " + info.getForecast1TempHighC() + "º");
 		int conditionCode = info.getForecast1Code();
