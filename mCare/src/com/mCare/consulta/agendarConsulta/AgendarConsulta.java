@@ -126,7 +126,8 @@ public class AgendarConsulta extends Activity {
 		
 		DbHelperConsultas dbConsulta = new DbHelperConsultas(getApplicationContext());
 		dbConsulta.insereConsulta(consulta);
-
+		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso", Toast.LENGTH_LONG).show();
+		
 		onBackPressed();
 	}
 	

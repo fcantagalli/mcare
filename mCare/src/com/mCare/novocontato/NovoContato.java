@@ -219,7 +219,7 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		else{
 			this.getParent().setResult(Activity.RESULT_OK, intent);
 		}
-		
+		Toast.makeText(getApplicationContext(), "Paciente cadastrado com sucesso!", Toast.LENGTH_LONG).show();
 		super.onBackPressed();
 	}
 
