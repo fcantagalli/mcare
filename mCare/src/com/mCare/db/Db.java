@@ -168,13 +168,12 @@ public class Db extends SQLiteOpenHelper {
 		}
 		//YYYY-MM-DD HH:MM
 		String dia = data.substring(8, 9);
-		
 		if(dia.length() == 1){
 			dia = "0"+mes;
 		}
 		
 		if(data.length() > 11){
-			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia) ,Integer.parseInt(data.substring(11,13)) ,Integer.parseInt(data.substring(13,15)));
+			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia) ,Integer.parseInt(data.substring(12,13)) ,Integer.parseInt(data.substring(15,16)));
 		}
 		else{
 			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia));
