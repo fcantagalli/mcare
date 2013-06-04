@@ -205,11 +205,13 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         @Override
         public Fragment getItem(int i) {
             switch (i) {
-                case 0: return new Consultas_Fragment();
+                case 0: return new Agenda_Fragment();
                 
                 case 1: return new ListaPacientes();
+                
+                case 2: return new Consultas_Fragment();
             }
-            return new com.mCare.main.Consultas_Fragment();
+            return new com.mCare.main.Agenda_Fragment();
         }
 
         @Override

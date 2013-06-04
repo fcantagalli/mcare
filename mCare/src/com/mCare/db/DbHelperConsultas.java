@@ -39,7 +39,7 @@ public class DbHelperConsultas {
 	public List<Consulta> todasConsultas(){
 		
 		String query = "SELECT consultas_marcadas.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade FROM consultas_marcadas" +
-				"INNER JOIN paciente ON id_paceinte = consultas_marcadas.fk_paciente;";
+				" INNER JOIN paciente ON id_paciente = consultas_marcadas.fk_paciente;";
 		
 		//Cursor cursor = dbhelper.serach(false, dbhelper.TABLE_NAME_CONSULTAS_MARCADAS, null, null, null, null, null, null,null);
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
@@ -52,17 +52,17 @@ public class DbHelperConsultas {
 				
 				Log.i("SQL","passou no is afterlast");
 				
-				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(2));
-				String descricao = cursor.getString(3);
+				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(1));
+				String descricao = cursor.getString(2);
 				//Log.w("SQL",descricao);
-				String tipo_con = cursor.getString(4);
+				String tipo_con = cursor.getString(3);
 				
-				int idPaciente = cursor.getInt(1);
-				String nome = cursor.getString(5);
-				String logradouro = cursor.getString(6);
-				int numero = cursor.getInt(7);
-				String bairro = cursor.getString(8);
-				String cidade = cursor.getString(9);
+				int idPaciente = cursor.getInt(0);
+				String nome = cursor.getString(4);
+				String logradouro = cursor.getString(5);
+				int numero = cursor.getInt(6);
+				String bairro = cursor.getString(7);
+				String cidade = cursor.getString(8);
 				
 				Paciente p = new Paciente(idPaciente,nome,null,(byte)-1,logradouro,bairro,numero,cidade);
 				
@@ -82,11 +82,11 @@ public class DbHelperConsultas {
 		
 		//String diaAtual = dbhelper.formataData(new GregorianCalendar());
 		// A CONSULTA ABAIXO NAO PEGA SOMENTE AS DO DIA, E SIM AS DO DIA E AS POSTERIORES CUIDADOOOOOOO
- 		String query = "SELECT consultas_marcadas.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade FROM consultas_marcadas" +
-				"INNER JOIN paciente ON id_paceinte = consultas_marcadas.fk_paciente " +
-				"INNER JOIN "+dbhelper.TABLE_NAME_TELEFONE+" ON telefone.fk_paciente = id_paciente " +
-				"WHERE date(data_hora) >= date('now') " +
-				"GROUP BY fk_paciente;";
+ 		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, p.id_paciente FROM consultas_marcadas as consulta " +
+				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
+				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
+				"WHERE date(consulta.data_hora) >= date('now');";
+				//"GROUP BY consulta.fk_paciente;";
  		
 		/*String query = "SELECT nome, fk_paciente, data_hora, descricao, tipo_con, logradouro, bairro,cidade, telefone " +
 				"FROM "+dbhelper.TABLE_NAME_CONSULTAS_MARCADAS+"INNER JOIN "+dbhelper.TABLE_NAME_TELEFONE+" ON "+dbhelper.TABLE_NAME_CONSULTAS_MARCADAS+".fk_paciente = "+dbhelper.TABLE_NAME_TELEFONE+".fk_paciente AND tipo_tel = 1"+
@@ -99,17 +99,17 @@ public class DbHelperConsultas {
 			LinkedList<Consulta> listaConsultas = new LinkedList<Consulta>();
 			while(!cursor.isAfterLast()){
 				
-				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(2));
-				String descricao = cursor.getString(3);
+				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(1));
+				String descricao = cursor.getString(2);
 				//Log.w("SQL",descricao);
-				String tipo_con = cursor.getString(4);
+				String tipo_con = cursor.getString(3);
 				
-				int idPaciente = cursor.getInt(1);
-				String nome = cursor.getString(5);
-				String logradouro = cursor.getString(6);
-				int numero = cursor.getInt(7);
-				String bairro = cursor.getString(8);
-				String cidade = cursor.getString(9);
+				int idPaciente = cursor.getInt(0);
+				String nome = cursor.getString(4);
+				String logradouro = cursor.getString(5);
+				int numero = cursor.getInt(6);
+				String bairro = cursor.getString(7);
+				String cidade = cursor.getString(8);
 				
 				Paciente p = new Paciente(idPaciente,nome,null,(byte)-1,logradouro,bairro,numero,cidade);
 				Consulta c = new Consulta(p,gc,tipo_con,descricao);

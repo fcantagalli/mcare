@@ -31,8 +31,9 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 
 	ArrayList<Paciente> elements;
 	ListView listViewPacientes;
+
 	MyIndexerAdapter<Paciente> adapter;
-	
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -44,7 +45,9 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 
 		elements = db.listaPacientes();
 		
-		if(elements == null){
+
+		if(elements== null){
+
 			elements = new ArrayList<Paciente>();
 		}
 
@@ -90,14 +93,17 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		Paciente p = new Paciente((int) data.getLongExtra("id", 0),data.getStringExtra("name"));
-		
-		Log.i("insere","entrou no onActivityResult");
-		elements.add(p);
-		adapter.add(p);
-		//Collections.sort(elements);
-		adapter.notifyDataSetChanged();
+
+		if(data == null){
+			return;
+		}
+		Paciente paciente = new Paciente((int)data.getExtras().getInt("id"), (String)data.getExtras().getString("nome"));
+		elements.add(paciente);
+		Collections.sort(elements);
+		listViewPacientes.setFastScrollEnabled(true);
+		adapter = new MyIndexerAdapter<Paciente>(getActivity(), android.R.layout.simple_list_item_1, elements);
+		listViewPacientes.setAdapter(adapter);
+
 	}
 
 	//ic_btn_speak_now
@@ -132,7 +138,7 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 			alphaIndexer = new HashMap<String, Integer>();
 			// in this hashmap we will store here the positions for
 			// the sections
-
+				
 			int size = elements.size();
 			for (int i = size - 1; i >= 0; i--) {
 				String element = elements.get(i).getNome();
