@@ -324,13 +324,14 @@
                 android:layout_below="@id/editText7"
                 android:text="Data de Nascimento"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
-             <DatePicker
+            
+            <DatePicker
                 android:id="@+id/datePicker1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
                 android:layout_below="@+id/textView4"
+                android:layout_centerHorizontal="true"
+                android:calendarViewShown="false"
                 android:minDate="01/01/1870"
                 android:startYear="1950" />
             
@@ -374,30 +375,26 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editText10"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/editText9"
-                android:ems="10"
-                android:hint="Telefone do parente"
-                android:inputType="phone" />
-
-            <EditText
                 android:id="@+id/editText11"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/editText10"
+                android:layout_below="@+id/editText10"
                 android:ems="10"
                 android:hint="Celular do Parente"
                 android:inputType="phone" />
 
-           
+            <EditText
+                android:id="@+id/editText10"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/editText9"
+                android:ems="10"
+                android:hint="Telefone do parente"
+                android:inputType="phone" />
 
         </RelativeLayout>
 

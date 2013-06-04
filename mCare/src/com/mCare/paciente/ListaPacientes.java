@@ -10,6 +10,7 @@ import java.util.Set;
 
 import com.mCare.R;
 import com.mCare.db.DbHelperPaciente;
+import com.mCare.novocontato.NovoContato;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 
@@ -34,14 +36,15 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.activity_lista_pacientes,
-				container, false);
+		View rootView = inflater.inflate(R.layout.activity_lista_pacientes,container, false);
 
 		DbHelperPaciente db = new DbHelperPaciente(getActivity()
 				.getApplicationContext());
 
 		//elements = db.listaPacientes();
+
 		elements = new ArrayList<Paciente>();
+		
 		// OBS: esse trecho abaixo foi usado para teste, ele gera 300 Pacientes
 		// com nomes aleatorios
 		// e adiciona na lista elements
@@ -62,6 +65,18 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		MyIndexerAdapter<Paciente> adapter = new MyIndexerAdapter<Paciente>(
 				getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewPacientes.setAdapter(adapter);
+		 
+		ImageView adiciona = (ImageView) rootView.findViewById(R.id.AdicionaPaciente);
+		
+		adiciona.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(),NovoContato.class);
+				getActivity().startActivity(intent);
+			}
+		});
 		
 		return rootView;
 	}

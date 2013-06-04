@@ -33,7 +33,7 @@ public class DbHelperPaciente {
 		cv.put("escolaridade", p.getEscolaridade());
 		cv.put("parente", p.getParente());
 		cv.put("parente_tel", p.getParente_tel());
-		cv.put("parente cel", p.getParente_cel());
+		cv.put("parente_cel", p.getParente_cel());
 		cv.put("logradouro", p.getLogradouro());
 		cv.put("bairro", p.getBairro());
 		cv.put("numero", p.getNumero());
