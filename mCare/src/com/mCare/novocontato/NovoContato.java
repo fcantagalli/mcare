@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -74,10 +75,13 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		//Endereco
 		logradouro = (EditText) findViewById(R.id.editText2);
 		tipoEndereco = (Spinner) findViewById(R.id.spinnerEndereco);
+		ArrayAdapter<CharSequence> possiveisEnderecos = ArrayAdapter.createFromResource(this, R.array.tiposEndereco, android.R.layout.simple_list_item_1);
+		tipoEndereco.setAdapter(possiveisEnderecos);
 		numero = (EditText) findViewById(R.id.editText3);
 		complemento = (EditText) findViewById(R.id.editText4);
 		cep = (EditText) findViewById(R.id.editText5);
 		bairro = (EditText) findViewById(R.id.editText6);
+		cidade = (EditText) findViewById(R.id.editText12);
 		
 		// email
 		email = (EditText) findViewById(R.id.editText7);
@@ -98,7 +102,7 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		ImageView cancelarBotao = (ImageView) findViewById(R.id.imageViewCancelar);
 		cancelarBotao.setOnClickListener(this);
 		
-		ArrayAdapter<CharSequence> possiveisTels = ArrayAdapter.createFromResource(this, R.array.tiposEndereco, android.R.layout.simple_list_item_1);
+		ArrayAdapter<CharSequence> possiveisTels = ArrayAdapter.createFromResource(this, R.array.tiposTel, android.R.layout.simple_list_item_1);
 		tipo1.setAdapter(possiveisTels);
 		tipo2.setAdapter(possiveisTels);
 		tipo3.setAdapter(possiveisTels);
@@ -181,16 +185,25 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		
 		long id = db.inserePaciente(p);
 		
-		DbHelperTelefone dbt = new DbHelperTelefone(getApplicationContext());
 		
-		if(tel1.getText().toString().length() != 0){
-			dbt.insereTelefone(id, tel1.getText().toString() , (String) tipo1.getSelectedItem());
+		if(id != -1){
+			DbHelperTelefone dbt = new DbHelperTelefone(getApplicationContext());
+			
+			if(tel1.getText().toString().length() != 0){
+				dbt.insereTelefone(id, tel1.getText().toString() , (String) tipo1.getSelectedItem());
+			}
+			if(tel2.getText().toString().length() != 0){
+				dbt.insereTelefone(id, tel2.getText().toString() , (String) tipo2.getSelectedItem());
+			}
+			if(tel3.getText().toString().length() != 0){
+				dbt.insereTelefone(id, tel3.getText().toString() , (String) tipo3.getSelectedItem());
+			}
+			Log.wtf("insere", "Telefone inserido");
+			Log.wtf("insere", ""+id);
 		}
-		if(tel2.getText().toString().length() != 0){
-			dbt.insereTelefone(id, tel2.getText().toString() , (String) tipo2.getSelectedItem());
-		}
-		if(tel3.getText().toString().length() != 0){
-			dbt.insereTelefone(id, tel3.getText().toString() , (String) tipo3.getSelectedItem());
+		else{
+			Log.wtf("insere", "Telefone nao inserido");
+			Log.wtf("insere", ""+id);
 		}
 		
 	}

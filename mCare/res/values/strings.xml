@@ -113,7 +113,7 @@
 
     <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL);  </string>
     <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT NOT NULL, data_nascimento TEXT NOT NULL, 
-        sexo INTEGER NULL, escolaridade TEXT NULL, parente TEXT NULL, parente_tel TEXT NULL, parente_cel TEXT NULL, logradouro TEXT NOT NULL, bairro TEXT NOT NULL,
+        sexo INTEGER NULL, escolaridade TEXT NULL, parente TEXT NULL, parente_tel TEXT NULL, parente_cel TEXT NULL, logradouro TEXT NOT NULL, bairro TEXT NULL,
         numero INTEGER NOT NULL, tipo_end INTEGER NULL, cep TEXT NULL, cidade TEXT NOT NULL, complemento TEXT NULL);@
         
         CREATE TABLE telefone (id_telefone INTEGER PRIMARY KEY AUTOINCREMENT,fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,

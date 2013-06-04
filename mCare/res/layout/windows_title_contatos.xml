@@ -6,7 +6,7 @@
     android:background="@color/White" >
 
     <ImageView
-        android:id="@+id/cancelarNovoContato"
+        android:id="@+id/salvarNovoContato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
@@ -15,7 +15,7 @@
         android:src="@android:drawable/ic_input_add" />
 
     <ImageView
-        android:id="@+id/salvarNovoContato"
+        android:id="@+id/cancelarNovoContato"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
