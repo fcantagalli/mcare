@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">mCare</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_cadastro_consulta">CadastroConsulta</string>
+    <string name="minhastring">bianca delicia</string>
+    <string name="title_activity_inf_paciente">InfPaciente</string>
+    <string name="title_activity_novo__contato">Novo_Contato</string>
+    <string name="title_activity_novo_contato">NovoContato</string>
+    <string name="title_activity_consulta_individual">ConsultaIndividual</string>
+    <string name="title_activity_lista_consultas">ListaConsultas</string>
+    <string name="title_activity_editar_consulta">Editar_consulta</string>
+
+    <!-- Resources para a activity_cria_campo_view -->
+    <string name="nome_do_campo">Nome do campo:</string>
+    <string name="campo_nome_hint">Digite o nome do campo</string>
+    <string name="tipo_do_campo">Tipo do campo:</string>
+
+    <string-array name="array_tipos_campo">
+        <item>Número</item>
+        <item>Texto</item>
+        <item>Data</item>
+        <item>Áudio</item>
+        <item>Foto</item>
+        <item>Vídeo</item>
+    </string-array>
+    <string-array name="nomes_campo">
+        <item>Nome</item>
+        <item>Idade</item>
+        <item>Data de nascimento</item>
+        <item>Medicações</item>
+        <item>Descrição</item>
+        <item>Observações</item>
+        <item>Problema</item>
+        <item>Fotos</item>
+    </string-array>
+    <!-- FIM -->
+
+    <string-array name="opcoes_consulta_array">
+        <item>Ligar</item>
+        <item>Enviar mensagem</item>
+        <item>Traçar rota</item>
+        <item>Visualizar consulta</item>
+        <item>Realizar consulta</item>
+    </string-array>
+
+    <!-- Resources para a activity_seleciona_campos_view -->
+
+    <string name="tipo_campo_hint">Selecione o tipo do campo</string>
+    <string name="botao_salvar_campo">Salvar Campo</string>
+
+    <!-- Strings genericas -->
+    <string name="confirmar">Confirmar</string>
+    <string name="salvar">Salvar</string>
+    <string name="ok">OK</string>
+    <string name="title_activity_lista_pacientes">ListaPacientes</string>
+
+    <string-array name="Tipos_de_medico">
+        <item>Acupunturista</item>
+        <item>Alergista</item>
+        <item>Anestesista</item>
+        <item>Angiologista</item>
+        <item>Cardiologista</item>
+        <item>Cirurgião Cardiovascular</item>
+        <item>Cirurgião Geral</item>
+        <item>Cirurgião Plástico</item>
+        <item>Coloproctologista</item>
+        <item>Dermatologista</item>
+        <item>Endocrinologista</item>
+        <item>Gastroenterologista</item>
+        <item>Geneticista</item>
+        <item>Geriatra</item>
+        <item>Ginecologista</item>
+        <item>Hematologista</item>
+        <item>Hemoterapista</item>
+        <item>Homeopata</item>
+        <item>Imunologista</item>
+        <item>Infectologista</item>
+        <item>Mastologista</item>
+        <item>Metabologista</item>
+        <item>Nefrologista</item>
+        <item>Neonatologista</item>
+        <item>Neurocirurgião</item>
+        <item>Neurologista</item>
+        <item>Nutrologia</item>
+        <item>Obstetra</item>
+        <item>Ocologista</item>
+        <item>Oftalmologista</item>
+        <item>Ortopedista</item>
+        <item>Otorrinolaringologista</item>
+        <item>Patologista</item>
+        <item>Pediatra</item>
+        <item>Pneumologista</item>
+        <item>Psiquiatra</item>
+        <item>Radiologista</item>
+        <item>Radioterapista</item>
+        <item>Traumatologista</item>
+        <item>Urologista</item>
+    </string-array>
+    
+    <string-array name="tipos_consulta">
+        <item>Rotina</item>
+        <item>Retorno</item>
+        <item>Urgência</item>
+    </string-array>
+
+    <!--
+         STRINGS PARA O BANCO DE DADOS 
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+    -->
+
+    <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL);  </string>
+    <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT NOT NULL, data_nascimento TEXT NOT NULL, 
+        sexo INTEGER NULL, escolaridade TEXT NULL, parente TEXT NULL, parente_tel TEXT NULL, parente_cel TEXT NULL, logradouro TEXT NOT NULL, bairro TEXT NOT NULL,
+        numero INTEGER NOT NULL, tipo_end INTEGER NULL, cep TEXT NULL, cidade TEXT NOT NULL, complemento TEXT NULL);@
+        
+        CREATE TABLE telefone (id_telefone INTEGER PRIMARY KEY AUTOINCREMENT,fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
+        telefone TEXT NOT NULL,tipo_tel INTEGER NOT NULL);@
+        
+        CREATE TABLE consultas_marcadas (id_consulta INTEGER PRIMARY KEY AUTOINCREMENT, fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
+        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con NULL, endereco TEXT NOT NULL, bairro TEXT NULL);@
+    </string>
+    <string name="DB_NAME">teste</string>
+
+    <!-- ############ -->
+
+    <string-array name="opcoesTelefone">
+        <item>Celular</item>
+        <item>Comercial</item>
+        <item>Residencial</item>
+        <item>Principal</item>
+        <item>Outros</item>
+    </string-array>
+    <string-array name="tiposEndereco">
+        <item>Rua</item>
+        <item>Avenida</item>
+        <item>Praça</item>
+    </string-array>
+    <string-array name="escolaridade">
+        <item> NÃO SABE LER/ESCREVER</item>
+        <item>ALFABETIZADO</item>
+        <item>ENSINO FUNDAMENTAL INCOMPLETO</item>
+        <item>ENSINO FUNDAMENTAL COMPLETO</item>
+        <item>ENSINO MÉDIO INCOMPLETO</item>
+        <item>ENSINO MÉDIO COMPLETO</item>
+        <item>SUPERIOR INCOMPLETO</item>
+        <item>SUPERIOR COMPLETO</item>
+        <item>ESPECIALIZAÇÃO/RESIDÊNCIA</item>
+        <item>CURSO TÉCNICO COMPLETO</item>
+        <item>PÓS-GRADUAÇÃO</item>
+        <item>MESTRADO</item>
+        <item>DOUTORADO</item>
+    </string-array>
+    <string-array name="tiposTel">
+        <item>Celular</item>
+        <item>Residencial</item>
+        <item>Comercial</item>
+        <item>Outros</item>
+    </string-array>
+
+    <string name="title_activity_efetua_ligacao">EfetuaLigacao</string>
+    <string name="title_activity_menu_agenda">MenuAgenda</string>
+    <string name="title_activity_cria_campo_view">CriaCampoView</string>
+    <string name="title_activity_seleciona_campos_view">SelecionaCamposView</string>
+    <string name="title_activity_agendar_consulta">AgendarConsulta</string>
+    <string name="title_activity_agendar_consulta_2">AgendarConsulta_2</string>
+    <string name="title_activity_consultas">Consultas</string>
+    <string name="title_activity_visualiza_info_consulta_agendada">VisualizaInfoConsultaAgendada</string>
+
+</resources>

@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
+    
+    <android.support.v4.view.ViewPager
+    	android:id="@+id/pager"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:divider="@android:drawable/divider_horizontal_dim_dark"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:weightSum="4.0"
+        android:baselineAligned="false" >
+
+        <FrameLayout
+            android:id="@+id/ButtonAgenda"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:layout_weight="1.0" >
+            
+            <ImageView
+                style="@style/ButtonImageStyle"
+                android:layout_gravity="center"
+                android:contentDescription="Agenda"
+                android:src="@drawable/agenda" />
+            
+        </FrameLayout>
+
+		<FrameLayout
+		    android:id="@+id/ButtonContatos"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:layout_weight="1.0" >
+            
+            <ImageView
+                style="@style/ButtonImageStyle"
+                android:layout_gravity="center"
+                android:contentDescription="Contatos"
+                android:src="@drawable/contato" />
+            
+        </FrameLayout>
+
+		<FrameLayout
+		    android:id="@+id/ButtoonConsulta"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:layout_weight="1.0" >
+            
+            <ImageView
+                style="@style/ButtonImageStyle"
+                android:layout_gravity="center"
+                android:contentDescription="Consulta"
+                android:src="@drawable/consulta" />
+
+        </FrameLayout>
+        
+		<FrameLayout
+		    android:id="@+id/imageButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:layout_weight="1.0" >
+            
+            <ImageView
+                style="@style/ButtonImageStyle"
+                android:layout_gravity="center"
+                android:contentDescription="Outros"
+                android:src="@drawable/ic_launcher" />
+
+        </FrameLayout>
+        
+    </LinearLayout>
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2.0" >
+
+        <Button
+            android:id="@+id/botaoLigar"
+            style="@style/ButtonsAgenda"
+            android:layout_marginRight="8dp"
+            android:layout_height="wrap_content"
+            android:text="Ligar" />
+
+        <Button
+            android:id="@+id/botaoMensagem"
+            style="@style/ButtonsAgenda"
+            android:layout_marginLeft="8dp"
+            android:layout_height="wrap_content"
+			android:text="Enviar Mensagem"
+			 />
+
+    </TableRow>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp" >
+
+        <ListView
+            android:id="@+id/lstConsultas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="false">
+        </ListView>
+        <!--  
+         <TextView android:id="@android:id/empty"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="#FF0000"
+         	android:text="No data"/>
+		-->
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,122 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="@android:style/Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="Theme.NoTitle" parent="@android:style/Theme.NoTitleBar"> </style>
+    <style name ="Theme.FullScreen" parent = "@android:style/Theme.NoTitleBar.Fullscreen"></style>
+	
+    <!-- STYLES PARA A ACTIVITY MAIN -->
+    
+    <style name = "ButtonImageStyle">
+        <item name="android:layout_width">32dp</item>
+        <item name= "android:layout_height">32dp</item>
+        <item name= "android:layout_marginLeft">6dp</item>
+        <item name= "android:layout_marginRight">6dp</item>
+        <item name = "android:gravity">center</item>
+        <item name = "android:layout_gravity">center</item>
+    </style>
+    
+    <style name = "ButtonsAgenda">
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">36dp</item>
+        <item name = "android:layout_margin">5dp</item>
+        <item name = "android:layout_marginTop">10dp</item>
+        <item name = "android:gravity">center_horizontal|center_vertical</item>
+        <item name = "android:layout_weight">1.0</item>
+    </style>
+    
+    <style name = "ButtonsAgendaMaiores">
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">65dp</item>
+        <item name = "android:layout_margin">5dp</item>
+        <item name = "android:layout_marginTop">10dp</item>
+        <item name = "android:textSize">12sp</item>
+        <item name = "android:gravity">center_horizontal|center_vertical</item>
+        <item name = "android:layout_weight">1.0</item>
+    </style>
+    
+    <style name = "ItensAgenda">
+        <item name = "android:background">#D3D3D3</item>
+        <item name = "android:layout_height">48dp</item>
+        <item name = "android:layout_marginLeft">4dp</item>
+        <item name = "android:layout_marginRight">4dp</item>
+        <item name = "android:layout_marginBottom">3dp</item>
+    </style>
+    
+    <style name = "textoConsultas">
+        <item name = "android:textSize">17sp</item>
+        <item name = "android:layout_weight">1.0</item>
+        <item name = "android:layout_height">match_parent</item>
+        <item name = "android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/Black</item>
+        <item name="android:textColorHint">@color/Black</item>
+    </style>
+    
+    <!-- ESTILOS PARA AS TELAS DE CONSULTAS (cadastro, edicao e visualizacao) -->
+    <!-- (Gabi) -->
+    <style name = "RotulosFormulario">
+        <item name = "android:textSize">15sp</item>
+        <item name = "android:layout_marginTop">15dp</item>
+        <item name = "android:textStyle">bold</item>
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name = "RotulosSecundariosFormulario">
+        <item name = "android:textSize">13sp</item>
+        <item name = "android:textStyle">bold</item>
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name = "CamposTextoFormulario">
+        <item name = "android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name = "android:layout_width">wrap_content</item>
+        <item name = "android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name = "ListaPadrao">
+        <item name = "android:textSize">10sp</item>
+        <item name = "android:layout_width">match_parent</item>
+        <item name = "android:layout_height">100dp</item>
+    </style>
+    
+    
+    <!-- OS ESTILOS A SEGUIR SAO PARA A TITLE BAR  -->
+    
+    <style name="CustomWindowTitleBackground">
+        <item name="android:background">#323331</item>
+    </style>
+    
+    <style name = "CustomTitleBar" parent ="@style/AppTheme">
+        <item name = "android:windowTitleSize">35dip</item>
+        <item name = "android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
+    </style>
+    
+    <!-- FIM DOS SYLES PARA CUSTOM BAR -->
+    
+    <!-- ESTILOS PARA DEMARCAR TOPICOS -->
+    
+    <style name = "Topicos">
+        <item name = "android:layout_marginTop">@dimen/MargenPadrao</item>
+        <item name = "android:layout_marginBottom">@dimen/MargenPadrao</item>
+        <item name = "android:textStyle">bold</item>
+        
+    </style>
+    
+</resources>
