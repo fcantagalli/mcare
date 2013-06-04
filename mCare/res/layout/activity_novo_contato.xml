@@ -83,33 +83,104 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="@dimen/MargenPadrao" >
+                android:layout_height="48dp"
+                 >
 
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignBottom="@+id/imageViewCancelar"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
-                    android:layout_toLeftOf="@+id/editTextNumero" />
+                    android:layout_toLeftOf="@+id/editTextNumero1" />
 
                 <ImageView
                     android:id="@+id/imageViewCancelar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-  
+  					android:visibility="invisible"
                     android:layout_alignParentRight="true"
 
                     android:src="@android:drawable/ic_delete" />
 
                 <EditText
-                    android:id="@+id/editTextNumero"
+                    android:id="@+id/editTextNumero1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/imageViewCancelar"
+                    android:ems="10"
+                    android:hint="Telefone"
+                    android:inputType="phone" />
+
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                 >
+
+                <Spinner
+                    android:id="@+id/spinner2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/imageViewCancelar2"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/editTextNumero2" />
+
+                <ImageView
+                    android:id="@+id/imageViewCancelar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/spinner1"
-                    android:layout_toLeftOf="@+id/imageViewCancelar"
+  					android:visibility="invisible"
+                    android:layout_alignParentRight="true"
+                    android:src="@android:drawable/ic_delete" />
+
+                <EditText
+                    android:id="@+id/editTextNumero2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@id/spinner2"
+                    android:layout_toLeftOf="@id/imageViewCancelar2"
+                    android:ems="10"
+                    android:hint="Telefone"
+                    android:inputType="phone" />
+
+            </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                 >
+
+                <Spinner
+                    android:id="@+id/spinner3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignBottom="@+id/imageViewCancelar3"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toLeftOf="@+id/editTextNumero3" />
+
+                <ImageView
+                    android:id="@+id/imageViewCancelar3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+  					android:visibility="invisible"
+                    android:layout_alignParentRight="true"
+
+                    android:src="@android:drawable/ic_delete" />
+
+                <EditText
+                    android:id="@+id/editTextNumero3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@id/spinner3"
+                    android:layout_toLeftOf="@id/imageViewCancelar3"
                     android:ems="10"
                     android:hint="Telefone"
                     android:inputType="phone" />
@@ -139,16 +210,16 @@
             <EditText
                 android:id="@+id/editText2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/textViewEnderecos"
                 android:ems="10"
                 android:hint="Endereco" />
 
             <Spinner
-                android:id="@+id/spinner1"
+                android:id="@+id/spinnerEndereco"
                 android:layout_width="16dp"
-                android:layout_height="32dp"
+                android:layout_height="48dp"
                 android:layout_above="@+id/linearLayout2"
                 android:layout_alignParentLeft="true"
                 android:layout_below="@id/textViewEnderecos"
@@ -156,8 +227,8 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/editText2"
@@ -166,17 +237,18 @@
                 <EditText
                     android:id="@+id/editText3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/MargenPadrao"
-                    android:layout_weight="80"
+                    android:layout_weight="55"
                     android:ems="10"
                     android:hint="Numero"
                     android:inputType="number" />
 
                 <EditText
                     android:id="@+id/editText4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="45"
                     android:ems="10"
                     android:hint="Complemento"
                     android:inputType="textPostalAddress" />
@@ -185,7 +257,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/linearLayout2" >
@@ -193,7 +265,7 @@
                 <EditText
                     android:id="@+id/editText5"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/MargenPadrao"
                     android:layout_weight="1"
                     android:ems="10"
@@ -203,7 +275,7 @@
                 <EditText
                     android:id="@+id/editText6"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
                     android:hint="Bairro" />
@@ -224,7 +296,7 @@
             <EditText
                 android:id="@+id/editText7"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/textView3"
@@ -246,7 +318,7 @@
             <EditText
                 android:id="@+id/editText8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/textView4"
@@ -266,7 +338,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/spinnerEsc"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_below="@id/textView6" />
@@ -278,14 +350,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/spinner2"
+                android:layout_below="@id/spinnerEsc"
                 android:text="Parente"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/editText9"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/textView7"
@@ -296,7 +368,7 @@
             <EditText
                 android:id="@+id/editText10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="36dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
@@ -304,7 +376,21 @@
                 android:ems="10"
                 android:hint="Telefone do parente"
                 android:inputType="phone" />
+            
+            <EditText
+                android:id="@+id/editText11"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/editText10"
+                android:ems="10"
+                android:hint="Celular do Parente"
+                android:inputType="phone" />
+            
         </RelativeLayout>
+
         <!-- RESTO CONTAINER -->
 
     </LinearLayout>

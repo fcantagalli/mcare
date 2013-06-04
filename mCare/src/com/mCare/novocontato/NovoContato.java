@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -21,8 +22,26 @@ import com.mCare.R;
 
 public class NovoContato extends Activity implements View.OnClickListener {
 	
-	private List<Tel> telefones;
-	private NovoContatoAdapter adapter;
+	
+	EditText nome;
+	EditText tel1;
+	Spinner tipo1;
+	EditText tel2;
+	Spinner tipo2;
+	EditText tel3;
+	Spinner tipo3;
+	EditText endereco;
+	Spinner tipoEndereco;
+	EditText numero;
+	EditText complemento;
+	EditText cep;
+	EditText bairro;
+	EditText email;
+	EditText dataNascimento;
+	Spinner escolaridade;
+	EditText nomeParente;
+	EditText telParente;
+	EditText celParente;
 	//private ListView list;
 	
 	@Override
@@ -38,40 +57,50 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		ImageView cancelar = (ImageView) findViewById(R.id.cancelarNovoContato);
 		cancelar.setOnClickListener(this);
 		
-		TextView tv1 = (TextView) findViewById(R.id.textView1);
-		TextView tv2 = (TextView) findViewById(R.id.textView2);
-		//list = (ListView) findViewById(R.id.listViewContatos);
-		LinearLayout ll1 = (LinearLayout) findViewById(R.id.linearLayout2);
-		Spinner spinner = (Spinner) findViewById(R.id.spinner1);
-		ImageView maisTel = (ImageView) findViewById(R.id.imageView2);
-		Spinner spinnerEscolaridade = (Spinner) findViewById(R.id.spinner2);
-		RelativeLayout pai = (RelativeLayout) findViewById(R.id.paiDosTel);
+		//nome do novo contato
+		nome = (EditText) findViewById(R.id.editTextNomePessoa);
+		
+		//telefones e tipos
+		tel1 = (EditText) findViewById(R.id.editTextNumero1);
+		tipo1 = (Spinner) findViewById(R.id.spinner1);
+		tel2 = (EditText) findViewById(R.id.editTextNumero2);
+		tipo2 = (Spinner) findViewById(R.id.spinner2);
+		tel3 = (EditText) findViewById(R.id.editTextNumero3);
+		tipo3 = (Spinner) findViewById(R.id.spinner3);
+		
+		//Endereco
+		endereco = (EditText) findViewById(R.id.editText2);
+		tipoEndereco = (Spinner) findViewById(R.id.spinnerEndereco);
+		numero = (EditText) findViewById(R.id.editText3);
+		complemento = (EditText) findViewById(R.id.editText4);
+		cep = (EditText) findViewById(R.id.editText5);
+		bairro = (EditText) findViewById(R.id.editText6);
+		
+		// email
+		email = (EditText) findViewById(R.id.editText7);
+		
+		// data de nascimento
+		dataNascimento = (EditText) findViewById(R.id.editText8);
+		
+		//Escolaridade
+		escolaridade = (Spinner) findViewById(R.id.spinnerEsc);
+		
+		//Parente
+		nomeParente = (EditText) findViewById(R.id.editText9);
+		telParente = (EditText) findViewById(R.id.editText10);
+		celParente = (EditText) findViewById(R.id.editText11);
 		
 		ImageView cancelarBotao = (ImageView) findViewById(R.id.imageViewCancelar);
 		cancelarBotao.setOnClickListener(this);
+		
 		ArrayAdapter<CharSequence> possiveisTels = ArrayAdapter.createFromResource(this, R.array.tiposEndereco, android.R.layout.simple_list_item_1);
-		spinner.setAdapter(possiveisTels);
+		tipo1.setAdapter(possiveisTels);
+		tipo2.setAdapter(possiveisTels);
+		tipo3.setAdapter(possiveisTels);
 		
 		ArrayAdapter<CharSequence> escolaridades = ArrayAdapter.createFromResource(this, R.array.escolaridade, android.R.layout.simple_list_item_1);
-		spinnerEscolaridade.setAdapter(escolaridades);
+		escolaridade.setAdapter(escolaridades);
 		
-		telefones = new ArrayList<Tel>();
-		
-		//adapter = new NovoContatoAdapter(this, telefones,list,tv2,tv1);
-		
-		//list.setAdapter(adapter);
-		maisTel.setOnClickListener(this);
-		/*maisTel.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				//ListView list2 = (ListView) findViewById(R.id.listViewContatos);
-				//list2.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, list2.getHeight()+97));
-				//Log.i("phil", "cheguei!");
-				adapter.addItem(new Tel());
-			}
-		});*/
 	}
 
 	@Override
@@ -86,20 +115,23 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		// TODO Auto-generated method stub
 		switch(v.getId()){	
 			case R.id.salvarNovoContato: {
+				salvaContato();
 				break;
 			}
 			case R.id.cancelarNovoContato:{
-				break;
-			}
-			case R.id.imageView2:{
-				adapter.addItem(new Tel());
+				this.finish();
 				break;
 			}
 			case R.id.imageViewCancelar:{
-				EditText texto = (EditText) findViewById(R.id.editTextNumero);
+				EditText texto = (EditText) findViewById(R.id.imageViewCancelar);
 				texto.setText("");
 			}
 		}
+	}
+	
+	private void salvaContato(){	
+		// primeiro trata campos que nao podem ser null
+		
 	}
 
 }

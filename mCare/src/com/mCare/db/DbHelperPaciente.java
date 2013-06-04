@@ -34,6 +34,13 @@ public class DbHelperPaciente {
 		cv.put("parente", p.getParente());
 		cv.put("parente_tel", p.getParente_tel());
 		cv.put("parente cel", p.getParente_cel());
+		cv.put("logradouro", p.getLogradouro());
+		cv.put("bairro", p.getBairro());
+		cv.put("numero", p.getNumero());
+		cv.put("tipo_end", p.getTipo_endereco());
+		cv.put("cep", p.getCep());
+		cv.put("cidade", p.getCidade());
+		cv.put("complemento", p.getComplemento());
 
 		deucerto = dbhelper.insert(dbhelper.TABLE_NAME_PACIENTES, cv);
 		return deucerto;
@@ -49,7 +56,7 @@ public class DbHelperPaciente {
 
 	/**
 	 * Obs: os objetos retornados por esse m�todo possuem somente nome e id para
-	 * otimiza��o de memoria na listagem de todos os pacientes. Para exibir mais
+	 * otimizacao de memoria na listagem de todos os pacientes. Para exibir mais
 	 * detalhes e necessario nova busca para pegar os detalhes.
 	 * 
 	 * @return lista de pacientes
@@ -93,6 +100,7 @@ public class DbHelperPaciente {
 
 		if (c.moveToFirst()) {
 			while (!c.isAfterLast()) {
+
 				int idpaciente = c.getInt(0);
 				String nome = c.getString(1);
 				GregorianCalendar gc = dbhelper.textToGregorianCalendar(c
@@ -105,7 +113,7 @@ public class DbHelperPaciente {
 				String logradouro = c.getString(8);
 				String bairro = c.getString(9);
 				int numero = c.getInt(10);
-				int tipo_end = c.getInt(11);
+				String tipo_end = c.getString(11);
 				String cep = c.getString(12);
 				String cidade = c.getString(13);
 				String complemento = c.getString(14);
@@ -115,8 +123,8 @@ public class DbHelperPaciente {
 
 				p.setEscolaridade(escolaridade);
 				p.setParente(parente);
-				p.setParente_cel(parente_cel);
 				p.setParente_tel(parente_tel);
+				p.setParente_cel(parente_cel);
 				p.setTipo_endereco(tipo_end);
 				p.setCep(cep);
 				p.setComplemento(complemento);
@@ -137,6 +145,7 @@ public class DbHelperPaciente {
 
 		if (c.moveToFirst()) {
 			while (!c.isAfterLast()) {
+
 				int idpaciente = c.getInt(0);
 				GregorianCalendar gc = dbhelper.textToGregorianCalendar(c
 						.getString(2));
@@ -148,7 +157,7 @@ public class DbHelperPaciente {
 				String logradouro = c.getString(8);
 				String bairro = c.getString(9);
 				int numero = c.getInt(10);
-				int tipo_end = c.getInt(11);
+				String tipo_end = c.getString(11);
 				String cep = c.getString(12);
 				String cidade = c.getString(13);
 				String complemento = c.getString(14);
@@ -158,15 +167,15 @@ public class DbHelperPaciente {
 
 				p.setEscolaridade(escolaridade);
 				p.setParente(parente);
-				p.setParente_cel(parente_cel);
 				p.setParente_tel(parente_tel);
+				p.setParente_cel(parente_cel);
 				p.setTipo_endereco(tipo_end);
 				p.setCep(cep);
 				p.setComplemento(complemento);
+
 			}
 
 		}
 		return p;
 	}
-
 }

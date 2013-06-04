@@ -18,7 +18,7 @@ public class Paciente implements Comparable<Paciente> {
 	private String logradouro;
 	private String bairro;
 	private int numero;
-	private int tipo_endereco;
+	private String tipo_endereco;
 	private String cep;
 	private String cidade;
 	private String complemento;
@@ -130,11 +130,11 @@ public class Paciente implements Comparable<Paciente> {
 		this.numero = numero;
 	}
 
-	public int getTipo_endereco() {
+	public String getTipo_endereco() {
 		return tipo_endereco;
 	}
 
-	public void setTipo_endereco(int tipo_endereco) {
+	public void setTipo_endereco(String tipo_endereco) {
 		this.tipo_endereco = tipo_endereco;
 	}
 

@@ -12,7 +12,7 @@ private Db dbhelper;
 		
 	}
 	
-	public long insereTelefone(int fk_paciente, long telefone, int tipo_tel){
+	public long insereTelefone(long fk_paciente, String telefone, String tipo_tel){
 		
 		
 		ContentValues cv = new ContentValues();
