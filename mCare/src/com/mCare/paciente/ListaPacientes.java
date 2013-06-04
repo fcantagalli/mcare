@@ -29,9 +29,9 @@ import android.widget.SectionIndexer;
 
 public class ListaPacientes extends Fragment implements OnItemClickListener {
 
-	private ArrayList<Paciente> elements;
+	ArrayList<Paciente> elements;
 	ListView listViewPacientes;
-	private MyIndexerAdapter<Paciente> adapter;
+    MyIndexerAdapter<Paciente> adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -90,13 +90,12 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		Paciente p = new Paciente((int) data.getLongExtra("id", 0),data.getStringExtra("name"));
-		
-		Log.i("insere","entrou no onActivityResult");
-		elements.add(p);
-		//Collections.sort(elements);
-		adapter.notifyDataSetChanged();
+		Paciente paciente = new Paciente((int)data.getExtras().getInt("id"), (String)data.getExtras().getString("nome"));
+		elements.add(paciente);
+		Collections.sort(elements);
+		listViewPacientes.setFastScrollEnabled(true);
+		adapter = new MyIndexerAdapter<Paciente>(getActivity(), android.R.layout.simple_list_item_1, elements);
+		listViewPacientes.setAdapter(adapter);
 	}
 
 	//ic_btn_speak_now

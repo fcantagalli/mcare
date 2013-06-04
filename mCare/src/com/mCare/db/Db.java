@@ -162,12 +162,13 @@ public class Db extends SQLiteOpenHelper {
 	}
 	
 	public GregorianCalendar textToGregorianCalendar(String data){
-
+		Log.wtf("SQL", "data da classe db: " + data);
 		String mes = data.substring(6, 7);
 		if(mes.length() == 1){
 			mes = "0"+mes;
 		}
-		String dia = data.substring(9, 10);
+		//YYYY-MM-DD HH:MM
+		String dia = data.substring(8, 9);
 		if(dia.length() == 1){
 			dia = "0"+mes;
 		}

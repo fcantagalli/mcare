@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -24,6 +25,7 @@ import com.mCare.R;
 import com.mCare.consulta.Consulta;
 import com.mCare.db.DbHelperConsultas;
 import com.mCare.db.DbHelperPaciente;
+import com.mCare.novocontato.NovoContato;
 import com.mCare.paciente.Paciente;
 
 public class AgendarConsulta extends Activity {
@@ -71,8 +73,10 @@ public class AgendarConsulta extends Activity {
 	public void agendarConsulta(){
 		DatePicker datePicker = (DatePicker) findViewById(R.id.datePickerAgendarConsulta);
 		TimePicker timePicker = (TimePicker) findViewById(R.id.timePickerAgendarConsulta);
-		
-		GregorianCalendar calendar = new GregorianCalendar(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
+		String dataHorario = "Data: " + datePicker.getYear() + " " + datePicker.getMonth()+1 + " " + datePicker.getDayOfMonth();
+		String horario = "Horario: " + timePicker.getCurrentHour() + " " + timePicker.getCurrentMinute();
+		Log.wtf("agendar", dataHorario + " ----- " + horario);
+		GregorianCalendar calendar = new GregorianCalendar(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
 		
 		final AutoCompleteTextView autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
 		
@@ -94,7 +98,9 @@ public class AgendarConsulta extends Activity {
 				public void onClick(DialogInterface dialog, int which) {
 					@SuppressWarnings("unused")
 					String nomePaciente = autoComplete.getText().toString();
-					//TODO activity para cadastrar novo paciente com o nomePaciente jah setado
+					Intent intent = new Intent(getApplicationContext(), NovoContato.class);
+					intent.putExtra("nome", autoComplete.getText().toString());
+					startActivity(intent);
 				}
 			});
 			builder.setNegativeButton("Selecionar outro paciente", new DialogInterface.OnClickListener() {
@@ -120,8 +126,7 @@ public class AgendarConsulta extends Activity {
 		
 		DbHelperConsultas dbConsulta = new DbHelperConsultas(getApplicationContext());
 		dbConsulta.insereConsulta(consulta);
-		
-		Toast.makeText(getApplicationContext(), "Consulta adicionada com sucesso", Toast.LENGTH_LONG).show();
+
 		onBackPressed();
 	}
 	

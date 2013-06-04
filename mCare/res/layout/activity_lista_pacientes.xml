@@ -4,6 +4,7 @@
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/adicionarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
@@ -12,9 +13,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:src="@android:drawable/ic_input_add"
-            android:clickable="true" />
+            android:layout_margin="@dimen/MargenPadrao"
+            android:clickable="true"
+            android:src="@android:drawable/ic_menu_add" />
 
         <TextView
             android:id="@+id/textView1"
@@ -22,8 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/AdicionaPaciente"
-            android:text="Adicionar Contato"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="Adicionar novo contato"
+            android:layout_marginTop="4dp"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </RelativeLayout>
 

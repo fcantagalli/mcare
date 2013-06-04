@@ -2,6 +2,7 @@ package com.mCare.main;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -24,6 +25,7 @@ import com.mCare.R;
 import com.mCare.consulta.Consulta;
 import com.mCare.consulta.VisualizaInfoConsultaAgendada;
 import com.mCare.consulta.agendarConsulta.AgendarConsulta;
+import com.mCare.db.DbHelperConsultas;
 import com.mCare.paciente.Paciente;
 
 public class Consultas_Fragment extends Fragment {
@@ -42,8 +44,7 @@ public class Consultas_Fragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity()
-						.getApplicationContext(), AgendarConsulta.class);
+				Intent intent = new Intent(getActivity().getApplicationContext(), AgendarConsulta.class);
 				startActivityForResult(intent, 0);
 			}
 		});
@@ -63,16 +64,16 @@ public class Consultas_Fragment extends Fragment {
 		Consulta consulta1 = new Consulta(philippe, date, "normal", descricao);
 		Consulta consulta2 = new Consulta(felipe, date, "rotina", descricao);
 		Consulta consulta3 = new Consulta(bianca, date, "semanal", descricao);
-
-		lstConsultas.add(consulta1);
-		lstConsultas.add(consulta2);
-		lstConsultas.add(consulta3);
-
+		
+		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
+		lstConsultas = dbConsultas.todasConsultas();
+		if(lstConsultas == null){
+			lstConsultas = new LinkedList<Consulta>();
+		}
 		// Associar o adapter ao listview
 
 		/** cria o adapter e passa a list para ele */
-		ConsultaAdapter adapter = new ConsultaAdapter(getActivity()
-				.getApplicationContext(), lstConsultas);
+		ConsultaAdapter adapter = new ConsultaAdapter(getActivity().getApplicationContext(), lstConsultas);
 
 		list.setAdapter(adapter);
 
@@ -135,5 +136,23 @@ public class Consultas_Fragment extends Fragment {
 		}
 		}
 	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		ListView listaConsultas = (ListView) getActivity().findViewById(R.id.lstConsultas);
+		
+		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
+		lstConsultas = dbConsultas.todasConsultas();
+		if(lstConsultas == null){
+			Log.wtf("aaah", "eh null");
+			lstConsultas = new LinkedList<Consulta>();
+		}
+		
+		ConsultaAdapter adapter = new ConsultaAdapter(getActivity().getApplicationContext(), lstConsultas);
+		listaConsultas.setAdapter(adapter);
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
+	
 
 }
