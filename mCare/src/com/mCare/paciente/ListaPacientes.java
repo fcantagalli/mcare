@@ -43,6 +43,10 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 				.getApplicationContext());
 
 		elements = db.listaPacientes();
+		
+		if(elements== null){
+			elements = new ArrayList<Paciente>();
+		}
 
 		//elements = new ArrayList<Paciente>();
 		
@@ -127,7 +131,7 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 			alphaIndexer = new HashMap<String, Integer>();
 			// in this hashmap we will store here the positions for
 			// the sections
-
+				
 			int size = elements.size();
 			for (int i = size - 1; i >= 0; i--) {
 				String element = elements.get(i).getNome();
