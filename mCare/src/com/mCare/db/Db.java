@@ -163,17 +163,17 @@ public class Db extends SQLiteOpenHelper {
 	
 	public GregorianCalendar textToGregorianCalendar(String data){
 
-		String mes = data.substring(5, 7);
+		String mes = data.substring(6, 7);
 		if(mes.length() == 1){
 			mes = "0"+mes;
 		}
-		String dia = data.substring(8, 10);
+		String dia = data.substring(9, 10);
 		if(dia.length() == 1){
 			dia = "0"+mes;
 		}
 		
 		if(data.length() > 11){
-			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia) ,Integer.parseInt(data.substring(11,13)) ,Integer.parseInt(data.substring(13,15)));
+			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia) ,Integer.parseInt(data.substring(12,13)) ,Integer.parseInt(data.substring(15,16)));
 		}
 		else{
 			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia));

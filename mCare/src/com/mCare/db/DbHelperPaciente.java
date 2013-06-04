@@ -128,9 +128,9 @@ public class DbHelperPaciente {
 				p.setTipo_endereco(tipo_end);
 				p.setCep(cep);
 				p.setComplemento(complemento);
-
+				c.moveToNext();
 			}
-
+			
 		}
 		return p;
 	}
@@ -147,8 +147,7 @@ public class DbHelperPaciente {
 			while (!c.isAfterLast()) {
 
 				int idpaciente = c.getInt(0);
-				GregorianCalendar gc = dbhelper.textToGregorianCalendar(c
-						.getString(2));
+				GregorianCalendar gc = dbhelper.textToGregorianCalendar(c.getString(2));
 				byte sexo = (byte) c.getInt(3);
 				String escolaridade = c.getString(4);
 				String parente = c.getString(5);
@@ -172,9 +171,10 @@ public class DbHelperPaciente {
 				p.setTipo_endereco(tipo_end);
 				p.setCep(cep);
 				p.setComplemento(complemento);
-
+				c.moveToNext();
 			}
 
+			
 		}
 		return p;
 	}
