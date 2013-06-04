@@ -65,7 +65,6 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		MyIndexerAdapter<Paciente> adapter = new MyIndexerAdapter<Paciente>(
 				getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewPacientes.setAdapter(adapter);
-		
 		 
 		ImageView adiciona = (ImageView) rootView.findViewById(R.id.AdicionaPaciente);
 		
@@ -78,7 +77,7 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 				getActivity().startActivity(intent);
 			}
 		});
-		 
+		
 		return rootView;
 	}
 
