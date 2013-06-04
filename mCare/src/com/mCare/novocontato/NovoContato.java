@@ -4,11 +4,11 @@ import java.util.GregorianCalendar;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -206,6 +206,17 @@ public class NovoContato extends Activity implements View.OnClickListener {
 			Log.wtf("insere", ""+id);
 		}
 		
+		Intent intent = new Intent();
+		intent.putExtra("nome", nome.getText().toString());
+		intent.putExtra("id", id);
+		if(this.getParent() == null){
+			setResult(Activity.RESULT_OK,intent);
+		}
+		else{
+			this.getParent().setResult(Activity.RESULT_OK, intent);
+		}
+		
+		super.onBackPressed();
 	}
 
 }

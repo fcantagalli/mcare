@@ -29,9 +29,10 @@ import android.widget.SectionIndexer;
 
 public class ListaPacientes extends Fragment implements OnItemClickListener {
 
-	ArrayList<Paciente> elements;
+	private ArrayList<Paciente> elements;
 	ListView listViewPacientes;
-
+	private MyIndexerAdapter<Paciente> adapter;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -41,15 +42,15 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		DbHelperPaciente db = new DbHelperPaciente(getActivity()
 				.getApplicationContext());
 
-		//elements = db.listaPacientes();
+		elements = db.listaPacientes();
 
-		elements = new ArrayList<Paciente>();
+		//elements = new ArrayList<Paciente>();
 		
 		// OBS: esse trecho abaixo foi usado para teste, ele gera 300 Pacientes
 		// com nomes aleatorios
 		// e adiciona na lista elements
 		
-		  String s = "QWERTZUIOPASDFGHJKLYXCVBNM"; Random r = new Random(); for
+		/*  String s = "QWERTZUIOPASDFGHJKLYXCVBNM"; Random r = new Random(); for
 		  (int i = 0; i < 300; i++) {
 		  
 		  elements.add(new Paciente(1,s.substring(r.nextInt(s.length()))));
@@ -58,11 +59,11 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		 
 
 		 Collections.sort(elements); // Must be sorted! // ja retorna ordenado
-
+		*/
 		// listview
 		listViewPacientes = (ListView) rootView.findViewById(R.id.listTelaPacientes);
 		listViewPacientes.setFastScrollEnabled(true);
-		MyIndexerAdapter<Paciente> adapter = new MyIndexerAdapter<Paciente>(
+		adapter = new MyIndexerAdapter<Paciente>(
 				getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewPacientes.setAdapter(adapter);
 		 
@@ -74,12 +75,30 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(getActivity(),NovoContato.class);
-				getActivity().startActivity(intent);
+				startActivityForResult(intent, 0);
 			}
 		});
 		
 		return rootView;
 	}
+
+	
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		Paciente p = new Paciente((int) data.getLongExtra("id", 0),data.getStringExtra("name"));
+		
+		Log.i("insere","entrou no onActivityResult");
+		elements.add(p);
+		//Collections.sort(elements);
+		adapter.notifyDataSetChanged();
+	}
+
+	//ic_btn_speak_now
+	//ic_menu_camera
+	//ic_menu_gallery
+	//ic_menu_slideshow
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

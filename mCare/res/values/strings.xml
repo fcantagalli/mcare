@@ -112,6 +112,7 @@
     -->
 
     <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL);  </string>
+    
     <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT NOT NULL, data_nascimento TEXT NOT NULL, 
         sexo INTEGER NULL, escolaridade TEXT NULL, parente TEXT NULL, parente_tel TEXT NULL, parente_cel TEXT NULL, logradouro TEXT NOT NULL, bairro TEXT NULL,
         numero INTEGER NOT NULL, tipo_end INTEGER NULL, cep TEXT NULL, cidade TEXT NOT NULL, complemento TEXT NULL);@
@@ -120,7 +121,7 @@
         telefone TEXT NOT NULL,tipo_tel INTEGER NOT NULL);@
         
         CREATE TABLE consultas_marcadas (id_consulta INTEGER PRIMARY KEY AUTOINCREMENT, fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
-        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con NULL, endereco TEXT NOT NULL, bairro TEXT NULL);@
+        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL);@
     </string>
     <string name="DB_NAME">teste</string>
 
