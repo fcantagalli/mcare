@@ -86,7 +86,7 @@ public class AgendarConsulta extends Activity {
 		dbPaciente = null;
 		
 		if(paciente == null){
-			AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Não foi possível encontrar o paciente selecionado");
 			builder.setIcon(R.drawable.dunno);
 			builder.setPositiveButton("Cadastrar novo paciente", new DialogInterface.OnClickListener() {
@@ -108,6 +108,7 @@ public class AgendarConsulta extends Activity {
 			});
 			AlertDialog dialog = builder.create();
 			dialog.show();
+			return;
 		}
 		
 		EditText descricao = (EditText) findViewById(R.id.editTextDescricao);

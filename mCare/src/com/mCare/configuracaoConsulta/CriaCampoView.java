@@ -26,6 +26,8 @@ public class CriaCampoView extends Activity implements OnItemSelectedListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cria_campo_view);
 		
+		getActionBar().setTitle("Informações sobre o novo campo:");
+		
 		//popula spinner com os tipos do campo (enconta na classe strings.xml)
 		Spinner tiposCampo = (Spinner) findViewById(R.id.spinnerTipoCampo);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.array_tipos_campo, android.R.layout.simple_spinner_item);

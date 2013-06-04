@@ -30,6 +30,9 @@ public class SelecionaCamposView extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		getActionBar().setTitle("Configurar consulta");
+
 		ScrollView scroll = new ScrollView(this);
 		scroll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		this.scroll = scroll;
@@ -117,14 +120,15 @@ public class SelecionaCamposView extends Activity {
 
 			switch(tipo){
 			//campo tipo audio
-			case 3: imagem.setImageResource(R.drawable.shower3);
+			case 3: imagem.setImageResource(android.R.drawable.ic_btn_speak_now);
 			break;
 			//campo tipo imagem
-			case 4: imagem.setImageResource(R.drawable.shower3);
+			case 4: imagem.setImageResource(android.R.drawable.ic_menu_camera);
 			break;
 			//campo tipo video
-			case 5: imagem.setImageResource(R.drawable.shower3);
+			case 5: imagem.setImageResource(android.R.drawable.ic_menu_slideshow);
 			break;
+			//nunca acontecera
 			default: imagem.setImageResource(R.drawable.shower3);
 			break;
 			}
