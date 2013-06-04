@@ -1,5 +1,7 @@
 package com.mCare.db;
 
+import java.util.GregorianCalendar;
+
 import android.content.ContentValues;
 import android.content.Context;
 
@@ -13,7 +15,6 @@ private Db dbhelper;
 	}
 	
 	public long insereTelefone(long fk_paciente, String telefone, String tipo_tel){
-		
 		
 		ContentValues cv = new ContentValues();
 		
