@@ -29,9 +29,9 @@ import android.widget.SectionIndexer;
 
 public class ListaPacientes extends Fragment implements OnItemClickListener {
 
-	private ArrayList<Paciente> elements;
+	ArrayList<Paciente> elements;
 	ListView listViewPacientes;
-	private MyIndexerAdapter<Paciente> adapter;
+	MyIndexerAdapter<Paciente> adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +43,10 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 				.getApplicationContext());
 
 		elements = db.listaPacientes();
+		
+		if(elements == null){
+			elements = new ArrayList<Paciente>();
+		}
 
 		//elements = new ArrayList<Paciente>();
 		
@@ -91,6 +95,7 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		
 		Log.i("insere","entrou no onActivityResult");
 		elements.add(p);
+		adapter.add(p);
 		//Collections.sort(elements);
 		adapter.notifyDataSetChanged();
 	}
@@ -139,7 +144,6 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 
 			// now we have an hashmap containing for each first-letter
 			// sections(key), the index(value) in where this sections begins
-
 			// we have now to build the sections(letters to be displayed)
 			// array .it must contains the keys, and must (I do so...) be
 			// ordered alphabetically
