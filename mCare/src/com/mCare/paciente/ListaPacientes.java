@@ -90,6 +90,9 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if(data == null){
+			return;
+		}
 		Paciente paciente = new Paciente((int)data.getExtras().getInt("id"), (String)data.getExtras().getString("nome"));
 		elements.add(paciente);
 		Collections.sort(elements);
