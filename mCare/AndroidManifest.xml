@@ -11,7 +11,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- Para notificacoes -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Para notificacoes -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -73,10 +74,17 @@
             android:name="com.mCare.consulta.VisualizaInfoConsultaAgendada"
             android:label="@string/title_activity_visualiza_info_consulta_agendada" >
         </activity>
-        
-         <activity
+        <activity
             android:name="com.mCare.configuracaoConsulta.SelecionaCamposView"
             android:label="@string/title_activity_seleciona_campos_view" >
+        </activity>
+        <activity
+            android:name="com.mCare.CadastrarMedicamento"
+            android:label="@string/title_activity_cadastrar_medicamento" >
+        </activity>
+        <activity
+            android:name="com.mCare.ListaMedicamentos"
+            android:label="@string/title_activity_lista_medicamentos" >
         </activity>
     </application>
 
