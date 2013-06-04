@@ -17,7 +17,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.mCare.R;
@@ -36,8 +36,8 @@ public class Consultas_Fragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.activity_consultas,
 				container, false);
 
-		Button agendarConsulta = (Button) rootView
-				.findViewById(R.id.buttonAgendarConsulta);
+		ImageView agendarConsulta = (ImageView) rootView
+				.findViewById(R.id.imageViewAgendarConsulta);
 		agendarConsulta.setOnClickListener(new OnClickListener() {
 
 			@Override

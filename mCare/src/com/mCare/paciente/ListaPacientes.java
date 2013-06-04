@@ -40,8 +40,8 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		DbHelperPaciente db = new DbHelperPaciente(getActivity()
 				.getApplicationContext());
 
-		elements = db.listaPacientes();
-
+		//elements = db.listaPacientes();
+		elements = new ArrayList<Paciente>();
 		// OBS: esse trecho abaixo foi usado para teste, ele gera 300 Pacientes
 		// com nomes aleatorios
 		// e adiciona na lista elements
@@ -57,13 +57,12 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		 Collections.sort(elements); // Must be sorted! // ja retorna ordenado
 
 		// listview
-		/*listViewPacientes = (ListView) getActivity().findViewById(
-				R.id.listTelaPacientes);
+		listViewPacientes = (ListView) rootView.findViewById(R.id.listTelaPacientes);
 		listViewPacientes.setFastScrollEnabled(true);
 		MyIndexerAdapter<Paciente> adapter = new MyIndexerAdapter<Paciente>(
 				getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewPacientes.setAdapter(adapter);
-		*/
+		
 		return rootView;
 	}
 
