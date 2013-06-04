@@ -48,6 +48,8 @@ public class DbHelperConsultas {
 			Log.i("SQL","cursor possui linhas");
 			LinkedList<Consulta> listaConsultas = new LinkedList<Consulta>();
 			while(!cursor.isAfterLast()){
+
+				
 				Log.i("SQL","passou no is afterlast");
 				
 				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(2));

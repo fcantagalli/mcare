@@ -27,3 +27,6 @@ gen/
 # Eclipse files #
 .classpath
 .settings
+.metadata
+.metadata/
+.metadata/*

@@ -1,24 +1,24 @@
 package com.mCare.novocontato;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.GregorianCalendar;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
+
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
+import com.mCare.db.DbHelperPaciente;
+import com.mCare.db.DbHelperTelefone;
+import com.mCare.paciente.Paciente;
 
 public class NovoContato extends Activity implements View.OnClickListener {
 	
@@ -30,14 +30,15 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	Spinner tipo2;
 	EditText tel3;
 	Spinner tipo3;
-	EditText endereco;
+	EditText logradouro;
 	Spinner tipoEndereco;
 	EditText numero;
 	EditText complemento;
 	EditText cep;
 	EditText bairro;
+	EditText cidade;
 	EditText email;
-	EditText dataNascimento;
+	DatePicker dataNascimento;
 	Spinner escolaridade;
 	EditText nomeParente;
 	EditText telParente;
@@ -47,9 +48,11 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		setContentView(R.layout.activity_novo_contato);
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,R.layout.windows_title_contatos);
+		final ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.windows_title_contatos);
+		actionBar.setDisplayShowHomeEnabled(true);
 		
 		// botoes para salvar ou cancelar o novo contato
 		ImageView salvar = (ImageView) findViewById(R.id.salvarNovoContato);
@@ -69,7 +72,7 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		tipo3 = (Spinner) findViewById(R.id.spinner3);
 		
 		//Endereco
-		endereco = (EditText) findViewById(R.id.editText2);
+		logradouro = (EditText) findViewById(R.id.editText2);
 		tipoEndereco = (Spinner) findViewById(R.id.spinnerEndereco);
 		numero = (EditText) findViewById(R.id.editText3);
 		complemento = (EditText) findViewById(R.id.editText4);
@@ -80,7 +83,9 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		email = (EditText) findViewById(R.id.editText7);
 		
 		// data de nascimento
-		dataNascimento = (EditText) findViewById(R.id.editText8);
+		dataNascimento = (DatePicker) findViewById(R.id.datePicker1);
+		GregorianCalendar gc = new GregorianCalendar();
+		dataNascimento.setMaxDate(gc.getTimeInMillis());
 		
 		//Escolaridade
 		escolaridade = (Spinner) findViewById(R.id.spinnerEsc);
@@ -131,7 +136,64 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	
 	private void salvaContato(){	
 		// primeiro trata campos que nao podem ser null
+		if(nome.getText().toString().length() == 0){
+			Toast.makeText(getApplicationContext(), "Insira um nome para esse contato.", Toast.LENGTH_LONG).show();
+			return;
+		}
+		if(tel1.getText().toString().length() == 0 && tel2.getText().toString().length() == 0 && tel3.getText().toString().length() == 0){
+			Toast.makeText(getApplicationContext(), "Insira um número de telefone pelo menos.", Toast.LENGTH_LONG).show();
+			return;
+		}
+		if(logradouro.getText().toString().length() == 0){
+			Toast.makeText(getApplicationContext(), "Insira um endereco para o novo contato.", Toast.LENGTH_LONG).show();
+			return;
+		}
+		if(numero.getText().toString().length() == 0){
+			Toast.makeText(getApplicationContext(), "numero do endereco inválido.", Toast.LENGTH_LONG).show();
+			return;
+		}
+		if(cidade.getText().toString().length() == 0 ){
+			Toast.makeText(getApplicationContext(), "Campo de cidade inválido.", Toast.LENGTH_LONG).show();
+			return;
+		}
+		// inserindo no banco agora com todos os valores
+		
+		DbHelperPaciente db = new DbHelperPaciente(getApplicationContext());
+		
+		GregorianCalendar gc = new GregorianCalendar(dataNascimento.getYear(), dataNascimento.getMonth(), dataNascimento.getDayOfMonth());
+		
+		String bairro;
+		bairro = this.bairro.getText().toString();
+		
+		if(bairro.length() == 0){
+			bairro = null;
+		}
+		
+		Paciente p = new Paciente(-1,nome.getText().toString(),gc,(byte) 1,logradouro.getText().toString(),bairro,Integer.parseInt(numero.getText().toString()),cidade.getText().toString());
+		
+		p.setEscolaridade((String) escolaridade.getSelectedItem());
+		p.setTipo_endereco((String) tipoEndereco.getSelectedItem());
+		p.setComplemento(complemento.getText().toString());
+		p.setCep(cep.getText().toString());
+		p.setParente(nomeParente.getText().toString());
+		p.setParente_tel(telParente.getText().toString());
+		p.setParente_cel(celParente.getText().toString());
+		
+		long id = db.inserePaciente(p);
+		
+		DbHelperTelefone dbt = new DbHelperTelefone(getApplicationContext());
+		
+		if(tel1.getText().toString().length() != 0){
+			dbt.insereTelefone(id, tel1.getText().toString() , (String) tipo1.getSelectedItem());
+		}
+		if(tel2.getText().toString().length() != 0){
+			dbt.insereTelefone(id, tel2.getText().toString() , (String) tipo2.getSelectedItem());
+		}
+		if(tel3.getText().toString().length() != 0){
+			dbt.insereTelefone(id, tel3.getText().toString() , (String) tipo3.getSelectedItem());
+		}
 		
 	}
 
 }
+

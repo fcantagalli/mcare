@@ -281,6 +281,16 @@
                     android:hint="Bairro" />
             </LinearLayout>
 
+             <EditText
+                 android:id="@+id/editText12"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentRight="true"
+                 android:layout_below="@+id/linearLayout3"
+                 android:ems="10"
+                 android:hint="Cidade" />
+            
             <TextView
                 android:id="@+id/textView3"
                 style="@style/Topicos"
@@ -288,7 +298,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/linearLayout3"
+                android:layout_below="@id/editText12"
                 android:drawableTop="@android:drawable/divider_horizontal_textfield"
                 android:text="Email"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -315,17 +325,15 @@
                 android:text="Data de Nascimento"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <EditText
-                android:id="@+id/editText8"
+             <DatePicker
+                android:id="@+id/datePicker1"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
+                android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/textView4"
-                android:ems="10"
-                android:hint="Data de Nascimento"
-                android:inputType="date" />
-
+                android:layout_below="@+id/textView4"
+                android:minDate="01/01/1870"
+                android:startYear="1950" />
+            
             <TextView
                 android:id="@+id/textView6"
                 style="@style/Topicos"
@@ -333,7 +341,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
-                android:layout_below="@id/editText8"
+                android:layout_below="@id/datePicker1"
                 android:text="Escolaridade"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -376,7 +384,7 @@
                 android:ems="10"
                 android:hint="Telefone do parente"
                 android:inputType="phone" />
-            
+
             <EditText
                 android:id="@+id/editText11"
                 android:layout_width="wrap_content"
@@ -388,7 +396,9 @@
                 android:ems="10"
                 android:hint="Celular do Parente"
                 android:inputType="phone" />
-            
+
+           
+
         </RelativeLayout>
 
         <!-- RESTO CONTAINER -->

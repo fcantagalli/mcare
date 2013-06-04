@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.mCare.R;
 import com.mCare.ServicesListener.InformationServices;
+import com.mCare.paciente.ListaPacientes;
 import com.mCare.weatherServices.WeatherInfo;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -191,7 +192,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             switch (i) {
                 case 0: return new Consultas_Fragment();
                 
-                
+                case 1: return new ListaPacientes();
             }
             return new com.mCare.main.Consultas_Fragment();
         }
