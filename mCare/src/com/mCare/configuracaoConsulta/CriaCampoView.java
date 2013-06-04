@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.mCare.R;
 
@@ -58,17 +59,8 @@ public class CriaCampoView extends Activity implements OnItemSelectedListener {
 		EditText campo = (EditText) findViewById(R.id.editTextCampoNome);
 		String nomeCampo = campo.getText().toString();
 		if(nomeCampo.length() == 0){
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Por favor digite o nome do campo");
-			builder.setIcon(R.drawable.dunno);
-			builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.dismiss();
-				}
-			});
-			AlertDialog dialog = builder.create();
-			dialog.show();
+			Toast.makeText(getApplicationContext(), "Digite o nome do campo", Toast.LENGTH_LONG).show();
+			return;
 		}else{
 			Intent data = new Intent();
 			data.putExtra("nomeCampo", campo.getText().toString());

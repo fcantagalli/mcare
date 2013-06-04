@@ -7,12 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-
 import android.view.MenuInflater;
-import android.view.ViewGroup.LayoutParams;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -83,30 +83,54 @@ public class SelecionaCamposView extends Activity {
 		label.setEms(10);
 		label.setTextAppearance(this, android.R.style.TextAppearance_Medium);
 		layout.addView(label);
+		nomesCampo.add(nome);
 		
 		if(tipo <= 2){
 			EditText edit = new EditText(this);
 			edit.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 			edit.setFocusable(false);
 			switch(tipo){
+				//campo tipo numero
 				case 0: edit.setHint("12");
 				tiposCampo.add(0);
 				break;
+				//campo tipo texto
 				case 1: edit.setHint("Texto Exemplo");
 				tiposCampo.add(1);
 				break;
+				//campo tipo data
 				case 2: edit.setHint("12/12/12");
 				tiposCampo.add(1);
 				break;
+				//caso que nunca ocorrera
 				default: edit.setHint("null");
 				tiposCampo.add(1);
 				break;
 			}
 			Log.i("Phil", "Campo adicionado: " + nome + " Tipo: " + tipo);
-			nomesCampo.add(nome);
 			layout.addView(edit);
 		}else{
 			//TODO fazer os views para audio, foto, e video
+			ImageView imagem = new ImageView(this);
+			imagem.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			imagem.setClickable(false);
+
+			switch(tipo){
+			//campo tipo audio
+			case 3: imagem.setImageResource(R.drawable.shower3);
+			break;
+			//campo tipo imagem
+			case 4: imagem.setImageResource(R.drawable.shower3);
+			break;
+			//campo tipo video
+			case 5: imagem.setImageResource(R.drawable.shower3);
+			break;
+			default: imagem.setImageResource(R.drawable.shower3);
+			break;
+			}
+			tiposCampo.add(3);
+			nomesCampo.add(nome);
+			layout.addView(imagem);
 		}
 
 		layout.addView(buttonAddField);
