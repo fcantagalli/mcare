@@ -59,7 +59,7 @@
         </activity>
         <activity
             android:name="com.mCare.configuracaoConsulta.CriaCampoView"
-            android:label="@string/title_activity_seleciona_campos_view" >
+            android:label="@string/title_activity_cria_campo_view" >
         </activity>
         <activity
             android:name="com.mCare.consulta.agendarConsulta.AgendarConsulta"
@@ -72,6 +72,11 @@
         <activity
             android:name="com.mCare.consulta.VisualizaInfoConsultaAgendada"
             android:label="@string/title_activity_visualiza_info_consulta_agendada" >
+        </activity>
+        
+         <activity
+            android:name="com.mCare.configuracaoConsulta.SelecionaCamposView"
+            android:label="@string/title_activity_seleciona_campos_view" >
         </activity>
     </application>
 
