@@ -130,7 +130,8 @@ public class AgendarConsulta extends Activity {
 		dbConsulta.insereConsulta(consulta);
 		
 		Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
-		NotificacaoConsulta.create(getApplicationContext(), "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta!", R.drawable.ic_launcher, 0, notificationIntent);
+		// 3600000 equivale a 1 hora de antecedencia
+		NotificacaoConsulta.create(getApplicationContext(),calendar.getTimeInMillis()-3600000 , "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta!", R.drawable.ic_launcher, NotificacaoConsulta.notificationId(calendar), notificationIntent);
 		
 		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso!", Toast.LENGTH_LONG).show();
 		

@@ -23,7 +23,7 @@ public class NotificacaoConsulta {
 	
 	@SuppressWarnings("deprecation")
 	@SuppressLint("NewApi")
-	public static void create(Context contexto,CharSequence tickerText, CharSequence title, CharSequence message, int icon, int id, Intent intent){
+	public static void create(Context contexto,long quandoIraAparecer,CharSequence tickerText, CharSequence title, CharSequence message, int icon, int id, Intent intent){
 		//Pending Intent para executar a intent ao selecionar a notificacao
 		PendingIntent p = PendingIntent.getActivity(contexto, 0, intent, 0);
 		
@@ -36,16 +36,19 @@ public class NotificacaoConsulta {
 			if(apilevel >= 17){
 				//Android 4.2
 				notification = builder.build();
+				notification.defaults = notification.DEFAULT_ALL;
 			}else{
 				// Android 3.x
 				notification = builder.getNotification();
+				notification.defaults = notification.DEFAULT_ALL;
 			}
 		}
 		else{
 			//Android 2.2
-			notification = new Notification(icon,tickerText,System.currentTimeMillis());
+			notification = new Notification(icon,tickerText,quandoIraAparecer);
 			//Informacoes
 			notification.setLatestEventInfo(contexto, title, message, p);
+			notification.defaults = notification.DEFAULT_ALL;
 		}
 		
 		NotificationManager nm = (NotificationManager) contexto.getSystemService(Activity.NOTIFICATION_SERVICE);
