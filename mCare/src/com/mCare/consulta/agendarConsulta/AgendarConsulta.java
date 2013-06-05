@@ -123,6 +123,7 @@ public class AgendarConsulta extends Activity {
 		
 		if(descricao.getText().toString().length() == 0){
 			Toast.makeText(getApplicationContext(), "Digite uma descrição para a consulta", Toast.LENGTH_LONG).show();
+			return;
 		}
 		Consulta consulta = new Consulta(paciente, calendar, (String)tipoConsulta.getSelectedItem(), descricao.getText().toString());
 		

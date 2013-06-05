@@ -13,23 +13,6 @@
     <string name="title_activity_lista_consultas">ListaConsultas</string>
     <string name="title_activity_editar_consulta">Editar_consulta</string>
 
-    
-    <!-- Resources para MEDICAMENTOS (activities de cadastro e edicao) -->    
-	<string-array name="array_tipos_medicamento">
-        <item>Comprimido</item>
-        <item>Cápsula</item>
-        <item>Gel</item>
-        <item>Gotas</item>
-        <item>Injetável</item>
-        <item>Pomada</item>
-        <item>Solução</item>
-        <item>Suspensão</item>
-        <item>Xarope</item>
-        <item>Outros</item>
-    </string-array>
-    
-    
-    
     <!-- Resources para a activity_cria_campo_view -->
     <string name="nome_do_campo">Nome do campo:</string>
     <string name="campo_nome_hint">Digite o nome do campo</string>
@@ -124,7 +107,11 @@
 
     <!--
          STRINGS PARA O BANCO DE DADOS 
-    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+<<<<<<< HEAD
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+=======
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+>>>>>>> 64d9a85099089845b37ea8c93c9b92c85a6de871
     -->
 
     <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL);  </string>
@@ -183,12 +170,15 @@
     <string name="title_activity_agendar_consulta_2">AgendarConsulta_2</string>
     <string name="title_activity_consultas">Consultas</string>
     <string name="title_activity_visualiza_info_consulta_agendada">VisualizaInfoConsultaAgendada</string>
-
+<<<<<<< HEAD
     <string name="title_activity_cadastrar_medicamento">Cadastrar_medicamento</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
     <string name="title_activity_lista_medicamentos">ListaMedicamentos</string>
+=======
     <string name="title_activity_editar_medicamento">Editar_medicamento</string>
     <string name="title_activity_visualizar_medicamento">VisualizarMedicamento</string>
+>>>>>>> 64d9a85099089845b37ea8c93c9b92c85a6de871
+
 </resources>

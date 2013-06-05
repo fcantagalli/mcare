@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentScroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/MargenPadrao" >
+
+        <!--  Nome do medicamento -->
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Nome do medicamento:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <AutoCompleteTextView
+            android:id="@+id/editTextCampoNomeMedicamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nome do medicamento"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/MargenPadrao"
+            android:textColor="@color/Black" />
+        
+        <!-- Tipo -->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Tipo"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <Spinner
+            android:id="@+id/spinnerTipoMedicamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/array_tipos_medicamento"
+            android:padding="@dimen/MargenPadrao" />
+
+        
+        <!-- Dosagem -->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Dosagem:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <AutoCompleteTextView
+            android:id="@+id/editTextCampoDosagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Dosagem (ex.: 50 mg)"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/MargenPadrao"
+            android:textColor="@color/Black" />
+        
+		<!-- Princípio ativo -->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Princípio ativo:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <AutoCompleteTextView
+            android:id="@+id/editTextCampoPrincipioAtivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Princípio ativo"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/MargenPadrao"
+            android:textColor="@color/Black" />
+        
+        
+        <!-- BOTAO -->
+        <Button
+            android:id="@+id/buttonEditarMedicamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Atualizar medicamento"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+</ScrollView>
