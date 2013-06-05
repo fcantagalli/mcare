@@ -31,8 +31,9 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 
 	ArrayList<Paciente> elements;
 	ListView listViewPacientes;
-    MyIndexerAdapter<Paciente> adapter;
-	
+
+	MyIndexerAdapter<Paciente> adapter;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -44,7 +45,9 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 
 		elements = db.listaPacientes();
 		
+
 		if(elements== null){
+
 			elements = new ArrayList<Paciente>();
 		}
 
@@ -90,12 +93,17 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if(data == null){
+			return;
+		}
 		Paciente paciente = new Paciente((int)data.getExtras().getInt("id"), (String)data.getExtras().getString("nome"));
 		elements.add(paciente);
 		Collections.sort(elements);
 		listViewPacientes.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Paciente>(getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewPacientes.setAdapter(adapter);
+
 	}
 
 	//ic_btn_speak_now
@@ -142,7 +150,6 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 
 			// now we have an hashmap containing for each first-letter
 			// sections(key), the index(value) in where this sections begins
-
 			// we have now to build the sections(letters to be displayed)
 			// array .it must contains the keys, and must (I do so...) be
 			// ordered alphabetically

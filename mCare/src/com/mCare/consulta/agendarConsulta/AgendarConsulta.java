@@ -25,6 +25,8 @@ import com.mCare.R;
 import com.mCare.consulta.Consulta;
 import com.mCare.db.DbHelperConsultas;
 import com.mCare.db.DbHelperPaciente;
+import com.mCare.main.MainActivity;
+import com.mCare.notificacao.NotificacaoConsulta;
 import com.mCare.novocontato.NovoContato;
 import com.mCare.paciente.Paciente;
 
@@ -121,12 +123,17 @@ public class AgendarConsulta extends Activity {
 		
 		if(descricao.getText().toString().length() == 0){
 			Toast.makeText(getApplicationContext(), "Digite uma descrição para a consulta", Toast.LENGTH_LONG).show();
+			return;
 		}
 		Consulta consulta = new Consulta(paciente, calendar, (String)tipoConsulta.getSelectedItem(), descricao.getText().toString());
 		
 		DbHelperConsultas dbConsulta = new DbHelperConsultas(getApplicationContext());
 		dbConsulta.insereConsulta(consulta);
-		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso", Toast.LENGTH_LONG).show();
+		
+		Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
+		NotificacaoConsulta.create(getApplicationContext(), "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta!", R.drawable.ic_launcher, 0, notificationIntent);
+		
+		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso!", Toast.LENGTH_LONG).show();
 		
 		onBackPressed();
 	}

@@ -1,7 +1,5 @@
 package com.mCare.db;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 
 import com.mCare.*;
@@ -162,6 +160,7 @@ public class Db extends SQLiteOpenHelper {
 	}
 	
 	public GregorianCalendar textToGregorianCalendar(String data){
+
 		Log.wtf("SQL", "data da classe db: " + data);
 		String mes = data.substring(6, 7);
 		if(mes.length() == 1){

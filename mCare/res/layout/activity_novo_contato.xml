@@ -90,7 +90,7 @@
                     android:id="@+id/spinner1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignBottom="@+id/imageViewCancelar"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/editTextNumero1" />
@@ -126,7 +126,7 @@
                     android:id="@+id/spinner2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignBottom="@+id/imageViewCancelar2"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/editTextNumero2" />
@@ -161,7 +161,7 @@
                     android:id="@+id/spinner3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_alignBottom="@+id/imageViewCancelar3"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/editTextNumero3" />

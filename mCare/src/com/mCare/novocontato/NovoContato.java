@@ -64,7 +64,7 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		//nome do novo contato
 		nome = (EditText) findViewById(R.id.editTextNomePessoa);
 		
-		if(getIntent().getExtras().get("nome")!= null){
+		if(getIntent().getExtras() != null){
 			nome.setText((String)getIntent().getExtras().get("nome"));
 		}
 		
@@ -132,7 +132,7 @@ public class NovoContato extends Activity implements View.OnClickListener {
 				break;
 			}
 			case R.id.cancelarNovoContato:{
-				this.finish();
+				onBackPressed();
 				break;
 			}
 			case R.id.imageViewCancelar:{
