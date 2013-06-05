@@ -30,3 +30,4 @@ gen/
 .metadata
 .metadata/
 .metadata/*
+/mCare/nbproject/private/

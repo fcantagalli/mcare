@@ -13,6 +13,23 @@
     <string name="title_activity_lista_consultas">ListaConsultas</string>
     <string name="title_activity_editar_consulta">Editar_consulta</string>
 
+    
+    <!-- Resources para MEDICAMENTOS (activities de cadastro e edicao) -->    
+	<string-array name="array_tipos_medicamento">
+        <item>Comprimido</item>
+        <item>Cápsula</item>
+        <item>Gel</item>
+        <item>Gotas</item>
+        <item>Injetável</item>
+        <item>Pomada</item>
+        <item>Solução</item>
+        <item>Suspensão</item>
+        <item>Xarope</item>
+        <item>Outros</item>
+    </string-array>
+    
+    
+    
     <!-- Resources para a activity_cria_campo_view -->
     <string name="nome_do_campo">Nome do campo:</string>
     <string name="campo_nome_hint">Digite o nome do campo</string>
@@ -99,7 +116,6 @@
         <item>Traumatologista</item>
         <item>Urologista</item>
     </string-array>
-    
     <string-array name="tipos_consulta">
         <item>Rotina</item>
         <item>Retorno</item>
@@ -112,7 +128,6 @@
     -->
 
     <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL);  </string>
-    
     <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT NOT NULL, data_nascimento TEXT NOT NULL, 
         sexo INTEGER NULL, escolaridade TEXT NULL, parente TEXT NULL, parente_tel TEXT NULL, parente_cel TEXT NULL, logradouro TEXT NOT NULL, bairro TEXT NULL,
         numero INTEGER NOT NULL, tipo_end INTEGER NULL, cep TEXT NULL, cidade TEXT NOT NULL, complemento TEXT NULL);@
@@ -121,8 +136,7 @@
         telefone TEXT NOT NULL,tipo_tel INTEGER NOT NULL);@
         
         CREATE TABLE consultas_marcadas (id_consulta INTEGER PRIMARY KEY AUTOINCREMENT, fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
-        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL);@
-    </string>
+        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL);@</string>
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->
@@ -170,4 +184,11 @@
     <string name="title_activity_consultas">Consultas</string>
     <string name="title_activity_visualiza_info_consulta_agendada">VisualizaInfoConsultaAgendada</string>
 
+    <string name="title_activity_cadastrar_medicamento">Cadastrar_medicamento</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="title_activity_lista_medicamentos">ListaMedicamentos</string>
+    <string name="title_activity_editar_medicamento">Editar_medicamento</string>
+    <string name="title_activity_visualizar_medicamento">VisualizarMedicamento</string>
 </resources>

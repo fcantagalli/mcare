@@ -8,11 +8,16 @@ public class Paciente implements Comparable<Paciente> {
 	private String nome;
 	private GregorianCalendar dataNascimento;
 	private byte Sexo; // 0 - feminino 1 - masculino
+	private String tipo_tel;
 	private String telefone;
 	private String escolaridade;
 	private String parente;
 	private String parente_tel;
 	private String parente_cel;
+	private String tel2;
+	private String tipo_tel2;
+	private String tel3;
+	private String tipo_tel3;
 
 	//endereco
 	private String logradouro;
@@ -28,6 +33,44 @@ public class Paciente implements Comparable<Paciente> {
 		this.nome = nome;
 	}
 	
+	
+	
+	public String getTipo_tel() {
+		return tipo_tel;
+	}
+
+
+
+	public void setTipo_tel(String tipo_tel) {
+		this.tipo_tel = tipo_tel;
+	}
+
+
+
+	public String getTipo_tel2() {
+		return tipo_tel2;
+	}
+
+
+
+	public void setTipo_tel2(String tipo_tel2) {
+		this.tipo_tel2 = tipo_tel2;
+	}
+
+
+
+	public String getTipo_tel3() {
+		return tipo_tel3;
+	}
+
+
+
+	public void setTipo_tel3(String tipo_tel3) {
+		this.tipo_tel3 = tipo_tel3;
+	}
+
+
+
 	public Paciente(int id, String nome, GregorianCalendar dataNascimento, byte Sexo, String logradouro, String bairro, int numero, String cidade){
 		this.bd_id = id;
 		this.nome = nome;
@@ -43,6 +86,24 @@ public class Paciente implements Comparable<Paciente> {
 		return parente_cel;
 	}
 	
+	
+	
+	public String getTel2() {
+		return tel2;
+	}
+
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
+	}
+
+	public String getTel3() {
+		return tel3;
+	}
+
+	public void setTel3(String tel3) {
+		this.tel3 = tel3;
+	}
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
