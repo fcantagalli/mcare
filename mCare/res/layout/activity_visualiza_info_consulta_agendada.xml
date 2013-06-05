@@ -14,16 +14,17 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
             android:text="Paciente:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewPaciente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
+            android:layout_marginBottom="@dimen/MargenPadrao"
             android:text="Teste"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -31,16 +32,17 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
             android:text="Horário:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewHorario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
+            android:layout_marginBottom="@dimen/MargenPadrao"
             android:text="Teste"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -48,16 +50,17 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
             android:text="Data:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewData"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
+            android:layout_marginBottom="@dimen/MargenPadrao"
             android:text="Teste"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -65,16 +68,17 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
             android:text="Endereço:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewEndereco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
+            android:layout_marginBottom="@dimen/MargenPadrao"
             android:text="Teste"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -82,16 +86,17 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
             android:text="Observações:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textViewObservacoes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
+            android:layout_marginBottom="@dimen/MargenPadrao"
             android:text="Teste"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -99,16 +104,17 @@
             android:id="@+id/TextView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
             android:text="Tipo:"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/TextViewTipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/MargenPadrao"
+            android:layout_marginLeft="@dimen/MargenPadrao"
+            android:layout_marginBottom="@dimen/MargenPadrao"
             android:text="Teste"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
