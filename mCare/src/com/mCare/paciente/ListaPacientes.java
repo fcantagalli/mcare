@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
+import android.widget.Toast;
 
 public class ListaPacientes extends Fragment implements OnItemClickListener {
 
@@ -69,6 +71,21 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		*/
 		// listview
 		listViewPacientes = (ListView) rootView.findViewById(R.id.listTelaPacientes);
+		listViewPacientes.setOnItemClickListener(this);
+		listViewPacientes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> arg0, View v,int index, long arg3) {
+
+            	Paciente p = elements.get(index);
+            	
+            	Intent intent = new Intent(getActivity(),NovoContato.class);
+            	intent.putExtra("id", p.getBd_id());
+				startActivity(intent);
+				
+                Toast.makeText(getActivity(),"Voce selecionou o paciente :" +elements.get(index).toString(), Toast.LENGTH_LONG).show();
+                return true;
+            }
+		}); 
 		listViewPacientes.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Paciente>(
 				getActivity(), android.R.layout.simple_list_item_1, elements);
@@ -97,7 +114,8 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		if(data == null){
 			return;
 		}
-		Paciente paciente = new Paciente((int)data.getExtras().getInt("id"), (String)data.getExtras().getString("nome"));
+		Paciente paciente = new Paciente( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"));
+		Log.i("inf","informacoes paciente cadastrado : "+ "nome : "+paciente.getNome()+"    Id : "+paciente.getBd_id());
 		elements.add(paciente);
 		Collections.sort(elements);
 		listViewPacientes.setFastScrollEnabled(true);
@@ -116,11 +134,12 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		// TODO Auto-generated method stub
 
 		Paciente p = elements.get(arg2);
-
+		
 		Intent myIntent = new Intent(getActivity(), InfPaciente.class);
 		myIntent.putExtra("ID", p.getBd_id());
 		this.startActivity(myIntent);
-
+		
+		Toast.makeText(getActivity(),"Voce clicou :" +elements.get(arg2).toString(), Toast.LENGTH_LONG).show();
 	}
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {

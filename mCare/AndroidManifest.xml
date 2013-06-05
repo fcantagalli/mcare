@@ -34,9 +34,8 @@
             android:label="@string/title_activity_novo_contato" >
         </activity>
         <activity
-            android:name="com.mCare.main.InfPaciente"
-            android:label="@string/title_activity_inf_paciente"
-            android:theme="@style/Theme.NoTitle" >
+            android:name=".paciente.InfPaciente"
+            android:label="@string/title_activity_inf_paciente" >
         </activity>
         <activity
             android:name="com.mCare.main.CadastroConsulta"
@@ -86,10 +85,10 @@
             android:name="com.mCare.ListaMedicamentos"
             android:label="@string/title_activity_lista_medicamentos" >
 	</activity>
-	<activity>
+	<activity
             android:name="com.mCare.EditarMedicamento"
             android:label="@string/title_activity_editar_medicamento" >
-        </activity>
+    </activity>
         <activity
             android:name="com.mCare.VisualizarMedicamento"
             android:label="@string/title_activity_visualizar_medicamento" >

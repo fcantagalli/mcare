@@ -1,5 +1,6 @@
 package com.mCare.novocontato;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import android.app.ActionBar;
@@ -45,6 +46,8 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	EditText telParente;
 	EditText celParente;
 	//private ListView list;
+	
+	boolean editar = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +106,8 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		telParente = (EditText) findViewById(R.id.editText10);
 		celParente = (EditText) findViewById(R.id.editText11);
 		
+		// essa parte e referente para o cara editar o contato ja criado
+		
 		ImageView cancelarBotao = (ImageView) findViewById(R.id.imageViewCancelar);
 		cancelarBotao.setOnClickListener(this);
 		
@@ -114,8 +119,61 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		ArrayAdapter<CharSequence> escolaridades = ArrayAdapter.createFromResource(this, R.array.escolaridade, android.R.layout.simple_list_item_1);
 		escolaridade.setAdapter(escolaridades);
 		
+		Bundle b = getIntent().getExtras();
+		
+		if(b != null){
+			DbHelperPaciente db = new DbHelperPaciente(this);
+			
+			Paciente p = db.buscaPaciente(b.getInt("id"));
+			
+			if(p != null){
+				editar = true;
+				nome.setText(p.getNome());
+				tipo1.setSelection(tipoTel(p.getTipo_tel()));
+				tel1.setText(p.getTelefone());
+				
+				tipoEndereco.setSelection(tipoRua(p.getTipo_endereco()));
+				logradouro.setText(p.getLogradouro());
+				numero.setText(p.getNumero());
+				complemento.setText(p.getComplemento());
+				cep.setText(p.getCep());
+				bairro.setText(p.getBairro());
+				cidade.setText(p.getCidade());
+				gc = p.getDataNascimento();
+				dataNascimento.init(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), dListener);
+			}
+		}
+		
 	}
 
+	private DatePicker.OnDateChangedListener dListener = new DatePicker.OnDateChangedListener() {
+
+        public void onDateChanged(DatePicker view, int year, int monthOfYear,
+                int dayOfMonth) {
+
+                Calendar cPickerDate = Calendar.getInstance();
+                cPickerDate.set(year, monthOfYear, dayOfMonth);
+                int dayOfYear = cPickerDate.get(Calendar.DAY_OF_YEAR);
+                Log.v("day of year", String.valueOf(dayOfYear));
+
+
+                /*
+                //automatically checks radio buttons if user manually adjust picker
+                if(dayOfYear==cNow.get(Calendar.DAY_OF_YEAR)+1){
+                    rTomorrow.setChecked(true);
+                }
+                else if(dayOfYear==cNow.get(Calendar.DAY_OF_YEAR)+2){
+                    rIn2Days.setChecked(true);
+                }
+                else if(dayOfYear==cNow.get(Calendar.DAY_OF_YEAR)+7){
+                    rNextWeek.setChecked(true);
+                } else {
+                    dtpRadGroup.clearCheck();
+                }
+				*/
+        }
+    };
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -222,6 +280,42 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		Toast.makeText(getApplicationContext(), "Paciente cadastrado com sucesso!", Toast.LENGTH_LONG).show();
 		super.onBackPressed();
 	}
+   
+	private int tipoTel(String s){
+		if(s.equals("Celular")){
+			return 0;
+		}
+		if(s.equals("Comercial")){
+			return 1;
+		}
+		if(s.equals("Residencial")){
+			return 2;
+		}
+		if(s.equals("Principal")){
+			return 3;
+		}
+		if(s.equals("Outros")){
+			return 4;
+		}
+		else{
+			return 0;
+		}
+	}
 
+	private int tipoRua(String s){
+		if(s.equals("Rua")){
+			return 0;
+		}
+		if(s.equals("Avenida")){
+			return 1;
+		}
+		if(s.equals("Praça")){
+			return 2;
+		}
+		else{
+			return 0;
+		}
+	}
+	
 }
 

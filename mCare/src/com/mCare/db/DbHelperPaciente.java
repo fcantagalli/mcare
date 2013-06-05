@@ -96,6 +96,7 @@ public class DbHelperPaciente {
 				+ " WHERE id_paciente = " + id + ";";
 
 		Cursor c = dbhelper.exercutaSELECTSQL(query, null);
+		
 		Paciente p = null;
 
 		if (c.moveToFirst()) {
@@ -118,8 +119,7 @@ public class DbHelperPaciente {
 				String cidade = c.getString(13);
 				String complemento = c.getString(14);
 
-				p = new Paciente(idpaciente, nome, gc, sexo, logradouro,
-						bairro, numero, cidade);
+				p = new Paciente(idpaciente, nome, gc, sexo, logradouro,bairro, numero, cidade);
 
 				p.setEscolaridade(escolaridade);
 				p.setParente(parente);
@@ -132,6 +132,34 @@ public class DbHelperPaciente {
 			}
 			
 		}
+		Cursor ct = dbhelper.serach(false, dbhelper.TABLE_NAME_TELEFONE, new String[]{"telefone","tipo_tel"}, "fk_paciente=?",new String[]{""+p.getBd_id()},null, null, null,null);
+		
+		if(ct.moveToFirst()){
+			int nrow = ct.getCount();
+			
+			Log.i("inf","numero de linhas encontradas"+nrow);
+			
+			if(nrow == 1){
+				p.setTelefone(ct.getString(0));
+				p.setTipo_tel(ct.getString(1));
+			}else if(nrow == 2){
+				p.setTelefone(ct.getString(0));
+				p.setTipo_tel(ct.getString(1));
+				ct.moveToNext();
+				p.setTel2(ct.getString(0));
+				p.setTipo_tel2(ct.getString(1));
+			}else if(nrow == 3){
+				p.setTelefone(ct.getString(0));
+				p.setTipo_tel(ct.getString(1));
+				ct.moveToNext();
+				p.setTel2(ct.getString(0));
+				p.setTipo_tel2(ct.getString(1));
+				ct.moveToNext();
+				p.setTel3(ct.getString(0));
+				p.setTipo_tel3(ct.getString(1));
+			}
+		}
+		
 		return p;
 	}
 
