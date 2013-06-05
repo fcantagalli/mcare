@@ -26,6 +26,8 @@ public class VisualizarMedicamento extends Activity {
 		tipo.setText(informacoes[1]);
 		dosagem.setText(informacoes[2]);
 		principioAtivo.setText(informacoes[3]);
+		
+		//Titulo da actionbar
 		getActionBar().setTitle("Medicamento:");
 		
 	}

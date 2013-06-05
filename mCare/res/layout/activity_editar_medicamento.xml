@@ -1,223 +1,100 @@
-<ScrollView
-     xmlns:android="http://schemas.android.com/apk/res/android"
-	 xmlns:tools="http://schemas.android.com/tools"
-     android:id="@+id/scrollView1"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content" >
-	
-	
-	<LinearLayout 
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:paddingBottom="@dimen/activity_vertical_margin"
-	    android:paddingLeft="@dimen/activity_horizontal_margin"
-	    android:paddingRight="@dimen/activity_horizontal_margin"
-	    android:paddingTop="@dimen/activity_vertical_margin"
-	    tools:context=".EditarMedicamento" 
-	    android:orientation="vertical" >
-	
-	    
-
-
-
-    <!-- BOTOES -->
-
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2.0" >
-
-        <Button
-            android:id="@+id/button1"
-            style="@style/ButtonsAgenda"
-            android:layout_marginRight="8dp"
-            android:text="Buscar contato" />
-
-        <Button
-            android:id="@+id/button2"
-            style="@style/ButtonsAgenda"
-            android:layout_marginLeft="8dp"
-            android:text="Adicionar contato" />
-    </TableRow>
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentScroll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
-
-        <!-- DADOS DA CONSULTA -->
-
-       <LinearLayout
-            android:layout_width="294dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:orientation="vertical" >
-
-            <!-- DATA -->
-            <TextView
-                android:text="Data"
-                style="@style/RotulosFormulario" />
-
-            <EditText
-                android:id="@+id/campoData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="date" >
-
-                <requestFocus />
-            </EditText>
-
-            <!-- HORARIO -->
-            <TextView
-                android:text="Horário"
-                style="@style/RotulosFormulario" />
-
-            <EditText
-                android:id="@+id/campoHora"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time" />
-
-           
-            
-            <!-- MEDICACOES EM USO -->
-            <TextView
-                android:text="Medicações em uso"
-                style="@style/RotulosFormulario" />
-            
-            <Button
-	            android:id="@+id/botaoAdicionarMedicacaoEmUso"
-	            style="@style/ButtonsAgenda"
-	            android:layout_marginRight="8dp"
-	            android:text="Adicionar medicação em uso" />
-
-            <ListView
-                android:id="@+id/listaMedicacoesEmUso"
-                style="@style/ListaPadrao" >
-            </ListView>
-            
-            
-            <!-- MEDICACOES PREVIAS -->
-            <TextView
-                android:text="Medicações prévias"
-                style="@style/RotulosFormulario" />
-            
-            <Button
-	            android:id="@+id/botaoAdicionarMedicacaoPrevia"
-	            style="@style/ButtonsAgenda"
-	            android:layout_marginRight="8dp"
-	            android:text="Adicionar medicação prévia" />
-
-            <ListView
-                android:id="@+id/listaMedicacoesPrevias"
-                style="@style/ListaPadrao" >
-            </ListView>
-            
-            
-            <!-- RESULTADOS DE EXAMES RELEVANTES -->
-            <TextView
-                android:text="Resultados de exames relevantes"
-                style="@style/RotulosFormulario" />
-            
-            <TableRow
-		        android:id="@+id/tableRow1"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:weightSum="2.0" >
-		
-		        <Button
-		            android:id="@+id/botaoFotos"
-		            style="@style/ButtonsAgenda"
-		            android:layout_marginRight="8dp"
-		            android:text="Fotos" />
-		
-		        <Button
-		            android:id="@+id/botaoOutros"
-		            style="@style/ButtonsAgenda"
-		            android:layout_marginRight="8dp"
-		            android:text="Outros" />
-		    </TableRow>
-		    
-            
-            <!-- INTERNACOES HOSPITALARES -->
-            <TextView
-                android:text="Internações hospitalares"
-                style="@style/RotulosFormulario" />
-            
-            <Button
-	            android:id="@+id/botaoAdicionarInternacaoHospitalar"
-	            style="@style/ButtonsAgenda"
-	            android:layout_marginRight="8dp"
-	            android:text="Adicionar internação hospitalar" />
-
-            <ListView
-                android:id="@+id/listaInternacoesHospitalares"
-                style="@style/ListaPadrao" >
-            </ListView>
-            
-            
-            <!-- EXAMES SOLICITADOS AO FIM DA CONSULTA -->
-            <TextView
-                android:text="Exames solicitados ao fim da consulta"
-                style="@style/RotulosFormulario" />
-            
-            <Button
-	            android:id="@+id/botaoAdicionarExameSolicitado"
-	            style="@style/ButtonsAgenda"
-	            android:layout_marginRight="8dp"
-	            android:text="Adicionar exame" />
-
-            <ListView
-                android:id="@+id/listaExamesSolicitados"
-                style="@style/ListaPadrao" >
-            </ListView>
-            
-            
-            
-            <!-- ORIENTACOES AO FIM DA CONSULTA -->
-            <TextView
-                android:text="Orientações ao fim da consulta"
-                style="@style/RotulosFormulario" />
-            
-            <EditText
-                android:id="@+id/campoOrientacoesConsulta"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textMultiLine" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- BOTOES -->
-
-    <TableRow
-        android:id="@+id/tableRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="3.0" >
+        android:orientation="vertical"
+        android:padding="@dimen/MargenPadrao" >
 
-        <Button
-            android:id="@+id/button1"
-            style="@style/ButtonsAgenda"
-            android:layout_marginRight="8dp"
-            android:text="Agendar nova consulta" />
+        <!--  Nome do medicamento -->
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Nome do medicamento:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <AutoCompleteTextView
+            android:id="@+id/editTextCampoNomeMedicamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nome do medicamento"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/MargenPadrao"
+            android:textColor="@color/Black" />
         
-        <Button
-            android:id="@+id/button1"
-            style="@style/ButtonsAgenda"
-            android:layout_marginRight="8dp"
-            android:text="Cancelar esta consulta" />
+        <!-- Tipo -->
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Tipo"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <Spinner
+            android:id="@+id/spinnerTipoMedicamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/array_tipos_medicamento"
+            android:padding="@dimen/MargenPadrao" />
 
-        <Button
-            android:id="@+id/button2"
-            style="@style/ButtonsAgenda"
-            android:layout_marginLeft="8dp"
-            android:text="Informações do paciente" />
-    </TableRow>
+        
+        <!-- Dosagem -->
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Dosagem:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-</LinearLayout>
+        <AutoCompleteTextView
+            android:id="@+id/editTextCampoDosagem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Dosagem (ex.: 50 mg)"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/MargenPadrao"
+            android:textColor="@color/Black" />
+        
+		<!-- Princípio ativo -->
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Princípio ativo:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <AutoCompleteTextView
+            android:id="@+id/editTextCampoPrincipioAtivo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Princípio ativo"
+            android:inputType="textCapSentences"
+            android:padding="@dimen/MargenPadrao"
+            android:textColor="@color/Black" />
+        
+        
+        <!-- BOTAO -->
+        <Button
+            android:id="@+id/buttonEditarMedicamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/MargenPadrao"
+            android:text="Atualizar medicamento"
+            android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
 </ScrollView>
