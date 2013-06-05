@@ -52,18 +52,7 @@ public class Agenda_Fragment extends Fragment {
 		// Referencias para a tela de agenda do dia em geral
 		ListView list = (ListView) rootView.findViewById(R.id.lstConsultas);
 
-		GregorianCalendar date = new GregorianCalendar(2013, 04, 25, 13, 30);
-
 		lstConsultas = new ArrayList<Consulta>();
-		
-		Paciente philippe = new Paciente(0, "Philippe Ehlert", date, (byte) 1, "Avenida Paulista", "Paulista", 12, "São Paulo");
-		Paciente felipe = new Paciente(1, "Felipe Cantagalli", date, (byte) 1, "Avenida do Estado", "Bairro", 12, "São Paulo");
-		Paciente bianca = new Paciente(2, "Bianca Letti", date, (byte) 0, "Rua 25 de março", "Centro", 12, "São Paulo");
-		
-		String descricao = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce quis est in nulla consequat suscipit vitae a diam. Nullam tellus.";
-		Consulta consulta1 = new Consulta(philippe, date, "normal", descricao);
-		Consulta consulta2 = new Consulta(felipe, date, "rotina", descricao);
-		Consulta consulta3 = new Consulta(bianca, date, "semanal", descricao);
 		
 		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
 		lstConsultas = dbConsultas.consultasDoDia();
@@ -98,6 +87,8 @@ public class Agenda_Fragment extends Fragment {
 	
 	public void selecionaOpcaoMenu(int which, Consulta escolhida) {
 		Log.i("phil", "which: " + which);
+		
+		//TODO FAZER ESCOLHER O TELEFONE DESEJADO NAS OPCOES DE LIGAR E ENVIAR MSG
 		switch (which) {
 		//telefonar
 		case 0: {
@@ -127,7 +118,7 @@ public class Agenda_Fragment extends Fragment {
 			String horarioConsulta = escolhida.getHora().get(GregorianCalendar.HOUR) + ":" + escolhida.getHora().get(GregorianCalendar.MINUTE);
 			String enderecoConsulta = escolhida.getPaciente().getLogradouro() + " nº" + escolhida.getPaciente().getNumero() + " " + escolhida.getPaciente().getBairro();
 			String dataConsulta = escolhida.getHora().get(GregorianCalendar.DAY_OF_MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.YEAR);
-			String[] informacoes = {escolhida.getPaciente().getNome(), horarioConsulta, dataConsulta, escolhida.getDescricao(), enderecoConsulta}; 
+			String[] informacoes = {escolhida.getPaciente().getNome(), horarioConsulta, dataConsulta, escolhida.getDescricao(), enderecoConsulta, escolhida.getTipo()}; 
 			infoConsultaIntent.putExtra("informacoes", informacoes);
 			startActivity(infoConsultaIntent);
 		}
@@ -136,6 +127,23 @@ public class Agenda_Fragment extends Fragment {
 		}
 		}
 	}
+	
+	/*
+	public String selecionaTelefone(Paciente paciente){
+		final String[] telefones = new String[1];
+		final String telefoneSelecionado = null;
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		builder.setTitle("Selecione o número:");
+		builder.setItems(telefones, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog,	int which) {
+				telefoneSelecionado = telefones[which];
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+		
+		return telefoneSelecionado;
+	}*/
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -143,8 +151,8 @@ public class Agenda_Fragment extends Fragment {
 		
 		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
 		lstConsultas = dbConsultas.consultasDoDia();
+		Log.i("phil", "tamanho da lstConsultas: " + lstConsultas.size());
 		if(lstConsultas == null){
-			Log.wtf("aaah", "eh null");
 			lstConsultas = new LinkedList<Consulta>();
 		}
 		

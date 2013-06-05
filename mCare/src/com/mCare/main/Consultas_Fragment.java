@@ -51,9 +51,7 @@ public class Consultas_Fragment extends Fragment {
 
 		// Referencias para a tela de agenda do dia em geral
 		ListView list = (ListView) rootView.findViewById(R.id.lstConsultas);
-
-		GregorianCalendar date = new GregorianCalendar(2013, 04, 25, 13, 30);
-
+		
 		lstConsultas = new ArrayList<Consulta>();
 		
 		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
@@ -88,7 +86,6 @@ public class Consultas_Fragment extends Fragment {
 	}
 	
 	public void selecionaOpcaoMenu(int which, Consulta escolhida) {
-		Log.i("phil", "which: " + which);
 		switch (which) {
 		//telefonar
 		case 0: {
