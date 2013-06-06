@@ -136,7 +136,9 @@
         telefone TEXT NOT NULL,tipo_tel INTEGER NOT NULL);@
         
         CREATE TABLE consultas_marcadas (id_consulta INTEGER PRIMARY KEY AUTOINCREMENT, fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
-        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL);@</string>
+        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL);@
+        
+        CREATE TABLE medicamento (id_medicamento PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL);@</string>
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->

@@ -67,10 +67,6 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		//nome do novo contato
 		nome = (EditText) findViewById(R.id.editTextNomePessoa);
 		
-		if(getIntent().getExtras() != null){
-			nome.setText((String)getIntent().getExtras().get("nome"));
-		}
-		
 		//telefones e tipos
 		tel1 = (EditText) findViewById(R.id.editTextNumero1);
 		tipo1 = (Spinner) findViewById(R.id.spinner1);

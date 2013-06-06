@@ -10,14 +10,17 @@ public class Paciente implements Comparable<Paciente> {
 	private byte Sexo; // 0 - feminino 1 - masculino
 	private String tipo_tel;
 	private String telefone;
+	private long idTel1;
 	private String escolaridade;
 	private String parente;
 	private String parente_tel;
 	private String parente_cel;
 	private String tel2;
 	private String tipo_tel2;
+	private long idTel2;
 	private String tel3;
 	private String tipo_tel3;
+	private long idTel3;
 
 	//endereco
 	private String logradouro;
@@ -37,6 +40,42 @@ public class Paciente implements Comparable<Paciente> {
 	
 	public String getTipo_tel() {
 		return tipo_tel;
+	}
+
+
+
+	public long getIdTel1() {
+		return idTel1;
+	}
+
+
+
+	public void setIdTel1(long idTel1) {
+		this.idTel1 = idTel1;
+	}
+
+
+
+	public long getIdTel2() {
+		return idTel2;
+	}
+
+
+
+	public void setIdTel2(long idTel2) {
+		this.idTel2 = idTel2;
+	}
+
+
+
+	public long getIdTel3() {
+		return idTel3;
+	}
+
+
+
+	public void setIdTel3(long idTel3) {
+		this.idTel3 = idTel3;
 	}
 
 
