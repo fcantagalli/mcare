@@ -23,6 +23,8 @@ public class DbHelperPaciente {
 
 	public boolean updatePaciente(Paciente p){
 		
+		boolean deucerto;
+		
 		ContentValues cv = new ContentValues();
 
 		cv.put("nome", p.getNome());
@@ -41,12 +43,23 @@ public class DbHelperPaciente {
 		cv.put("cidade", p.getCidade());
 		cv.put("complemento", p.getComplemento());
 		
-		dbhelper.update(dbhelper.TABLE_NAME_PACIENTES, cv, "id_paciente=?", new String[]{""+p.getBd_id()});
+		deucerto = dbhelper.update(dbhelper.TABLE_NAME_PACIENTES, cv, "id_paciente=?", new String[]{""+p.getBd_id()});
 		
-		
-		if(p.getTelefone() != null){
-			
+		if(!deucerto){
+			return deucerto;
 		}
+		
+		DbHelperTelefone db = new DbHelperTelefone(dbhelper.getContext());
+		if(p.getTelefone() != null){
+			deucerto = db.updateTelefone((long) p.getBd_id(), p.getTelefone(), p.getTipo_tel(), "id_telefone=?", new String[]{""+p.getIdTel1()});
+		}
+		if(p.getTel2() != null){
+			deucerto = db.updateTelefone((long) p.getBd_id(), p.getTel2(), p.getTipo_tel2(), "id_telefone=?", new String[]{""+p.getIdTel2()});
+		}
+		if(p.getTel3() != null){
+			deucerto =  db.updateTelefone((long) p.getBd_id(), p.getTel3(), p.getTipo_tel3(), "id_telefone=?", new String[]{""+p.getIdTel3()}); 
+		}
+		return deucerto;
 	}
 	
 	public long inserePaciente(Paciente p) {
@@ -160,7 +173,7 @@ public class DbHelperPaciente {
 			}
 			
 		}
-		Cursor ct = dbhelper.serach(false, dbhelper.TABLE_NAME_TELEFONE, new String[]{"telefone","tipo_tel"}, "fk_paciente=?",new String[]{""+p.getBd_id()},null, null, null,null);
+		Cursor ct = dbhelper.serach(false, dbhelper.TABLE_NAME_TELEFONE, new String[]{"telefone","tipo_tel","id_telefone"}, "fk_paciente=?",new String[]{""+p.getBd_id()},null, null, null,null);
 		
 		if(ct.moveToFirst()){
 			int nrow = ct.getCount();
@@ -170,21 +183,27 @@ public class DbHelperPaciente {
 			if(nrow == 1){
 				p.setTelefone(ct.getString(0));
 				p.setTipo_tel(ct.getString(1));
+				p.setIdTel1(ct.getLong(2));
 			}else if(nrow == 2){
 				p.setTelefone(ct.getString(0));
 				p.setTipo_tel(ct.getString(1));
+				p.setIdTel1(ct.getLong(2));
 				ct.moveToNext();
 				p.setTel2(ct.getString(0));
 				p.setTipo_tel2(ct.getString(1));
+				p.setIdTel2(ct.getLong(2));
 			}else if(nrow == 3){
 				p.setTelefone(ct.getString(0));
 				p.setTipo_tel(ct.getString(1));
+				p.setIdTel1(ct.getLong(2));
 				ct.moveToNext();
 				p.setTel2(ct.getString(0));
 				p.setTipo_tel2(ct.getString(1));
+				p.setIdTel2(ct.getLong(2));
 				ct.moveToNext();
 				p.setTel3(ct.getString(0));
 				p.setTipo_tel3(ct.getString(1));
+				p.setIdTel3(ct.getLong(2));
 			}
 		}
 		

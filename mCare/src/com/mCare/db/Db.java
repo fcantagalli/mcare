@@ -33,6 +33,7 @@ public class Db extends SQLiteOpenHelper {
 	public final String TABLE_NAME_CONSULTAS_MARCADAS = "consultas_marcadas";
 	public final String TABLE_NAME_PACIENTES = "paciente";
 	public final String TABLE_NAME_TELEFONE = "telefone"; // tipo tel : 0 - residencial, 1 - celular, 2 - comercial, 3 - outros (se e que precisa)
+	public final String TABLE_NAME_MEDICAMENTO = "medicamento";
 	
 	private static Db dbhelper;
 	private final Context context;
@@ -53,6 +54,10 @@ public class Db extends SQLiteOpenHelper {
 	            dbhelper = new Db(context);
 	        }
 	        return dbhelper;
+	}
+	
+	public Context getContext(){
+		return context;
 	}
 	
 	public Cursor serach(boolean UNIQUE, String tablename, String[] coluns, String WHERE,String[] selectionArgs, String GROUPBY, String HAVING, String ORDERBY, String limitOfRows ){
