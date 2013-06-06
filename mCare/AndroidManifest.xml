@@ -97,6 +97,10 @@
             android:name="com.mCare.consulta.realizarConsulta.RealizarConsultaMain"
             android:label="@string/title_activity_realizar_consulta_main" >
         </activity>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.Consulta_Fragment"
+            android:label="@string/title_activity_consulta__fragment" >
+        </activity>
     </application>
 
 </manifest>
