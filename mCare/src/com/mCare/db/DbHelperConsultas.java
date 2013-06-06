@@ -85,8 +85,8 @@ public class DbHelperConsultas {
  		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, p.id_paciente FROM consultas_marcadas as consulta " +
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
 				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
-				"WHERE date(consulta.data_hora) >= date('now');";
-				//"GROUP BY consulta.fk_paciente;";
+				"WHERE date(consulta.data_hora) >= date('now') " +
+				"GROUP BY consulta.fk_paciente;";
  		
 		/*String query = "SELECT nome, fk_paciente, data_hora, descricao, tipo_con, logradouro, bairro,cidade, telefone " +
 				"FROM "+dbhelper.TABLE_NAME_CONSULTAS_MARCADAS+"INNER JOIN "+dbhelper.TABLE_NAME_TELEFONE+" ON "+dbhelper.TABLE_NAME_CONSULTAS_MARCADAS+".fk_paciente = "+dbhelper.TABLE_NAME_TELEFONE+".fk_paciente AND tipo_tel = 1"+
