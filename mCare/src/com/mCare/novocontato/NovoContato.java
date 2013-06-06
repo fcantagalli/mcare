@@ -134,14 +134,22 @@ public class NovoContato extends Activity implements View.OnClickListener {
 				
 				tipoEndereco.setSelection(tipoRua(p.getTipo_endereco()));
 				logradouro.setText(p.getLogradouro());
-				numero.setText(p.getNumero());
+				numero.setText(""+p.getNumero());
 				complemento.setText(p.getComplemento());
 				cep.setText(p.getCep());
 				bairro.setText(p.getBairro());
 				cidade.setText(p.getCidade());
 				gc = p.getDataNascimento();
-				dataNascimento.init(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), dListener);
+				dataNascimento.updateDate(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH));
+				
+				escolaridade.setSelection(escolaridades.getPosition(p.getEscolaridade()));
+				nomeParente.setText(p.getParente());
+				telParente.setText(p.getParente_tel());
+				celParente.setText(p.getParente_cel());
 			}
+		}
+		else{
+			dataNascimento.updateDate(1950, 06, 15);
 		}
 		
 	}
@@ -156,21 +164,6 @@ public class NovoContato extends Activity implements View.OnClickListener {
                 int dayOfYear = cPickerDate.get(Calendar.DAY_OF_YEAR);
                 Log.v("day of year", String.valueOf(dayOfYear));
 
-
-                /*
-                //automatically checks radio buttons if user manually adjust picker
-                if(dayOfYear==cNow.get(Calendar.DAY_OF_YEAR)+1){
-                    rTomorrow.setChecked(true);
-                }
-                else if(dayOfYear==cNow.get(Calendar.DAY_OF_YEAR)+2){
-                    rIn2Days.setChecked(true);
-                }
-                else if(dayOfYear==cNow.get(Calendar.DAY_OF_YEAR)+7){
-                    rNextWeek.setChecked(true);
-                } else {
-                    dtpRadGroup.clearCheck();
-                }
-				*/
         }
     };
 	
@@ -202,83 +195,88 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	
 	private void salvaContato(){	
 		// primeiro trata campos que nao podem ser null
-		if(nome.getText().toString().length() == 0){
-			Toast.makeText(getApplicationContext(), "Insira um nome para esse contato.", Toast.LENGTH_LONG).show();
-			return;
-		}
-		if(tel1.getText().toString().length() == 0 && tel2.getText().toString().length() == 0 && tel3.getText().toString().length() == 0){
-			Toast.makeText(getApplicationContext(), "Insira um número de telefone pelo menos.", Toast.LENGTH_LONG).show();
-			return;
-		}
-		if(logradouro.getText().toString().length() == 0){
-			Toast.makeText(getApplicationContext(), "Insira um endereco para o novo contato.", Toast.LENGTH_LONG).show();
-			return;
-		}
-		if(numero.getText().toString().length() == 0){
-			Toast.makeText(getApplicationContext(), "numero do endereco inválido.", Toast.LENGTH_LONG).show();
-			return;
-		}
-		if(cidade.getText().toString().length() == 0 ){
-			Toast.makeText(getApplicationContext(), "Campo de cidade inválido.", Toast.LENGTH_LONG).show();
-			return;
-		}
-		// inserindo no banco agora com todos os valores
-		
-		DbHelperPaciente db = new DbHelperPaciente(getApplicationContext());
-		
-		GregorianCalendar gc = new GregorianCalendar(dataNascimento.getYear(), dataNascimento.getMonth(), dataNascimento.getDayOfMonth());
-		
-		String bairro;
-		bairro = this.bairro.getText().toString();
-		
-		if(bairro.length() == 0){
-			bairro = null;
-		}
-		
-		Paciente p = new Paciente(-1,nome.getText().toString(),gc,(byte) 1,logradouro.getText().toString(),bairro,Integer.parseInt(numero.getText().toString()),cidade.getText().toString());
-		
-		p.setEscolaridade((String) escolaridade.getSelectedItem());
-		p.setTipo_endereco((String) tipoEndereco.getSelectedItem());
-		p.setComplemento(complemento.getText().toString());
-		p.setCep(cep.getText().toString());
-		p.setParente(nomeParente.getText().toString());
-		p.setParente_tel(telParente.getText().toString());
-		p.setParente_cel(celParente.getText().toString());
-		
-		long id = db.inserePaciente(p);
-		
-		
-		if(id != -1){
-			DbHelperTelefone dbt = new DbHelperTelefone(getApplicationContext());
+		if(editar){
 			
-			if(tel1.getText().toString().length() != 0){
-				dbt.insereTelefone(id, tel1.getText().toString() , (String) tipo1.getSelectedItem());
+		}
+		else{	
+			if(nome.getText().toString().length() == 0){
+				Toast.makeText(getApplicationContext(), "Insira um nome para esse contato.", Toast.LENGTH_LONG).show();
+				return;
 			}
-			if(tel2.getText().toString().length() != 0){
-				dbt.insereTelefone(id, tel2.getText().toString() , (String) tipo2.getSelectedItem());
+			if(tel1.getText().toString().length() == 0 && tel2.getText().toString().length() == 0 && tel3.getText().toString().length() == 0){
+				Toast.makeText(getApplicationContext(), "Insira um número de telefone pelo menos.", Toast.LENGTH_LONG).show();
+				return;
 			}
-			if(tel3.getText().toString().length() != 0){
-				dbt.insereTelefone(id, tel3.getText().toString() , (String) tipo3.getSelectedItem());
+			if(logradouro.getText().toString().length() == 0){
+				Toast.makeText(getApplicationContext(), "Insira um endereco para o novo contato.", Toast.LENGTH_LONG).show();
+				return;
 			}
-			Log.wtf("insere", "Telefone inserido");
-			Log.wtf("insere", ""+id);
-		}
-		else{
-			Log.wtf("insere", "Telefone nao inserido");
-			Log.wtf("insere", ""+id);
-		}
-		
-		Intent intent = new Intent();
-		intent.putExtra("nome", nome.getText().toString());
-		intent.putExtra("id", id);
-		if(this.getParent() == null){
-			setResult(Activity.RESULT_OK,intent);
-		}
-		else{
-			this.getParent().setResult(Activity.RESULT_OK, intent);
-		}
-		Toast.makeText(getApplicationContext(), "Paciente cadastrado com sucesso!", Toast.LENGTH_LONG).show();
-		super.onBackPressed();
+			if(numero.getText().toString().length() == 0){
+				Toast.makeText(getApplicationContext(), "numero do endereco inválido.", Toast.LENGTH_LONG).show();
+				return;
+			}
+			if(cidade.getText().toString().length() == 0 ){
+				Toast.makeText(getApplicationContext(), "Campo de cidade inválido.", Toast.LENGTH_LONG).show();
+				return;
+			}
+			// inserindo no banco agora com todos os valores
+			
+			DbHelperPaciente db = new DbHelperPaciente(getApplicationContext());
+			
+			GregorianCalendar gc = new GregorianCalendar(dataNascimento.getYear(), dataNascimento.getMonth(), dataNascimento.getDayOfMonth());
+			
+			String bairro;
+			bairro = this.bairro.getText().toString();
+			
+			if(bairro.length() == 0){
+				bairro = null;
+			}
+			
+			Paciente p = new Paciente(-1,nome.getText().toString(),gc,(byte) 1,logradouro.getText().toString(),bairro,Integer.parseInt(numero.getText().toString()),cidade.getText().toString());
+			
+			p.setEscolaridade((String) escolaridade.getSelectedItem());
+			p.setTipo_endereco((String) tipoEndereco.getSelectedItem());
+			p.setComplemento(complemento.getText().toString());
+			p.setCep(cep.getText().toString());
+			p.setParente(nomeParente.getText().toString());
+			p.setParente_tel(telParente.getText().toString());
+			p.setParente_cel(celParente.getText().toString());
+			
+			long id = db.inserePaciente(p);
+			
+			
+			if(id != -1){
+				DbHelperTelefone dbt = new DbHelperTelefone(getApplicationContext());
+				
+				if(tel1.getText().toString().length() != 0){
+					dbt.insereTelefone(id, tel1.getText().toString() , (String) tipo1.getSelectedItem());
+				}
+				if(tel2.getText().toString().length() != 0){
+					dbt.insereTelefone(id, tel2.getText().toString() , (String) tipo2.getSelectedItem());
+				}
+				if(tel3.getText().toString().length() != 0){
+					dbt.insereTelefone(id, tel3.getText().toString() , (String) tipo3.getSelectedItem());
+				}
+				Log.wtf("insere", "Telefone inserido");
+				Log.wtf("insere", ""+id);
+			}
+			else{
+				Log.wtf("insere", "Telefone nao inserido");
+				Log.wtf("insere", ""+id);
+			}
+			
+			Intent intent = new Intent();
+			intent.putExtra("nome", nome.getText().toString());
+			intent.putExtra("id", id);
+			if(this.getParent() == null){
+				setResult(Activity.RESULT_OK,intent);
+			}
+			else{
+				this.getParent().setResult(Activity.RESULT_OK, intent);
+			}
+			Toast.makeText(getApplicationContext(), "Paciente cadastrado com sucesso!", Toast.LENGTH_LONG).show();
+			super.onBackPressed();
+		}	
 	}
    
 	private int tipoTel(String s){

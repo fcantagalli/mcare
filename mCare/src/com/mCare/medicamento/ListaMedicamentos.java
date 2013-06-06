@@ -1,12 +1,13 @@
 package com.mCare.medicamento;
 
-import com.mCare.R;
-import com.mCare.R.layout;
-import com.mCare.R.menu;
-
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.ImageView;
+
+import com.mCare.R;
 
 public class ListaMedicamentos extends Activity {
 
@@ -14,6 +15,17 @@ public class ListaMedicamentos extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_medicamentos);
+		
+		ImageView novoMedicamento = (ImageView) findViewById(R.id.imageViewCadastrarMedicamento);
+		novoMedicamento.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getApplicationContext(),CadastrarMedicamento.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override

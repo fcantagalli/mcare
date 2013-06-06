@@ -1,5 +1,6 @@
 package com.mCare.db;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import com.mCare.*;
@@ -121,6 +122,19 @@ public class Db extends SQLiteOpenHelper {
 		return c;
 	}
 	
+	public boolean update(String table, ContentValues values, String whereClause, String[] whereArgs){
+		SQLiteDatabase db = getWritableDatabase();
+		int i = db.update(table, values, whereClause, whereArgs);
+		db.close();
+		
+		if(i>0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
 	public void executaSQL(String[] sql){
 		SQLiteDatabase db = getWritableDatabase();
 		for (String s : sql)
@@ -133,8 +147,8 @@ public class Db extends SQLiteOpenHelper {
 		String formatada;
 		try{
 			
-			String mes = ""+gc.get(gc.MONTH);
-			String dia = ""+gc.get(gc.DATE);
+			String mes = ""+gc.get(Calendar.MONTH);
+			String dia = ""+gc.get(Calendar.DATE);
 			if(mes.length() == 1){
 				mes = "0"+mes;
 			}
@@ -142,18 +156,18 @@ public class Db extends SQLiteOpenHelper {
 				dia = "0"+dia;
 			}
 			
-			String hora = ""+gc.get(gc.HOUR_OF_DAY);
-			String minuto = ""+gc.get(gc.MINUTE);
+			String hora = ""+gc.get(Calendar.HOUR_OF_DAY);
+			String minuto = ""+gc.get(Calendar.MINUTE);
 			if(hora.length() == 1){
 				hora = "0"+hora;
 			}
 			if(minuto.length()==1){
 				minuto = "0"+minuto;
 			}
-			formatada = gc.get(gc.YEAR)+"-"+mes+"-"+dia+" "+hora+":"+minuto;
+			formatada = gc.get(Calendar.YEAR)+"-"+mes+"-"+dia+" "+hora+":"+minuto;
 		}catch(IllegalArgumentException e){
 			Log.e("GREG",e.getMessage());
-			formatada = gc.get(gc.YEAR)+"-"+gc.get(gc.MONTH)+"-"+gc.get(gc.DATE);
+			formatada = gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DATE);
 		}
 		
 		return formatada;

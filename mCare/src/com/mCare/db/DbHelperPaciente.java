@@ -21,6 +21,34 @@ public class DbHelperPaciente {
 
 	}
 
+	public boolean updatePaciente(Paciente p){
+		
+		ContentValues cv = new ContentValues();
+
+		cv.put("nome", p.getNome());
+		GregorianCalendar gc = p.getDataNascimento();
+		cv.put("data_nascimento", dbhelper.formataData(gc));
+		cv.put("sexo", p.getSexo());
+		cv.put("escolaridade", p.getEscolaridade());
+		cv.put("parente", p.getParente());
+		cv.put("parente_tel", p.getParente_tel());
+		cv.put("parente_cel", p.getParente_cel());
+		cv.put("logradouro", p.getLogradouro());
+		cv.put("bairro", p.getBairro());
+		cv.put("numero", p.getNumero());
+		cv.put("tipo_end", p.getTipo_endereco());
+		cv.put("cep", p.getCep());
+		cv.put("cidade", p.getCidade());
+		cv.put("complemento", p.getComplemento());
+		
+		dbhelper.update(dbhelper.TABLE_NAME_PACIENTES, cv, "id_paciente=?", new String[]{""+p.getBd_id()});
+		
+		
+		if(p.getTelefone() != null){
+			
+		}
+	}
+	
 	public long inserePaciente(Paciente p) {
 		long deucerto;
 
@@ -207,3 +235,5 @@ public class DbHelperPaciente {
 		return p;
 	}
 }
+
+	
