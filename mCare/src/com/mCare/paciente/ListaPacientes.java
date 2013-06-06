@@ -5,19 +5,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
-import com.mCare.R;
-import com.mCare.db.DbHelperPaciente;
-import com.mCare.novocontato.NovoContato;
-
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +23,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.Toast;
+
+import com.mCare.R;
+import com.mCare.db.Db;
+import com.mCare.db.DbHelperPaciente;
+import com.mCare.novocontato.NovoContato;
 
 public class ListaPacientes extends Fragment implements OnItemClickListener {
 
@@ -70,6 +70,7 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		 Collections.sort(elements); // Must be sorted! // ja retorna ordenado
 		*/
 		// listview
+		
 		listViewPacientes = (ListView) rootView.findViewById(R.id.listTelaPacientes);
 		listViewPacientes.setOnItemClickListener(this);
 		listViewPacientes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -219,5 +220,6 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		}
 
 	}
+	
 
 }
