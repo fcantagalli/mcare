@@ -26,7 +26,6 @@ import com.mCare.consulta.Consulta;
 import com.mCare.consulta.VisualizaInfoConsultaAgendada;
 import com.mCare.consulta.agendarConsulta.AgendarConsulta;
 import com.mCare.db.DbHelperConsultas;
-import com.mCare.paciente.Paciente;
 
 public class Agenda_Fragment extends Fragment {
 
@@ -128,15 +127,17 @@ public class Agenda_Fragment extends Fragment {
 		}
 	}
 	
-	/*
-	public String selecionaTelefone(Paciente paciente){
-		final String[] telefones = new String[1];
+	/*public String selecionaTelefone(Paciente paciente){
+		final String[] telefones = new String[3];
+		telefones[0] = paciente.getTelefone();
+		telefones[1] = paciente.getTel2();
+		telefones[3] = paciente.getTel3();
 		final String telefoneSelecionado = null;
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		builder.setTitle("Selecione o número:");
 		builder.setItems(telefones, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog,	int which) {
-				telefoneSelecionado = telefones[which];
+				//telefoneSelecionado = telefones[which];
 			}
 		});
 		AlertDialog alert = builder.create();
