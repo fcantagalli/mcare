@@ -67,7 +67,7 @@ public class SelecionaCamposView extends Activity {
 		fim.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ConsultaModel model = new ConsultaModel(nomesCampo, tiposCampo);
+				ConsultaModel model = new ConsultaModel(nomesCampo, tiposCampo, getApplicationContext());
 				model.createTable();
 			}
 		});
