@@ -38,7 +38,6 @@
         <item>Texto</item>
         <item>Data</item>
     </string-array>
-    
     <string-array name="nomes_campo">
         <item>Nome</item>
         <item>Idade</item>
@@ -197,5 +196,6 @@
     <string name="title_activity_editar_medicamento">Editar_medicamento</string>
     <string name="title_activity_visualizar_medicamento">VisualizarMedicamento</string>
     <string name="title_activity_realizar_consulta_main">RealizarConsultaMain</string>
+    <string name="title_activity_consulta__fragment">Consulta_Fragment</string>
 
 </resources>

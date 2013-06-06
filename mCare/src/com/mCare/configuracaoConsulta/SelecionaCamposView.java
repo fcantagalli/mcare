@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -68,7 +67,7 @@ public class SelecionaCamposView extends Activity {
 		fim.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ConsultaModel model = new ConsultaModel(nomesCampo, tiposCampo);
+				ConsultaModel model = new ConsultaModel(nomesCampo, tiposCampo, getApplicationContext());
 				model.createTable();
 			}
 		});

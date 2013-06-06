@@ -25,6 +25,7 @@ import com.mCare.R;
 import com.mCare.consulta.Consulta;
 import com.mCare.consulta.VisualizaInfoConsultaAgendada;
 import com.mCare.consulta.agendarConsulta.AgendarConsulta;
+import com.mCare.consulta.realizarConsulta.RealizarConsultaMain;
 import com.mCare.db.DbHelperConsultas;
 import com.mCare.paciente.Paciente;
 
@@ -120,7 +121,8 @@ public class Consultas_Fragment extends Fragment {
 			startActivity(infoConsultaIntent);
 		}
 		case 4: {
-			//TODO intent para realizar consulta
+			Intent realizarConsulta = new Intent(getActivity(), RealizarConsultaMain.class);
+			startActivity(realizarConsulta);
 		}
 		}
 	}

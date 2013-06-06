@@ -1,8 +1,9 @@
 package com.mCare.consulta.realizarConsulta;
 
+import java.util.ArrayList;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mCare.R;
 import com.mCare.configuracaoConsulta.SelecionaCamposView;
@@ -48,7 +53,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
             actionBar.addTab(actionBar.newTab().setText(mAppSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
         }
-		
+
 	}
 	
 	@Override
@@ -101,7 +106,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
                 
                 //case 2: return new Consultas_Fragment();
             }
-            return new com.mCare.main.Agenda_Fragment();
+            return new Consulta_Fragment();
         }
 
         @Override

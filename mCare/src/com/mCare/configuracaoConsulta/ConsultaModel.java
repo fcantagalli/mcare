@@ -3,7 +3,9 @@ package com.mCare.configuracaoConsulta;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
+import android.content.Context;
+
+import com.mCare.db.Db;
 
 @SuppressLint("DefaultLocale")
 public class ConsultaModel {
@@ -18,10 +20,12 @@ public class ConsultaModel {
 	
 	private ArrayList<String> fields;
 	private ArrayList<Integer> types;
+	private Context context;
 	
-	ConsultaModel(ArrayList<String> fields, ArrayList<Integer> types){
+	ConsultaModel(ArrayList<String> fields, ArrayList<Integer> types, Context context){
 		this.fields = fields;
 		this.types = types;
+		this.context = context;
 	}
 	
 	@SuppressLint("DefaultLocale")
@@ -50,7 +54,8 @@ public class ConsultaModel {
 	
 	public boolean createTable(){
 		String sql = generateSQL();
-		Log.i("Phil", "sql: " + sql);
+		Db db = Db.getInstance(context);
+		db.executaSQL(new String[]{sql});
 		return true;
 	}
 }
