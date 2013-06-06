@@ -4,14 +4,13 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.mCare.consulta.Consulta;
-import com.mCare.paciente.Paciente;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.mCare.consulta.Consulta;
+import com.mCare.paciente.Paciente;
 
 public class DbHelperConsultas {
 
@@ -43,6 +42,7 @@ public class DbHelperConsultas {
 		
 		//Cursor cursor = dbhelper.serach(false, dbhelper.TABLE_NAME_CONSULTAS_MARCADAS, null, null, null, null, null, null,null);
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
+		
 		Log.i("SQL", "cursor esta fechado? : " + cursor.isFirst());
 		if(cursor.moveToFirst()){
 			Log.i("SQL","cursor possui linhas");

@@ -34,6 +34,10 @@ public class Db extends SQLiteOpenHelper {
 	public final String TABLE_NAME_PACIENTES = "paciente";
 	public final String TABLE_NAME_TELEFONE = "telefone"; // tipo tel : 0 - residencial, 1 - celular, 2 - comercial, 3 - outros (se e que precisa)
 	public final String TABLE_NAME_MEDICAMENTO = "medicamento";
+	public final String TABLE_NAME_CONSULTA = "consulta";
+	public final String TABLE_NAME_FOTO = "foto";
+	public final String TABLE_NAME_VIDEO = "video";
+	public final String TABLE_NAME_AUDIO = "audio";
 	
 	private static Db dbhelper;
 	private final Context context;
