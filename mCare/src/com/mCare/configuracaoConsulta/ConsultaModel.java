@@ -26,17 +26,22 @@ public class ConsultaModel {
 	
 	@SuppressLint("DefaultLocale")
 	public String generateSQL(){
-		String sql = "CREATE TABLE mCare.consulta(";
-		String type = "";
+		String sql = "CREATE TABLE consulta (id_consulta INTEGER PRIMARY KEY, fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL, ";
+		String tipoSQL = "";
+		String nomeCampo = "";
 		for(int i=0; i<fields.size(); i++){
-			if(types.get(i) == 0){
-				type = "REAL";
-			}else{
-				type = "TEXT";
+			switch(types.get(i)){
+			case 0: tipoSQL = "INTEGER";
+			break;
+			case 1: tipoSQL = "REAL";
+			break;
+			default: tipoSQL = "TEXT";
+			break;
 			}
-			sql = sql + fields.get(i) + " " + type;
+			nomeCampo = fields.get(i).replaceAll(" ", "_");
+			sql = sql + nomeCampo + "@" + types.get(i) + " " + tipoSQL;
 			if(i<fields.size()-1){
-				sql = sql + ";";
+				sql = sql + ", ";
 			}
 		}
 		sql = sql + ");";

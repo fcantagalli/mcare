@@ -13,9 +13,8 @@
     <string name="title_activity_lista_consultas">ListaConsultas</string>
     <string name="title_activity_editar_consulta">Editar_consulta</string>
 
-    
-    <!-- Resources para MEDICAMENTOS (activities de cadastro e edicao) -->    
-	<string-array name="array_tipos_medicamento">
+    <!-- Resources para MEDICAMENTOS (activities de cadastro e edicao) -->
+    <string-array name="array_tipos_medicamento">
         <item>Comprimido</item>
         <item>Cápsula</item>
         <item>Gel</item>
@@ -27,22 +26,19 @@
         <item>Xarope</item>
         <item>Outros</item>
     </string-array>
-    
-    
-    
+
     <!-- Resources para a activity_cria_campo_view -->
     <string name="nome_do_campo">Nome do campo:</string>
     <string name="campo_nome_hint">Digite o nome do campo</string>
     <string name="tipo_do_campo">Tipo do campo:</string>
 
     <string-array name="array_tipos_campo">
-        <item>Número</item>
+        <item>Número inteiro</item>
+        <item>Número decimal</item>
         <item>Texto</item>
         <item>Data</item>
-        <item>Áudio</item>
-        <item>Foto</item>
-        <item>Vídeo</item>
     </string-array>
+    
     <string-array name="nomes_campo">
         <item>Nome</item>
         <item>Idade</item>
@@ -51,7 +47,6 @@
         <item>Descrição</item>
         <item>Observações</item>
         <item>Problema</item>
-        <item>Fotos</item>
     </string-array>
     <!-- FIM -->
 
@@ -124,8 +119,7 @@
 
     <!--
          STRINGS PARA O BANCO DE DADOS 
-    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
-    -->
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split() -->
 
     <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL);  </string>
     
@@ -147,7 +141,8 @@
         CREATE TABLE video(id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
         CREATE TABLE video(id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);
-        </string>
+       	</string>
+	
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->
@@ -194,7 +189,6 @@
     <string name="title_activity_agendar_consulta_2">AgendarConsulta_2</string>
     <string name="title_activity_consultas">Consultas</string>
     <string name="title_activity_visualiza_info_consulta_agendada">VisualizaInfoConsultaAgendada</string>
-
     <string name="title_activity_cadastrar_medicamento">Cadastrar_medicamento</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -202,4 +196,6 @@
     <string name="title_activity_lista_medicamentos">ListaMedicamentos</string>
     <string name="title_activity_editar_medicamento">Editar_medicamento</string>
     <string name="title_activity_visualizar_medicamento">VisualizarMedicamento</string>
+    <string name="title_activity_realizar_consulta_main">RealizarConsultaMain</string>
+
 </resources>
