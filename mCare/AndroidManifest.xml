@@ -21,7 +21,7 @@
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo.Light" >
         <activity
-            android:name="com.mCare.medicamento.CadastrarMedicamento"
+            android:name="com.mCare.main.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             android:label="@string/title_activity_novo_contato" >
         </activity>
         <activity
-            android:name=".paciente.InfPaciente"
+            android:name="com.mCare.paciente.InfPaciente"
             android:label="@string/title_activity_inf_paciente" >
         </activity>
         <activity
@@ -84,14 +84,18 @@
         <activity
             android:name="com.mCare.ListaMedicamentos"
             android:label="@string/title_activity_lista_medicamentos" >
-	</activity>
-	<activity
+        </activity>
+        <activity
             android:name="com.mCare.EditarMedicamento"
             android:label="@string/title_activity_editar_medicamento" >
-    </activity>
+        </activity>
         <activity
             android:name="com.mCare.VisualizarMedicamento"
             android:label="@string/title_activity_visualizar_medicamento" >
+        </activity>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.RealizarConsultaMain"
+            android:label="@string/title_activity_realizar_consulta_main" >
         </activity>
     </application>
 
