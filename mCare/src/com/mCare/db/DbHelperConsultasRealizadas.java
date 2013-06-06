@@ -1,8 +1,8 @@
 package com.mCare.db;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -33,6 +33,14 @@ public class DbHelperConsultasRealizadas {
 			
 		}
 		return nomes;
+	}
+	
+	public long insereConsulta(int id){
+		
+		ContentValues cv = new ContentValues();
+		
+		long idNovo = dbhelper.insert(dbhelper.TABLE_NAME_CONSULTA, cv);
+		return idNovo;
 	}
 	
 }
