@@ -121,6 +121,38 @@ public class DbHelperConsultas {
 		}
 	}
 	
-	
-	
+	public Consulta buscaConsulta(int id){
+				
+				String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, id_consulta FROM consultas_marcadas as consulta " +
+						"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
+						"WHERE id_consulta =  "+id+
+						" GROUP BY consulta.fk_paciente;";		 		
+						
+				Consulta consulta = null;
+				Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
+				// Se encontrou
+				if(cursor.moveToFirst()){
+					while(!cursor.isAfterLast()){
+						
+						GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(1));
+						String descricao = cursor.getString(2);
+						//Log.w("SQL",descricao);
+						String tipo_con = cursor.getString(3);
+						
+						int idPaciente = cursor.getInt(0);
+						String nome = cursor.getString(4);
+						long id_consulta = cursor.getLong(5);
+						Paciente p = new Paciente(idPaciente,nome);
+						consulta = new Consulta(p,gc,tipo_con,descricao);
+						consulta.setId(id_consulta);
+						
+						cursor.moveToNext();
+					}
+					return consulta;
+				}
+				else{
+					return null;
+				}
+				
+			}
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 public class DbHelperConsultasRealizadas {
@@ -12,7 +13,7 @@ public class DbHelperConsultasRealizadas {
 	public Db dbhelper;
 	
 	public DbHelperConsultasRealizadas(Context context){
-		dbhelper.getInstance(context);
+		dbhelper = Db.getInstance(context);
 	}
 	
 	public ArrayList<String> pegaColunas(){
@@ -35,12 +36,10 @@ public class DbHelperConsultasRealizadas {
 		return nomes;
 	}
 	
-	public long insereConsulta(int id){
+	public void insereConsulta(String sql){
 		
-		ContentValues cv = new ContentValues();
+		dbhelper.executaSQL(new String[]{sql});
 		
-		long idNovo = dbhelper.insert(dbhelper.TABLE_NAME_CONSULTA, cv);
-		return idNovo;
 	}
 	
 }
