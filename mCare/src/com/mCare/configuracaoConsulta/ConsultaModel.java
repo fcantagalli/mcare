@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 
 import com.mCare.db.Db;
 
@@ -43,7 +44,7 @@ public class ConsultaModel {
 			break;
 			}
 			nomeCampo = fields.get(i).replaceAll(" ", "_");
-			sql = sql + nomeCampo + "@" + types.get(i) + " " + tipoSQL;
+			sql = sql + "'" + nomeCampo + "@" + types.get(i) + "' " + tipoSQL;
 			if(i<fields.size()-1){
 				sql = sql + ", ";
 			}
@@ -54,6 +55,7 @@ public class ConsultaModel {
 	
 	public boolean createTable(){
 		String sql = generateSQL();
+		Log.i("SQL", sql);
 		Db db = Db.getInstance(context);
 		db.executaSQL(new String[]{sql});
 		return true;

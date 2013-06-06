@@ -122,6 +122,7 @@ public class Consultas_Fragment extends Fragment {
 		}
 		case 4: {
 			Intent realizarConsulta = new Intent(getActivity(), RealizarConsultaMain.class);
+			realizarConsulta.putExtra("id_consulta", (long) 12);
 			startActivity(realizarConsulta);
 		}
 		}
@@ -134,7 +135,6 @@ public class Consultas_Fragment extends Fragment {
 		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
 		lstConsultas = dbConsultas.todasConsultas();
 		if(lstConsultas == null){
-			Log.wtf("aaah", "eh null");
 			lstConsultas = new LinkedList<Consulta>();
 		}
 		

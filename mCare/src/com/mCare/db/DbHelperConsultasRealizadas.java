@@ -1,7 +1,6 @@
 package com.mCare.db;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,11 +11,11 @@ public class DbHelperConsultasRealizadas {
 	public Db dbhelper;
 	
 	public DbHelperConsultasRealizadas(Context context){
-		dbhelper.getInstance(context);
+		this.dbhelper = dbhelper.getInstance(context);
 	}
 	
 	public ArrayList<String> pegaColunas(){
-		Cursor c = dbhelper.exercutaSELECTSQL("pragma table_info(telefone)", null);
+		Cursor c = dbhelper.exercutaSELECTSQL("pragma table_info(consulta)", null);
 
 		ArrayList<String> nomes = null;
 		
@@ -29,9 +28,11 @@ public class DbHelperConsultasRealizadas {
 
 			while(!c.isAfterLast()){	
 				nomes.add(c.getString(1));
+				c.moveToNext();
 			}
 			
 		}
+		Log.i("phil", " " + nomes);
 		return nomes;
 	}
 	
