@@ -43,7 +43,7 @@ public class DbHelperPaciente {
 		cv.put("cidade", p.getCidade());
 		cv.put("complemento", p.getComplemento());
 		
-		deucerto = dbhelper.update(dbhelper.TABLE_NAME_PACIENTES, cv, "id_paciente=?", new String[]{""+p.getBd_id()});
+		deucerto = dbhelper.update(dbhelper.TABLE_NAME_PACIENTES, cv, "id_paciente = "+p.getBd_id(), null);
 		
 		if(!deucerto){
 			return deucerto;
@@ -59,6 +59,7 @@ public class DbHelperPaciente {
 		if(p.getTel3() != null){
 			deucerto =  db.updateTelefone((long) p.getBd_id(), p.getTel3(), p.getTipo_tel3(), "id_telefone=?", new String[]{""+p.getIdTel3()}); 
 		}
+		
 		return deucerto;
 	}
 	

@@ -47,7 +47,7 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	EditText celParente;
 	//private ListView list;
 	
-	boolean editar = false;
+	boolean editar;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -115,13 +115,21 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		ArrayAdapter<CharSequence> escolaridades = ArrayAdapter.createFromResource(this, R.array.escolaridade, android.R.layout.simple_list_item_1);
 		escolaridade.setAdapter(escolaridades);
 		
-		if(getIntent().getExtras()!= null){
-			nome.setText((String)getIntent().getExtras().get("nome"));
+		Bundle b = getIntent().getExtras();
+		
+		if(b.get("nome")!= null){
+			nome.setText((String)b.get("nome"));
 		}
 		
-		Bundle b = getIntent().getExtras();
-		/*
-		if(b != null){
+		if(b.get("editar") != null){
+			editar = b.getBoolean("editar");
+		}
+		else{
+			editar = false;
+		}
+		
+		
+		if(b.get("id") != null){
 			DbHelperPaciente db = new DbHelperPaciente(this);
 			
 			Paciente p = db.buscaPaciente(b.getInt("id"));
@@ -131,6 +139,10 @@ public class NovoContato extends Activity implements View.OnClickListener {
 				nome.setText(p.getNome());
 				tipo1.setSelection(tipoTel(p.getTipo_tel()));
 				tel1.setText(p.getTelefone());
+				tel2.setText(p.getTel2());
+				tipo2.setSelection(tipoTel(p.getTipo_endereco()));
+				tel3.setText(p.getTel3());
+				tipo3.setSelection(tipoTel(p.getTipo_endereco()));
 				
 				tipoEndereco.setSelection(tipoRua(p.getTipo_endereco()));
 				logradouro.setText(p.getLogradouro());
@@ -140,7 +152,8 @@ public class NovoContato extends Activity implements View.OnClickListener {
 				bairro.setText(p.getBairro());
 				cidade.setText(p.getCidade());
 				gc = p.getDataNascimento();
-				dataNascimento.updateDate(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH));
+				
+				dataNascimento.updateDate(gc.get(Calendar.YEAR), gc.get(Calendar.MONTH),gc.get(Calendar.DAY_OF_MONTH));
 				
 				escolaridade.setSelection(escolaridades.getPosition(p.getEscolaridade()));
 				nomeParente.setText(p.getParente());
@@ -150,23 +163,10 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		}
 		else{
 			dataNascimento.updateDate(1950, 06, 15);
-		}*/
+		}
 		
 	}
 
-	private DatePicker.OnDateChangedListener dListener = new DatePicker.OnDateChangedListener() {
-
-        public void onDateChanged(DatePicker view, int year, int monthOfYear,
-                int dayOfMonth) {
-
-                Calendar cPickerDate = Calendar.getInstance();
-                cPickerDate.set(year, monthOfYear, dayOfMonth);
-                int dayOfYear = cPickerDate.get(Calendar.DAY_OF_YEAR);
-                Log.v("day of year", String.valueOf(dayOfYear));
-
-        }
-    };
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -194,10 +194,53 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	}
 	
 	private void salvaContato(){	
-		// primeiro trata campos que nao podem ser null
+		Log.d("up","entrou no salvaContato");
+		
 		if(editar){
+			Log.d("up","entrou no editar");
+			DbHelperPaciente db = new DbHelperPaciente(getApplicationContext());
+			
+			GregorianCalendar gc = new GregorianCalendar(dataNascimento.getYear(), dataNascimento.getMonth(), dataNascimento.getDayOfMonth());
+			
+			String bairro;
+			bairro = this.bairro.getText().toString();
+			
+			if(bairro.length() == 0){
+				bairro = null;
+			}
+			
+			Paciente p = new Paciente(getIntent().getExtras().getInt("id"),nome.getText().toString(),gc,(byte) 1,logradouro.getText().toString(),bairro,Integer.parseInt(numero.getText().toString()),cidade.getText().toString());
+			
+			p.setEscolaridade((String) escolaridade.getSelectedItem());
+			p.setTipo_endereco((String) tipoEndereco.getSelectedItem());
+			p.setComplemento(complemento.getText().toString());
+			p.setCep(cep.getText().toString());
+			p.setParente(nomeParente.getText().toString());
+			p.setParente_tel(telParente.getText().toString());
+			p.setParente_cel(celParente.getText().toString());
+			
+			if(db.updatePaciente(p)){
+				Log.i("up", "update do paciente deu certo");
+				Log.d("update","Update do paciente funcionou");
+				DbHelperTelefone dbt = new DbHelperTelefone(getApplicationContext());
+				
+				if(tel1.getText().toString().length() != 0){
+					dbt.updateTelefone(p.getBd_id(), tel1.getText().toString() , (String) tipo1.getSelectedItem(),"id_telefone="+p.getIdTel1(),null);
+					Log.i("up","atualizou tel1");
+				}
+				if(tel2.getText().toString().length() != 0){
+					dbt.updateTelefone(p.getBd_id(), tel2.getText().toString() , (String) tipo2.getSelectedItem(),"id_telefone="+p.getIdTel2(),null);
+					Log.i("up","atualizou tel2");
+				}
+				if(tel3.getText().toString().length() != 0){
+					dbt.updateTelefone(p.getBd_id(), tel3.getText().toString() , (String) tipo3.getSelectedItem(),"id_telefone="+p.getIdTel3(),null);
+					Log.i("up","atualizou tel3");
+				}
+				super.onBackPressed();
+			}
 			
 		}
+		// primeiro trata campos que nao podem ser null
 		else{	
 			if(nome.getText().toString().length() == 0){
 				Toast.makeText(getApplicationContext(), "Insira um nome para esse contato.", Toast.LENGTH_LONG).show();
@@ -301,13 +344,13 @@ public class NovoContato extends Activity implements View.OnClickListener {
 	}
 
 	private int tipoRua(String s){
-		if(s.equals("Rua")){
+		if(s.compareTo("Rua")==0){
 			return 0;
 		}
-		if(s.equals("Avenida")){
+		if(s.compareTo("Avenida")==0){
 			return 1;
 		}
-		if(s.equals("Praça")){
+		if(s.compareTo("Praça")==0){
 			return 2;
 		}
 		else{

@@ -12,7 +12,7 @@ public class DbHelperMedicamento {
 	public Db dbhelper;
 	
 	public DbHelperMedicamento(Context context){
-		dbhelper = dbhelper.getInstance(context);
+		dbhelper = Db.getInstance(context);
 	}
 	
 	public long insereMedicamento(Medicamento m){
