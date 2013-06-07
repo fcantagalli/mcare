@@ -12,6 +12,10 @@ public class Consulta {
 	private String tipo_con;
 	private long id;
 	
+	public Consulta(long id, GregorianCalendar hora){
+		this.id = id;
+		this.hora = hora;
+	}
 	
 	public Consulta(Paciente p, GregorianCalendar hora, String tipo_con, String descricao){
 		this.hora = hora;

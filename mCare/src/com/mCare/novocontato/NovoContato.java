@@ -117,48 +117,50 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		
 		Bundle b = getIntent().getExtras();
 		
-		if(b.get("nome")!= null){
-			nome.setText((String)b.get("nome"));
-		}
-		
-		if(b.get("editar") != null){
-			editar = b.getBoolean("editar");
-		}
-		else{
-			editar = false;
-		}
-		
-		
-		if(b.get("id") != null){
-			DbHelperPaciente db = new DbHelperPaciente(this);
+		if(b != null){
+			if(b.get("nome")!= null){
+				nome.setText((String)b.get("nome"));
+			}
 			
-			Paciente p = db.buscaPaciente(b.getInt("id"));
+			if(b.get("editar") != null){
+				editar = b.getBoolean("editar");
+			}
+			else{
+				editar = false;
+			}
 			
-			if(p != null){
-				editar = true;
-				nome.setText(p.getNome());
-				tipo1.setSelection(tipoTel(p.getTipo_tel()));
-				tel1.setText(p.getTelefone());
-				tel2.setText(p.getTel2());
-				tipo2.setSelection(tipoTel(p.getTipo_endereco()));
-				tel3.setText(p.getTel3());
-				tipo3.setSelection(tipoTel(p.getTipo_endereco()));
+			
+			if(b.get("id") != null){
+				DbHelperPaciente db = new DbHelperPaciente(this);
 				
-				tipoEndereco.setSelection(tipoRua(p.getTipo_endereco()));
-				logradouro.setText(p.getLogradouro());
-				numero.setText(""+p.getNumero());
-				complemento.setText(p.getComplemento());
-				cep.setText(p.getCep());
-				bairro.setText(p.getBairro());
-				cidade.setText(p.getCidade());
-				gc = p.getDataNascimento();
+				Paciente p = db.buscaPaciente(b.getInt("id"));
 				
-				dataNascimento.updateDate(gc.get(Calendar.YEAR), gc.get(Calendar.MONTH),gc.get(Calendar.DAY_OF_MONTH));
-				
-				escolaridade.setSelection(escolaridades.getPosition(p.getEscolaridade()));
-				nomeParente.setText(p.getParente());
-				telParente.setText(p.getParente_tel());
-				celParente.setText(p.getParente_cel());
+				if(p != null){
+					editar = true;
+					nome.setText(p.getNome());
+					tipo1.setSelection(tipoTel(p.getTipo_tel()));
+					tel1.setText(p.getTelefone());
+					tel2.setText(p.getTel2());
+					tipo2.setSelection(tipoTel(p.getTipo_endereco()));
+					tel3.setText(p.getTel3());
+					tipo3.setSelection(tipoTel(p.getTipo_endereco()));
+					
+					tipoEndereco.setSelection(tipoRua(p.getTipo_endereco()));
+					logradouro.setText(p.getLogradouro());
+					numero.setText(""+p.getNumero());
+					complemento.setText(p.getComplemento());
+					cep.setText(p.getCep());
+					bairro.setText(p.getBairro());
+					cidade.setText(p.getCidade());
+					gc = p.getDataNascimento();
+					
+					dataNascimento.updateDate(gc.get(Calendar.YEAR), gc.get(Calendar.MONTH),gc.get(Calendar.DAY_OF_MONTH));
+					
+					escolaridade.setSelection(escolaridades.getPosition(p.getEscolaridade()));
+					nomeParente.setText(p.getParente());
+					telParente.setText(p.getParente_tel());
+					celParente.setText(p.getParente_cel());
+				}
 			}
 		}
 		else{

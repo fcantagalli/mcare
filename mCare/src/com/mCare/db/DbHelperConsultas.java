@@ -78,46 +78,7 @@ public class DbHelperConsultas {
 		}
 	}
 	
-	public List<Consulta> ConsultasDoPaciente(int id){
-		
-		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta FROM consultas_marcadas as consulta " +
-				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
-				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
-				"WHERE consulta.fk_paciente = "+id+
-				" GROUP BY id_consulta;";
-		
-		//Cursor cursor = dbhelper.serach(false, dbhelper.TABLE_NAME_CONSULTAS_MARCADAS, null, null, null, null, null, null,null);
-		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
-		// Se encontrou
-		if(cursor.moveToFirst()){
-			LinkedList<Consulta> listaConsultas = new LinkedList<Consulta>();
-			while(!cursor.isAfterLast()){
-				
-				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(1));
-				String descricao = cursor.getString(2);
-				//Log.w("SQL",descricao);
-				String tipo_con = cursor.getString(3);
-				
-				int idPaciente = cursor.getInt(0);
-				String nome = cursor.getString(4);
-				String logradouro = cursor.getString(5);
-				int numero = cursor.getInt(6);
-				String bairro = cursor.getString(7);
-				String cidade = cursor.getString(8);
-				long id_consulta = cursor.getLong(9);
-				Paciente p = new Paciente(idPaciente,nome,null,(byte)-1,logradouro,bairro,numero,cidade);
-				Consulta c = new Consulta(p,gc,tipo_con,descricao);
-				c.setId(id_consulta);
-				listaConsultas.add(c);
-				
-				cursor.moveToNext();
-			}
-			return listaConsultas;
-		}
-		else{
-			return null;
-		}
-	}
+	
 	
  	public LinkedList<Consulta> consultasDoDia(){
 		
@@ -162,8 +123,6 @@ public class DbHelperConsultas {
 		}
 	}
  	
- 	
-	
 	public Consulta buscaConsulta(int id){
 				
 				String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, id_consulta FROM consultas_marcadas as consulta " +
