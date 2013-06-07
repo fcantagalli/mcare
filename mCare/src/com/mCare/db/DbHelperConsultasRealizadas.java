@@ -16,7 +16,7 @@ public class DbHelperConsultasRealizadas {
 	}
 	
 	public ArrayList<String> pegaColunas(){
-		Cursor c = dbhelper.exercutaSELECTSQL("pragma table_info(telefone)", null);
+		Cursor c = dbhelper.exercutaSELECTSQL("pragma table_info(consulta)", null);
 
 		ArrayList<String> nomes = null;
 		
@@ -29,9 +29,11 @@ public class DbHelperConsultasRealizadas {
 
 			while(!c.isAfterLast()){	
 				nomes.add(c.getString(1));
+				c.moveToNext();
 			}
 			
 		}
+		Log.i("phil", " " + nomes);
 		return nomes;
 	}
 	

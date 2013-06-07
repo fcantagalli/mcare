@@ -115,8 +115,12 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		ArrayAdapter<CharSequence> escolaridades = ArrayAdapter.createFromResource(this, R.array.escolaridade, android.R.layout.simple_list_item_1);
 		escolaridade.setAdapter(escolaridades);
 		
-		Bundle b = getIntent().getExtras();
+		if(getIntent().getExtras()!= null){
+			nome.setText((String)getIntent().getExtras().get("nome"));
+		}
 		
+		Bundle b = getIntent().getExtras();
+		/*
 		if(b != null){
 			DbHelperPaciente db = new DbHelperPaciente(this);
 			
@@ -146,7 +150,7 @@ public class NovoContato extends Activity implements View.OnClickListener {
 		}
 		else{
 			dataNascimento.updateDate(1950, 06, 15);
-		}
+		}*/
 		
 	}
 
