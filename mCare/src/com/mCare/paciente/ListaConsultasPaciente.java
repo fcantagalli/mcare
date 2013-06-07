@@ -15,7 +15,7 @@ public class ListaConsultasPaciente extends Activity {
 
 	ArrayList<String> elements;
 	ListView listViewPacientes;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

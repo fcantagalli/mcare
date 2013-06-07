@@ -115,6 +115,10 @@
             android:name="com.mCare.consulta.ListaConsultas"
             android:label="@string/title_activity_lista_consultas_paciente" >
         </activity>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.Midia_Fragment"
+            android:label="@string/title_activity_midia__fragment" >
+        </activity>
     </application>
 
 </manifest>
