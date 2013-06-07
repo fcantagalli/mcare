@@ -3,6 +3,7 @@ package com.mCare.consulta.realizarConsulta;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -226,6 +227,12 @@ public class Consulta_Fragment extends Fragment {
 		Db executa = Db.getInstance(getActivity());
 		executa.executaSQL(new String[]{sql});
 		
+		String confere = "Select * from consulta";
+		Cursor c = executa.exercutaSELECTSQL(confere, null);
+		
+		if(c.moveToFirst()){
+			Log.i("fe","tem alguma coisa na tabela");
+		}
 		//id
 		//nome coluna
 		//tipo

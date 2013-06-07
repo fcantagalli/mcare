@@ -3,6 +3,7 @@ package com.mCare.paciente;
 import java.util.GregorianCalendar;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.mCare.R;
+import com.mCare.consulta.ListaConsultas;
 import com.mCare.db.DbHelperPaciente;
 
 public class InfPaciente extends Activity {
@@ -21,7 +23,7 @@ public class InfPaciente extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inf_paciente);
 		
-		int id =  getIntent().getExtras().getInt("ID", -1);
+		final int id =  getIntent().getExtras().getInt("ID", -1);
 		
 		DbHelperPaciente db = new DbHelperPaciente(this);
 		Paciente p = db.buscaPaciente(id);
@@ -41,6 +43,7 @@ public class InfPaciente extends Activity {
 		TextView cep = (TextView) findViewById(R.id.campoCEP);
 		TextView bairro = (TextView) findViewById(R.id.campoBairro);
 		TextView cidade = (TextView) findViewById(R.id.campoCidade);
+		Button visualizarConsultas = (Button) findViewById(R.id.buttonVisualizarConsultas);
 		
 		if(p != null){
 			nome.setText(p.getNome());
@@ -87,17 +90,22 @@ public class InfPaciente extends Activity {
 			if(p.getParente_cel() != null){
 				parente_cel.setText(p.getParente_cel());
 			}
-		}
-		
-		Button visualizarConsultas = (Button) findViewById(R.id.buttonVisualizarConsultas);
-		visualizarConsultas.setOnClickListener(new OnClickListener() {
 			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
+			visualizarConsultas.setOnClickListener(new OnClickListener() {
 				
-			}
-		});	
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(getApplicationContext(),ListaConsultas.class);
+					intent.putExtra("id", id);
+					startActivity(intent);
+				}
+			});	
+		}
+		else{
+			visualizarConsultas.setVisibility(View.INVISIBLE);
+		}
+
 	}
 
 	private String sexo(byte sexo){

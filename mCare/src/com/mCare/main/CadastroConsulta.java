@@ -29,9 +29,9 @@ public class CadastroConsulta extends Activity {
 	}
 	
 	void createNotification(Context context, CharSequence tickerText,CharSequence title, CharSequence message, GregorianCalendar gc){
-		Intent intent = new Intent(context,InfPaciente.class);
+		//Intent intent = new Intent(context,InfPaciente.class);
 		
-		NotificacaoConsulta.create(context,gc.getTimeInMillis() - 3600000, tickerText, title, message, R.drawable.dunno, NotificacaoConsulta.notificationId(gc), intent);
+		//NotificacaoConsulta.create(context,gc.getTimeInMillis() - 3600000, tickerText, title, message, R.drawable.dunno, NotificacaoConsulta.notificationId(gc), intent);
 	}
 
 }

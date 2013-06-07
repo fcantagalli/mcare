@@ -1,7 +1,13 @@
 package com.mCare.db;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.mCare.consulta.Consulta;
+import com.mCare.paciente.Paciente;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -35,6 +41,36 @@ public class DbHelperConsultasRealizadas {
 		}
 		Log.i("phil", " " + nomes);
 		return nomes;
+	}
+	
+	public ArrayList<Consulta> listaConsultasDoPaciente(int id){
+	
+		String query = "SELECT id_consulta, data_hora FROM consulta " +
+				"WHERE fk_paciente = "+id;
+
+		Log.i("fe",query);
+		//Cursor cursor = dbhelper.serach(false, dbhelper.TABLE_NAME_CONSULTAS_MARCADAS, null, null, null, null, null, null,null);
+		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
+		// Se encontrou
+		if(cursor.moveToFirst()){
+			ArrayList<Consulta> listaConsultas = new ArrayList<Consulta>();
+			Log.i("fe","existe alguma coisa na tabela consulta");
+			while(!cursor.isAfterLast()){
+				
+				long idc = cursor.getLong(0);
+				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(1));
+				
+				Consulta c = new Consulta(idc,gc);
+				
+				listaConsultas.add(c);
+				
+				cursor.moveToNext();
+			}
+			return listaConsultas;
+		}
+		else{
+			return null;
+		}
 	}
 	
 	public HashMap<String,Object> buscaConsultaRealizada(long id){

@@ -112,7 +112,7 @@
             android:label="@string/title_activity_visualiza__consulta" >
         </activity>
         <activity
-            android:name="com.mCare.paciente.ListaConsultasPaciente"
+            android:name="com.mCare.consulta.ListaConsultas"
             android:label="@string/title_activity_lista_consultas_paciente" >
         </activity>
     </application>

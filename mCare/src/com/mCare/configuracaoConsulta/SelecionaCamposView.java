@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
 
@@ -69,6 +70,10 @@ public class SelecionaCamposView extends Activity {
 			public void onClick(View v) {
 				ConsultaModel model = new ConsultaModel(nomesCampo, tiposCampo, getApplicationContext());
 				model.createTable();
+				if(model.createTable()){
+					Toast.makeText(getApplicationContext(), "Layout da consulta criada com sucesso", Toast.LENGTH_SHORT).show();
+					onBackPressed();
+				}
 			}
 		});
 
