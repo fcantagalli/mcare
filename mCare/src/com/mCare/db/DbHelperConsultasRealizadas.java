@@ -1,8 +1,8 @@
 package com.mCare.db;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
@@ -37,8 +37,25 @@ public class DbHelperConsultasRealizadas {
 		return nomes;
 	}
 	
+	public HashMap<String,Object> buscaConsultaRealizada(long id){
+		
+		Cursor c = dbhelper.serach(false, dbhelper.TABLE_NAME_CONSULTA, null, "id_consulta="+id, null, null, null, null, null);
+		HashMap<String,Object> result = null;
+		if(c.moveToFirst()){
+			result = new HashMap<String,Object>();
+			while(!c.isAfterLast()){
+				result.put("nomes", c.getColumnNames());
+				result.put("dados",c.getExtras());
+			}
+			
+		}
+		return result;
+	}
+	
 	public void insereConsulta(String sql){
+		
 		dbhelper.executaSQL(new String[]{sql});
+		
 	}
 	
 	
