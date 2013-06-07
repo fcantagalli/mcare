@@ -20,6 +20,10 @@ public class DbHelperConsultas {
 		dbhelper = Db.getInstance(context);
 	}
 	
+	public void deletaConsulta(long id){
+		dbhelper.delete(dbhelper.TABLE_NAME_CONSULTA, "id_consulta = "+id, null);
+	}
+	
 	public long insereConsulta(Consulta consulta){
 		long deucerto;
 		
