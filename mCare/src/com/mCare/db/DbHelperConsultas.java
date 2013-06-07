@@ -86,7 +86,7 @@ public class DbHelperConsultas {
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
 				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
 				"WHERE date(consulta.data_hora) >= date('now') " +
-				"GROUP BY consulta.fk_paciente;";
+				"GROUP BY id_consulta;";
  		
 				
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
