@@ -123,12 +123,11 @@ public class DbHelperConsultas {
 		}
 	}
  	
-	public Consulta buscaConsulta(int id){
+	public Consulta buscaConsulta(long id){
 				
 				String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, id_consulta FROM consultas_marcadas as consulta " +
 						"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
-						"WHERE id_consulta =  "+id+
-						" GROUP BY consulta.fk_paciente;";		 		
+						"WHERE id_consulta =  "+ id + ";";	 		
 						
 				Consulta consulta = null;
 				Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);

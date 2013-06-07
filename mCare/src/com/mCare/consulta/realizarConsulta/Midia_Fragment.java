@@ -4,6 +4,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.mCare.db.DbHelperMedia;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -139,6 +141,11 @@ public class Midia_Fragment extends Fragment {
 	        	Toast.makeText(getActivity(), "Não foi possível salvar a imagem", Toast.LENGTH_LONG).show();
 	        }
 	    }
+		
+		String caminho = data.getData().toString();
+		DbHelperMedia dbMidia = new DbHelperMedia(getActivity());
+		
+		
 	}
 
 }
