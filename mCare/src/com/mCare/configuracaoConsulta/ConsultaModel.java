@@ -57,6 +57,8 @@ public class ConsultaModel {
 		String sql = generateSQL();
 		Log.i("SQL", sql);
 		Db db = Db.getInstance(context);
+		String dropConsulta = "DROP TABLE IF EXISTS consulta";
+		db.executaSQL(new String[]{dropConsulta});
 		db.executaSQL(new String[]{sql});
 		return true;
 	}

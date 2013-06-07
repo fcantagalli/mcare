@@ -122,7 +122,7 @@ public class Consultas_Fragment extends Fragment {
 		}
 		case 4: {
 			Intent realizarConsulta = new Intent(getActivity(), RealizarConsultaMain.class);
-			realizarConsulta.putExtra("id_consulta", (long) 12);
+			realizarConsulta.putExtra("id_consulta", escolhida.getId());
 			startActivity(realizarConsulta);
 		}
 		}

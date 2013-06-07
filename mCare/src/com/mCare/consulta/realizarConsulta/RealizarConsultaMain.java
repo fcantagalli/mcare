@@ -34,6 +34,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 		
 		mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
 		final ActionBar actionBar = getActionBar();
+		
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		actionBar.setCustomView(R.layout.action_bar_main);
 		actionBar.setDisplayShowHomeEnabled(true);

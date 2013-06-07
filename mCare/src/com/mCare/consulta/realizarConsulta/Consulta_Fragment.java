@@ -9,8 +9,10 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mCare.consulta.Consulta;
+import com.mCare.db.Db;
 import com.mCare.db.DbHelperConsultasRealizadas;
 import com.mCare.paciente.Paciente;
 
@@ -46,6 +49,18 @@ public class Consulta_Fragment extends Fragment {
 		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getActivity().getApplicationContext());
 		nomes = db.pegaColunas();
 		
+		Button finalizar = new Button(getActivity());
+		finalizar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		finalizar.setText("Finalizar");
+		finalizar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				salvaInformacoes();
+				
+			}
+		});
+		layout.addView(finalizar);
 		mostraCampos(layout);
 		scroll.addView(layout);
 		
@@ -79,6 +94,7 @@ public class Consulta_Fragment extends Fragment {
 				inteiro.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				inteiro.setInputType(InputType.TYPE_CLASS_NUMBER);
 				inteiro.setHint(nome.toLowerCase());
+				inteiro.setId(i);
 				id_campos.add(inteiro.getId());
 				layout.addView(inteiro);
 				break;
@@ -90,6 +106,7 @@ public class Consulta_Fragment extends Fragment {
 						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				decimal.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				decimal.setHint(nome.toLowerCase());
+				decimal.setId(i);
 				id_campos.add(decimal.getId());
 				layout.addView(decimal);
 				break;
@@ -101,6 +118,7 @@ public class Consulta_Fragment extends Fragment {
 						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				text.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 				text.setHint(nome.toLowerCase());
+				text.setId(i);
 				id_campos.add(text.getId());
 				layout.addView(text);
 				break;
@@ -111,6 +129,7 @@ public class Consulta_Fragment extends Fragment {
 				datePicker.setLayoutParams(new LayoutParams(
 						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				datePicker.setCalendarViewShown(false);
+				datePicker.setId(i);
 				id_campos.add(datePicker.getId());
 				layout.addView(datePicker);
 				break;
@@ -122,10 +141,12 @@ public class Consulta_Fragment extends Fragment {
 	public void salvaInformacoes() {
 		long id_consulta = (Long) getActivity().getIntent().getExtras().get("id_consulta");
 		String[] nomesColunas = new String[nomes.size()];
-		int[] tiposColunas = new int[nomes.size()];
+		int[] tiposColunas = new int[id_campos.size()];
 		for(int i=0; i<nomesColunas.length; i++){
 			nomesColunas[i] = nomes.get(i).split("@")[0];
-			tiposColunas[i] = Integer.parseInt(nomes.get(i).split("@")[1]);
+			if(i>4){
+				tiposColunas[i-5] = Integer.parseInt(nomes.get(i).split("@")[1]);
+			}
 		}
 		
 		Paciente paciente = new Paciente(12, "Philippe");
@@ -137,23 +158,30 @@ public class Consulta_Fragment extends Fragment {
 		for(int i=0; i<nomesColunas.length; i++){
 			sql = sql + nomesColunas[i];
 			if(i<nomesColunas.length-1){
-				sql = sql + ",";
+				sql = sql + ", ";
 			}
 		}
 		sql = sql + ") VALUES (";
 		
 		sql = sql + id_consulta + ", " + consulta.getPaciente().getBd_id() + ", " + db.dbhelper.formataData(consulta.getHora()) + ", " + consulta.getDescricao() + ", " + consulta.getTipo() + ", ";
 		
+		for(int i=0; i<tiposColunas.length; i++){
+			Log.i("phil", " " + tiposColunas[i]);
+		}
+		
 		for(int i=0; i<id_campos.size(); i++){
-			switch (id_campos.get(i)) {
+			Log.i("phil", "indice: " + i);
+			Log.i("phil", "tipo da coluna atual: " +  tiposColunas[i]);
+			switch (tiposColunas[i]) {
 			// campo tipo inteiro
 			case 0: {
 				EditText inteiro = (EditText) getActivity().findViewById(id_campos.get(i));
-				if(inteiro.getText().toString()!=null){
+				Log.i("phil", "campo: " + inteiro.getText().toString());
+				if(inteiro.getText().toString().compareTo("")!=0){
 					int valor = Integer.parseInt(inteiro.getText().toString());
 					sql = sql + valor;
 				}else{
-					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i), Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i+5).split("@")[0], Toast.LENGTH_LONG).show();
 					return;
 				}
 				break;
@@ -161,23 +189,24 @@ public class Consulta_Fragment extends Fragment {
 			// campo tipo decimal
 			case 1: {
 				EditText decimal = (EditText) getActivity().findViewById(id_campos.get(i));
-				if(decimal.getText().toString()!=null){
+				if(decimal.getText().toString().compareTo("")!=0){
 					double valor = Double.parseDouble(decimal.getText().toString());
 					sql = sql + valor;
 				}else{
-					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i), Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i+5).split("@")[0], Toast.LENGTH_LONG).show();
 					return;
 				}
 				break;
 			}
 			// campo tipo text
 			case 2: {
-				EditText text = new EditText(getActivity());
-				if(text.getText().toString()!=null){
+				EditText text = (EditText) getActivity().findViewById(id_campos.get(i));
+				Log.i("phil", "campo: " + text.getText().toString());
+				if(text.getText().toString().compareTo("")!=0){
 					String valor = text.getText().toString();
 					sql = sql + valor;
 				}else{
-					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i), Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i+5).split("@")[0], Toast.LENGTH_LONG).show();
 					return;
 				}
 				break;
@@ -197,6 +226,9 @@ public class Consulta_Fragment extends Fragment {
 		sql = sql + ");";
 		
 		Log.i("phil", sql);
+		
+		Db executa = Db.getInstance(getActivity());
+		executa.executaSQL(new String[]{sql});
 		
 		//id
 		//nome coluna
