@@ -81,6 +81,7 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
             	
             	Intent intent = new Intent(getActivity(),NovoContato.class);
             	intent.putExtra("id", p.getBd_id());
+            	intent.putExtra("editar", true);
 				startActivity(intent);
 				
                 Toast.makeText(getActivity(),"Voce selecionou o paciente :" +elements.get(index).toString(), Toast.LENGTH_LONG).show();

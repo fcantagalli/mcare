@@ -94,8 +94,8 @@ public class ConsultaAdapter extends BaseAdapter {
 		 */
 		nome.setText(con.getPaciente().getNome());
 		bairro.setText(con.getPaciente().getBairro());
-		SimpleDateFormat sdf = new SimpleDateFormat();
-		horario.setText(sdf.format(con.getHora().getTime()));
+		GregorianCalendar gc = con.getHora();
+		horario.setText(gc.get(gc.DAY_OF_MONTH)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+" às "+gc.get(gc.HOUR_OF_DAY)+":"+gc.get(gc.MINUTE));
 		
 		return convertView;
 	}

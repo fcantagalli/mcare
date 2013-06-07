@@ -133,14 +133,15 @@ public class Db extends SQLiteOpenHelper {
 	
 	public boolean update(String table, ContentValues values, String whereClause, String[] whereArgs){
 		SQLiteDatabase db = getWritableDatabase();
-		int i = db.update(table, values, whereClause, whereArgs);
-		db.close();
+		int i = db.updateWithOnConflict(table, values, whereClause, whereArgs,db.CONFLICT_REPLACE);
 		
-		if(i>0){
-			return true;
+		if(i==0){
+			Log.d("up","update nao funcionou");
+			return false;
 		}
 		else{
-			return false;
+			Log.d("up","update funcionou");
+			return true;
 		}
 	}
 	
@@ -157,7 +158,7 @@ public class Db extends SQLiteOpenHelper {
 		try{
 			
 			String mes = ""+gc.get(Calendar.MONTH);
-			String dia = ""+gc.get(Calendar.DATE);
+			String dia = ""+gc.get(Calendar.DAY_OF_MONTH);
 			if(mes.length() == 1){
 				mes = "0"+mes;
 			}
@@ -176,7 +177,7 @@ public class Db extends SQLiteOpenHelper {
 			formatada = gc.get(Calendar.YEAR)+"-"+mes+"-"+dia+" "+hora+":"+minuto;
 		}catch(IllegalArgumentException e){
 			Log.e("GREG",e.getMessage());
-			formatada = gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DATE);
+			formatada = gc.get(Calendar.YEAR)+"-"+gc.get(Calendar.MONTH)+"-"+gc.get(Calendar.DAY_OF_MONTH);
 		}
 		
 		return formatada;
@@ -185,18 +186,18 @@ public class Db extends SQLiteOpenHelper {
 	public GregorianCalendar textToGregorianCalendar(String data){
 
 		Log.wtf("SQL", "data da classe db: " + data);
-		String mes = data.substring(6, 7);
+		String mes = ""+data.charAt(5)+data.charAt(6);
 		if(mes.length() == 1){
 			mes = "0"+mes;
 		}
 		//YYYY-MM-DD HH:MM
-		String dia = data.substring(8, 9);
+		String dia = ""+data.charAt(8)+data.charAt(9);
 		if(dia.length() == 1){
 			dia = "0"+mes;
 		}
 		
 		if(data.length() > 11){
-			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia) ,Integer.parseInt(data.substring(12,13)) ,Integer.parseInt(data.substring(15,16)));
+			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia) ,Integer.parseInt(data.substring(11,13)) ,Integer.parseInt(data.substring(14,16)));
 		}
 		else{
 			return new GregorianCalendar(Integer.parseInt(data.substring(0,4)), Integer.parseInt(mes) ,Integer.parseInt(dia));
