@@ -46,6 +46,7 @@ public class DbHelperConsultasRealizadas {
 			while(!c.isAfterLast()){
 				result.put("nomes", c.getColumnNames());
 				result.put("dados",c.getExtras());
+				c.moveToNext();
 			}
 			
 		}
