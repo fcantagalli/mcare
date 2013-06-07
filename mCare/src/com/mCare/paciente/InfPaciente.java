@@ -2,15 +2,17 @@ package com.mCare.paciente;
 
 import java.util.GregorianCalendar;
 
-import android.os.Bundle;
-import com.mCare.R;
-import com.mCare.db.DbHelperPaciente;
-
 import android.app.Activity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.mCare.R;
+import com.mCare.db.DbHelperPaciente;
 
 public class InfPaciente extends Activity {
 
@@ -87,6 +89,15 @@ public class InfPaciente extends Activity {
 			}
 		}
 		
+		Button visualizarConsultas = (Button) findViewById(R.id.buttonVisualizarConsultas);
+		visualizarConsultas.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});	
 	}
 
 	private String sexo(byte sexo){

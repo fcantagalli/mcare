@@ -111,6 +111,10 @@
             android:name="com.mCare.consulta.realizarConsulta.Visualiza_Consulta_Realizada"
             android:label="@string/title_activity_visualiza__consulta" >
         </activity>
+        <activity
+            android:name="com.mCare.paciente.ListaConsultasPaciente"
+            android:label="@string/title_activity_lista_consultas_paciente" >
+        </activity>
     </application>
 
 </manifest>

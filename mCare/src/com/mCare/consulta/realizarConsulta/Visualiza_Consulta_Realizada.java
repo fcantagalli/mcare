@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
@@ -35,16 +36,21 @@ public class Visualiza_Consulta_Realizada extends Activity {
 		//bundle com os conteudos
 		Bundle dados = (Bundle) info.get("dados");
 		
-		criaTextView(layout, "Data:", dados.getString(nomesColunas[2]));
-		criaTextView(layout, "Descricao:", dados.getString(nomesColunas[3]));
-		criaTextView(layout, "Tipo:", dados.getString(nomesColunas[4]));
-		
-		for(int i=5; i<nomesColunas.length; i++){
-			String nome = nomesColunas[i].split("@")[0];
-			String conteudo = dados.getString(nome);
-			criaTextView(layout, nome, conteudo);
+		if(dados != Bundle.EMPTY){
+			criaTextView(layout, "Data:", dados.getString(nomesColunas[2]));
+			criaTextView(layout, "Descricao:", dados.getString(nomesColunas[3]));
+			criaTextView(layout, "Tipo:", dados.getString(nomesColunas[4]));
+			
+			for(int i=5; i<nomesColunas.length; i++){
+				String nome = nomesColunas[i].split("@")[0];
+				String conteudo = dados.getString(nomesColunas[i]);
+				criaTextView(layout, nome, conteudo);
+			}
+		}else{
+			Log.i("phil", "bundle vazio!");
 		}
-
+		scroll.addView(layout);
+		setContentView(scroll);
 	}
 
 	@Override

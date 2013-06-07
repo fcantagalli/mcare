@@ -43,7 +43,7 @@ public class Consulta_Fragment extends Fragment {
 				LayoutParams.WRAP_CONTENT));
 		layout.setPadding(16, 16, 16, 16);
 		
-		//arraylist para guardar os ids dos campos
+		//arraylist para guardar os ids dos campos (views)
 		id_campos = new ArrayList<Integer>();
 		
 		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getActivity().getApplicationContext());

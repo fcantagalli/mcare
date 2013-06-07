@@ -195,5 +195,6 @@
     <string name="title_activity_realizar_consulta_main">RealizarConsultaMain</string>
     <string name="title_activity_consulta__fragment">Consulta_Fragment</string>
     <string name="title_activity_visualiza__consulta">Visualiza_Consulta</string>
+    <string name="title_activity_lista_consultas_paciente">ListaConsultasPaciente</string>
 
 </resources>
