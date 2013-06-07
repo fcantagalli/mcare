@@ -156,18 +156,14 @@ public class Consulta_Fragment extends Fragment {
 		
 		String sql = "INSERT INTO consulta (";
 		for(int i=0; i<nomesColunas.length; i++){
-			sql = sql + nomesColunas[i];
+			sql = sql + "\"" + nomes.get(i) + "\"";
 			if(i<nomesColunas.length-1){
 				sql = sql + ", ";
 			}
 		}
 		sql = sql + ") VALUES (";
 		
-		sql = sql + id_consulta + ", " + consulta.getPaciente().getBd_id() + ", " + db.dbhelper.formataData(consulta.getHora()) + ", " + consulta.getDescricao() + ", " + consulta.getTipo() + ", ";
-		
-		for(int i=0; i<tiposColunas.length; i++){
-			Log.i("phil", " " + tiposColunas[i]);
-		}
+		sql = sql + id_consulta + ", " + consulta.getPaciente().getBd_id() + ", '" + db.dbhelper.formataData(consulta.getHora()) + "', '" + consulta.getDescricao() + "', '" + consulta.getTipo() + "', ";
 		
 		for(int i=0; i<id_campos.size(); i++){
 			Log.i("phil", "indice: " + i);
@@ -203,7 +199,7 @@ public class Consulta_Fragment extends Fragment {
 				EditText text = (EditText) getActivity().findViewById(id_campos.get(i));
 				Log.i("phil", "campo: " + text.getText().toString());
 				if(text.getText().toString().compareTo("")!=0){
-					String valor = text.getText().toString();
+					String valor = "'" + text.getText().toString() + "'";
 					sql = sql + valor;
 				}else{
 					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i+5).split("@")[0], Toast.LENGTH_LONG).show();
@@ -214,7 +210,7 @@ public class Consulta_Fragment extends Fragment {
 			// campo tipo data
 			case 3: {
 				DatePicker datePicker = new DatePicker(getActivity());
-				String valor = datePicker.getYear() + "-" + adiciona0(datePicker.getMonth()) + "-" + adiciona0(datePicker.getDayOfMonth()) + " 00:00";
+				String valor = "'" + datePicker.getYear() + "-" + adiciona0(datePicker.getMonth()) + "-" + adiciona0(datePicker.getDayOfMonth()) + "'";
 				sql = sql + valor;
 				break;
 			}
