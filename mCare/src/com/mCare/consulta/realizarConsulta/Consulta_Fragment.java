@@ -3,12 +3,9 @@ package com.mCare.consulta.realizarConsulta;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-<<<<<<< HEAD
 import android.app.Activity;
 import android.content.Intent;
-=======
 import android.database.Cursor;
->>>>>>> 98a7280257d6bd29ca3da514698ee35c6a0f476a
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -167,8 +164,7 @@ public class Consulta_Fragment extends Fragment {
 		Paciente paciente = new Paciente(12, "Philippe");
 		GregorianCalendar gc = new GregorianCalendar();
 		Consulta consulta = new Consulta(paciente, gc, "tipo", "descricao");
-		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(
-				getActivity());
+		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getActivity());
 
 		String sql = "INSERT INTO consulta (";
 		for (int i = 0; i < nomesColunas.length; i++) {
