@@ -54,7 +54,6 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
             actionBar.addTab(actionBar.newTab().setText(mAppSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
         }
-
 	}
 	
 	@Override
@@ -101,26 +100,26 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         @Override
         public Fragment getItem(int i) {
             switch (i) {
-                //case 0: return new Agenda_Fragment();
+                case 0: return new Consulta_Fragment();
                 
                 //case 1: return new ListaPacientes();
                 
-                //case 2: return new Consultas_Fragment();
+                case 2: return new Midia_Fragment();
             }
             return new Consulta_Fragment();
         }
 
         @Override
         public int getCount() {
-            return 4;
+            return 3;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
         	switch(position){
         	case 0: return "Consulta";
-        	case 1: return "Pacientes";
-        	case 2: return "Consultas";
+        	case 1: return "Medicamentos";
+        	case 2: return "Mídia";
         	}
         	
             return "ERROR";

@@ -3,7 +3,10 @@ package com.mCare.consulta.realizarConsulta;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.util.Log;
@@ -42,28 +45,31 @@ public class Consulta_Fragment extends Fragment {
 		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT));
 		layout.setPadding(16, 16, 16, 16);
-		
-		//arraylist para guardar os ids dos campos (views)
+
+		// arraylist para guardar os ids dos campos (views)
 		id_campos = new ArrayList<Integer>();
-		
-		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getActivity().getApplicationContext());
+
+		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(
+				getActivity().getApplicationContext());
 		nomes = db.pegaColunas();
-		
+
 		Button finalizar = new Button(getActivity());
-		finalizar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		finalizar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
+				LayoutParams.WRAP_CONTENT));
 		finalizar.setText("Finalizar");
 		finalizar.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				salvaInformacoes();
-				
+
 			}
 		});
 		layout.addView(finalizar);
 		mostraCampos(layout);
+
 		scroll.addView(layout);
-		
+
 		return scroll;
 	}
 
@@ -84,14 +90,16 @@ public class Consulta_Fragment extends Fragment {
 			TextView label = new TextView(getActivity());
 			label.setText(nome + ":");
 			label.setEms(10);
-			label.setTextAppearance(getActivity(), android.R.style.TextAppearance_Medium);
+			label.setTextAppearance(getActivity(),
+					android.R.style.TextAppearance_Medium);
 			layout.addView(label);
 
 			switch (tipo) {
 			// campo tipo inteiro
 			case 0: {
 				EditText inteiro = new EditText(getActivity());
-				inteiro.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				inteiro.setLayoutParams(new LayoutParams(
+						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				inteiro.setInputType(InputType.TYPE_CLASS_NUMBER);
 				inteiro.setHint(nome.toLowerCase());
 				inteiro.setId(i);
@@ -104,7 +112,8 @@ public class Consulta_Fragment extends Fragment {
 				EditText decimal = new EditText(getActivity());
 				decimal.setLayoutParams(new LayoutParams(
 						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-				decimal.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
+				decimal.setInputType(InputType.TYPE_CLASS_NUMBER
+						| InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				decimal.setHint(nome.toLowerCase());
 				decimal.setId(i);
 				id_campos.add(decimal.getId());
@@ -139,70 +148,91 @@ public class Consulta_Fragment extends Fragment {
 	}
 
 	public void salvaInformacoes() {
-		long id_consulta = (Long) getActivity().getIntent().getExtras().get("id_consulta");
+		long id_consulta = (Long) getActivity().getIntent().getExtras()
+				.get("id_consulta");
 		String[] nomesColunas = new String[nomes.size()];
 		int[] tiposColunas = new int[id_campos.size()];
-		for(int i=0; i<nomesColunas.length; i++){
+		for (int i = 0; i < nomesColunas.length; i++) {
 			nomesColunas[i] = nomes.get(i).split("@")[0];
-			if(i>4){
-				tiposColunas[i-5] = Integer.parseInt(nomes.get(i).split("@")[1]);
+			if (i > 4) {
+				tiposColunas[i - 5] = Integer
+						.parseInt(nomes.get(i).split("@")[1]);
 			}
 		}
-		
+
 		Paciente paciente = new Paciente(12, "Philippe");
 		GregorianCalendar gc = new GregorianCalendar();
-		Consulta consulta = new Consulta(paciente, gc,"tipo", "descricao");
-		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getActivity());
-		
+		Consulta consulta = new Consulta(paciente, gc, "tipo", "descricao");
+		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(
+				getActivity());
+
 		String sql = "INSERT INTO consulta (";
-		for(int i=0; i<nomesColunas.length; i++){
+		for (int i = 0; i < nomesColunas.length; i++) {
 			sql = sql + "\"" + nomes.get(i) + "\"";
-			if(i<nomesColunas.length-1){
+			if (i < nomesColunas.length - 1) {
 				sql = sql + ", ";
 			}
 		}
 		sql = sql + ") VALUES (";
-		
-		sql = sql + id_consulta + ", " + consulta.getPaciente().getBd_id() + ", '" + db.dbhelper.formataData(consulta.getHora()) + "', '" + consulta.getDescricao() + "', '" + consulta.getTipo() + "', ";
-		
-		for(int i=0; i<id_campos.size(); i++){
+
+		sql = sql + id_consulta + ", " + consulta.getPaciente().getBd_id()
+				+ ", '" + db.dbhelper.formataData(consulta.getHora()) + "', '"
+				+ consulta.getDescricao() + "', '" + consulta.getTipo() + "', ";
+
+		for (int i = 0; i < id_campos.size(); i++) {
 			Log.i("phil", "indice: " + i);
-			Log.i("phil", "tipo da coluna atual: " +  tiposColunas[i]);
+			Log.i("phil", "tipo da coluna atual: " + tiposColunas[i]);
 			switch (tiposColunas[i]) {
 			// campo tipo inteiro
 			case 0: {
-				EditText inteiro = (EditText) getActivity().findViewById(id_campos.get(i));
+				EditText inteiro = (EditText) getActivity().findViewById(
+						id_campos.get(i));
 				Log.i("phil", "campo: " + inteiro.getText().toString());
-				if(inteiro.getText().toString().compareTo("")!=0){
+				if (inteiro.getText().toString().compareTo("") != 0) {
 					int valor = Integer.parseInt(inteiro.getText().toString());
 					sql = sql + valor;
-				}else{
-					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i+5).split("@")[0], Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(
+							getActivity(),
+							"Preencha o campo "
+									+ nomes.get(i + 5).split("@")[0],
+							Toast.LENGTH_LONG).show();
 					return;
 				}
 				break;
 			}
 			// campo tipo decimal
 			case 1: {
-				EditText decimal = (EditText) getActivity().findViewById(id_campos.get(i));
-				if(decimal.getText().toString().compareTo("")!=0){
-					double valor = Double.parseDouble(decimal.getText().toString());
+				EditText decimal = (EditText) getActivity().findViewById(
+						id_campos.get(i));
+				if (decimal.getText().toString().compareTo("") != 0) {
+					double valor = Double.parseDouble(decimal.getText()
+							.toString());
 					sql = sql + valor;
-				}else{
-					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i+5).split("@")[0], Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(
+							getActivity(),
+							"Preencha o campo "
+									+ nomes.get(i + 5).split("@")[0],
+							Toast.LENGTH_LONG).show();
 					return;
 				}
 				break;
 			}
 			// campo tipo text
 			case 2: {
-				EditText text = (EditText) getActivity().findViewById(id_campos.get(i));
+				EditText text = (EditText) getActivity().findViewById(
+						id_campos.get(i));
 				Log.i("phil", "campo: " + text.getText().toString());
-				if(text.getText().toString().compareTo("")!=0){
+				if (text.getText().toString().compareTo("") != 0) {
 					String valor = "'" + text.getText().toString() + "'";
 					sql = sql + valor;
-				}else{
-					Toast.makeText(getActivity(), "Preencha o campo " + nomes.get(i+5).split("@")[0], Toast.LENGTH_LONG).show();
+				} else {
+					Toast.makeText(
+							getActivity(),
+							"Preencha o campo "
+									+ nomes.get(i + 5).split("@")[0],
+							Toast.LENGTH_LONG).show();
 					return;
 				}
 				break;
@@ -210,32 +240,34 @@ public class Consulta_Fragment extends Fragment {
 			// campo tipo data
 			case 3: {
 				DatePicker datePicker = new DatePicker(getActivity());
-				String valor = "'" + datePicker.getYear() + "-" + adiciona0(datePicker.getMonth()) + "-" + adiciona0(datePicker.getDayOfMonth()) + "'";
+				String valor = "'" + datePicker.getYear() + "-"
+						+ adiciona0(datePicker.getMonth()) + "-"
+						+ adiciona0(datePicker.getDayOfMonth()) + "'";
 				sql = sql + valor;
 				break;
 			}
 			}
-			if(i<id_campos.size()-1){
+			if (i < id_campos.size() - 1) {
 				sql = sql + ", ";
 			}
 		}
 		sql = sql + ");";
-		
+
 		Log.i("phil", sql);
-		
+
 		Db executa = Db.getInstance(getActivity());
-		executa.executaSQL(new String[]{sql});
-		
-		//id
-		//nome coluna
-		//tipo
-		//conteudo
+		executa.executaSQL(new String[] { sql });
+
+		// id
+		// nome coluna
+		// tipo
+		// conteudo
 	}
-	
-	public String adiciona0(int numero){
-		String retorno =  "" + numero;
-		if(numero<=9){
-			retorno = "0" + numero; 
+
+	public String adiciona0(int numero) {
+		String retorno = "" + numero;
+		if (numero <= 9) {
+			retorno = "0" + numero;
 		}
 		return retorno;
 	}
