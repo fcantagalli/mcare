@@ -33,6 +33,7 @@ import com.mCare.paciente.Paciente;
 public class AgendarConsulta extends Activity {
 	
 	Spinner tipoConsulta;
+	AutoCompleteTextView autoComplete;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class AgendarConsulta extends Activity {
 		getActionBar().setTitle("Agendar Consulta");
 		getActionBar().setSubtitle("insira as informações de uma nova consulta");
 		
-		AutoCompleteTextView autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
+		autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
 		String[] nomesPacientes = getPacientes();
 		if(nomesPacientes!=null){
 			ArrayAdapter<String> adapter_nomes = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nomesPacientes);
@@ -80,7 +81,7 @@ public class AgendarConsulta extends Activity {
 		Log.wtf("agendar", dataHorario + " ----- " + horario);
 		GregorianCalendar calendar = new GregorianCalendar(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
 		
-		final AutoCompleteTextView autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
+		//final AutoCompleteTextView autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
 		
 		if(autoComplete.getText().toString().length()==0){
 			Toast.makeText(getApplicationContext(), "Digite o nome do paciente", Toast.LENGTH_LONG).show();
@@ -90,7 +91,6 @@ public class AgendarConsulta extends Activity {
 		DbHelperPaciente dbPaciente = new DbHelperPaciente(getApplicationContext());
 		Paciente paciente = dbPaciente.buscaPaciente(autoComplete.getText().toString());
 		dbPaciente = null;
-		
 		if(paciente == null){
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Não foi possível encontrar o paciente selecionado");

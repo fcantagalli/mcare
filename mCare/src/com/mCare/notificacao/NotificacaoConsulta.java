@@ -32,8 +32,8 @@ public class NotificacaoConsulta {
 		
 		if(apilevel >= 11){
 			Builder builder = new Notification.Builder(contexto).setContentTitle(tickerText).setContentText(message).setSmallIcon(icon).setContentIntent(p).setAutoCancel(true).setWhen(quandoIraAparecer);
-			//builder.setAutoCancel(true);
-			//builder.setWhen(quandoIraAparecer);
+			builder.setAutoCancel(true);
+			builder.setWhen(quandoIraAparecer);
 			if(apilevel >= 17){
 				//Android 4.2
 				notification = builder.build();
@@ -54,9 +54,8 @@ public class NotificacaoConsulta {
 			notification.defaults = notification.DEFAULT_ALL;
 		}
 		
-		//NotificationManager nm = (NotificationManager) contexto.getSystemService(Activity.NOTIFICATION_SERVICE);
-		
-		//nm.notify(id,notification);
+		NotificationManager nm = (NotificationManager) contexto.getSystemService(Activity.NOTIFICATION_SERVICE);
+		nm.notify(id,notification);
 		
 	}
 	
