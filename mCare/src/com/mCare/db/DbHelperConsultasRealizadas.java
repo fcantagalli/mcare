@@ -115,7 +115,6 @@ public class DbHelperConsultasRealizadas {
 				}else{
 					Log.i("phil", "nomes na classe BdHelperConsultas eh null");
 				}
-								
 			}
 			
 		}

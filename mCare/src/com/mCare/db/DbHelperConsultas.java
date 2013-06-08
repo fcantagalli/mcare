@@ -88,17 +88,17 @@ public class DbHelperConsultas {
  	public LinkedList<Consulta> consultasDoDia(){
 		
 		//String diaAtual = dbhelper.formataData(new GregorianCalendar());
-		// A CONSULTA ABAIXO NAO PEGA SOMENTE AS DO DIA, E SIM AS DO DIA E AS POSTERIORES CUIDADOOOOOOO
- 		String query = "SELECT DISTINCT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta FROM consultas_marcadas as consulta " +
+ 		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta,sexo ,telefone, tipo_tel FROM consultas_marcadas as consulta " +
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
 				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
-				"WHERE date(consulta.data_hora) >= date('now'); " +
-				"GROUP BY consulta.id_consulta";
- 		
-				
+				"WHERE date(consulta.data_hora) = date('now'); " +
+				"GROUP BY id_consulta "+
+				"ORDER BY data_hora;";
+ 			
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
 		// Se encontrou
 		if(cursor.moveToFirst()){
+			long ant;
 			LinkedList<Consulta> listaConsultas = new LinkedList<Consulta>();
 			while(!cursor.isAfterLast()){
 				
@@ -114,15 +114,34 @@ public class DbHelperConsultas {
 				String bairro = cursor.getString(7);
 				String cidade = cursor.getString(8);
 				long id_consulta = cursor.getLong(9);
-				Paciente p = new Paciente(idPaciente,nome,null,(byte)-1,logradouro,bairro,numero,cidade);
+				byte sexo = (byte) cursor.getInt(10);
+				Paciente p = new Paciente(idPaciente,nome,null,sexo,logradouro,bairro,numero,cidade);
+				p.setTelefone(cursor.getString(11));
+				p.setTipo_tel(cursor.getString(12));
 				Consulta c = new Consulta(p,gc,tipo_con,descricao);
 				c.setId(id_consulta);
 				listaConsultas.add(c);
 				
+				ant = id_consulta;
 				cursor.moveToNext();
-			}
+				
+				// pega os outros telefones
+				if(ant == cursor.getLong(9)){
+					// segundo tel
+					p.setTel2(cursor.getString(11));
+					p.setTipo_tel2(cursor.getString(12));
+					cursor.moveToNext();
+					if(ant == cursor.getLong(9)){
+						// terceiro tel
+						p.setTel3(cursor.getString(11));
+						p.setTipo_tel3(cursor.getString(12));
+						cursor.moveToNext();
+					}
+				}// fim do if ant
+				
+			}// fim do while isAfterLast
 			return listaConsultas;
-		}
+		}// fim do if moveToFirst'
 		else{
 			return null;
 		}
