@@ -21,7 +21,8 @@ public class DbHelperConsultas {
 	}
 	
 	public void deletaConsulta(long id){
-		dbhelper.delete(dbhelper.TABLE_NAME_CONSULTA, "id_consulta = "+id, null);
+		
+		dbhelper.delete(dbhelper.TABLE_NAME_CONSULTAS_MARCADAS, "id_consulta = "+id, null);
 	}
 	
 	public long insereConsulta(Consulta consulta){
@@ -88,11 +89,11 @@ public class DbHelperConsultas {
 		
 		//String diaAtual = dbhelper.formataData(new GregorianCalendar());
 		// A CONSULTA ABAIXO NAO PEGA SOMENTE AS DO DIA, E SIM AS DO DIA E AS POSTERIORES CUIDADOOOOOOO
- 		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta FROM consultas_marcadas as consulta " +
+ 		String query = "SELECT DISTINCT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta FROM consultas_marcadas as consulta " +
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
 				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
 				"WHERE date(consulta.data_hora) >= date('now'); " +
-				"GROUP BY id_consulta;";
+				"GROUP BY consulta.id_consulta";
  		
 				
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);

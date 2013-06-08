@@ -109,6 +109,7 @@ public class Consultas_Fragment extends Fragment {
 		case 2: {
 			Intent navigationIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" + escolhida.getPaciente().getLogradouro() + ", " + escolhida.getPaciente().getNumero()));
 			startActivity(navigationIntent);
+			break;
 		}
 		//visualizar informacoes consulta agendada
 		case 3: {
@@ -119,11 +120,13 @@ public class Consultas_Fragment extends Fragment {
 			String[] informacoes = {escolhida.getPaciente().getNome(), horarioConsulta, dataConsulta, escolhida.getDescricao(), enderecoConsulta, escolhida.getTipo()}; 
 			infoConsultaIntent.putExtra("informacoes", informacoes);
 			startActivity(infoConsultaIntent);
+			break;
 		}
 		case 4: {
 			Intent realizarConsulta = new Intent(getActivity(), RealizarConsultaMain.class);
 			realizarConsulta.putExtra("id_consulta", escolhida.getId());
 			startActivity(realizarConsulta);
+			break;
 		}
 		}
 	}
@@ -142,7 +145,5 @@ public class Consultas_Fragment extends Fragment {
 		listaConsultas.setAdapter(adapter);
 		super.onActivityResult(requestCode, resultCode, data);
 	}
-	
-	
 
 }

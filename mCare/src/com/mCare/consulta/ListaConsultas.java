@@ -87,7 +87,7 @@ public class ListaConsultas extends Activity implements OnItemClickListener{
 		Consulta c = elements.get(arg2);
 		
 		Intent myIntent = new Intent(getApplicationContext(), Visualiza_Consulta_Realizada.class);
-		myIntent.putExtra("id", c.getId());
+		myIntent.putExtra("id_consulta", c.getId());
 		this.startActivity(myIntent);
 	}
 

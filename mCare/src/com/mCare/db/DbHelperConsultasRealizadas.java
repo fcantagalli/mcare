@@ -3,15 +3,13 @@ package com.mCare.db;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
-import com.mCare.consulta.Consulta;
-import com.mCare.paciente.Paciente;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
+
+import com.mCare.consulta.Consulta;
 
 public class DbHelperConsultasRealizadas {
 
@@ -73,16 +71,51 @@ public class DbHelperConsultasRealizadas {
 		}
 	}
 	
-	public HashMap<String,Object> buscaConsultaRealizada(long id){
+	@SuppressWarnings("unused")
+	public HashMap<String,String[]> buscaConsultaRealizada(long id){
 		
-		Cursor c = dbhelper.serach(false, dbhelper.TABLE_NAME_CONSULTA, null, "id_consulta="+id, null, null, null, null, null);
-		HashMap<String,Object> result = null;
+		Log.i("consulta", "id_consulta: " + id);
+		Cursor c = dbhelper.serach(false, dbhelper.TABLE_NAME_CONSULTA, null, "id_consulta = "+id, null, null, null, null, null);
+		HashMap<String,String[]> result = null;
+		//ArrayList<Object> nomes = new ArrayList<Object>();
+		String[] nomes = null;
+		String[] conteudo = null;
 		if(c.moveToFirst()){
-			result = new HashMap<String,Object>();
+			result = new HashMap<String, String[]>();
 			while(!c.isAfterLast()){
-				result.put("nomes", c.getColumnNames());
-				result.put("dados",c.getExtras());
-				c.moveToNext();
+				nomes = c.getColumnNames();
+				result.put("nomes", nomes);
+				
+				for(int i=0; i<nomes.length; i++){
+					Log.i("phil", "nomes: " + nomes[i]);
+				}
+				Log.i("phil", "numero de linhas: " + c.getCount());
+				
+				if(nomes!=null){
+					conteudo = new String[nomes.length];
+					for(int i=0; i< nomes.length; i++){
+						switch(c.getType(i)){
+						case Cursor.FIELD_TYPE_INTEGER: {
+							conteudo[i] = "" + c.getInt(i);
+							break;
+						}
+						case Cursor.FIELD_TYPE_FLOAT: {
+							conteudo[i] = "" + c.getDouble(i);
+							break;
+						}
+						case Cursor.FIELD_TYPE_STRING: {
+							conteudo[i] = c.getString(i);
+							break;
+						}
+						}
+					}
+					
+					result.put("conteudos", conteudo);
+					c.moveToNext();
+				}else{
+					Log.i("phil", "nomes na classe BdHelperConsultas eh null");
+				}
+								
 			}
 			
 		}

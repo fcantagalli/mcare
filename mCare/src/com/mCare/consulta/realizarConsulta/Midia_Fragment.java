@@ -3,6 +3,7 @@ package com.mCare.consulta.realizarConsulta;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.mCare.db.DbHelperMedia;
 
@@ -144,8 +145,9 @@ public class Midia_Fragment extends Fragment {
 		
 		String caminho = data.getData().toString();
 		DbHelperMedia dbMidia = new DbHelperMedia(getActivity());
+		GregorianCalendar now = new GregorianCalendar();
 		
-		
+		dbMidia.insereMedia(dbMidia.FOTO, caminho, "descicao", now);		
 	}
 
 }

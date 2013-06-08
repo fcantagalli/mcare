@@ -1,5 +1,7 @@
 package com.mCare.consulta.realizarConsulta;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import android.app.Activity;
@@ -10,6 +12,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.db.DbHelperConsultasRealizadas;
@@ -30,25 +33,30 @@ public class Visualiza_Consulta_Realizada extends Activity {
 		long id_consulta = getIntent().getExtras().getLong("id_consulta");
 		
 		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(this);
-		HashMap<String, Object> info = db.buscaConsultaRealizada(id_consulta);
+		HashMap<String, String[]> info = db.buscaConsultaRealizada(id_consulta);
+		
+		if(info == null){
+			Toast.makeText(getApplicationContext(), "eh null", Toast.LENGTH_LONG).show();
+			return;
+		}
 		//array com o nome das colunas do banco
 		String[] nomesColunas = (String[]) info.get("nomes");
-		//bundle com os conteudos
-		Bundle dados = (Bundle) info.get("dados");
-		
-		if(dados != Bundle.EMPTY){
-			criaTextView(layout, "Data:", dados.getString(nomesColunas[2]));
-			criaTextView(layout, "Descricao:", dados.getString(nomesColunas[3]));
-			criaTextView(layout, "Tipo:", dados.getString(nomesColunas[4]));
+		String[] conteudos = (String[]) info.get("conteudos");
+		//for(int i=0; i<nomesColunas.length; i++){
+			Log.i("phil", Arrays.asList(nomesColunas).toString());
+			Log.i("phil", Arrays.asList(conteudos).toString());
+		//}
+
+			criaTextView(layout, "Data:", conteudos[2]);
+			criaTextView(layout, "Descricao:", conteudos[3]);
+			criaTextView(layout, "Tipo:", conteudos[4]);
 			
 			for(int i=5; i<nomesColunas.length; i++){
-				String nome = nomesColunas[i].split("@")[0];
-				String conteudo = dados.getString(nomesColunas[i]);
+				String nome = nomesColunas[i].split("@")[0].replace("_", " ") + ":";
+				String conteudo = conteudos[i];
 				criaTextView(layout, nome, conteudo);
 			}
-		}else{
-			Log.i("phil", "bundle vazio!");
-		}
+
 		scroll.addView(layout);
 		setContentView(scroll);
 	}
@@ -64,6 +72,8 @@ public class Visualiza_Consulta_Realizada extends Activity {
 		TextView nome_view = new TextView(this);
 		nome_view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		nome_view.setText(nome);
+		nome_view.setEms(10);
+		nome_view.setTextAppearance(this, android.R.attr.textAppearanceMedium);
 		layout.addView(nome_view);
 		
 		TextView conteudo_view = new TextView(this);
