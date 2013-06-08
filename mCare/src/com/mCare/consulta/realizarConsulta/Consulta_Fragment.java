@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.mCare.consulta.Consulta;
 import com.mCare.db.Db;
+import com.mCare.db.DbHelperConsultas;
 import com.mCare.db.DbHelperConsultasRealizadas;
 import com.mCare.paciente.Paciente;
 
@@ -149,21 +150,19 @@ public class Consulta_Fragment extends Fragment {
 	}
 
 	public void salvaInformacoes() {
-		long id_consulta = (Long) getActivity().getIntent().getExtras()
-				.get("id_consulta");
+		long id_consulta = (Long) getActivity().getIntent().getExtras().get("id_consulta");
 		String[] nomesColunas = new String[nomes.size()];
 		int[] tiposColunas = new int[id_campos.size()];
 		for (int i = 0; i < nomesColunas.length; i++) {
 			nomesColunas[i] = nomes.get(i).split("@")[0];
 			if (i > 4) {
-				tiposColunas[i - 5] = Integer
-						.parseInt(nomes.get(i).split("@")[1]);
+				tiposColunas[i - 5] = Integer.parseInt(nomes.get(i).split("@")[1]);
 			}
 		}
 
-		Paciente paciente = new Paciente(12, "Philippe");
-		GregorianCalendar gc = new GregorianCalendar();
-		Consulta consulta = new Consulta(paciente, gc, "tipo", "descricao");
+		DbHelperConsultas dbConsulta = new DbHelperConsultas(getActivity());
+		Consulta consulta = dbConsulta.buscaConsulta(id_consulta);
+
 		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getActivity());
 
 		String sql = "INSERT INTO consulta (";
@@ -259,12 +258,10 @@ public class Consulta_Fragment extends Fragment {
 
 		executa.executaSQL(new String[]{sql});
 		
-		String confere = "Select * from consulta";
-		Cursor c = executa.exercutaSELECTSQL(confere, null);
+		dbConsulta.deletaConsulta(consulta.getId());
 		
-		if(c.moveToFirst()){
-			Log.i("fe","tem alguma coisa na tabela");
-		}
+		Toast.makeText(getActivity(), "Consulta salva com sucesso!", Toast.LENGTH_LONG).show();
+		getActivity().onBackPressed();
 		//id
 		//nome coluna
 		//tipo
