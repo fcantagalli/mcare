@@ -11,6 +11,7 @@ import com.mCare.paciente.Paciente;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Bundle;
 import android.util.Log;
 
 public class DbHelperConsultasRealizadas {
@@ -79,9 +80,11 @@ public class DbHelperConsultasRealizadas {
 		HashMap<String,Object> result = null;
 		if(c.moveToFirst()){
 			result = new HashMap<String,Object>();
+			
 			while(!c.isAfterLast()){
 				result.put("nomes", c.getColumnNames());
-				result.put("dados",c.getExtras());
+				Bundle b = new Bundle();
+				result.put("dados",c.respond(b));
 				c.moveToNext();
 			}
 			
