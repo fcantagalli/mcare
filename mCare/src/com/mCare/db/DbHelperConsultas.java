@@ -1,5 +1,6 @@
 package com.mCare.db;
 
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -75,6 +76,7 @@ public class DbHelperConsultas {
 				listaConsultas.add(c);
 				cursor.moveToNext();
 			}
+			Collections.sort(listaConsultas);
 			return listaConsultas;
 		}
 		else{
@@ -91,8 +93,7 @@ public class DbHelperConsultas {
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
 				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
 				"WHERE date(consulta.data_hora) = date('now'); " +
-				"GROUP BY id_consulta "+
-				"ORDER BY data_hora;";
+				"GROUP BY id_consulta;";
  		
 				
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
@@ -123,23 +124,25 @@ public class DbHelperConsultas {
 				listaConsultas.add(c);
 				
 				ant = id_consulta;
-				cursor.moveToNext();
+				
 				
 				// pega os outros telefones
-				if(ant == cursor.getLong(9)){
-					// segundo tel
-					p.setTel2(cursor.getString(11));
-					p.setTipo_tel2(cursor.getString(12));
-					cursor.moveToNext();
+				if(cursor.moveToNext()){
 					if(ant == cursor.getLong(9)){
-						// terceiro tel
-						p.setTel3(cursor.getString(11));
-						p.setTipo_tel3(cursor.getString(12));
+						// segundo tel
+						p.setTel2(cursor.getString(11));
+						p.setTipo_tel2(cursor.getString(12));
 						cursor.moveToNext();
-					}
-				}// fim do if ant
-				
+						if(ant == cursor.getLong(9)){
+							// terceiro tel
+							p.setTel3(cursor.getString(11));
+							p.setTipo_tel3(cursor.getString(12));
+							cursor.moveToNext();
+						}
+					}// fim do if ant
+				}
 			}// fim do while isAfterLast
+			Collections.sort(listaConsultas);
 			return listaConsultas;
 		}// fim do if moveToFirst'
 		else{

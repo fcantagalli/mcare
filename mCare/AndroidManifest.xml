@@ -119,6 +119,12 @@
             android:name="com.mCare.consulta.realizarConsulta.Midia_Fragment"
             android:label="@string/title_activity_midia__fragment" >
         </activity>
+        <receiver android:name="com.mCare.notificacao.NotificacaoConsulta">
+            <intent-filter >
+                <action android:name="NOTIFICACAO"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

@@ -22,7 +22,6 @@ import com.mCare.R;
 import com.mCare.ServicesListener.InformationServices;
 import com.mCare.configuracaoConsulta.CriaCampoView;
 import com.mCare.configuracaoConsulta.SelecionaCamposView;
-import com.mCare.paciente.ListaPacientes;
 import com.mCare.weatherServices.WeatherInfo;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -207,7 +206,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
             switch (i) {
                 case 0: return new Agenda_Fragment();
                 
-                case 1: return new ListaPacientes();
+                case 1: return new ListaPacientes_Fragment();
                 
                 case 2: return new Consultas_Fragment();
             }

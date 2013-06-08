@@ -4,7 +4,7 @@ import java.util.GregorianCalendar;
 
 import com.mCare.paciente.Paciente;
 
-public class Consulta {
+public class Consulta implements Comparable<Consulta> {
 	
 	private GregorianCalendar hora;
 	private Paciente p;
@@ -55,6 +55,13 @@ public class Consulta {
 
 	public void setHora(GregorianCalendar hora) {
 		this.hora = hora;
+	}
+
+	@Override
+	public int compareTo(Consulta another) {
+		// TODO Auto-generated method stub
+		
+		return hora.compareTo(another.getHora());
 	}
 	
 }
