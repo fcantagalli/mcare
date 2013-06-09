@@ -175,18 +175,6 @@
 	            </ListView>
 	            
 	            
-	            <!-- MEDICACOES PREVIAS -->
-	            <TextView
-	                android:text="Medicações prévias"
-	                style="@style/RotulosFormulario" />
-	
-	
-	            <ListView
-	                android:id="@+id/listaMedicacoesPrevias"
-	                style="@style/ListaPadrao" >
-	            </ListView>
-	            
-	            
 	            <!-- RESULTADOS DE EXAMES RELEVANTES -->
 	            <TextView
 	                android:text="Resultados de exames relevantes"
@@ -230,17 +218,6 @@
 	
 	            <ListView
 	                android:id="@+id/listaExamesSolicitados"
-	                style="@style/ListaPadrao" >
-	            </ListView>
-	            
-	            
-	            <!-- MUDANCAS NA MEDICACAO -->
-	            <TextView
-	                android:text="Mudanças na medicação"
-	                style="@style/RotulosFormulario" />
-	            
-	            <ListView
-	                android:id="@+id/listaMudancasMedicacao"
 	                style="@style/ListaPadrao" >
 	            </ListView>
 	            
