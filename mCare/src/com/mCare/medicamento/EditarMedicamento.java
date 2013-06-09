@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ public class EditarMedicamento extends Fragment {
 		Spinner tipo = (Spinner) rootView.findViewById(R.id.spinnerTipoMedicamento);
 		AutoCompleteTextView dosagem = (AutoCompleteTextView) rootView.findViewById(R.id.editTextCampoDosagem);
 		AutoCompleteTextView principioAtivo = (AutoCompleteTextView) rootView.findViewById(R.id.editTextCampoPrincipioAtivo);
+		RadioGroup favorito = (RadioGroup) rootView.findViewById(R.id.campoFavorito);
 		
 		//Pega as informações
 		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
@@ -43,6 +45,14 @@ public class EditarMedicamento extends Fragment {
 		ArrayAdapter myAdap = (ArrayAdapter) tipo.getAdapter(); //cast to an ArrayAdapter
 		int spinnerPosition = myAdap.getPosition(informacoes[1]); //posicao do Tipo na caixa de selecao
 		tipo.setSelection(spinnerPosition); //seleciona o Tipo armazenado no banco
+		
+		//O campo 'favorito' eh um radiogroup (sim ou nao)
+		if (informacoes[4] == "true") {
+			favorito.check(0);
+		}
+		else {
+			favorito.check(1);
+		}
 		
 		return rootView;
 	}

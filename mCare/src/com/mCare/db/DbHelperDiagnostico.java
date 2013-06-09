@@ -113,21 +113,22 @@ public class DbHelperDiagnostico {
 				d.setIdConsulta(id_consulta);
 				d.setHora(hora);
 				
-				//Adiciona aos medicamentos atuais
+				//Adiciona aos diagnosticos
 				listaDiagnosticos.add(d);
 				cursor.moveToNext();
 			}
 			
-			//Ordena medicamentos
-			Collections.sort(listaMedicamentosAtuais, new Comparator<Medicamento>() {
+			//Ordena diagnosticos pelo nome
+			Collections.sort(listaDiagnosticos, new Comparator<Diagnostico>() {
 		         @Override
-		         public int compare(Medicamento o1, Medicamento o2) {
+		         public int compare(Diagnostico o1, Diagnostico o2) {
 		             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
 		         }
 		     });
 			
-			return;
+			return listaDiagnosticos;
 		}
+		return null;
 	}
 }
 
