@@ -83,8 +83,6 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
             	intent.putExtra("id", p.getBd_id());
             	intent.putExtra("editar", true);
 				startActivity(intent);
-				
-                Toast.makeText(getActivity(),"Voce selecionou o paciente :" +elements.get(index).toString(), Toast.LENGTH_LONG).show();
                 return true;
             }
 		}); 
@@ -140,8 +138,6 @@ public class ListaPacientes extends Fragment implements OnItemClickListener {
 		Intent myIntent = new Intent(getActivity(), InfPaciente.class);
 		myIntent.putExtra("ID", p.getBd_id());
 		this.startActivity(myIntent);
-		
-		Toast.makeText(getActivity(),"Voce clicou :" +elements.get(arg2).toString(), Toast.LENGTH_LONG).show();
 	}
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {

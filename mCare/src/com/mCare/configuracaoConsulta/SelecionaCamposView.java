@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
@@ -32,10 +33,10 @@ public class SelecionaCamposView extends Activity {
 		super.onCreate(savedInstanceState);
 
 		getActionBar().setTitle("Configurar consulta");
-
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		
 		ScrollView scroll = new ScrollView(this);
-		scroll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT));
+		scroll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		this.scroll = scroll;
 
 		nomesCampo = new ArrayList<String>();
@@ -71,7 +72,7 @@ public class SelecionaCamposView extends Activity {
 				ConsultaModel model = new ConsultaModel(nomesCampo, tiposCampo, getApplicationContext());
 				model.createTable();
 				if(model.createTable()){
-					Toast.makeText(getApplicationContext(), "Layout da consulta criada com sucesso", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Configuração da consulta criada com sucesso", Toast.LENGTH_SHORT).show();
 					onBackPressed();
 				}
 			}
@@ -87,6 +88,16 @@ public class SelecionaCamposView extends Activity {
 		colocaCampoNaView("Idade", 0);
 		colocaCampoNaView("Peso", 1);
 		colocaCampoNaView("Data de nascimento", 3);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home: onBackPressed();
+		break;
+		default: return super.onOptionsItemSelected(item);
+		}
+		return true;
 	}
 
 	public void colocaCampoNaView(String nome, int tipo) {
@@ -149,9 +160,14 @@ public class SelecionaCamposView extends Activity {
 
 	@Override
 	protected void onActivityResult(int codigo, int resultado, Intent intent) {
-		String nomeCampo = (String) intent.getExtras().get("nomeCampo");
-		int tipoCampo = (Integer) intent.getExtras().get("tipoCampo");
-		colocaCampoNaView(nomeCampo, tipoCampo);
+		if(intent != null){
+			String nomeCampo = (String) intent.getExtras().get("nomeCampo");
+			int tipoCampo = (Integer) intent.getExtras().get("tipoCampo");
+			colocaCampoNaView(nomeCampo, tipoCampo);
+		}else{
+			Toast.makeText(this, "Não foi adicionado um campo novo", Toast.LENGTH_LONG).show();
+		}
+		
 	}
 
 }

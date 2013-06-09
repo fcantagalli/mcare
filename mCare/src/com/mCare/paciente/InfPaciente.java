@@ -7,13 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
-import com.mCare.consulta.ListaConsultas;
+import com.mCare.consulta.ListaConsultasPaciente;
 import com.mCare.db.DbHelperPaciente;
 
 public class InfPaciente extends Activity {
@@ -22,6 +24,9 @@ public class InfPaciente extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inf_paciente);
+		
+		getActionBar().setTitle("Informações do paciente");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		final int id =  getIntent().getExtras().getInt("ID", -1);
 		
@@ -55,7 +60,7 @@ public class InfPaciente extends Activity {
 			tipo_end.setText(p.getTipo_endereco()+" ");
 			logradouro.setText(p.getLogradouro());
 			numero.setText("Numero: "+p.getNumero());
-			cidade.setText("Cidade : "+ p.getCidade());
+			cidade.setText("Cidade: "+ p.getCidade());
 			
 			if(p.getComplemento() != null){
 				complemento.setText(p.getComplemento());
@@ -65,14 +70,13 @@ public class InfPaciente extends Activity {
 			}
 			
 			if(p.getCep() != null){
-				cep.setText("Cep: "+p.getCep());
+				cep.setText("CEP: "+p.getCep());
 			}
 			else{
 				cep.setVisibility(View.GONE);
 			}
 			
 			if(p.getBairro()!=null){
-				Log.wtf("inf", "oque tem em bairro: "+p.getBairro());
 				bairro.setText("Bairro: "+p.getBairro());
 			}else{
 				bairro.setVisibility(View.INVISIBLE);
@@ -91,12 +95,13 @@ public class InfPaciente extends Activity {
 				parente_cel.setText(p.getParente_cel());
 			}
 			
+			final String nome_paciente = p.getNome();
 			visualizarConsultas.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					Intent intent = new Intent(getApplicationContext(),ListaConsultas.class);
+					Intent intent = new Intent(getApplicationContext(),ListaConsultasPaciente.class);
 					intent.putExtra("id", id);
 					startActivity(intent);
 				}
@@ -106,6 +111,16 @@ public class InfPaciente extends Activity {
 			visualizarConsultas.setVisibility(View.INVISIBLE);
 		}
 
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home: onBackPressed();
+		break;
+		default: return super.onOptionsItemSelected(item);
+		}
+		return true;
 	}
 
 	private String sexo(byte sexo){

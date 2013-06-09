@@ -29,9 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginTop="10dp"
-                android:background="#93a3d2"
-                android:text="Telefone Padrão"
-                android:textColor="#fff"
+                android:text="Telefone:"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -96,7 +94,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:text="Endereço"
+                android:text="Endereço:"
                 android:gravity="bottom"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             

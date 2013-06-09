@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -52,7 +53,7 @@ public class AgendarConsulta extends Activity {
 		datePicker.setCalendarViewShown(false);
 		
 		getActionBar().setTitle("Agendar Consulta");
-		getActionBar().setSubtitle("insira as informações de uma nova consulta");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
 		String[] nomesPacientes = getPacientes();
@@ -65,6 +66,25 @@ public class AgendarConsulta extends Activity {
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipos_consulta, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		tipoConsulta.setAdapter(adapter);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home: {
+			Toast.makeText(this, "A consulta não foi agendada", Toast.LENGTH_LONG).show();
+			onBackPressed();
+		}
+		break;
+		default: return super.onOptionsItemSelected(item);
+		}
+		return true;
+	}
+	
+	@Override
+	public void onBackPressed() {
+		Toast.makeText(this, "A consulta não foi agendada", Toast.LENGTH_LONG).show();
+		super.onBackPressed();
 	}
 
 	@Override

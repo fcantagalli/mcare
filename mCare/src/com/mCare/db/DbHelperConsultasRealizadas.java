@@ -43,7 +43,7 @@ public class DbHelperConsultasRealizadas {
 	
 	public ArrayList<Consulta> listaConsultasDoPaciente(int id){
 	
-		String query = "SELECT id_consulta, data_hora FROM consulta " +
+		String query = "SELECT id_consulta, data_hora, descricao FROM consulta " +
 				"WHERE fk_paciente = "+id;
 
 		Log.i("fe",query);
@@ -57,8 +57,8 @@ public class DbHelperConsultasRealizadas {
 				
 				long idc = cursor.getLong(0);
 				GregorianCalendar gc = dbhelper.textToGregorianCalendar(cursor.getString(1));
-				
-				Consulta c = new Consulta(idc,gc);
+				String descricao = cursor.getString(2);
+				Consulta c = new Consulta(idc, descricao, gc);
 				
 				listaConsultas.add(c);
 				

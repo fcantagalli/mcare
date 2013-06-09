@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.configuracaoConsulta.SelecionaCamposView;
@@ -35,12 +36,14 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 		mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
 		final ActionBar actionBar = getActionBar();
 		
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-		actionBar.setCustomView(R.layout.action_bar_main);
+		View homeIcon = findViewById(android.R.id.home);
+	    ((View) homeIcon.getParent()).setVisibility(View.VISIBLE);
+	    ((View) homeIcon).setVisibility(View.VISIBLE);
+		
+		actionBar.setTitle("Paciente: " + getIntent().getExtras().getString("nome_paciente"));
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setDisplayShowHomeEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		View homeIcon = findViewById(android.R.id.home);
-		((View) homeIcon.getParent()).setVisibility(View.GONE);
 		
 		mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mAppSectionsPagerAdapter);
@@ -80,16 +83,17 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	}
 	
 	@Override
-	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		switch(featureId){
-		case 0: {
-			Intent intent = new Intent(getApplicationContext(), SelecionaCamposView.class);
-			startActivity(intent);
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home:{
+			Toast.makeText(this, "A consulta não foi realizada", Toast.LENGTH_LONG).show();
+			onBackPressed();
 		}
+		break;
+		default: return super.onOptionsItemSelected(item);
 		}
-		return super.onMenuItemSelected(featureId, item);
+		return true;
 	}
-
 	
 	public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
