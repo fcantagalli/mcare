@@ -7,11 +7,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import com.mCare.R;
+import com.mCare.R.layout;
+import com.mCare.R.menu;
+import com.mCare.db.DbHelperMedicamento;
+import com.mCare.medicamento.ListaMedicamentos.MyIndexerAdapter;
+import com.mCare.paciente.Paciente;
+
+import android.os.Bundle;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,12 +32,10 @@ import android.widget.SectionIndexer;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.mCare.R;
-import com.mCare.db.Db;
-import com.mCare.db.DbHelperMedicamento;
+public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClickListener {
 
-public class ListaMedicamentos extends Fragment implements OnItemClickListener {
-
+	Paciente p; /*********************TEM QUE PEGAR O PACIENTE!!! Como? =( *********/
+	
 	ArrayList<Medicamento> elements;
 	ListView listViewMedicamentos;
 
@@ -42,14 +47,14 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 			Bundle savedInstanceState) {
 		
 		
-		View rootView = inflater.inflate(R.layout.activity_lista_medicamentos,container, false);
+		View rootView = inflater.inflate(R.layout.activity_lista_medicamentos_por_paciente,container, false);
 		
 		
 		//AO CLICAR EM UM MEDICAMENTO -> vai pra visualizar medicamento
 		DbHelperMedicamento db = new DbHelperMedicamento(getActivity()
 				.getApplicationContext());
 
-		elements = db.listaMedicamentos(); //Pega os medicamentos do banco
+		elements = db.listaMedicamentos(p); //Pega os medicamentos do banco
 		
 		if(elements== null){
 			elements = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
@@ -79,26 +84,10 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 		adapter = new MyIndexerAdapter<Medicamento>(
 				getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewMedicamentos.setAdapter(adapter);
-		 
-		
-		
-		
-		//NOVO MEDICAMENTO -> vai pra cadastrar medicamento
-		ImageView novoMedicamento = (ImageView) findViewById(R.id.imageViewCadastrarMedicamento);
-		novoMedicamento.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),CadastrarMedicamento.class);
-				startActivityForResult(intent, 0);
-			}
-		});
-		
+
 		
 		return rootView;
 	}
-	
-	
 	
 	
 	@Override
@@ -207,5 +196,6 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 		}
 
 	}
+
 
 }

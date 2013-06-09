@@ -7,18 +7,23 @@ import com.mCare.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class EditarMedicamento extends Activity {
+public class EditarMedicamento extends Fragment {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_editar_medicamento);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		View rootView = inflater.inflate(R.layout.activity_editar_medicamento,container, false);
 		
 		//Pega os campos da activity em xml
 		AutoCompleteTextView medicamento = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomeMedicamento);
@@ -41,13 +46,9 @@ public class EditarMedicamento extends Activity {
 		
 		//Titulo da actionbar
 		getActionBar().setTitle("Medicamento:");
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.editar_medicamento, menu);
-		return true;
+		
+		
+		return rootView;
 	}
 
 }

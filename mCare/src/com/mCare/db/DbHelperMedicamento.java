@@ -40,9 +40,15 @@ public class DbHelperMedicamento {
 		}
 	}
 	
-	/*public LinkedList<Medicamento> listaMedicamento(){
+	public LinkedList<Medicamento> listaMedicamento(){
 		
-		
-		
-	}*/
+		return null; //TESTE
+	}
+	
+	public LinkedList<Medicamento> listaMedicamento(Paciente p){
+	
+		//Mesma coisa, porem filtrando pelo paciente
+	
+		return null; //TESTE
+	}
 }
