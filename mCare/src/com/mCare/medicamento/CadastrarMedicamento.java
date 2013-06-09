@@ -34,9 +34,9 @@ public class CadastrarMedicamento extends Fragment  implements View.OnClickListe
 		View rootView = inflater.inflate(R.layout.activity_cadastrar_medicamento,container, false);
 		
 		// botoes para salvar ou cancelar o cadastro do medicamento
-		ImageView salvar = (ImageView) rootView.findViewById(R.id.buttonCadastrar);
+		ImageView salvar = (ImageView) rootView.findViewById(R.id.buttonCadastrarMedicamento);
 		salvar.setOnClickListener(this);
-		ImageView cancelar = (ImageView) rootView.findViewById(R.id.buttonCancelar);
+		ImageView cancelar = (ImageView) rootView.findViewById(R.id.buttonCancelarMedicamento);
 		cancelar.setOnClickListener(this);
 		
 		// salva os campos
@@ -57,7 +57,7 @@ public class CadastrarMedicamento extends Fragment  implements View.OnClickListe
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){	
-			case R.id.buttonCadastrar: {
+			case R.id.buttonCadastrarMedicamento: {
 				salvaMedicamento(v);
 				break;
 			}

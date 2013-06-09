@@ -117,13 +117,13 @@
 	        android:weightSum="2.0" >
 	
 	        <Button
-	            android:id="@+id/buttonCadastrar"
+	            android:id="@+id/buttonCadastrarMedicamento"
 	            style="@style/ButtonsAgenda"
 	            android:layout_marginRight="8dp"
 	            android:text="Cadastrar" />
 	
 	        <Button
-	            android:id="@+id/buttonCancelar"
+	            android:id="@+id/buttonCancelarMedicamento"
 	            style="@style/ButtonsAgenda"
 	            android:layout_marginLeft="8dp"
 	            android:text="Cancelar" />

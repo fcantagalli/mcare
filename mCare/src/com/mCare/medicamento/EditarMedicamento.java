@@ -1,22 +1,15 @@
 package com.mCare.medicamento;
 
 import com.mCare.R;
-import com.mCare.R.id;
-import com.mCare.R.layout;
-import com.mCare.R.menu;
-
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 public class EditarMedicamento extends Fragment {
 

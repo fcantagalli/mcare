@@ -21,7 +21,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <AutoCompleteTextView
-            android:id="@+id/editTextCampoNomeDiagnostico"
+            android:id="@+id/editTextCampoNomeDiagnosticoEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -39,10 +39,10 @@
 	        android:weightSum="2.0" >
 	
 	        <Button
-	            android:id="@+id/buttonCadastrarDiagnostico"
+	            android:id="@+id/buttonEditarDiagnostico"
 	            style="@style/ButtonsAgenda"
 	            android:layout_marginRight="8dp"
-	            android:text="Cadastrar" />
+	            android:text="Editar" />
 	
 	        <Button
 	            android:id="@+id/buttonCancelarDiagnostico"
