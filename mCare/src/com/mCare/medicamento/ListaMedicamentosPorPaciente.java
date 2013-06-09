@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,6 +30,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -36,8 +38,10 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 
 	Paciente p; /*********************TEM QUE PEGAR O PACIENTE!!! Como? =( *********/
 	
-	ArrayList<Medicamento> elements;
-	ListView listViewMedicamentos;
+	LinkedList<Medicamento> elements;
+	ListView listViewMedicamentosAtuais;
+	ListView listViewMedicamentosAnteriores;
+	TextView tituloTelaMedicamentosPaciente;
 
 	MyIndexerAdapter<Medicamento> adapter;
 	
@@ -49,21 +53,27 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 		
 		View rootView = inflater.inflate(R.layout.activity_lista_medicamentos_por_paciente,container, false);
 		
+		//MOSTRA TITULO DE ACORDO COM O PACIENTE
+		tituloTelaMedicamentosPaciente = (TextView) rootView.findViewById(R.id.tituloTelaMedicamentosPaciente);
+		tituloTelaMedicamentosPaciente.setText("Medicamentos do paciente "+p.getNome());
+		
 		
 		//AO CLICAR EM UM MEDICAMENTO -> vai pra visualizar medicamento
 		DbHelperMedicamento db = new DbHelperMedicamento(getActivity()
 				.getApplicationContext());
 
-		elements = db.listaMedicamentos(p); //Pega os medicamentos do banco
+		db.listaMedicamentos(p); //Pega os medicamentos do banco e coloca em pacientes.medicamentos_atuais e pacientes_medicamentos_anteriores
 		
+		//-------MEDICAMENTOS ATUAIS-------
+		elements = p.getMedicamentosAtuais();
 		if(elements== null){
-			elements = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+			elements = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
 
 		//coloca a lista do banco no layout
-		listViewMedicamentos = (ListView) rootView.findViewById(R.id.lstMedicamentos);
-		listViewMedicamentos.setOnItemClickListener(this);
-		listViewMedicamentos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+		listViewMedicamentosAtuais = (ListView) rootView.findViewById(R.id.listViewMedicamentosAtuais);
+		listViewMedicamentosAtuais.setOnItemClickListener(this);
+		listViewMedicamentosAtuais.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 			//Se clicar em algum
             public boolean onItemLongClick(AdapterView<?> arg0, View v,int index, long arg3) {
@@ -71,7 +81,7 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
             	Medicamento m = elements.get(index);
             	
             	Intent intent = new Intent(getActivity(),CadastrarMedicamento.class);
-            	intent.putExtra("id", m.getBd_id());
+            	intent.putExtra("id", m.getId());
             	intent.putExtra("editar", true);
 				startActivity(intent);
 				
@@ -80,10 +90,47 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
             }
 		}); 
 		
-		listViewMedicamentos.setFastScrollEnabled(true);
+		listViewMedicamentosAtuais.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Medicamento>(
 				getActivity(), android.R.layout.simple_list_item_1, elements);
-		listViewMedicamentos.setAdapter(adapter);
+		listViewMedicamentosAtuais.setAdapter(adapter);
+		
+		
+		//-------MEDICAMENTOS ANTERIORES-------
+		/************** OBSERVACAO DA GABI *****************
+		 * NÃO SEI DIREITO PRA QUE SERVE O ELEMENTS!
+		 * Acho que esta errado, pq usa o mesmo elements pros atuais e anteriores, mas tem dois "onItemLongClick" etc... :/
+		 * *************************************************
+		 */
+		elements = p.getMedicamentosAnteriores();
+		if(elements== null){
+			elements = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+		}
+
+		//coloca a lista do banco no layout
+		listViewMedicamentosAnteriores = (ListView) rootView.findViewById(R.id.listViewMedicamentosAnteriores);
+		listViewMedicamentosAnteriores.setOnItemClickListener(this);
+		listViewMedicamentosAnteriores.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+			//Se clicar em algum
+            public boolean onItemLongClick(AdapterView<?> arg0, View v,int index, long arg3) {
+
+            	Medicamento m = elements.get(index);
+            	
+            	Intent intent = new Intent(getActivity(),CadastrarMedicamento.class);
+            	intent.putExtra("id", m.getId());
+            	intent.putExtra("editar", true);
+				startActivity(intent);
+				
+                Toast.makeText(getActivity(),"Voce selecionou o medicamento :" +elements.get(index).toString(), Toast.LENGTH_LONG).show();
+                return true;
+            }
+		}); 
+		
+		listViewMedicamentosAnteriores.setFastScrollEnabled(true);
+		adapter = new MyIndexerAdapter<Medicamento>(
+				getActivity(), android.R.layout.simple_list_item_1, elements);
+		listViewMedicamentosAnteriores.setAdapter(adapter);
 
 		
 		return rootView;
@@ -97,12 +144,12 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 			return;
 		}
 		Medicamento medicamento = new Medicamento( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"));
-		Log.i("inf","informacoes do medicamento cadastrado: "+ "nome : "+medicamento.getNome()+"    Id : "+medicamento.getBd_id());
+		Log.i("inf","informacoes do medicamento cadastrado: "+ "nome : "+medicamento.getNome()+"    Id : "+medicamento.getId());
 		elements.add(medicamento);
 		Collections.sort(elements);
-		listViewMedicamentos.setFastScrollEnabled(true);
+		listViewMedicamentosAnteriores.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Medicamento>(getActivity(), android.R.layout.simple_list_item_1, elements);
-		listViewMedicamentos.setAdapter(adapter);
+		listViewMedicamentosAnteriores.setAdapter(adapter);
 
 	}
 
@@ -116,7 +163,7 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 		Medicamento m = elements.get(arg2);
 		
 		Intent myIntent = new Intent(getActivity(), VisualizarMedicamento.class);
-		myIntent.putExtra("ID", m.getBd_id());
+		myIntent.putExtra("ID", m.getId());
 		this.startActivity(myIntent);
 		
 		Toast.makeText(getActivity(),"Voce clicou em:" +elements.get(arg2).toString(), Toast.LENGTH_LONG).show();

@@ -66,7 +66,7 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
             	Medicamento m = elements.get(index);
             	
             	Intent intent = new Intent(getActivity(),CadastrarMedicamento.class);
-            	intent.putExtra("id", m.getBd_id());
+            	intent.putExtra("id", m.getId());
             	intent.putExtra("editar", true);
 				startActivity(intent);
 				
@@ -127,7 +127,7 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 		Medicamento m = elements.get(arg2);
 		
 		Intent myIntent = new Intent(getActivity(), VisualizarMedicamento.class);
-		myIntent.putExtra("ID", m.getBd_id());
+		myIntent.putExtra("ID", m.getId());
 		this.startActivity(myIntent);
 		
 		Toast.makeText(getActivity(),"Voce clicou em:" +elements.get(arg2).toString(), Toast.LENGTH_LONG).show();
