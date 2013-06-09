@@ -118,15 +118,13 @@
 
     <!--
          STRINGS PARA O BANCO DE DADOS 
-    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
     -->
 
-    <string name="SQL_CREATE_TESTE">        
-        CREATE TABLE pessoa (
+    <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (
         	id INTEGER PRIMARY KEY AUTOINCREMENT, 
         	nome TEXT NOT NULL);  </string>
-    <string name="SQL_CREATE_TABLES">        
-        CREATE TABLE paciente (
+    <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (
         	id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,
         	nome TEXT NOT NULL,
         	data_nascimento TEXT NOT NULL, 
@@ -249,5 +247,6 @@
     <string name="title_activity_lista_consultas_paciente">ListaConsultasPaciente</string>
     <string name="title_activity_midia__fragment">Midia_Fragment</string>
     <string name="title_activity_lista_medicamentos_por_paciente">ListaMedicamentosPorPaciente</string>
+    <string name="title_activity_cadastrar_diagnostico">CadastrarDiagnostico</string>
 
 </resources>

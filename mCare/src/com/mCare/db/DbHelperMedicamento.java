@@ -1,5 +1,6 @@
 package com.mCare.db;
 
+import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
@@ -51,7 +52,7 @@ public class DbHelperMedicamento {
 		
 		//DEFINE QUERY dependendo se quer favoritos ou nao
 		String query = "SELECT id_medicamento, nome " +
-						"FROM medicamento";
+						"FROM "+dbhelper.TABLE_NAME_MEDICAMENTO;
 		
 		if (favorito) {
 			query = "WHERE favorito = true";
@@ -79,7 +80,12 @@ public class DbHelperMedicamento {
 				listaMedicamentos.add(m);
 				cursor.moveToNext();
 			}
-			Collections.sort(listaMedicamentos);
+			Collections.sort(listaMedicamentos, new Comparator<Medicamento>() {
+		         @Override
+		         public int compare(Medicamento o1, Medicamento o2) {
+		             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
+		         }
+		     });
 			return listaMedicamentos;
 		}
 		else{
@@ -93,7 +99,7 @@ public class DbHelperMedicamento {
 		int id_ultima_consulta = 0;
 		String query_consulta =
 				"SELECT max(id_consulta) " +
-				"FROM consultas_marcadas" +
+				"FROM " + dbhelper.TABLE_NAME_CONSULTAS_MARCADAS +
 				"WHERE fk_paciente = " + p.getBd_id();
 		
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query_consulta, null);
@@ -112,7 +118,7 @@ public class DbHelperMedicamento {
 		
 		//Busca todos os medicamentos que o paciente toma ou ja tomou 
 		String query = "SELECT id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
-						"FROM medicamento " +
+						"FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
 						"INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento " +
 						"WHERE medicamento_paciente.id_paciente = " + p.getBd_id();
 		
@@ -148,7 +154,12 @@ public class DbHelperMedicamento {
 			 * TERIA QUE ORDENAR PRIMEIRO POR id_medicamento e DEPOIS POR id_consulta!
 			 * *********************************************
 			 */
-			Collections.sort(listaMedicamentosAtuais, new ComparadorInteiro());
+			Collections.sort(listaMedicamentosAtuais, new Comparator<Medicamento>() {
+		         @Override
+		         public int compare(Medicamento o1, Medicamento o2) {
+		             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
+		         }
+		     });
 			
 			//Depois de ordenar, ver qual o ultimo id_consulta de cada medicamento
 			Medicamento medicamento_anterior = null;
@@ -171,13 +182,5 @@ public class DbHelperMedicamento {
 			
 			return;
 		}
-	}
-	
-	public class ComparadorInteiro implements Comparator<Integer>{
-		 
-	    @Override
-	    public int compare(Integer o1, Integer o2) {
-	        return (o1>o2 ? -1 : (o1==o2 ? 0 : 1)); //menor, igual, maior
-	    }
 	}
 }
