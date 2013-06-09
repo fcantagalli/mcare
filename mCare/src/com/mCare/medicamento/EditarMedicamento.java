@@ -26,13 +26,13 @@ public class EditarMedicamento extends Fragment {
 		View rootView = inflater.inflate(R.layout.activity_editar_medicamento,container, false);
 		
 		//Pega os campos da activity em xml
-		AutoCompleteTextView medicamento = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomeMedicamento);
-		Spinner tipo = (Spinner) findViewById(R.id.spinnerTipoMedicamento);
-		AutoCompleteTextView dosagem = (AutoCompleteTextView) findViewById(R.id.editTextCampoDosagem);
-		AutoCompleteTextView principioAtivo = (AutoCompleteTextView) findViewById(R.id.editTextCampoPrincipioAtivo);
+		AutoCompleteTextView medicamento = (AutoCompleteTextView) rootView.findViewById(R.id.editTextCampoNomeMedicamento);
+		Spinner tipo = (Spinner) rootView.findViewById(R.id.spinnerTipoMedicamento);
+		AutoCompleteTextView dosagem = (AutoCompleteTextView) rootView.findViewById(R.id.editTextCampoDosagem);
+		AutoCompleteTextView principioAtivo = (AutoCompleteTextView) rootView.findViewById(R.id.editTextCampoPrincipioAtivo);
 		
 		//Pega as informações
-		String[] informacoes = (String[]) getIntent().getExtras().get("informacoes");
+		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
 		
 		//Coloca as informações nos campos
 		medicamento.setText(informacoes[0]);
@@ -43,10 +43,6 @@ public class EditarMedicamento extends Fragment {
 		ArrayAdapter myAdap = (ArrayAdapter) tipo.getAdapter(); //cast to an ArrayAdapter
 		int spinnerPosition = myAdap.getPosition(informacoes[1]); //posicao do Tipo na caixa de selecao
 		tipo.setSelection(spinnerPosition); //seleciona o Tipo armazenado no banco
-		
-		//Titulo da actionbar
-		getActionBar().setTitle("Medicamento:");
-		
 		
 		return rootView;
 	}

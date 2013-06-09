@@ -30,13 +30,51 @@
 
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/lstMedicamentos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawSelectorOnTop="false"
-        android:layout_below="@+id/adicionarLayout"
-        android:layout_marginTop="6dp" >
-    </ListView>
+    
+    <LinearLayout 
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:paddingBottom="@dimen/activity_vertical_margin"
+	    android:paddingLeft="@dimen/activity_horizontal_margin"
+	    android:paddingRight="@dimen/activity_horizontal_margin"
+	    android:paddingTop="@dimen/activity_vertical_margin"
+	    android:orientation="vertical" >
+	    
+	    <!-- MEDICAMENTOS FAVORITOS -->
+	    <TextView
+	        android:id="@+id/tituloTelaMedicamentosFavoritos"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="6dp"
+	        android:text="FAVORITOS"
+	        style="@style/RotulosFormulario" />
+	    
+	    <ListView
+	        android:id="@+id/lstMedicamentosFavoritos"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:drawSelectorOnTop="false"
+	        android:layout_marginTop="6dp" >
+	    </ListView>
+	    
+	    <!-- MEDICAMENTOS NAO-FAVORITOS -->
+	    <TextView
+	        android:id="@+id/tituloTelaMedicamentosNaoFavoritos"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="12dp"
+	        android:text="OUTROS MEDICAMENTOS" 
+	        style="@style/RotulosFormulario" />
+	    
+	    <ListView
+	        android:id="@+id/lstMedicamentosNaoFavoritos"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:drawSelectorOnTop="false"
+	        android:layout_below="@+id/adicionarLayout"
+	        android:layout_marginTop="6dp" >
+	    </ListView>
+
+	</LinearLayout>
 
 </RelativeLayout>

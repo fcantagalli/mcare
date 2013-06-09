@@ -1,7 +1,9 @@
 package com.mCare.medicamento;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -71,7 +73,7 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 		}
 
 		//coloca a lista do banco no layout
-		listViewMedicamentosAtuais = (ListView) rootView.findViewById(R.id.listViewMedicamentosAtuais);
+		listViewMedicamentosAtuais = (ListView) rootView.findViewById(R.id.lstMedicamentosAtuais);
 		listViewMedicamentosAtuais.setOnItemClickListener(this);
 		listViewMedicamentosAtuais.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
@@ -108,7 +110,7 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 		}
 
 		//coloca a lista do banco no layout
-		listViewMedicamentosAnteriores = (ListView) rootView.findViewById(R.id.listViewMedicamentosAnteriores);
+		listViewMedicamentosAnteriores = (ListView) rootView.findViewById(R.id.lstMedicamentosAnteriores);
 		listViewMedicamentosAnteriores.setOnItemClickListener(this);
 		listViewMedicamentosAnteriores.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
@@ -146,7 +148,15 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 		Medicamento medicamento = new Medicamento( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"));
 		Log.i("inf","informacoes do medicamento cadastrado: "+ "nome : "+medicamento.getNome()+"    Id : "+medicamento.getId());
 		elements.add(medicamento);
-		Collections.sort(elements);
+		
+		//Ordena medicamentos por nome
+		Collections.sort(elements, new Comparator<Medicamento>() {
+	         @Override
+	         public int compare(Medicamento o1, Medicamento o2) {
+	             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
+	         }
+	     });
+		
 		listViewMedicamentosAnteriores.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Medicamento>(getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewMedicamentosAnteriores.setAdapter(adapter);
