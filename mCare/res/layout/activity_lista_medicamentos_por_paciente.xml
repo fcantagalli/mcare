@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ListaMedicamentosPorPaciente" >
+
+    <ListView
+        android:id="@+id/lstMedicamentosPorPaciente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawSelectorOnTop="false"
+        android:layout_below="@+id/adicionarLayout"
+        android:layout_marginTop="6dp" >
+    </ListView>
+
+</RelativeLayout>
