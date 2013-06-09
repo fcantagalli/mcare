@@ -6,16 +6,20 @@ import com.mCare.R.layout;
 import com.mCare.R.menu;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class VisualizarMedicamento extends Activity {
+public class VisualizarMedicamento extends Fragment {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_visualizar_medicamento);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		View rootView = inflater.inflate(R.layout.activity_visualizar_medicamento,container, false);
 		
 		//Pega os campos da activity em xml
 		TextView medicamento = (TextView) findViewById(R.id.textViewMedicamento);
@@ -35,7 +39,9 @@ public class VisualizarMedicamento extends Activity {
 		//Titulo da actionbar
 		getActionBar().setTitle("Medicamento:");
 		
+		return rootView;
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
