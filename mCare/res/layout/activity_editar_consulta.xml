@@ -153,6 +153,7 @@
             </ListView>
             
             
+            
             <!-- MEDICACOES EM USO -->
             <TextView
                 android:text="Medicações em uso"
