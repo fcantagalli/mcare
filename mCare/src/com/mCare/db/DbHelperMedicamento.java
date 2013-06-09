@@ -152,12 +152,18 @@ public class DbHelperMedicamento {
 			//Ordena medicamentos
 			/*************** OBSERVACAO DA GABI ************
 			 * TERIA QUE ORDENAR PRIMEIRO POR id_medicamento e DEPOIS POR id_consulta!
+			 * Nao sei se esta fazendo (nao consegui testar...)
 			 * *********************************************
 			 */
 			Collections.sort(listaMedicamentosAtuais, new Comparator<Medicamento>() {
 		         @Override
 		         public int compare(Medicamento o1, Medicamento o2) {
-		             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
+		        	int c;
+	        	    c = Collator.getInstance().compare(o1.getNome(), o2.getNome());
+	        	    if (c == 0) {
+	        	       c = Collator.getInstance().compare(o1.getIdConsulta(), o2.getIdConsulta());
+	        	    }
+	        	    return c;
 		         }
 		     });
 			

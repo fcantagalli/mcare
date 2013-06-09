@@ -164,7 +164,7 @@
 
 		CREATE TABLE medicamento_paciente (
 			id_medicamento PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
-			id_consulta PRIMARY KEY REFERENCES consultas_marcadas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
 			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, 
 			data_consulta TEXT NOT NULL);@
 			
@@ -181,7 +181,13 @@
         	
         CREATE TABLE diagnostico_consulta (
         	id_diagnostico PRIMARY KEY REFERENCES diagnostico(id_diagnostico) ON UPDATE CASCADE ON DELETE CASCADE, 
-			id_consulta PRIMARY KEY REFERENCES consultas_marcadas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE);@
+			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
+			data_consulta TEXT NOT NULL);@
+			
+		CREATE TABLE exames_solicitados (
+        	id_exame PRIMARY KEY AUTOINCREMENT, 
+			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
+			nome TEXT NOT NULL);@
         	
         CREATE TABLE foto (id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         

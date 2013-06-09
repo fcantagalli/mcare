@@ -1,4 +1,8 @@
-package com.mCare;
+package com.mCare.diagnostico;
+
+import com.mCare.R;
+import com.mCare.R.layout;
+import com.mCare.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
