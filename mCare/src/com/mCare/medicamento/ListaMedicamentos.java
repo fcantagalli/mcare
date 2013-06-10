@@ -11,15 +11,11 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -29,13 +25,12 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.mCare.R;
-import com.mCare.db.Db;
 import com.mCare.db.DbHelperMedicamento;
-import com.mCare.paciente.InfPaciente;
 
-public class ListaMedicamentos extends Activity implements OnItemClickListener {
+public class ListaMedicamentos extends Activity {
 
-	LinkedList<Medicamento> elements;
+	LinkedList<Medicamento> elementsFavoritos;
+	LinkedList<Medicamento> elementsNaoFavoritos;
 	ListView listViewMedicamentosFavoritos;
 	ListView listViewMedicamentosNaoFavoritos;
 
@@ -50,73 +45,95 @@ public class ListaMedicamentos extends Activity implements OnItemClickListener {
 		//AO CLICAR EM UM MEDICAMENTO -> vai pra visualizar medicamento
 		DbHelperMedicamento db = new DbHelperMedicamento(getApplicationContext());
 		//MEDICAMENTOS FAVORITOS
-		elements = db.listaMedicamentos(true); //Pega os medicamentos FAVORITOS do banco
+		elementsFavoritos = db.listaMedicamentos(true); //Pega os medicamentos FAVORITOS do banco
 		
-		if(elements== null){
-			elements = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+		if(elementsFavoritos== null){
+			elementsFavoritos = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
 
 		//coloca a lista do banco no layout
 		listViewMedicamentosFavoritos = (ListView) findViewById(R.id.lstMedicamentosFavoritos);
-		listViewMedicamentosFavoritos.setOnItemClickListener(this);
+		listViewMedicamentosFavoritos.setOnItemClickListener(new OnItemClickListener() {
+
+			/*** Quando clica de forma rapida, visualiza o medicamento ***/
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				
+				Medicamento m = elementsFavoritos.get(arg2);
+				
+				Intent myIntent = new Intent(getApplicationContext(), VisualizarMedicamento.class);
+				myIntent.putExtra("ID", m.getId());
+				getApplicationContext().startActivity(myIntent);
+				
+				Toast.makeText(getApplicationContext(),"Voce clicou em:" +elementsFavoritos.get(arg2).toString(), Toast.LENGTH_LONG).show();
+			}
+		});
 		listViewMedicamentosFavoritos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-			//Se clicar em algum
+			/*** Quando clica de forma devagar, edita o medicamento ***/
             public boolean onItemLongClick(AdapterView<?> arg0, View v,int index, long arg3) {
 
-            	Medicamento m = elements.get(index);
+            	Medicamento m = elementsFavoritos.get(index);
             	
-            	Intent intent = new Intent(getApplicationContext(),CadastrarMedicamento.class);
+            	Intent intent = new Intent(getApplicationContext(),EditarMedicamento.class);
             	intent.putExtra("id", m.getId());
-            	intent.putExtra("editar", true);
 				startActivity(intent);
 				
-                Toast.makeText(getApplicationContext(),"Voce selecionou o medicamento :" +elements.get(index).toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Voce selecionou o medicamento :" +elementsFavoritos.get(index).toString(), Toast.LENGTH_LONG).show();
                 return true;
             }
 		}); 
 		
 		listViewMedicamentosFavoritos.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Medicamento>(
-				getApplicationContext(), android.R.layout.simple_list_item_1, elements);
+				getApplicationContext(), android.R.layout.simple_list_item_1, elementsFavoritos);
 		listViewMedicamentosFavoritos.setAdapter(adapter);
 		
 		
-		/************** OBSERVACAO DA GABI *****************
-		 * NÃO SEI DIREITO PRA QUE SERVE O ELEMENTS!
-		 * Acho que esta errado, pq usa o mesmo elements pros atuais e anteriores, mas tem dois "onItemLongClick" etc... :/
-		 * *************************************************
-		 */
-		//MEDICAMENTOS NAO-FAVORITOS
-		elements = db.listaMedicamentos(false); //Pega os medicamentos NAO-FAVORITOS do banco
 		
-		if(elements== null){
-			elements = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+		//MEDICAMENTOS NAO-FAVORITOS
+		elementsNaoFavoritos = db.listaMedicamentos(false); //Pega os medicamentos NAO-FAVORITOS do banco
+		
+		if(elementsNaoFavoritos== null){
+			elementsNaoFavoritos = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
 
 		//coloca a lista do banco no layout
 		listViewMedicamentosNaoFavoritos = (ListView) findViewById(R.id.lstMedicamentosNaoFavoritos);
-		listViewMedicamentosNaoFavoritos.setOnItemClickListener(this);
+		listViewMedicamentosFavoritos.setOnItemClickListener(new OnItemClickListener() {
+			/*** Quando clica de forma rapida, visualiza o medicamento ***/
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				
+				Medicamento m = elementsNaoFavoritos.get(arg2);
+				
+				Intent myIntent = new Intent(getApplicationContext(), VisualizarMedicamento.class);
+				myIntent.putExtra("ID", m.getId());
+				getApplicationContext().startActivity(myIntent);
+				
+				Toast.makeText(getApplicationContext(),"Voce clicou em:" +elementsNaoFavoritos.get(arg2).toString(), Toast.LENGTH_LONG).show();
+			}
+		});
 		listViewMedicamentosNaoFavoritos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
-			/*** Quando clica de forma rapida, edita o medicamento ***/
+			/*** Quando clica de forma devagar, edita o medicamento ***/
             public boolean onItemLongClick(AdapterView<?> arg0, View v,int index, long arg3) {
 
-            	Medicamento m = elements.get(index);
+            	Medicamento m = elementsNaoFavoritos.get(index);
             	
             	//Cria uma intencao de fazer alguma coisa -> abrir a tela cadastrar medicamento
             	Intent intent = new Intent(getApplicationContext(),EditarMedicamento.class);
             	intent.putExtra("id", m.getId()); //manda o id do medicamento para a tela cadastrar medicamento
 				startActivity(intent);
 				
-                Toast.makeText(getApplicationContext(),"Voce selecionou o medicamento :" +elements.get(index).toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Voce selecionou o medicamento :" +elementsNaoFavoritos.get(index).toString(), Toast.LENGTH_LONG).show();
                 return true;
             }
 		}); 
 		
 		listViewMedicamentosNaoFavoritos.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Medicamento>(
-				getApplicationContext(), android.R.layout.simple_list_item_1, elements);
+				getApplicationContext(), android.R.layout.simple_list_item_1, elementsNaoFavoritos);
 		listViewMedicamentosNaoFavoritos.setAdapter(adapter);
 		
 		 
@@ -137,35 +154,55 @@ public class ListaMedicamentos extends Activity implements OnItemClickListener {
 	
 	
 	
-	
+	//Se alguma das telas que eu chamei retornar alguma coisa, eu faco o seguinte
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+		//Se a tela nao me mandar dados, nao faco nada
 		if(data == null){
 			return;
 		}
-		Medicamento medicamento = new Medicamento( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"));
+		
+		//Se a tela me mandar informacoes do medicamento criado, ADICIONO A LISTA
+		Medicamento medicamento = new Medicamento(  (int) data.getExtras().getLong("id"), 
+													(String)data.getExtras().getString("nome"));
 		Log.i("inf","informacoes do medicamento cadastrado: "+ "nome : "+medicamento.getNome()+"    Id : "+medicamento.getId());
-		elements.add(medicamento);
-
-		//Ordena medicamentos por nome
-		Collections.sort(elements, new Comparator<Medicamento>() {
-	         @Override
-	         public int compare(Medicamento o1, Medicamento o2) {
-	             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
-	         }
-	     });
 		
-		//Medicamentos favoritos
-		listViewMedicamentosFavoritos.setFastScrollEnabled(true);
-		adapter = new MyIndexerAdapter<Medicamento>(getApplicationContext(), android.R.layout.simple_list_item_1, elements);
-		listViewMedicamentosFavoritos.setAdapter(adapter);
-		
-		//Medicamentos nao-favoritos
-		listViewMedicamentosNaoFavoritos.setFastScrollEnabled(true);
-		adapter = new MyIndexerAdapter<Medicamento>(getApplicationContext(), android.R.layout.simple_list_item_1, elements);
-		listViewMedicamentosNaoFavoritos.setAdapter(adapter);
+		//Se for um dos favoritos
+		if (medicamento.getFavorito()) {
+			elementsFavoritos.add(medicamento);
 
+			//Ordena medicamentos por nome
+			Collections.sort(elementsFavoritos, new Comparator<Medicamento>() {
+		         @Override
+		         public int compare(Medicamento o1, Medicamento o2) {
+		             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
+		         }
+		     });
+			
+			//Medicamentos favoritos
+			listViewMedicamentosFavoritos.setFastScrollEnabled(true);
+			adapter = new MyIndexerAdapter<Medicamento>(getApplicationContext(), android.R.layout.simple_list_item_1, elementsFavoritos);
+			listViewMedicamentosFavoritos.setAdapter(adapter);
+		}
+		//Nao favorito
+		else
+		{
+			elementsNaoFavoritos.add(medicamento);
+
+			//Ordena medicamentos por nome
+			Collections.sort(elementsNaoFavoritos, new Comparator<Medicamento>() {
+		         @Override
+		         public int compare(Medicamento o1, Medicamento o2) {
+		             return Collator.getInstance().compare(o1.getNome(), o2.getNome());
+		         }
+		     });
+			
+			//Medicamentos nao-favoritos
+			listViewMedicamentosNaoFavoritos.setFastScrollEnabled(true);
+			adapter = new MyIndexerAdapter<Medicamento>(getApplicationContext(), android.R.layout.simple_list_item_1, elementsNaoFavoritos);
+			listViewMedicamentosNaoFavoritos.setAdapter(adapter);
+		}
 	}
 
 	//ic_btn_speak_now
@@ -173,37 +210,27 @@ public class ListaMedicamentos extends Activity implements OnItemClickListener {
 	//ic_menu_gallery
 	//ic_menu_slideshow
 
-	/*** Quando clica de forma rapida, visualiza o medicamento ***/
-	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		Medicamento m = elements.get(arg2);
-		
-		Intent myIntent = new Intent(getApplicationContext(), VisualizarMedicamento.class);
-		myIntent.putExtra("ID", m.getId());
-		this.startActivity(myIntent);
-		
-		Toast.makeText(getApplicationContext(),"Voce clicou em:" +elements.get(arg2).toString(), Toast.LENGTH_LONG).show();
-	}
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {
 
 		ArrayList<Medicamento> myElements;
 		HashMap<String, Integer> alphaIndexer;
-
+		
 		String[] sections;
 
 		public MyIndexerAdapter(Context context, int textViewResourceId,
 				List<T> objects) {
 			super(context, textViewResourceId, objects);
-			// myElements = (ArrayList<Medicamento>) objects;
+			myElements = (ArrayList<Medicamento>) objects;
 			// here is the tricky stuff
 			alphaIndexer = new HashMap<String, Integer>();
 			// in this hashmap we will store here the positions for
 			// the sections
 				
-			int size = elements.size();
+			
+			int size = myElements.size();
 			for (int i = size - 1; i >= 0; i--) {
-				String element = elements.get(i).getNome();
+				String element = myElements.get(i).getNome();
 				alphaIndexer.put(element.substring(0, 1), i);
 				// We store the first letter of the word, and its index.
 				// The Hashmap will replace the value for identical keys are

@@ -9,8 +9,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -31,9 +31,9 @@ public class CadastrarMedicamento extends Activity implements View.OnClickListen
 		setContentView(R.layout.activity_cadastrar_medicamento);
 		
 		// botoes para salvar ou cancelar o cadastro do medicamento
-		ImageView salvar = (ImageView) findViewById(R.id.buttonCadastrarMedicamento);
+		Button salvar = (Button) findViewById(R.id.buttonCadastrarMedicamento);
 		salvar.setOnClickListener(this);
-		ImageView cancelar = (ImageView) findViewById(R.id.buttonCancelarMedicamento);
+		Button cancelar = (Button) findViewById(R.id.buttonCancelarMedicamento);
 		cancelar.setOnClickListener(this);
 		
 		// salva os campos
