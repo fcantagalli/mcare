@@ -138,9 +138,7 @@
             android:name="com.mCare.diagnostico.ListaDiagnosticos"
             android:label="@string/title_activity_lista_diagnosticos" >
         </activity>
-<<<<<<< HEAD
-        
-=======
+
         <activity
             android:name="com.mCare.paciente.historico.ListaCamposConsulta"
             android:label="@string/title_activity_lista_campos_consulta" >
@@ -149,7 +147,7 @@
             android:name="com.mCare.paciente.historico.ListaValoresCampo"
             android:label="@string/title_activity_lista_valores_campo" >
         </activity>
->>>>>>> d35319fecb781b8c17d7780b40cf8acd67ecc500
+
     </application>
 
 </manifest>

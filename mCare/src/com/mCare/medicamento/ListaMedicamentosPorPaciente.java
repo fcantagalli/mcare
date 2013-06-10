@@ -1,4 +1,4 @@
-/*package com.mCare.medicamento;
+package com.mCare.medicamento;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClickListener {
 
-	Paciente p; /*********************TEM QUE PEGAR O PACIENTE!!! Como? =( 
+	Paciente p; /*********************TEM QUE PEGAR O PACIENTE!!! Como? =( */
 	
 	LinkedList<Medicamento> elements;
 	ListView listViewMedicamentosAtuais;
@@ -100,7 +100,7 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 		
 		//-------MEDICAMENTOS ANTERIORES-------
 		/************** OBSERVACAO DA GABI *****************
-		 * NÃO SEI DIREITO PRA QUE SERVE O ELEMENTS!
+		 * Nï¿½O SEI DIREITO PRA QUE SERVE O ELEMENTS!
 		 * Acho que esta errado, pq usa o mesmo elements pros atuais e anteriores, mas tem dois "onItemLongClick" etc... :/
 		 * *************************************************
 		 */
@@ -254,5 +254,4 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 
 	}
 
-
-}*/
+}

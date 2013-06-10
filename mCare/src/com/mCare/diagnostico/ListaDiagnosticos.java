@@ -10,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -25,23 +26,21 @@ import android.widget.SectionIndexer;
 import com.mCare.R;
 import com.mCare.db.DbHelperDiagnostico;
 
-public class ListaDiagnosticos extends Fragment {
+public class ListaDiagnosticos extends Activity {
 
 	LinkedList<Diagnostico> elements;
 	ListView listViewDiagnosticos;
 	MyIndexerAdapter<Diagnostico> adapter;
 	
 	
+	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_lista_diagnosticos);
 		
-		
-		View rootView = inflater.inflate(R.layout.activity_lista_diagnosticos,container, false);
-		
-		//AO CLICAR EM UM DIAGNOSTICO -> NAO FAZ NADA (o diagnostico eh soh o nome...) -> nao usa o visualizar_diagnostico
-		DbHelperDiagnostico db = new DbHelperDiagnostico(getActivity()
-				.getApplicationContext());
+		DbHelperDiagnostico db = new DbHelperDiagnostico(getApplicationContext());
 		
 		elements = db.listaDiagnosticos(); //Pega os diagnosticos do banco
 		
@@ -50,32 +49,24 @@ public class ListaDiagnosticos extends Fragment {
 		}
 
 		//coloca a lista do banco no layout
-		listViewDiagnosticos = (ListView) rootView.findViewById(R.id.lstDiagnosticos);
+		listViewDiagnosticos = (ListView) findViewById(R.id.lstDiagnosticos);
 		
 		listViewDiagnosticos.setFastScrollEnabled(true);
-		adapter = new MyIndexerAdapter<Diagnostico>(
-				getActivity(), android.R.layout.simple_list_item_1, elements);
+		adapter = new MyIndexerAdapter<Diagnostico>(this, android.R.layout.simple_list_item_1, elements);
 		listViewDiagnosticos.setAdapter(adapter);
-		
-		
-		
+
 		//NOVO DIAGNOSTICO -> vai pra cadastrar diagnostico
-		ImageView novoDiagnostico = (ImageView) rootView.findViewById(R.id.imageViewCadastrarDiagnostico);
+		ImageView novoDiagnostico = (ImageView) findViewById(R.id.imageViewCadastrarDiagnostico);
 		novoDiagnostico.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), CadastrarDiagnostico.class);
+				Intent intent = new Intent(getApplicationContext(), CadastrarDiagnostico.class);
 				startActivityForResult(intent, 0);
 			}
 		});
 		
-		
-		return rootView;
 	}
-	
-	
-	
 	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -96,7 +87,7 @@ public class ListaDiagnosticos extends Fragment {
 	     });
 		
 		listViewDiagnosticos.setFastScrollEnabled(true);
-		adapter = new MyIndexerAdapter<Diagnostico>(getActivity(), android.R.layout.simple_list_item_1, elements);
+		adapter = new MyIndexerAdapter<Diagnostico>(this, android.R.layout.simple_list_item_1, elements);
 		listViewDiagnosticos.setAdapter(adapter);
 
 	}

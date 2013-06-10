@@ -26,15 +26,9 @@ public class VisualizarMedicamento extends Fragment {
 		TextView tipo = (TextView) rootView.findViewById(R.id.textViewTipo);
 		TextView dosagem = (TextView) rootView.findViewById(R.id.textViewDosagem);
 		TextView principioAtivo = (TextView) rootView.findViewById(R.id.textViewPrincipioAtivo);
-<<<<<<< HEAD
 
 		//Pega as informaï¿½ï¿½es
 		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
-=======
-		
-		//Pega as informações
-		String[] informacoes = (String[]) getIntent().getExtras().get("informacoes");
->>>>>>> d35319fecb781b8c17d7780b40cf8acd67ecc500
 		
 		//Coloca as informaï¿½ï¿½es nos campos
 		medicamento.setText(informacoes[0]);
