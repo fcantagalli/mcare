@@ -30,7 +30,14 @@ public class DbHelperMedicamento {
 		cv.put("tipo", m.getTipo());
 		cv.put("dosagem", m.getDosagem());
 		cv.put("principioativo", m.getPricipioAtivo());
-		cv.put("favorito", m.getFavorito());
+		int favorito;
+		if(m.getFavorito()){
+			favorito = 1;
+		}
+		else{
+			favorito = 0;
+		}
+		cv.put("favorito", favorito);
 		
 		long id = dbhelper.insert(dbhelper.TABLE_NAME_MEDICAMENTO, cv);
 		
@@ -181,10 +188,10 @@ public class DbHelperMedicamento {
 						"FROM "+dbhelper.TABLE_NAME_MEDICAMENTO;
 		
 		if (favorito) {
-			query = "WHERE favorito = true";
+			query = query+ " WHERE favorito = 1;";
 		}
 		else {
-			query = "WHERE favorito = false";
+			query = query + " WHERE favorito = 0;";
 		}
 		
 		//Executa o SQL

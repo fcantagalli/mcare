@@ -151,7 +151,7 @@
         	descricao TEXT NULL, 
         	tipo_con TEXT NULL);@
         
-        CREATE TABLE medicamento (id_medicamento INTEGER PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER);@
+        CREATE TABLE medicamento (id_medicamento INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER NULL);@
 
 		CREATE TABLE medicamento_paciente (
 			id_medicamento INTEGER PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
