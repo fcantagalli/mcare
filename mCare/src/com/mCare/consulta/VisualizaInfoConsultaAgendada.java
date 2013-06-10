@@ -1,15 +1,18 @@
 package com.mCare.consulta;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.mCare.R;
+import com.mCare.consulta.realizarConsulta.RealizarConsultaMain;
+import com.mCare.consulta.realizarConsulta.Visualiza_Consulta_Realizada;
 
 public class VisualizaInfoConsultaAgendada extends Activity {
 	
@@ -39,11 +42,30 @@ public class VisualizaInfoConsultaAgendada extends Activity {
 		realizarConsulta.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//TODO fazer intent para realizar consulta
+				realizarConsulta();
 			}
 		});
 		
-		getActionBar().setTitle("Consulta:");
+		getActionBar().setTitle("Informações sobre a consulta:");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+	}
+	
+	public void realizarConsulta(){
+		Intent realizaConsulta = new Intent(this, RealizarConsultaMain.class);
+		long id_consulta = getIntent().getExtras().getLong("id_consulta");
+		String nomePaciente = getIntent().getExtras().getStringArray("informacoes")[0];
+		realizaConsulta.putExtra("nome_paciente", nomePaciente);
+		realizaConsulta.putExtra("id_consulta", id_consulta);
+		startActivity(realizaConsulta);
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home: onBackPressed();
+		break;
+		default: return super.onOptionsItemSelected(item);
+		}
+		return true;
 	}
 
 	@Override

@@ -132,7 +132,9 @@
         CREATE TABLE consultas_marcadas (id_consulta INTEGER PRIMARY KEY AUTOINCREMENT, fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
         data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL);@
         
-        CREATE TABLE medicamento (id_medicamento PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL);@
+        CREATE TABLE medicamento (id_medicamento PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER);@
+
+		CREATE TABLE medicamento_paciente (id_medicamento PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, id_consulta PRIMARY KEY REFERENCES consultas_marcadas(id_consulta), fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE ON UPDATE CASCADE ON DELETE CASCADE, data_consulta TEXT NOT NULL);@
         
         CREATE TABLE foto (id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
@@ -197,5 +199,6 @@
     <string name="title_activity_visualiza__consulta">Visualiza_Consulta</string>
     <string name="title_activity_lista_consultas_paciente">ListaConsultasPaciente</string>
     <string name="title_activity_midia__fragment">Midia_Fragment</string>
+    <string name="title_activity_lista_medicamentos_por_paciente">ListaMedicamentosPorPaciente</string>
 
 </resources>

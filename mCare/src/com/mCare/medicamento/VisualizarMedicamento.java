@@ -6,16 +6,20 @@ import com.mCare.R.layout;
 import com.mCare.R.menu;
 
 import android.os.Bundle;
-import android.app.Activity;
+import android.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class VisualizarMedicamento extends Activity {
+public class VisualizarMedicamento extends Fragment {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_visualizar_medicamento);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		View rootView = inflater.inflate(R.layout.activity_visualizar_medicamento,container, false);
 		
 		//Pega os campos da activity em xml
 		TextView medicamento = (TextView) findViewById(R.id.textViewMedicamento);
@@ -23,25 +27,21 @@ public class VisualizarMedicamento extends Activity {
 		TextView dosagem = (TextView) findViewById(R.id.textViewDosagem);
 		TextView principioAtivo = (TextView) findViewById(R.id.textViewPrincipioAtivo);
 		
-		//Pega as informações
+		//Pega as informaï¿½ï¿½es
 		String[] informacoes = (String[]) getIntent().getExtras().get("informacoes");
 		
-		//Coloca as informações nos campos
+		//Coloca as informaï¿½ï¿½es nos campos
 		medicamento.setText(informacoes[0]);
 		tipo.setText(informacoes[1]);
 		dosagem.setText(informacoes[2]);
 		principioAtivo.setText(informacoes[3]);
 		
 		//Titulo da actionbar
-		getActionBar().setTitle("Medicamento:");
+		//getActionBar().setTitle("Medicamento:");
 		
+		return rootView;
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.visualizar_medicamento, menu);
-		return true;
-	}
+	
+	
 
 }

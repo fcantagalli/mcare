@@ -187,23 +187,6 @@
             </ListView>
             
             
-            <!-- MEDICACOES PREVIAS -->
-            <TextView
-                android:text="Medicações prévias"
-                style="@style/RotulosFormulario" />
-            
-            <Button
-	            android:id="@+id/botaoAdicionarMedicacaoPrevia"
-	            style="@style/ButtonsAgenda"
-	            android:layout_marginRight="8dp"
-	            android:text="Adicionar medicação prévia" />
-
-            <ListView
-                android:id="@+id/listaMedicacoesPrevias"
-                style="@style/ListaPadrao" >
-            </ListView>
-            
-            
             <!-- RESULTADOS DE EXAMES RELEVANTES -->
             <TextView
                 android:text="Resultados de exames relevantes"

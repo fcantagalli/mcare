@@ -12,11 +12,19 @@ public class Consulta implements Comparable<Consulta> {
 	private String tipo_con;
 	private long id;
 	
-	public Consulta(long id, GregorianCalendar hora){
+	public Consulta(long id, String descricao, GregorianCalendar hora){
 		this.id = id;
 		this.hora = hora;
+		this.descricao = descricao;
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "Data: " + hora.get(GregorianCalendar.DAY_OF_MONTH) + "/" + hora.get(GregorianCalendar.MONTH) + "/" + hora.get(GregorianCalendar.YEAR) + "\nDescrição: " + descricao;
+	}
+
+
 	public Consulta(Paciente p, GregorianCalendar hora, String tipo_con, String descricao){
 		this.hora = hora;
 		this.tipo_con = tipo_con;

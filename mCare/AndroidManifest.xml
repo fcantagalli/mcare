@@ -112,19 +112,25 @@
             android:label="@string/title_activity_visualiza__consulta" >
         </activity>
         <activity
-            android:name="com.mCare.consulta.ListaConsultas"
+            android:name="com.mCare.consulta.ListaConsultasPaciente"
             android:label="@string/title_activity_lista_consultas_paciente" >
         </activity>
         <activity
             android:name="com.mCare.consulta.realizarConsulta.Midia_Fragment"
             android:label="@string/title_activity_midia__fragment" >
         </activity>
-        <receiver android:name="com.mCare.notificacao.Notificacao">
-            <intent-filter >
-                <action android:name="NOTIFICACAO"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+
+        <receiver android:name="com.mCare.notificacao.Notificacao" >
+            <intent-filter>
+                <action android:name="NOTIFICACAO" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-    </application>
 
+        <activity
+            android:name="com.mCare.medicamento.ListaMedicamentosPorPaciente"
+            android:label="@string/title_activity_lista_medicamentos_por_paciente" >
+        </activity>
+        
+    </application>
 </manifest>

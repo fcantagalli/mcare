@@ -1,51 +1,56 @@
-package com.mCare.consulta;
+package com.mCare.paciente;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
+import android.widget.Toast;
 
 import com.mCare.R;
-import com.mCare.consulta.realizarConsulta.Visualiza_Consulta_Realizada;
-import com.mCare.db.DbHelperConsultasRealizadas;
-import com.mCare.paciente.Paciente;
+import com.mCare.db.Db;
+import com.mCare.db.DbHelperPaciente;
+import com.mCare.novocontato.NovoContato;
 
-public class ListaConsultas extends Activity implements OnItemClickListener{
+public class ListaPacientes extends Fragment implements OnItemClickListener {
 
-	ArrayList<Consulta> elements;
-	ListView listViewConsulta;
+	ArrayList<Paciente> elements;
+	ListView listViewPacientes;
 
-	MyIndexerAdapter<Consulta> adapter;
-	
+	MyIndexerAdapter<Paciente> adapter;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_lista_consultas_paciente);
-	
-		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getApplicationContext());
-		Log.i("fe","id do paciente : "+getIntent().getExtras().getInt("id"));
-		elements = db.listaConsultasDoPaciente(getIntent().getExtras().getInt("id"));
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
+		View rootView = inflater.inflate(R.layout.activity_lista_pacientes,container, false);
+
+		DbHelperPaciente db = new DbHelperPaciente(getActivity()
+				.getApplicationContext());
+
+		elements = db.listaPacientes();
 		
 
-		if(elements == null){
-			Log.i("fe","Nenhuma consula encontrada");
-			elements = new ArrayList<Consulta>();
+		if(elements== null){
+
+			elements = new ArrayList<Paciente>();
 		}
 
 		//elements = new ArrayList<Paciente>();
@@ -54,10 +59,10 @@ public class ListaConsultas extends Activity implements OnItemClickListener{
 		// com nomes aleatorios
 		// e adiciona na lista elements
 		
-		  /*String s = "QWERTZUIOPASDFGHJKLYXCVBNM"; Random r = new Random(); for
+		/*  String s = "QWERTZUIOPASDFGHJKLYXCVBNM"; Random r = new Random(); for
 		  (int i = 0; i < 300; i++) {
 		  
-		  elements.add(new Consulta(1,s.substring(r.nextInt(s.length()))));
+		  elements.add(new Paciente(1,s.substring(r.nextInt(s.length()))));
 		  
 		  }
 		 
@@ -66,28 +71,72 @@ public class ListaConsultas extends Activity implements OnItemClickListener{
 		*/
 		// listview
 		
-		listViewConsulta = (ListView) findViewById(R.id.listView1);
-		listViewConsulta.setOnItemClickListener(this);
-		listViewConsulta.setFastScrollEnabled(true);
-		adapter = new MyIndexerAdapter<Consulta>(this, android.R.layout.simple_list_item_1, elements);
-		listViewConsulta.setAdapter(adapter);
+		listViewPacientes = (ListView) rootView.findViewById(R.id.listTelaPacientes);
+		listViewPacientes.setOnItemClickListener(this);
+		listViewPacientes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> arg0, View v,int index, long arg3) {
+
+            	Paciente p = elements.get(index);
+            	
+            	Intent intent = new Intent(getActivity(),NovoContato.class);
+            	intent.putExtra("id", p.getBd_id());
+            	intent.putExtra("editar", true);
+				startActivity(intent);
+                return true;
+            }
+		}); 
+		listViewPacientes.setFastScrollEnabled(true);
+		adapter = new MyIndexerAdapter<Paciente>(
+				getActivity(), android.R.layout.simple_list_item_1, elements);
+		listViewPacientes.setAdapter(adapter);
+		 
+		ImageView adiciona = (ImageView) rootView.findViewById(R.id.AdicionaPaciente);
+		
+		adiciona.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(),NovoContato.class);
+				startActivityForResult(intent, 0);
+			}
+		});
+		
+		return rootView;
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.lista_consultas, menu);
-		return true;
-	}
 	
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if(data == null){
+			return;
+		}
+		Paciente paciente = new Paciente( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"));
+		Log.i("inf","informacoes paciente cadastrado : "+ "nome : "+paciente.getNome()+"    Id : "+paciente.getBd_id());
+		elements.add(paciente);
+		Collections.sort(elements);
+		listViewPacientes.setFastScrollEnabled(true);
+		adapter = new MyIndexerAdapter<Paciente>(getActivity(), android.R.layout.simple_list_item_1, elements);
+		listViewPacientes.setAdapter(adapter);
+
+	}
+
+	//ic_btn_speak_now
+	//ic_menu_camera
+	//ic_menu_gallery
+	//ic_menu_slideshow
+
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 		// TODO Auto-generated method stub
 
-		Consulta c = elements.get(arg2);
+		Paciente p = elements.get(arg2);
 		
-		Intent myIntent = new Intent(getApplicationContext(), Visualiza_Consulta_Realizada.class);
-		myIntent.putExtra("id_consulta", c.getId());
+		Intent myIntent = new Intent(getActivity(), InfPaciente.class);
+		myIntent.putExtra("ID", p.getBd_id());
 		this.startActivity(myIntent);
 	}
 
@@ -109,8 +158,7 @@ public class ListaConsultas extends Activity implements OnItemClickListener{
 				
 			int size = elements.size();
 			for (int i = size - 1; i >= 0; i--) {
-				GregorianCalendar gc = elements.get(i).getHora();
-				String element = gc.get(gc.DAY_OF_WEEK)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+"  às "+gc.get(gc.HOUR_OF_DAY)+" : "+gc.get(gc.MINUTE);
+				String element = elements.get(i).getNome();
 				alphaIndexer.put(element.substring(0, 1), i);
 				// We store the first letter of the word, and its index.
 				// The Hashmap will replace the value for identical keys are
@@ -170,4 +218,5 @@ public class ListaConsultas extends Activity implements OnItemClickListener{
 
 	}
 	
+
 }

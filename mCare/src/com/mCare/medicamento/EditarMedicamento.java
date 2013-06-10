@@ -7,29 +7,35 @@ import com.mCare.R.menu;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class EditarMedicamento extends Activity {
+public class EditarMedicamento extends Fragment {
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_editar_medicamento);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		
+		View rootView = inflater.inflate(R.layout.activity_editar_medicamento,container, false);
 		
 		//Pega os campos da activity em xml
-		AutoCompleteTextView medicamento = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomeMedicamento);
-		Spinner tipo = (Spinner) findViewById(R.id.spinnerTipoMedicamento);
-		AutoCompleteTextView dosagem = (AutoCompleteTextView) findViewById(R.id.editTextCampoDosagem);
-		AutoCompleteTextView principioAtivo = (AutoCompleteTextView) findViewById(R.id.editTextCampoPrincipioAtivo);
+		AutoCompleteTextView medicamento = (AutoCompleteTextView) getActivity().findViewById(R.id.editTextCampoNomeMedicamento);
+		Spinner tipo = (Spinner) getActivity().findViewById(R.id.spinnerTipoMedicamento);
+		AutoCompleteTextView dosagem = (AutoCompleteTextView) getActivity().findViewById(R.id.editTextCampoDosagem);
+		AutoCompleteTextView principioAtivo = (AutoCompleteTextView) getActivity().findViewById(R.id.editTextCampoPrincipioAtivo);
 		
-		//Pega as informações
-		String[] informacoes = (String[]) getIntent().getExtras().get("informacoes");
+		//Pega as informaï¿½ï¿½es
+		String[] informacoes = (String[]) getActivity().getIntent().getExtras().get("informacoes");
 		
-		//Coloca as informações nos campos
+		//Coloca as informaï¿½ï¿½es nos campos
 		medicamento.setText(informacoes[0]);
 		dosagem.setText(informacoes[2]);
 		principioAtivo.setText(informacoes[3]);
@@ -40,14 +46,10 @@ public class EditarMedicamento extends Activity {
 		tipo.setSelection(spinnerPosition); //seleciona o Tipo armazenado no banco
 		
 		//Titulo da actionbar
-		getActionBar().setTitle("Medicamento:");
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.editar_medicamento, menu);
-		return true;
+		getActivity().getActionBar().setTitle("Medicamento:");
+		
+		
+		return rootView;
 	}
 
 }

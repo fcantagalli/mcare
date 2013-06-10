@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -25,6 +26,7 @@ public class CriaCampoView extends Activity implements OnItemSelectedListener {
 		setContentView(R.layout.activity_cria_campo_view);
 		
 		getActionBar().setTitle("Informações sobre o novo campo:");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		//popula spinner com os tipos do campo (enconta na classe strings.xml)
 		Spinner tiposCampo = (Spinner) findViewById(R.id.spinnerTipoCampo);
@@ -37,6 +39,16 @@ public class CriaCampoView extends Activity implements OnItemSelectedListener {
 		String[] nomes_campos = getResources().getStringArray(R.array.nomes_campo);
 		ArrayAdapter<String> adapter_nomes = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, nomes_campos);
 		autoComplete.setAdapter(adapter_nomes);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home: onBackPressed();
+		break;
+		default: return super.onOptionsItemSelected(item);
+		}
+		return true;
 	}
 
 	@Override
