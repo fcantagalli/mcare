@@ -1,4 +1,4 @@
-/*package com.mCare.medicamento;
+package com.mCare.medicamento;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClickListener {
 
-	Paciente p; /*********************TEM QUE PEGAR O PACIENTE!!! Como? =( 
+	Paciente p; /*********************TEM QUE PEGAR O PACIENTE!!! Como? =( *********/
 	
 	LinkedList<Medicamento> elements;
 	ListView listViewMedicamentosAtuais;
@@ -255,4 +255,4 @@ public class ListaMedicamentosPorPaciente extends Fragment implements OnItemClic
 	}
 
 
-}*/
+}

@@ -26,13 +26,10 @@ public class EditarMedicamento extends Fragment {
 		AutoCompleteTextView principioAtivo = (AutoCompleteTextView) rootView.findViewById(R.id.editTextCampoPrincipioAtivo);
 		RadioGroup favorito = (RadioGroup) rootView.findViewById(R.id.campoFavorito);
 		
-<<<<<<< HEAD
-=======
 		//Pega as informações
 		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
 		
->>>>>>> d35319fecb781b8c17d7780b40cf8acd67ecc500
-		//Coloca as informaï¿½ï¿½es nos campos
+		//Coloca as informações nos campos
 		medicamento.setText(informacoes[0]);
 		dosagem.setText(informacoes[2]);
 		principioAtivo.setText(informacoes[3]);

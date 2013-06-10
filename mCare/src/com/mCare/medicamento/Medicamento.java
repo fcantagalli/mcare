@@ -2,7 +2,7 @@ package com.mCare.medicamento;
 
 import java.util.GregorianCalendar;
 
-public class Medicamento implements Comparable<Medicamento> {
+public class Medicamento {
 
 	private String nome;
 	private int id;
@@ -89,12 +89,6 @@ public class Medicamento implements Comparable<Medicamento> {
 	}
 	public void setHora(GregorianCalendar hora) {
 		this.hora = hora;
-	}
-
-	@Override
-	public int compareTo(Medicamento another) {
-		// TODO Auto-generated method stub
-		return this.nome.compareTo(another.nome);
 	}
 	
 	
