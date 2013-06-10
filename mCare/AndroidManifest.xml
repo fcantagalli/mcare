@@ -149,8 +149,7 @@
             android:label="@string/title_activity_lista_campos_consulta" >
         </activity>
         <activity
-            android:name="com.mCare.paciente.historico.ListaValoresCampo"
-            android:label="@string/title_activity_lista_valores_campo" >
+            android:name="com.mCare.paciente.historico.ListaValoresCampo" >
         </activity>
     </application>
 
