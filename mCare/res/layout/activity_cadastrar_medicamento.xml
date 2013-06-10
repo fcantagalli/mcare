@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Dosagem (ex.: 50 mg)"
-            android:inputType="textCapSentences"
+            android:inputType="number|textCapWords"
             android:padding="@dimen/MargenPadrao"
             android:textColor="@color/Black" />
         

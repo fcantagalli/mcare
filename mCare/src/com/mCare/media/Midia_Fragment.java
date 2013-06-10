@@ -1,15 +1,12 @@
-package com.mCare.consulta.realizarConsulta;
+package com.mCare.media;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.mCare.db.DbHelperMedia;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,7 +20,10 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.mCare.db.DbHelperMedia;
 
 public class Midia_Fragment extends Fragment {
 
@@ -126,7 +126,7 @@ public class Midia_Fragment extends Fragment {
 		// create Intent to take a picture and return control to the calling application
 	    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 	    //intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(getOutputMediaFile(MEDIA_TYPE_IMAGE))); // set the image file name
-	    // start the image capture Intent
+	    //start the image capture Intent
 	    startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
 
@@ -144,10 +144,15 @@ public class Midia_Fragment extends Fragment {
 	    }
 		
 		String caminho = data.getData().toString();
-		DbHelperMedia dbMidia = new DbHelperMedia(getActivity());
-		GregorianCalendar now = new GregorianCalendar();
 		
-		dbMidia.insereMedia(dbMidia.FOTO, caminho, "descicao", now);		
+		Intent intent = new Intent(getActivity(), Descricao.class);
+		intent.putExtra("caminho_foto", caminho);
+		startActivity(intent);
+		
+		//DbHelperMedia dbMidia = new DbHelperMedia(getActivity());
+		//GregorianCalendar now = new GregorianCalendar();
+		
+		//dbMidia.insereMedia(dbMidia.FOTO, caminho, "descicao", now);	
 	}
 
 }

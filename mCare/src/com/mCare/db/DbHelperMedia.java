@@ -15,7 +15,7 @@ public class DbHelperMedia {
 	
 	
 	public DbHelperMedia(Context context){
-		dbhelper.getInstance(context);
+		dbhelper = Db.getInstance(context);
 	}
 	
 	public long insereMedia(int tipoDado,String caminho, String descricao, GregorianCalendar gc){

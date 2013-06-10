@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.mCare.R;
 
@@ -15,7 +16,7 @@ public class CadastrarExame extends Activity {
 		setContentView(R.layout.activity_cadastrar_exame);
 		
 		EditText nomeExame = (EditText) findViewById(R.id.campoNomeExame);
-		
+		Spinner tipo = (Spinner) findViewById(R.id.spinner1);
 	}
 
 	@Override

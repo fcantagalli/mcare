@@ -87,12 +87,16 @@ public class Visualiza_Consulta_Realizada extends Activity {
 		nome_view.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		nome_view.setText(nome);
 		nome_view.setEms(10);
+		nome_view.setTextSize(20);
+		nome_view.setPadding(0, 30, 0, 0);
 		nome_view.setTextAppearance(this, android.R.attr.textAppearanceMedium);
 		layout.addView(nome_view);
 		
 		TextView conteudo_view = new TextView(this);
 		conteudo_view.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		conteudo_view.setText(conteudo);
+		conteudo_view.setEms(10);
+		conteudo_view.setTextSize(17);
 		layout.addView(conteudo_view);
 	}
 

@@ -30,7 +30,14 @@ public class DbHelperMedicamento {
 		cv.put("tipo", m.getTipo());
 		cv.put("dosagem", m.getDosagem());
 		cv.put("principioativo", m.getPricipioAtivo());
-		cv.put("favorito", m.getFavorito());
+		int favorito;
+		if(m.getFavorito()){
+			favorito = 1;
+		}
+		else{
+			favorito = 0;
+		}
+		cv.put("favorito", favorito);
 		
 		long id = dbhelper.insert(dbhelper.TABLE_NAME_MEDICAMENTO, cv);
 		
@@ -181,10 +188,10 @@ public class DbHelperMedicamento {
 						"FROM "+dbhelper.TABLE_NAME_MEDICAMENTO;
 		
 		if (favorito) {
-			query = "WHERE favorito = true";
+			query = query+ " WHERE favorito = 1;";
 		}
 		else {
-			query = "WHERE favorito = false";
+			query = query + " WHERE favorito = 0;";
 		}
 		
 		//Executa o SQL
@@ -226,7 +233,7 @@ public class DbHelperMedicamento {
 		String query_consulta =
 				"SELECT max(id_consulta) " +
 				"FROM " + dbhelper.TABLE_NAME_CONSULTAS_MARCADAS +
-				"WHERE fk_paciente = " + p.getBd_id();
+				" WHERE fk_paciente = " + p.getBd_id();
 		
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query_consulta, null);
 		
@@ -244,8 +251,8 @@ public class DbHelperMedicamento {
 		
 		//Busca todos os medicamentos que o paciente toma ou ja tomou 
 		String query = "SELECT id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
-						"FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
-						"INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento " +
+						" FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
+						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento " +
 						"WHERE medicamento_paciente.id_paciente = " + p.getBd_id();
 		
 		//Executa o SQL

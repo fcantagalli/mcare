@@ -151,7 +151,7 @@
         	descricao TEXT NULL, 
         	tipo_con TEXT NULL);@
         
-        CREATE TABLE medicamento (id_medicamento INTEGER PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER);@
+        CREATE TABLE medicamento (id_medicamento INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER NULL);@
 
 		CREATE TABLE medicamento_paciente (
 			id_medicamento INTEGER PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
@@ -190,7 +190,8 @@
         
         CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);</string>
+        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);
+</string>
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->
@@ -255,6 +256,7 @@
     <string name="title_activity_visualizar_diagnostico">VisualizarDiagnostico</string>
     <string name="title_activity_lista_diagnosticos">ListaDiagnosticos</string>
     <string name="title_activity_lista_campos_consulta">ListaCamposConsulta</string>
+    <string name="title_activity_descricao">Descricao</string>
     <string name="title_activity_lista_valores_campo">ListaValoresCampo</string>
     <string name="title_activity_cadastrar_exame">CadastrarExame</string>
     <string name="title_activity_editar_exame">EditarExame</string>

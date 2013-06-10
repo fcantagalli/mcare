@@ -213,7 +213,7 @@ public class ListaMedicamentos extends Activity {
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {
 
-		ArrayList<Medicamento> myElements;
+		LinkedList<Medicamento> myElements;
 		HashMap<String, Integer> alphaIndexer;
 		
 		String[] sections;
@@ -221,7 +221,7 @@ public class ListaMedicamentos extends Activity {
 		public MyIndexerAdapter(Context context, int textViewResourceId,
 				List<T> objects) {
 			super(context, textViewResourceId, objects);
-			myElements = (ArrayList<Medicamento>) objects;
+			myElements = (LinkedList<Medicamento>) objects;
 			// here is the tricky stuff
 			alphaIndexer = new HashMap<String, Integer>();
 			// in this hashmap we will store here the positions for
