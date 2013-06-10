@@ -226,7 +226,7 @@ public class DbHelperMedicamento {
 		String query_consulta =
 				"SELECT max(id_consulta) " +
 				"FROM " + dbhelper.TABLE_NAME_CONSULTAS_MARCADAS +
-				"WHERE fk_paciente = " + p.getBd_id();
+				" WHERE fk_paciente = " + p.getBd_id();
 		
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query_consulta, null);
 		
@@ -244,8 +244,8 @@ public class DbHelperMedicamento {
 		
 		//Busca todos os medicamentos que o paciente toma ou ja tomou 
 		String query = "SELECT id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
-						"FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
-						"INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento " +
+						" FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
+						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento " +
 						"WHERE medicamento_paciente.id_paciente = " + p.getBd_id();
 		
 		//Executa o SQL

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.media.Midia_Fragment;
+import com.mCare.medicamento.ListaMedicamentosPorPaciente;
 
 public class RealizarConsultaMain extends FragmentActivity implements ActionBar.TabListener {
 	
@@ -36,7 +37,6 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 		
 		actionBar.setTitle("Paciente: " + getIntent().getExtras().getString("nome_paciente"));
 		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setDisplayShowHomeEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		
 		mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -100,9 +100,11 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
             switch (i) {
                 case 0: {
                 		return new Consulta_Fragment();
-                	}
+                }
                 
-                //case 1: return new ListaPacientes();
+                case 1: {
+                		return new ListaMedicamentosPorPaciente();
+                }
                 
                 case 2:{
                 		return new Midia_Fragment();
