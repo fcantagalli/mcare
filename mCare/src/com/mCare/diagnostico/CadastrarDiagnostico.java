@@ -1,21 +1,18 @@
 package com.mCare.diagnostico;
 
-import com.mCare.R;
-import com.mCare.db.DbHelperDiagnostico;
-
-import android.os.Bundle;
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.mCare.R;
+import com.mCare.db.DbHelperDiagnostico;
+		
 public class CadastrarDiagnostico extends Activity implements OnClickListener {
 
 	EditText nome;
@@ -26,9 +23,9 @@ public class CadastrarDiagnostico extends Activity implements OnClickListener {
 		setContentView(R.layout.activity_cadastrar_diagnostico);
 		
 		// botoes para salvar ou cancelar o cadastro do diagnostico
-		ImageView salvar = (ImageView) findViewById(R.id.buttonCadastrarDiagnostico);
+		Button salvar = (Button) findViewById(R.id.buttonCadastrarDiagnostico);
 		salvar.setOnClickListener(this);
-		ImageView cancelar = (ImageView) findViewById(R.id.buttonCancelarDiagnostico);
+		Button cancelar = (Button) findViewById(R.id.buttonCancelarDiagnostico);
 		cancelar.setOnClickListener(this);
 		
 		// salva os campos
@@ -66,16 +63,15 @@ public class CadastrarDiagnostico extends Activity implements OnClickListener {
 		Intent intent = new Intent();
 		intent.putExtra("nome", nome.getText().toString());
 		intent.putExtra("id", id);
-		
-		
 		if(this.getParent() == null){
-			setResult(Activity.RESULT_OK,intent);
+			this.setResult(Activity.RESULT_OK,intent);
 		}
 		else{
-			this.getParent().setResult(Activity.RESULT_OK, intent);
+			this.setResult(Activity.RESULT_OK, intent);
 		}
 		Toast.makeText(v.getContext(), "Diagnostico cadastrado com sucesso!", Toast.LENGTH_LONG).show();
 		onBackPressed();
+		
 	}
 
 }

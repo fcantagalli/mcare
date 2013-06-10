@@ -150,6 +150,10 @@
             android:name="com.mCare.media.Descricao"
             android:label="@string/title_activity_descricao" >
         </activity>
+        <activity
+            android:name="com.mCare.exame.CadastrarExame"
+            android:label="@string/title_activity_cadastrar_exame" >
+        </activity>
     </application>
 
 </manifest>
