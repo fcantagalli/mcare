@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mCare.R;
+import com.mCare.media.Midia_Fragment;
 
 public class RealizarConsultaMain extends FragmentActivity implements ActionBar.TabListener {
 	

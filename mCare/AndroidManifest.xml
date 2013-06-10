@@ -117,7 +117,7 @@
             android:label="@string/title_activity_lista_consultas_paciente" >
         </activity>
         <activity
-            android:name="com.mCare.consulta.realizarConsulta.Midia_Fragment"
+            android:name="com.mCare.media.Midia_Fragment"
             android:label="@string/title_activity_midia__fragment" >
         </activity>
 
@@ -145,6 +145,10 @@
             android:label="@string/title_activity_lista_campos_consulta" >
         </activity>
         <activity android:name="com.mCare.paciente.historico.ListaValoresCampo" >
+        </activity>
+        <activity
+            android:name="com.mCare.media.Descricao"
+            android:label="@string/title_activity_descricao" >
         </activity>
         <activity
             android:name="com.mCare.exame.CadastrarExame"
