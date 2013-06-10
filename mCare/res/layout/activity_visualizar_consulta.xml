@@ -154,14 +154,6 @@
 	            
 	            
 	            <!-- PROCEDIMENTOS CIRÚRGICOS -->
-	            <TextView
-	                android:text="Procedimentos Cirúrgicos"
-	                style="@style/RotulosFormulario" />
-	
-	            <ListView
-	                android:id="@+id/listaProcedimentosCirurgicos"
-	                style="@style/ListaPadrao" >
-	            </ListView>
 	            
 	            
 	            <!-- MEDICACOES EM USO -->
