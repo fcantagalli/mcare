@@ -118,12 +118,9 @@
 
     <!--
          STRINGS PARA O BANCO DE DADOS 
-    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
     -->
 
-    <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (
-        	id INTEGER PRIMARY KEY AUTOINCREMENT, 
-        	nome TEXT NOT NULL);  </string>
     <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (
         	id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,
         	nome TEXT NOT NULL,
@@ -178,6 +175,16 @@
 			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
 			data_consulta TEXT NOT NULL, PRIMARY KEY(id_diagnostico, id_consulta));@
 			
+        CREATE TABLE exame ( id_exame INTEGER PRIMARY KEY AUTOINCREMENT,
+        	nome TEXT NOL NULL,
+        	tipocampovalor INTEGER NOT NULL);@
+        	
+		CREATE TABLE exames_solicitados (
+        	id_exame INTEGER REFERENCES exame(id_exame) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
+			nome TEXT NOT NULL,
+			PRIMARY KEY(id_exame,id_consulta),
+			valor TEXT NOT NULL);@	
         	
         CREATE TABLE foto (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
@@ -249,5 +256,6 @@
     <string name="title_activity_lista_diagnosticos">ListaDiagnosticos</string>
     <string name="title_activity_lista_campos_consulta">ListaCamposConsulta</string>
     <string name="title_activity_lista_valores_campo">ListaValoresCampo</string>
+    <string name="title_activity_cadastrar_exame">CadastrarExame</string>
 
 </resources>

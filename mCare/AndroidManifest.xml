@@ -15,7 +15,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <uses-feature android:name="android.hardware.camera" />
     <!-- Para notificacoes -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -120,7 +121,8 @@
             android:label="@string/title_activity_midia__fragment" >
         </activity>
 
-        <receiver android:name="com.mCare.notificacao.NotificacaoConsulta" ></receiver>
+        <receiver android:name="com.mCare.notificacao.NotificacaoConsulta" >
+        </receiver>
 
         <activity
             android:name="com.mCare.diagnostico.CadastrarDiagnostico"
@@ -138,15 +140,16 @@
             android:name="com.mCare.diagnostico.ListaDiagnosticos"
             android:label="@string/title_activity_lista_diagnosticos" >
         </activity>
-
         <activity
             android:name="com.mCare.paciente.historico.ListaCamposConsulta"
             android:label="@string/title_activity_lista_campos_consulta" >
         </activity>
-        <activity
-            android:name="com.mCare.paciente.historico.ListaValoresCampo" >
+        <activity android:name="com.mCare.paciente.historico.ListaValoresCampo" >
         </activity>
-
+        <activity
+            android:name="com.mCare.exame.CadastrarExame"
+            android:label="@string/title_activity_cadastrar_exame" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.mCare.diagnostico;
 
+
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,18 +12,18 @@ import java.util.List;
 import java.util.Set;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
+
 import com.mCare.R;
 import com.mCare.db.DbHelperDiagnostico;
 
@@ -49,8 +50,8 @@ public class ListaDiagnosticos extends Activity {
 		}
 
 		//coloca a lista do banco no layout
-		listViewDiagnosticos = (ListView) findViewById(R.id.lstDiagnosticos);
 		
+		listViewDiagnosticos = (ListView) findViewById(R.id.lstDiagnosticos);
 		listViewDiagnosticos.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Diagnostico>(this, android.R.layout.simple_list_item_1, elements);
 		listViewDiagnosticos.setAdapter(adapter);
