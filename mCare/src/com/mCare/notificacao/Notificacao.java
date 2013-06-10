@@ -4,25 +4,43 @@ package com.mCare.notificacao;
 
 import java.util.Calendar;
 
-import com.mCare.main.MainActivity;
-import com.mCare.R;
-
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.Notification.Builder;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+
+import com.mCare.R;
+import com.mCare.main.MainActivity;
 
 // The class has to extend the BroadcastReceiver to get the notification from the system
 public class Notificacao extends BroadcastReceiver {
 
+	private static Notificacao broadCast = null;
+	
+	private Notificacao(){
+		
+		super();
+	}
+	
+	public static Notificacao getInstance(){
+		if(broadCast == null){
+			broadCast = new Notificacao();
+		}
+		return broadCast;
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Context context, Intent paramIntent) {
 		// Request the notification manager
-		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+		NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		// Create a new intent which will be fired if you click on the notification
 		Intent notificationIntent = new Intent(context, MainActivity.class);
@@ -31,19 +49,39 @@ public class Notificacao extends BroadcastReceiver {
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// Create the notification
-		Context contextoAplicacao = context.getApplicationContext();
-		CharSequence contentTitle = "Consulta em 30 minutos!";
-		CharSequence contentText = "Voc� tem uma consulta daqui 30 minutos com Bianca Letti na Pra�a da �rvore.";
 
-		int icon = R.drawable.ic_launcher; //ICONE que esta na pasta res
-		CharSequence tickerText = "Hello";
-		long when = System.currentTimeMillis();
+		Bundle b = paramIntent.getExtras();
+		String tickerText = b.getString("ticketText");
+		String title = b.getString("title");
+		String message = b.getString("message");
+		int icon = b.getInt("icon");
+		int id = b.getInt("id");
 
-		Notification notification = new Notification(icon, tickerText, when);
-		notification.setLatestEventInfo(contextoAplicacao, contentTitle, contentText, contentIntent);
+		Notification notification = null;
+		int apilevel = Build.VERSION.SDK_INT;
+		
+		if(apilevel >= 11){
+			Builder builder = new Notification.Builder(context).setContentTitle(tickerText).setContentText(message).setSmallIcon(icon).setContentIntent(contentIntent).setAutoCancel(true);
+			if(apilevel >= 17){
+				//Android 4.2
+				notification = builder.build();
+				notification.defaults = notification.DEFAULT_ALL;
+			}else{
+				// Android 3.x
+				notification = builder.getNotification();
+				notification.defaults = notification.DEFAULT_ALL;
+			}
+		}
+		else{
+			//Android 2.2
+			notification = new Notification(icon,tickerText,id);
+			//Informacoes
+			notification.setLatestEventInfo(context, title, message, contentIntent);
+			notification.defaults = notification.DEFAULT_ALL;
+		}
+		
+		nm.notify(id,notification);
 
-		// Fire the notification
-		notificationManager.notify(1, notification);
 	}
 
 

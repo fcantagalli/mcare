@@ -205,7 +205,8 @@
                 android:layout_height="wrap_content"
                 android:text="Endereços:"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:inputType="textPostalAddress" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -251,7 +252,7 @@
                     android:layout_weight="45"
                     android:ems="10"
                     android:hint="Complemento"
-                    android:inputType="textPostalAddress" />
+                    android:inputType="textPostalAddress"/>
             </LinearLayout>
 
             <LinearLayout
@@ -278,7 +279,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Bairro" />
+                    android:hint="Bairro"
+                    android:inputType="textCapWords" />
             </LinearLayout>
 
              <EditText
@@ -289,7 +291,8 @@
                  android:layout_alignParentRight="true"
                  android:layout_below="@+id/linearLayout3"
                  android:ems="10"
-                 android:hint="Cidade" />
+                 android:hint="Cidade"
+                 android:inputType="textCapWords" />
             
             <TextView
                 android:id="@+id/textView3"
@@ -301,7 +304,8 @@
                 android:layout_below="@id/editText12"
                 android:drawableTop="@android:drawable/divider_horizontal_textfield"
                 android:text="Email"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/editText7"
@@ -312,6 +316,7 @@
                 android:layout_below="@id/textView3"
                 android:ems="10"
                 android:hint="E-mail"
+                android:visibility="gone"
                 android:inputType="textEmailAddress" />
 
             <TextView

@@ -1,5 +1,6 @@
 package com.mCare.db;
 
+import java.util.ArrayList;
 import java.text.Collator;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,7 +12,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
-import com.mCare.consulta.Consulta;
 import com.mCare.medicamento.Medicamento;
 import com.mCare.paciente.Paciente;
 
@@ -30,10 +30,42 @@ public class DbHelperMedicamento {
 		cv.put("tipo", m.getTipo());
 		cv.put("dosagem", m.getDosagem());
 		cv.put("principioativo", m.getPricipioAtivo());
+		cv.put("favorito", m.getFavorito());
 		
 		long id = dbhelper.insert(dbhelper.TABLE_NAME_MEDICAMENTO, cv);
 		
 		return id;
+	}
+	
+	public ArrayList<Medicamento> listaMedicamentos(){
+		Cursor c = dbhelper.serach(false, dbhelper.TABLE_NAME_MEDICAMENTO, null, null, null, null,null, null, null);
+		ArrayList<Medicamento> result = null;
+		if(c.moveToFirst()){
+			result = new ArrayList<Medicamento>(c.getCount());
+			
+			if(!c.isAfterLast()){
+				long id = c.getLong(0);
+				String nome = c.getString(1);
+				String tipo = c.getString(2);
+				String dosagem = c.getString(3);
+				String principioativo = c.getString(4);
+				int favorito = c.getInt(5);
+				
+				Medicamento m = new Medicamento((int) id,nome,tipo);
+				m.setDosagem(dosagem);
+				m.setPricipioAtivo(principioativo);
+				if(favorito == 1){
+					m.setFavorito(true);
+				}
+				else{
+					m.setFavorito(false);
+				}
+				result.add(m);
+				c.moveToNext();
+			}
+		}
+		return result;
+		
 	}
 	
 	public boolean deletaMedicamento(long id){
@@ -154,6 +186,7 @@ public class DbHelperMedicamento {
 			 * TERIA QUE ORDENAR PRIMEIRO POR id_medicamento e DEPOIS POR id_consulta!
 			 * Nao sei se esta fazendo (nao consegui testar...)
 			 * *********************************************
+			 * Felipe : O comparator la embaixo precisa ser de medicamentos e nao integer. eu mudei isso, ve se era isso mesmo que voce queria.
 			 */
 			Collections.sort(listaMedicamentosAtuais, new Comparator<Medicamento>() {
 		         @Override
@@ -188,5 +221,32 @@ public class DbHelperMedicamento {
 			
 			return;
 		}
+	}
+	
+	public class ComparadorInteiro implements Comparator<Medicamento>{
+		 
+	    @Override
+	    public int compare(Medicamento o1, Medicamento o2) {
+	        if(o1.getId()==o2.getId()){ // id medicamento forem iguais precisa olhar o id da consulta
+	        	if(o1.getIdConsulta() > o2.getIdConsulta()){
+	        		return 1;
+	        	}else{
+	        		if(o1.getIdConsulta() < o2.getIdConsulta()){
+	        			return -1;
+	        		}
+	        		else{
+	        			return 0;
+	        		}
+	        	}
+	        }
+	        else{
+	        	if(o1.getId() > o2.getId()){
+	        		return 1;
+	        	}
+	        	else{
+	        		return -1;
+	        	}
+	        }
+	    }
 	}
 }

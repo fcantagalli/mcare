@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,8 +21,9 @@ import android.widget.TextView;
 
 import com.mCare.R;
 import com.mCare.ServicesListener.InformationServices;
-import com.mCare.configuracaoConsulta.CriaCampoView;
 import com.mCare.configuracaoConsulta.SelecionaCamposView;
+import com.mCare.diagnostico.ListaDiagnosticos;
+import com.mCare.medicamento.ListaMedicamentos;
 import com.mCare.weatherServices.WeatherInfo;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
@@ -122,11 +124,30 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		Log.i("menu","id : "+featureId );
 		switch(featureId){
-		case 0: {
-			Intent intent = new Intent(getApplicationContext(), SelecionaCamposView.class);
-			startActivity(intent);
-		}
+		     // consulta
+			case 0: {
+				Intent intent = new Intent(getApplicationContext(), SelecionaCamposView.class);
+				startActivity(intent);
+				break;
+			}
+			//diagnosticos
+			case 1:{
+				Intent intent = new Intent(getApplicationContext(),ListaDiagnosticos.class);
+				startActivity(intent);
+				break;
+			}
+			//exames
+			case 2: {
+				
+			}
+			//medicamentos
+			case 3:{
+				Intent intent = new Intent(getApplicationContext(),ListaMedicamentos.class);
+				startActivity(intent);
+				break;
+			}
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}

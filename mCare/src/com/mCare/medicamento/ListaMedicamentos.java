@@ -87,7 +87,7 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 		
 		
 		/************** OBSERVACAO DA GABI *****************
-		 * NÃO SEI DIREITO PRA QUE SERVE O ELEMENTS!
+		 * Nï¿½O SEI DIREITO PRA QUE SERVE O ELEMENTS!
 		 * Acho que esta errado, pq usa o mesmo elements pros atuais e anteriores, mas tem dois "onItemLongClick" etc... :/
 		 * *************************************************
 		 */
@@ -123,17 +123,17 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 				getActivity(), android.R.layout.simple_list_item_1, elements);
 		listViewMedicamentosNaoFavoritos.setAdapter(adapter);
 		
-		 
-		
-		
-		
 		//NOVO MEDICAMENTO -> vai pra cadastrar medicamento
+
 		ImageView novoMedicamento = (ImageView) rootView.findViewById(R.id.imageViewCadastrarMedicamento);
+
 		novoMedicamento.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
-			public void onClick(View v) {
+		@Override
+		public void onClick(View v) {
+
 				Intent intent = new Intent(getActivity(), CadastrarMedicamento.class);
+
 				startActivityForResult(intent, 0);
 			}
 		});
@@ -174,11 +174,6 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 		listViewMedicamentosNaoFavoritos.setAdapter(adapter);
 
 	}
-
-	//ic_btn_speak_now
-	//ic_menu_camera
-	//ic_menu_gallery
-	//ic_menu_slideshow
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
