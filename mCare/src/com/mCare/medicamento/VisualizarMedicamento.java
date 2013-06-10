@@ -1,4 +1,4 @@
-/*package com.mCare.medicamento;
+package com.mCare.medicamento;
 
 import com.mCare.R;
 import com.mCare.R.id;
@@ -27,7 +27,7 @@ public class VisualizarMedicamento extends Fragment {
 		TextView dosagem = (TextView) rootView.findViewById(R.id.textViewDosagem);
 		TextView principioAtivo = (TextView) rootView.findViewById(R.id.textViewPrincipioAtivo);
 		
-		//Pega as informações
+		//Pega as informaï¿½ï¿½es
 		String[] informacoes = (String[]) getIntent().getExtras().get("informacoes");
 		
 		//Coloca as informaï¿½ï¿½es nos campos
