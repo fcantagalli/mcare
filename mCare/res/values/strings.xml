@@ -119,12 +119,6 @@
     <!--
          STRINGS PARA O BANCO DE DADOS 
     	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
-
-
-
-
-
-
     -->
 
     <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (
@@ -160,40 +154,36 @@
         	descricao TEXT NULL, 
         	tipo_con TEXT NULL);@
         
-        CREATE TABLE medicamento (id_medicamento PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER);@
+        CREATE TABLE medicamento (id_medicamento INTEGER PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER);@
 
 		CREATE TABLE medicamento_paciente (
-			id_medicamento PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
-			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_medicamento INTEGER PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta INTEGER PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
 			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, 
 			data_consulta TEXT NOT NULL);@
 			
         CREATE TABLE internacoes_hospitalares (
-        	id_internacao PRIMARY KEY AUTOINCREMENT, 
+        	id_internacao INTEGER PRIMARY KEY AUTOINCREMENT, 
         	fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
         	data TEXT NOT NULL,
         	hospital TEXT NOT NULL,
         	motivo_principal TEXT NOT NULL);@
         
         CREATE TABLE diagnostico (
-        	id_diagnostico PRIMARY KEY AUTOINCREMENT, 
-        	nome UNIQUE TEXT NOT NULL);@
+        	id_diagnostico INTEGER PRIMARY KEY AUTOINCREMENT, 
+        	nome TEXT NOT NULL, UNIQUE(nome));@
         	
         CREATE TABLE diagnostico_consulta (
-        	id_diagnostico PRIMARY KEY REFERENCES diagnostico(id_diagnostico) ON UPDATE CASCADE ON DELETE CASCADE, 
-			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
-			data_consulta TEXT NOT NULL);@
+        	id_diagnostico INTEGER REFERENCES diagnostico(id_diagnostico) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
+			data_consulta TEXT NOT NULL, PRIMARY KEY(id_diagnostico, id_consulta));@
 			
-		CREATE TABLE exames_solicitados (
-        	id_exame PRIMARY KEY AUTOINCREMENT, 
-			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
-			nome TEXT NOT NULL);@
         	
-        CREATE TABLE foto (id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
+        CREATE TABLE foto (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE video(id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
+        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE video(id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);</string>
+        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);</string>
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->
@@ -258,5 +248,6 @@
     <string name="title_activity_visualizar_diagnostico">VisualizarDiagnostico</string>
     <string name="title_activity_lista_diagnosticos">ListaDiagnosticos</string>
     <string name="title_activity_lista_campos_consulta">ListaCamposConsulta</string>
+    <string name="title_activity_lista_valores_campo">ListaValoresCampo</string>
 
 </resources>
