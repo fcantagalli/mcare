@@ -134,12 +134,15 @@ public class DbHelperConsultas {
 						p.setTel2(cursor.getString(11));
 						p.setTipo_tel2(cursor.getString(12));
 						cursor.moveToNext();
-						if(ant == cursor.getLong(9)){
-							// terceiro tel
-							p.setTel3(cursor.getString(11));
-							p.setTipo_tel3(cursor.getString(12));
-							cursor.moveToNext();
+						if(cursor.moveToNext()){
+							if(ant == cursor.getLong(9)){
+								// terceiro tel
+								p.setTel3(cursor.getString(11));
+								p.setTipo_tel3(cursor.getString(12));
+								cursor.moveToNext();
+							}
 						}
+						
 					}// fim do if ant
 				}
 			}// fim do while isAfterLast
