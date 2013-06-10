@@ -17,7 +17,13 @@ public class Diagnostico {
 		this.id = id;
 		this.nome = nome;
 	}
-	
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nome;
+	}
+
 	//ENCAPSULAMENTOS
 	public int getId() {
 		return id;

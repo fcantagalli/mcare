@@ -5,33 +5,33 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.db.DbHelperDiagnostico;
-
-public class CadastrarDiagnostico extends Activity  implements View.OnClickListener {
+		
+public class CadastrarDiagnostico extends Activity implements OnClickListener {
 
 	EditText nome;
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastrar_diagnostico);
 		
-		ImageView salvar = (ImageView) findViewById(R.id.buttonCadastrarDiagnostico);
+		// botoes para salvar ou cancelar o cadastro do diagnostico
+		Button salvar = (Button) findViewById(R.id.buttonCadastrarDiagnostico);
 		salvar.setOnClickListener(this);
-		ImageView cancelar = (ImageView) findViewById(R.id.buttonCancelarDiagnostico);
+		Button cancelar = (Button) findViewById(R.id.buttonCancelarDiagnostico);
 		cancelar.setOnClickListener(this);
 		
 		// salva os campos
 		nome = (EditText) findViewById(R.id.editTextCampoNomeDiagnostico);
-	
 	}
-
+	
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){	
@@ -63,13 +63,6 @@ public class CadastrarDiagnostico extends Activity  implements View.OnClickListe
 		Intent intent = new Intent();
 		intent.putExtra("nome", nome.getText().toString());
 		intent.putExtra("id", id);
-		
-		/*********** OBSERVACAO DA GABI *************
-		 * Nao consegui fazer isso dentro do fragment!
-		 * Pesquisei na internet, mas falava pra fazer as coisas na view-pai desse fragment...
-		 * Precisa mesmo dessa parte do codigo?
-		 */
-		
 		if(this.getParent() == null){
 			this.setResult(Activity.RESULT_OK,intent);
 		}

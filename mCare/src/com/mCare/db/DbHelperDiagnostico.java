@@ -13,8 +13,7 @@ import android.util.Log;
 
 import com.mCare.consulta.Consulta;
 import com.mCare.diagnostico.Diagnostico;
-import com.mCare.medicamento.Medicamento;
-import com.mCare.paciente.Paciente;
+
 
 public class DbHelperDiagnostico {
 
@@ -64,8 +63,8 @@ public class DbHelperDiagnostico {
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				
-				int id = Integer.parseInt(cursor.getString(1));
-				String nome = cursor.getString(2);
+				int id = Integer.parseInt(cursor.getString(0));
+				String nome = cursor.getString(1);
 				
 				Diagnostico d = new Diagnostico(id, nome);
 				listaDiagnosticos.add(d);
@@ -104,10 +103,10 @@ public class DbHelperDiagnostico {
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				
-				int id_diagnostico = Integer.parseInt(cursor.getString(1));
-				String nome = cursor.getString(2);
-				int id_consulta = Integer.parseInt(cursor.getString(3));
-				GregorianCalendar hora = dbhelper.textToGregorianCalendar(cursor.getString(4));
+				int id_diagnostico = Integer.parseInt(cursor.getString(0));
+				String nome = cursor.getString(1);
+				int id_consulta = Integer.parseInt(cursor.getString(2));
+				GregorianCalendar hora = dbhelper.textToGregorianCalendar(cursor.getString(3));
 				
 				Diagnostico d = new Diagnostico(id_diagnostico, nome);
 				d.setIdConsulta(id_consulta);

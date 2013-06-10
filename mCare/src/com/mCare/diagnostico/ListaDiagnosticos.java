@@ -96,7 +96,7 @@ public class ListaDiagnosticos extends Activity {
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {
 
-		ArrayList<Diagnostico> myElements;
+		ArrayList<String> myElements;
 		HashMap<String, Integer> alphaIndexer;
 
 		String[] sections;
