@@ -4,20 +4,18 @@ import com.mCare.R;
 import com.mCare.db.DbHelperMedicamento;
 
 import android.os.Bundle;
-import android.app.Fragment;
+import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-public class CadastrarMedicamento extends Fragment  implements View.OnClickListener {
+public class CadastrarMedicamento extends Activity implements View.OnClickListener {
 
 	EditText nome;
 	Spinner tipo;
@@ -28,29 +26,26 @@ public class CadastrarMedicamento extends Fragment  implements View.OnClickListe
 
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		
-		View rootView = inflater.inflate(R.layout.activity_cadastrar_medicamento,container, false);
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_cadastrar_medicamento);
 		
 		// botoes para salvar ou cancelar o cadastro do medicamento
-		ImageView salvar = (ImageView) rootView.findViewById(R.id.buttonCadastrarMedicamento);
+		Button salvar = (Button) findViewById(R.id.buttonCadastrarMedicamento);
 		salvar.setOnClickListener(this);
-		ImageView cancelar = (ImageView) rootView.findViewById(R.id.buttonCancelarMedicamento);
+		Button cancelar = (Button) findViewById(R.id.buttonCancelarMedicamento);
 		cancelar.setOnClickListener(this);
 		
 		// salva os campos
-		nome = (EditText) rootView.findViewById(R.id.editTextCampoNomeMedicamento);
-		tipo = (Spinner) rootView.findViewById(R.id.spinnerTipoMedicamento);
-		dosagem = (EditText) rootView.findViewById(R.id.editTextCampoDosagem);
-		principioAtivo = (EditText) rootView.findViewById(R.id.editTextCampoPrincipioAtivo);
-		favorito = (RadioGroup) rootView.findViewById(R.id.campoFavorito);
+		nome = (EditText) findViewById(R.id.editTextCampoNomeMedicamento);
+		tipo = (Spinner) findViewById(R.id.spinnerTipoMedicamento);
+		dosagem = (EditText) findViewById(R.id.editTextCampoDosagem);
+		principioAtivo = (EditText) findViewById(R.id.editTextCampoPrincipioAtivo);
+		favorito = (RadioGroup) findViewById(R.id.campoFavorito);
 
 		// o tipo de medicamento eh uma caixa de selecao (Spinner)
-		ArrayAdapter<CharSequence> possiveisTipos = ArrayAdapter.createFromResource(rootView.getContext(), R.array.array_tipos_medicamento, android.R.layout.simple_list_item_1);
+		ArrayAdapter<CharSequence> possiveisTipos = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_tipos_medicamento, android.R.layout.simple_list_item_1);
 		tipo.setAdapter(possiveisTipos);
-		
-		return rootView;
 	}
 	
 	
@@ -75,7 +70,7 @@ public class CadastrarMedicamento extends Fragment  implements View.OnClickListe
 			return;
 		}
 		if(principioAtivo.getText().toString().length() == 0){
-			Toast.makeText(v.getContext(), "Insira um princípio ativo para esse medicamento.", Toast.LENGTH_LONG).show();
+			Toast.makeText(v.getContext(), "Insira um princï¿½pio ativo para esse medicamento.", Toast.LENGTH_LONG).show();
 			return;
 		}
 		
@@ -100,20 +95,14 @@ public class CadastrarMedicamento extends Fragment  implements View.OnClickListe
 		intent.putExtra("nome", nome.getText().toString());
 		intent.putExtra("id", id);
 		
-		/*********** OBSERVACAO DA GABI *************
-		 * Nao consegui fazer isso dentro do fragment!
-		 * Pesquisei na internet, mas falava pra fazer as coisas na view-pai desse fragment...
-		 * Precisa mesmo dessa parte do codigo?
-		 */
-		/*
-		if(this.getParentFragment() == null){
+		
+		if(this.getParent() == null){
 			setResult(Activity.RESULT_OK,intent);
 		}
 		else{
-			this.getParentFragment().setResult(Activity.RESULT_OK, intent);
+			this.getParent().setResult(Activity.RESULT_OK, intent);
 		}
 		Toast.makeText(v.getContext(), "Medicamento cadastrado com sucesso!", Toast.LENGTH_LONG).show();
 		onBackPressed();
-		*/
 	}
 }

@@ -37,6 +37,112 @@ public class DbHelperMedicamento {
 		return id;
 	}
 	
+	public boolean updateMedicamento(Medicamento m){
+		boolean deucerto;
+		
+		ContentValues cv = new ContentValues();
+
+		cv.put("nome", m.getNome());
+		cv.put("tipo", m.getTipo());
+		cv.put("dosagem", m.getDosagem());
+		cv.put("principioativo", m.getPricipioAtivo());
+		cv.put("favorito", m.getFavorito());
+		
+		deucerto = dbhelper.update(dbhelper.TABLE_NAME_MEDICAMENTO, cv, "id_medicamento = "+m.getId(), null);
+		
+		return deucerto;
+	}
+
+	public boolean deletaMedicamento(long id){
+		
+		int i = dbhelper.delete(dbhelper.TABLE_NAME_MEDICAMENTO, "id_medicamento=?", new String[]{""+id});
+		
+		if(i > 0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public Medicamento buscaMedicamento(String nome) {
+
+		String query = "SELECT id_medicamento, nome, tipo, dosagem, principioativo, favorito "
+				+ " FROM " + dbhelper.TABLE_NAME_MEDICAMENTO
+				+ " WHERE nome = '" + nome + "';";
+
+		Cursor c = dbhelper.exercutaSELECTSQL(query, null);
+		Medicamento m = null;
+
+		if (c.moveToFirst()) {
+			while (!c.isAfterLast()) {
+
+				//Pega do select
+				int idMedicamento = c.getInt(0);
+				String nomeMedicamento = c.getString(1);
+				String tipo = c.getString(2);
+				String dosagem = c.getString(3);
+				String pricipioAtivo = c.getString(4);
+				int favorito = c.getInt(5);
+				
+				//Coloca na classe
+				m = new Medicamento(idMedicamento,nomeMedicamento);
+				m.setTipo(tipo);
+				m.setDosagem(dosagem);
+				m.setPricipioAtivo(pricipioAtivo);
+				
+				if (favorito == 0) {
+					m.setFavorito(false);
+				}
+				else {
+					m.setFavorito(true);
+				}
+
+				c.moveToNext();
+			}
+		}
+		return m;
+	}
+	
+	public Medicamento buscaMedicamento(int id) {
+
+		String query = "SELECT id_medicamento, nome, tipo, dosagem, principioativo, favorito "
+				+ " FROM " + dbhelper.TABLE_NAME_MEDICAMENTO
+				+ " WHERE id_medicamento = '" + id + "';";
+
+		Cursor c = dbhelper.exercutaSELECTSQL(query, null);
+		Medicamento m = null;
+
+		if (c.moveToFirst()) {
+			while (!c.isAfterLast()) {
+
+				//Pega do select
+				int idMedicamento = c.getInt(0);
+				String nomeMedicamento = c.getString(1);
+				String tipo = c.getString(2);
+				String dosagem = c.getString(3);
+				String pricipioAtivo = c.getString(4);
+				int favorito = c.getInt(5);
+				
+				//Coloca na classe
+				m = new Medicamento(idMedicamento,nomeMedicamento);
+				m.setTipo(tipo);
+				m.setDosagem(dosagem);
+				m.setPricipioAtivo(pricipioAtivo);
+				
+				if (favorito == 0) {
+					m.setFavorito(false);
+				}
+				else {
+					m.setFavorito(true);
+				}
+
+				c.moveToNext();
+			}
+		}
+		return m;
+	}
+
 	public ArrayList<Medicamento> listaMedicamentos(){
 		Cursor c = dbhelper.serach(false, dbhelper.TABLE_NAME_MEDICAMENTO, null, null, null, null,null, null, null);
 		ArrayList<Medicamento> result = null;
@@ -66,18 +172,6 @@ public class DbHelperMedicamento {
 		}
 		return result;
 		
-	}
-	
-	public boolean deletaMedicamento(long id){
-		
-		int i = dbhelper.delete(dbhelper.TABLE_NAME_MEDICAMENTO, "id_medicamento=?", new String[]{""+id});
-		
-		if(i > 0){
-			return true;
-		}
-		else{
-			return false;
-		}
 	}
 	
 	public LinkedList<Medicamento> listaMedicamentos(boolean favorito){
@@ -143,7 +237,7 @@ public class DbHelperMedicamento {
 			//Armazena resultado
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
-				id_ultima_consulta = Integer.parseInt(cursor.getString(1));
+				id_ultima_consulta = Integer.parseInt(cursor.getString(0));
 				cursor.moveToNext();
 			}
 		}
@@ -167,10 +261,10 @@ public class DbHelperMedicamento {
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				
-				int id_medicamento = Integer.parseInt(cursor.getString(1));
-				String nome = cursor.getString(2);
-				int id_consulta = Integer.parseInt(cursor.getString(3));
-				GregorianCalendar hora = dbhelper.textToGregorianCalendar(cursor.getString(4));
+				int id_medicamento = Integer.parseInt(cursor.getString(0));
+				String nome = cursor.getString(1);
+				int id_consulta = Integer.parseInt(cursor.getString(2));
+				GregorianCalendar hora = dbhelper.textToGregorianCalendar(cursor.getString(3));
 				
 				Medicamento m = new Medicamento(id_medicamento, nome);
 				m.setIdConsulta(id_consulta);

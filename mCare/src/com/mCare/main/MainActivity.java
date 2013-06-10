@@ -124,26 +124,25 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-		Log.i("menu","id : "+featureId );
-		switch(featureId){
+		switch(item.getItemId()){
 		     // consulta
-			case 0: {
+			case R.id.action_configura_consulta: {
 				Intent intent = new Intent(getApplicationContext(), SelecionaCamposView.class);
 				startActivity(intent);
 				break;
 			}
 			//diagnosticos
-			case 1:{
+			case R.id.action_configura_diagnosticos:{
 				Intent intent = new Intent(getApplicationContext(),ListaDiagnosticos.class);
 				startActivity(intent);
 				break;
 			}
 			//exames
-			case 2: {
+			case R.id.action_configura_exames: {
 				
 			}
 			//medicamentos
-			case 3:{
+			case R.id.action_configura_medicamentos:{
 				Intent intent = new Intent(getApplicationContext(),ListaMedicamentos.class);
 				startActivity(intent);
 				break;

@@ -2,29 +2,23 @@ package com.mCare.diagnostico;
 
 import com.mCare.R;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.app.Activity;
 import android.widget.EditText;
 
-public class EditarDiagnostico extends Fragment {
+public class EditarDiagnostico extends Activity {
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		
-		View rootView = inflater.inflate(R.layout.activity_editar_diagnostico,container, false);
-		
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_editar_diagnostico);
+
 		//Pega os campos da activity em xml
-		EditText diagnostico = (EditText) rootView.findViewById(R.id.editTextCampoNomeDiagnosticoEditar);
+		EditText diagnostico = (EditText) findViewById(R.id.editTextCampoNomeDiagnosticoEditar);
 		
 		//Pega as informações
 		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
 		
 		//Coloca as informações nos campos
 		diagnostico.setText(informacoes[0]);
-		
-		return rootView;
 	}
 }
