@@ -1,41 +1,37 @@
 package com.mCare.diagnostico;
 
-import com.mCare.R;
-import com.mCare.db.DbHelperDiagnostico;
-
-import android.os.Bundle;
-import android.app.Fragment;
+import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class CadastrarDiagnostico extends Fragment  implements View.OnClickListener {
+import com.mCare.R;
+import com.mCare.db.DbHelperDiagnostico;
+
+public class CadastrarDiagnostico extends Activity  implements View.OnClickListener {
 
 	EditText nome;
-	
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.activity_cadastrar_diagnostico,container, false);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_cadastrar_diagnostico);
 		
-		// botoes para salvar ou cancelar o cadastro do diagnostico
-		ImageView salvar = (ImageView) rootView.findViewById(R.id.buttonCadastrarDiagnostico);
+		ImageView salvar = (ImageView) findViewById(R.id.buttonCadastrarDiagnostico);
 		salvar.setOnClickListener(this);
-		ImageView cancelar = (ImageView) rootView.findViewById(R.id.buttonCancelarDiagnostico);
+		ImageView cancelar = (ImageView) findViewById(R.id.buttonCancelarDiagnostico);
 		cancelar.setOnClickListener(this);
 		
 		// salva os campos
-		nome = (EditText) rootView.findViewById(R.id.editTextCampoNomeDiagnostico);
-		
-		return rootView;
-	}
+		nome = (EditText) findViewById(R.id.editTextCampoNomeDiagnostico);
 	
+	}
+
 	@Override
 	public void onClick(View v) {
 		switch(v.getId()){	
@@ -73,16 +69,16 @@ public class CadastrarDiagnostico extends Fragment  implements View.OnClickListe
 		 * Pesquisei na internet, mas falava pra fazer as coisas na view-pai desse fragment...
 		 * Precisa mesmo dessa parte do codigo?
 		 */
-		/*
-		if(this.getParentFragment() == null){
-			setResult(Activity.RESULT_OK,intent);
+		
+		if(this.getParent() == null){
+			this.setResult(Activity.RESULT_OK,intent);
 		}
 		else{
-			this.getParentFragment().setResult(Activity.RESULT_OK, intent);
+			this.setResult(Activity.RESULT_OK, intent);
 		}
 		Toast.makeText(v.getContext(), "Diagnostico cadastrado com sucesso!", Toast.LENGTH_LONG).show();
 		onBackPressed();
-		*/
+		
 	}
 
 }
