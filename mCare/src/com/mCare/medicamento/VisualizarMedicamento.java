@@ -22,13 +22,13 @@ public class VisualizarMedicamento extends Fragment {
 		View rootView = inflater.inflate(R.layout.activity_visualizar_medicamento,container, false);
 		
 		//Pega os campos da activity em xml
-		TextView medicamento = (TextView) findViewById(R.id.textViewMedicamento);
-		TextView tipo = (TextView) findViewById(R.id.textViewTipo);
-		TextView dosagem = (TextView) findViewById(R.id.textViewDosagem);
-		TextView principioAtivo = (TextView) findViewById(R.id.textViewPrincipioAtivo);
-		
+		TextView medicamento = (TextView) rootView.findViewById(R.id.textViewMedicamento);
+		TextView tipo = (TextView) rootView.findViewById(R.id.textViewTipo);
+		TextView dosagem = (TextView) rootView.findViewById(R.id.textViewDosagem);
+		TextView principioAtivo = (TextView) rootView.findViewById(R.id.textViewPrincipioAtivo);
+
 		//Pega as informa��es
-		String[] informacoes = (String[]) getIntent().getExtras().get("informacoes");
+		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
 		
 		//Coloca as informa��es nos campos
 		medicamento.setText(informacoes[0]);
@@ -42,6 +42,4 @@ public class VisualizarMedicamento extends Fragment {
 		return rootView;
 	}
 	
-	
-
 }

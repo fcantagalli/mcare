@@ -18,7 +18,7 @@ public class Medicamento implements Comparable<Medicamento> {
 	
 	
 	
-	
+	//CONSTRUTORES
 	public Medicamento(int id, String nome){
 		this.id = id;
 		this.nome = nome;
@@ -30,6 +30,7 @@ public class Medicamento implements Comparable<Medicamento> {
 		this.tipo = tipo;
 	}
 	
+	//ENCAPSULAMENTO
 	public String getNome() {
 		return nome;
 	}

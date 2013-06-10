@@ -118,24 +118,71 @@
 
     <!--
          STRINGS PARA O BANCO DE DADOS 
-    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
     -->
 
-    <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL);  </string>
-    <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,nome TEXT NOT NULL, data_nascimento TEXT NOT NULL, 
-        sexo INTEGER NULL, escolaridade TEXT NULL, parente TEXT NULL, parente_tel TEXT NULL, parente_cel TEXT NULL, logradouro TEXT NOT NULL, bairro TEXT NULL,
-        numero INTEGER NOT NULL, tipo_end INTEGER NULL, cep TEXT NULL, cidade TEXT NOT NULL, complemento TEXT NULL);@
+    <string name="SQL_CREATE_TESTE">        CREATE TABLE pessoa (
+        	id INTEGER PRIMARY KEY AUTOINCREMENT, 
+        	nome TEXT NOT NULL);  </string>
+    <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (
+        	id_paciente INTEGER PRIMARY KEY AUTOINCREMENT,
+        	nome TEXT NOT NULL,
+        	data_nascimento TEXT NOT NULL, 
+        	sexo INTEGER NULL, 
+        	escolaridade TEXT NULL, 
+        	parente TEXT NULL, 
+        	parente_tel TEXT NULL, 
+        	parente_cel TEXT NULL, 
+        	logradouro TEXT NOT NULL, 
+        	bairro TEXT NULL,
+        	numero INTEGER NOT NULL, 
+        	tipo_end INTEGER NULL, 
+        	cep TEXT NULL, 
+        	cidade TEXT NOT NULL, 
+        	complemento TEXT NULL);@
         
-        CREATE TABLE telefone (id_telefone INTEGER PRIMARY KEY AUTOINCREMENT,fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
-        telefone TEXT NOT NULL,tipo_tel INTEGER NOT NULL);@
+        CREATE TABLE telefone (
+        	id_telefone INTEGER PRIMARY KEY AUTOINCREMENT,
+        	fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
+        	telefone TEXT NOT NULL,
+        	tipo_tel INTEGER NOT NULL);@
         
-        CREATE TABLE consultas_marcadas (id_consulta INTEGER PRIMARY KEY AUTOINCREMENT, fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
-        data_hora TEXT NOT NULL, descricao TEXT NULL, tipo_con TEXT NULL);@
+        CREATE TABLE consultas_marcadas (
+        	id_consulta INTEGER PRIMARY KEY AUTOINCREMENT, 
+        	fk_paciente INTEGER NOT NULL REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
+        	data_hora TEXT NOT NULL, 
+        	descricao TEXT NULL, 
+        	tipo_con TEXT NULL);@
         
         CREATE TABLE medicamento (id_medicamento PRIMARY KEY AUTOINCREMENT, nome UNIQUE TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER);@
 
-		CREATE TABLE medicamento_paciente (id_medicamento PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, id_consulta PRIMARY KEY REFERENCES consultas_marcadas(id_consulta), fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE ON UPDATE CASCADE ON DELETE CASCADE, data_consulta TEXT NOT NULL);@
+		CREATE TABLE medicamento_paciente (
+			id_medicamento PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
+			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, 
+			data_consulta TEXT NOT NULL);@
+			
+        CREATE TABLE internacoes_hospitalares (
+        	id_internacao PRIMARY KEY AUTOINCREMENT, 
+        	fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
+        	data TEXT NOT NULL,
+        	hospital TEXT NOT NULL,
+        	motivo_principal TEXT NOT NULL);@
         
+        CREATE TABLE diagnostico (
+        	id_diagnostico PRIMARY KEY AUTOINCREMENT, 
+        	nome UNIQUE TEXT NOT NULL);@
+        	
+        CREATE TABLE diagnostico_consulta (
+        	id_diagnostico PRIMARY KEY REFERENCES diagnostico(id_diagnostico) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
+			data_consulta TEXT NOT NULL);@
+			
+		CREATE TABLE exames_solicitados (
+        	id_exame PRIMARY KEY AUTOINCREMENT, 
+			id_consulta PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
+			nome TEXT NOT NULL);@
+        	
         CREATE TABLE foto (id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
         CREATE TABLE video(id PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
@@ -200,5 +247,9 @@
     <string name="title_activity_lista_consultas_paciente">ListaConsultasPaciente</string>
     <string name="title_activity_midia__fragment">Midia_Fragment</string>
     <string name="title_activity_lista_medicamentos_por_paciente">ListaMedicamentosPorPaciente</string>
+    <string name="title_activity_cadastrar_diagnostico">CadastrarDiagnostico</string>
+    <string name="title_activity_editar_diagnostico">EditarDiagnostico</string>
+    <string name="title_activity_visualizar_diagnostico">VisualizarDiagnostico</string>
+    <string name="title_activity_lista_diagnosticos">ListaDiagnosticos</string>
 
 </resources>

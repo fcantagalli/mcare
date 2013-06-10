@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListaMedicamentos" >
+    tools:context=".ListaDiagnosticos" >
 
     <RelativeLayout
         android:id="@+id/adicionarLayout"
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content" >
 
         <ImageView
-            android:id="@+id/imageViewCadastrarMedicamento"
+            android:id="@+id/imageViewCadastrarDiagnostico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -23,11 +23,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/imageViewCadastrarMedicamento"
-            android:text="Cadastrar novo medicamento"
+            android:layout_toLeftOf="@+id/imageViewCadastrarDiagnostico"
+            android:text="Cadastrar novo diagnostico"
             android:layout_marginTop="4dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-
     </RelativeLayout>
 
     
@@ -40,41 +39,14 @@
 	    android:paddingTop="@dimen/activity_vertical_margin"
 	    android:orientation="vertical" >
 	    
-	    <!-- MEDICAMENTOS FAVORITOS -->
-	    <TextView
-	        android:id="@+id/tituloTelaMedicamentosFavoritos"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginTop="6dp"
-	        android:text="FAVORITOS"
-	        style="@style/RotulosFormulario" />
-	    
+	    <!-- DIAGNOSTICOS FAVORITOS -->
 	    <ListView
-	        android:id="@+id/lstMedicamentosFavoritos"
+	        android:id="@+id/lstDiagnosticos"
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:drawSelectorOnTop="false"
 	        android:layout_marginTop="6dp" >
 	    </ListView>
-	    
-	    <!-- MEDICAMENTOS NAO-FAVORITOS -->
-	    <TextView
-	        android:id="@+id/tituloTelaMedicamentosNaoFavoritos"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginTop="12dp"
-	        android:text="OUTROS MEDICAMENTOS" 
-	        style="@style/RotulosFormulario" />
-	    
-	    <ListView
-	        android:id="@+id/lstMedicamentosNaoFavoritos"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:drawSelectorOnTop="false"
-	        android:layout_below="@+id/adicionarLayout"
-	        android:layout_marginTop="6dp" >
-	    </ListView>
-
 	</LinearLayout>
 
 </RelativeLayout>

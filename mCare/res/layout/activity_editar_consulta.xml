@@ -153,22 +153,6 @@
             </ListView>
             
             
-            <!-- PROCEDIMENTOS CIRÚRGICOS -->
-            <TextView
-                android:text="Procedimentos Cirúrgicos"
-                style="@style/RotulosFormulario" />
-            
-            <Button
-	            android:id="@+id/botaoAdicionarProcedimentoCirurgico"
-	            style="@style/ButtonsAgenda"
-	            android:layout_marginRight="8dp"
-	            android:text="Adicionar procedimento cirúrgico" />
-
-            <ListView
-                android:id="@+id/listaProcedimentosCirurgicos"
-                style="@style/ListaPadrao" >
-            </ListView>
-            
             
             <!-- MEDICACOES EM USO -->
             <TextView

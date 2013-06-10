@@ -128,8 +128,20 @@
         </receiver>
 
         <activity
-            android:name="com.mCare.medicamento.ListaMedicamentosPorPaciente"
-            android:label="@string/title_activity_lista_medicamentos_por_paciente" >
+            android:name="com.mCare.diagnostico.CadastrarDiagnostico"
+            android:label="@string/title_activity_cadastrar_diagnostico" >
+        </activity>
+        <activity
+            android:name="com.mCare.diagnostico.EditarDiagnostico"
+            android:label="@string/title_activity_editar_diagnostico" >
+        </activity>
+        <activity
+            android:name="com.mCare.diagnostico.VisualizarDiagnostico"
+            android:label="@string/title_activity_visualizar_diagnostico" >
+        </activity>
+        <activity
+            android:name="com.mCare.diagnostico.ListaDiagnosticos"
+            android:label="@string/title_activity_lista_diagnosticos" >
         </activity>
         
     </application>
