@@ -85,15 +85,50 @@
             android:padding="@dimen/MargenPadrao"
             android:textColor="@color/Black" />
         
+        <!-- FAVORITO -->
+		<TextView
+		    android:text="Favorito"
+		    style="@style/RotulosFormulario" />
+		
+		<RadioGroup
+		    android:id="@+id/campoFavorito"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" >
+		
+		    <RadioButton
+		        android:id="@+id/radio0"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:checked="true"
+		        android:text="Sim" />
+		
+		    <RadioButton
+		        android:id="@+id/radio1"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Não" />
+		</RadioGroup>
         
-        <!-- BOTAO -->
-        <Button
-            android:id="@+id/buttonCadastrarMedicamento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/MargenPadrao"
-            android:text="Cadastrar medicamento"
-            android:layout_gravity="center_horizontal" />
+        <!-- BOTOES -->
+	    <TableRow
+	        android:id="@+id/tableRow1"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:weightSum="2.0" >
+	
+	        <Button
+	            android:id="@+id/buttonCadastrarMedicamento"
+	            style="@style/ButtonsAgenda"
+	            android:layout_marginRight="8dp"
+	            android:text="Cadastrar" />
+	
+	        <Button
+	            android:id="@+id/buttonCancelarMedicamento"
+	            style="@style/ButtonsAgenda"
+	            android:layout_marginLeft="8dp"
+	            android:text="Cancelar" />
+	    </TableRow>
+        
 
     </LinearLayout>
 

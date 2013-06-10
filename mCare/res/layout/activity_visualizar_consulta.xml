@@ -154,14 +154,6 @@
 	            
 	            
 	            <!-- PROCEDIMENTOS CIRÚRGICOS -->
-	            <TextView
-	                android:text="Procedimentos Cirúrgicos"
-	                style="@style/RotulosFormulario" />
-	
-	            <ListView
-	                android:id="@+id/listaProcedimentosCirurgicos"
-	                style="@style/ListaPadrao" >
-	            </ListView>
 	            
 	            
 	            <!-- MEDICACOES EM USO -->
@@ -171,18 +163,6 @@
 	            
 	            <ListView
 	                android:id="@+id/listaMedicacoesEmUso"
-	                style="@style/ListaPadrao" >
-	            </ListView>
-	            
-	            
-	            <!-- MEDICACOES PREVIAS -->
-	            <TextView
-	                android:text="Medicações prévias"
-	                style="@style/RotulosFormulario" />
-	
-	
-	            <ListView
-	                android:id="@+id/listaMedicacoesPrevias"
 	                style="@style/ListaPadrao" >
 	            </ListView>
 	            
@@ -230,17 +210,6 @@
 	
 	            <ListView
 	                android:id="@+id/listaExamesSolicitados"
-	                style="@style/ListaPadrao" >
-	            </ListView>
-	            
-	            
-	            <!-- MUDANCAS NA MEDICACAO -->
-	            <TextView
-	                android:text="Mudanças na medicação"
-	                style="@style/RotulosFormulario" />
-	            
-	            <ListView
-	                android:id="@+id/listaMudancasMedicacao"
 	                style="@style/ListaPadrao" >
 	            </ListView>
 	            

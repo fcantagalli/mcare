@@ -1,6 +1,9 @@
 package com.mCare.paciente;
 
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+
+import com.mCare.medicamento.Medicamento;
 
 public class Paciente implements Comparable<Paciente> {
 
@@ -8,6 +11,8 @@ public class Paciente implements Comparable<Paciente> {
 	private String nome;
 	private GregorianCalendar dataNascimento;
 	private byte Sexo; // 0 - feminino 1 - masculino
+	
+	//telefone
 	private String tipo_tel;
 	private String telefone;
 	private long idTel1;
@@ -30,6 +35,11 @@ public class Paciente implements Comparable<Paciente> {
 	private String cep;
 	private String cidade;
 	private String complemento;
+	
+	//medicamentos
+	LinkedList<Medicamento> medicamentos_atuais;
+	LinkedList<Medicamento> medicamentos_anteriores;
+	
 	
 	public Paciente(int id, String nome){
 		this.bd_id = id;
@@ -272,6 +282,23 @@ public class Paciente implements Comparable<Paciente> {
 
 	public void setParente_cel(String parente_cel) {
 		this.parente_cel = parente_cel;
+	}
+	
+	
+	
+	//MEDICAMENTOS
+	public LinkedList<Medicamento> getMedicamentosAtuais() {
+		return medicamentos_atuais;
+	}
+	public void setMedicamentosAtuais(LinkedList<Medicamento> medicamentos_atuais) {
+		this.medicamentos_atuais = medicamentos_atuais;
+	}
+	
+	public LinkedList<Medicamento> getMedicamentosAnteriores() {
+		return medicamentos_anteriores;
+	}
+	public void setMedicamentosAnteriores(LinkedList<Medicamento> medicamentos_anteriores) {
+		this.medicamentos_anteriores = medicamentos_anteriores;
 	}
 	
 }

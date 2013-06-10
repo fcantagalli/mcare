@@ -22,12 +22,12 @@ public class VisualizarMedicamento extends Fragment {
 		View rootView = inflater.inflate(R.layout.activity_visualizar_medicamento,container, false);
 		
 		//Pega os campos da activity em xml
-		TextView medicamento = (TextView) findViewById(R.id.textViewMedicamento);
-		TextView tipo = (TextView) findViewById(R.id.textViewTipo);
-		TextView dosagem = (TextView) findViewById(R.id.textViewDosagem);
-		TextView principioAtivo = (TextView) findViewById(R.id.textViewPrincipioAtivo);
+		TextView medicamento = (TextView) rootView.findViewById(R.id.textViewMedicamento);
+		TextView tipo = (TextView) rootView.findViewById(R.id.textViewTipo);
+		TextView dosagem = (TextView) rootView.findViewById(R.id.textViewDosagem);
+		TextView principioAtivo = (TextView) rootView.findViewById(R.id.textViewPrincipioAtivo);
 		
-		//Pega as informaï¿½ï¿½es
+		//Pega as informações
 		String[] informacoes = (String[]) getIntent().getExtras().get("informacoes");
 		
 		//Coloca as informaï¿½ï¿½es nos campos
@@ -36,18 +36,7 @@ public class VisualizarMedicamento extends Fragment {
 		dosagem.setText(informacoes[2]);
 		principioAtivo.setText(informacoes[3]);
 		
-		//Titulo da actionbar
-		getActionBar().setTitle("Medicamento:");
-		
 		return rootView;
 	}
 
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.visualizar_medicamento, menu);
-		return true;
-	}
-
-}*/
+}

@@ -30,11 +30,15 @@ public class Db extends SQLiteOpenHelper {
 	/** A vers�o da base de dados que esta classe compreende. */
 	private static final int VERSAO_BD = 1;
 	private static final String LOG_TAG = "DB";
+	public final String TABLE_NAME_CONSULTA = "consulta";
 	public final String TABLE_NAME_CONSULTAS_MARCADAS = "consultas_marcadas";
 	public final String TABLE_NAME_PACIENTES = "paciente";
 	public final String TABLE_NAME_TELEFONE = "telefone"; // tipo tel : 0 - residencial, 1 - celular, 2 - comercial, 3 - outros (se e que precisa)
 	public final String TABLE_NAME_MEDICAMENTO = "medicamento";
-	public final String TABLE_NAME_CONSULTA = "consulta";
+	public final String TABLE_NAME_MEDICAMENTO_PACIENTE = "medicamento_paciente";
+	public final String TABLE_NAME_INTERNACOES = "internacoes_hospitalares";
+	public final String TABLE_NAME_DIAGNOSTICO = "diagnostico";
+	public final String TABLE_NAME_DIAGNOSTICO_CONSULTA = "diagnostico_consulta";
 	public final String TABLE_NAME_FOTO = "foto";
 	public final String TABLE_NAME_VIDEO = "video";
 	public final String TABLE_NAME_AUDIO = "audio";
