@@ -118,7 +118,7 @@
 
     <!--
          STRINGS PARA O BANCO DE DADOS 
-    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
     -->
 
     <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (
@@ -257,5 +257,8 @@
     <string name="title_activity_lista_campos_consulta">ListaCamposConsulta</string>
     <string name="title_activity_lista_valores_campo">ListaValoresCampo</string>
     <string name="title_activity_cadastrar_exame">CadastrarExame</string>
+    <string name="title_activity_editar_exame">EditarExame</string>
+    <string name="title_activity_lista_exames">ListaExames</string>
+    <string name="title_activity_visualizar_exame">VisualizarExame</string>
 
 </resources>
