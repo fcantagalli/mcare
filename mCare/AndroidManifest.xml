@@ -129,10 +129,6 @@
         </receiver>
 
         <activity
-            android:name="com.mCare.medicamento.ListaMedicamentosPorPaciente"
-            android:label="@string/title_activity_lista_medicamentos_por_paciente" >
-        </activity>
-        <activity
             android:name="com.mCare.diagnostico.CadastrarDiagnostico"
             android:label="@string/title_activity_cadastrar_diagnostico" >
         </activity>
