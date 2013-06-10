@@ -1,4 +1,4 @@
-package com.mCare.medicamento;
+/*package com.mCare.medicamento;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -208,4 +208,4 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 
 	}
 
-}
+}*/

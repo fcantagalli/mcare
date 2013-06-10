@@ -132,6 +132,14 @@
             android:name="com.mCare.medicamento.ListaMedicamentosPorPaciente"
             android:label="@string/title_activity_lista_medicamentos_por_paciente" >
         </activity>
+        <activity
+            android:name="com.mCare.paciente.historico.ListaCamposConsulta"
+            android:label="@string/title_activity_lista_campos_consulta" >
+        </activity>
+        <activity
+            android:name="com.mCare.paciente.historico.ListaValoresCampo"
+            android:label="@string/title_activity_lista_valores_campo" >
+        </activity>
     </application>
 
 </manifest>

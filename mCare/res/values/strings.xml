@@ -198,5 +198,7 @@
     <string name="title_activity_lista_consultas_paciente">ListaConsultasPaciente</string>
     <string name="title_activity_midia__fragment">Midia_Fragment</string>
     <string name="title_activity_lista_medicamentos_por_paciente">ListaMedicamentosPorPaciente</string>
+    <string name="title_activity_lista_campos_consulta">ListaCamposConsulta</string>
+    <string name="title_activity_lista_valores_campo">ListaValoresCampo</string>
 
 </resources>

@@ -35,6 +35,7 @@ public class AgendarConsulta extends Activity {
 	
 	Spinner tipoConsulta;
 	AutoCompleteTextView autoComplete;
+	boolean foiAgendada = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,9 @@ public class AgendarConsulta extends Activity {
 	
 	@Override
 	public void onBackPressed() {
-		Toast.makeText(this, "A consulta não foi agendada", Toast.LENGTH_LONG).show();
+		if(!foiAgendada){
+			Toast.makeText(this, "A consulta não foi agendada", Toast.LENGTH_LONG).show();
+		}
 		super.onBackPressed();
 	}
 
@@ -156,6 +159,8 @@ public class AgendarConsulta extends Activity {
 		NotificacaoConsulta.create(getApplicationContext(),(calendar.getTimeInMillis()-3600000) , "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta!", R.drawable.ic_launcher, NotificacaoConsulta.notificationId(calendar), notificationIntent);
 		
 		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso!", Toast.LENGTH_LONG).show();
+		
+		foiAgendada = true;
 		
 		onBackPressed();
 	}

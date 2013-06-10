@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 
 import com.mCare.medicamento.Medicamento;
+import com.mCare.paciente.Paciente;
 
 public class DbHelperMedicamento {
 
