@@ -85,19 +85,19 @@
             android:label="@string/title_activity_seleciona_campos_view" >
         </activity>
         <activity
-            android:name="com.mCare.CadastrarMedicamento"
+            android:name="com.mCare.medicamento.CadastrarMedicamento"
             android:label="@string/title_activity_cadastrar_medicamento" >
         </activity>
         <activity
-            android:name="com.mCare.ListaMedicamentos"
+            android:name="com.mCare.medicamento.ListaMedicamentos"
             android:label="@string/title_activity_lista_medicamentos" >
         </activity>
         <activity
-            android:name="com.mCare.EditarMedicamento"
+            android:name="com.mCare.medicamento.EditarMedicamento"
             android:label="@string/title_activity_editar_medicamento" >
         </activity>
         <activity
-            android:name="com.mCare.VisualizarMedicamento"
+            android:name="com.mCare.medicamento.VisualizarMedicamento"
             android:label="@string/title_activity_visualizar_medicamento" >
         </activity>
         <activity
