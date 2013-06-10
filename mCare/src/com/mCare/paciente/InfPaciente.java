@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.mCare.R;
 import com.mCare.consulta.ListaConsultasPaciente;
 import com.mCare.db.DbHelperPaciente;
+import com.mCare.paciente.historico.ListaCamposConsulta;
 
 public class InfPaciente extends Activity {
 
@@ -49,6 +50,7 @@ public class InfPaciente extends Activity {
 		TextView bairro = (TextView) findViewById(R.id.campoBairro);
 		TextView cidade = (TextView) findViewById(R.id.campoCidade);
 		Button visualizarConsultas = (Button) findViewById(R.id.buttonVisualizarConsultas);
+		Button visualizarHistorico = (Button) findViewById(R.id.buttonVisualizarHistorico);
 		
 		if(p != null){
 			nome.setText(p.getNome());
@@ -95,12 +97,10 @@ public class InfPaciente extends Activity {
 				parente_cel.setText(p.getParente_cel());
 			}
 			
-			final String nome_paciente = p.getNome();
 			visualizarConsultas.setOnClickListener(new OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
-					// TODO Auto-generated method stub
 					Intent intent = new Intent(getApplicationContext(),ListaConsultasPaciente.class);
 					intent.putExtra("id", id);
 					startActivity(intent);
@@ -110,6 +110,18 @@ public class InfPaciente extends Activity {
 		else{
 			visualizarConsultas.setVisibility(View.INVISIBLE);
 		}
+		
+		final long id_paciente = p.getBd_id();
+		
+		visualizarHistorico.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),ListaCamposConsulta.class);
+				intent.putExtra("id_paciente", id_paciente);
+				startActivity(intent);
+			}
+		});
 
 	}
 	

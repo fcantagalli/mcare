@@ -1,4 +1,4 @@
-package com.mCare.medicamento;
+/*package com.mCare.medicamento;
 
 import com.mCare.R;
 import com.mCare.R.id;
@@ -42,7 +42,10 @@ public class VisualizarMedicamento extends Fragment {
 		dosagem.setText(informacoes[2]);
 		principioAtivo.setText(informacoes[3]);
 		
+		//Titulo da actionbar
+		//getActionBar().setTitle("Medicamento:");
+		
 		return rootView;
 	}
-
+	
 }

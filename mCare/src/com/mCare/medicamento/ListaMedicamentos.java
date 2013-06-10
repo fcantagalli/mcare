@@ -1,4 +1,4 @@
-package com.mCare.medicamento;
+/*package com.mCare.medicamento;
 
 import java.text.Collator;
 import java.util.ArrayList;
@@ -261,4 +261,4 @@ public class ListaMedicamentos extends Fragment implements OnItemClickListener {
 
 	}
 
-}
+}*/

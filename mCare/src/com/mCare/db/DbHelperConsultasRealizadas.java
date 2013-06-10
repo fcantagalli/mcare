@@ -127,6 +127,46 @@ public class DbHelperConsultasRealizadas {
 		
 	}
 	
+	public ArrayList<ArrayList<String>> retornaValoresCampo(long id_paciente, String nomeCampo){
+		String sql = "SELECT data_hora, \"" + nomeCampo + "\" FROM consulta WHERE fk_paciente = " + id_paciente + ";";
+		Log.i("SQL", "sql retornaValores: " + sql);
+		
+		Cursor cursor = dbhelper.exercutaSELECTSQL(sql, null);
+		// Se encontrou
+		if(cursor.moveToFirst()){
+			ArrayList<String> listaValores = new ArrayList<String>(cursor.getCount());
+			ArrayList<String> listaDatas = new ArrayList<String>(cursor.getCount());
+
+			while(!cursor.isAfterLast()){
+				listaDatas.add(cursor.getString(0));
+				
+				switch(cursor.getType(1)){
+				case Cursor.FIELD_TYPE_INTEGER: {
+					listaValores.add("" + cursor.getInt(1));
+					Log.i("phil", "" + cursor.getInt(1));
+					break;
+				}
+				case Cursor.FIELD_TYPE_FLOAT: {
+					listaValores.add("" + cursor.getFloat(1));
+					Log.i("phil", "" + cursor.getFloat(1));
+					break;
+				}
+				case Cursor.FIELD_TYPE_STRING: {
+					listaValores.add("" + cursor.getString(1));
+					Log.i("phil", "" + cursor.getString(1));
+					break;
+				}
+				}
+				cursor.moveToNext();
+			}
+			ArrayList<ArrayList<String>> info = new ArrayList<ArrayList<String>>(2);
+			info.add(listaDatas);
+			info.add(listaValores);
+			return info;
+		}
+		return null;
+	}
+	
 	
 	
 }

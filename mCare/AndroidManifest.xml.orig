@@ -12,8 +12,14 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-feature android:name="android.hardware.camera" />
     <!-- Para notificacoes -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -34,9 +40,8 @@
             android:label="@string/title_activity_novo_contato" >
         </activity>
         <activity
-            android:name="com.mCare.main.InfPaciente"
-            android:label="@string/title_activity_inf_paciente"
-            android:theme="@style/Theme.NoTitle" >
+            android:name="com.mCare.paciente.InfPaciente"
+            android:label="@string/title_activity_inf_paciente" >
         </activity>
         <activity
             android:name="com.mCare.main.CadastroConsulta"
@@ -79,22 +84,71 @@
             android:label="@string/title_activity_seleciona_campos_view" >
         </activity>
         <activity
-<<<<<<< HEAD
             android:name="com.mCare.CadastrarMedicamento"
             android:label="@string/title_activity_cadastrar_medicamento" >
         </activity>
         <activity
             android:name="com.mCare.ListaMedicamentos"
             android:label="@string/title_activity_lista_medicamentos" >
-=======
+        </activity>
+        <activity
             android:name="com.mCare.EditarMedicamento"
             android:label="@string/title_activity_editar_medicamento" >
         </activity>
         <activity
             android:name="com.mCare.VisualizarMedicamento"
             android:label="@string/title_activity_visualizar_medicamento" >
->>>>>>> 64d9a85099089845b37ea8c93c9b92c85a6de871
         </activity>
-    </application>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.RealizarConsultaMain"
+            android:label="@string/title_activity_realizar_consulta_main" >
+        </activity>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.Consulta_Fragment"
+            android:label="@string/title_activity_consulta__fragment" >
+        </activity>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.Visualiza_Consulta_Realizada"
+            android:label="@string/title_activity_visualiza__consulta" >
+        </activity>
+        <activity
+            android:name="com.mCare.consulta.ListaConsultasPaciente"
+            android:label="@string/title_activity_lista_consultas_paciente" >
+        </activity>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.Midia_Fragment"
+            android:label="@string/title_activity_midia__fragment" >
+        </activity>
 
+        <receiver android:name="com.mCare.notificacao.NotificacaoConsulta" ></receiver>
+
+        <activity
+            android:name="com.mCare.diagnostico.CadastrarDiagnostico"
+            android:label="@string/title_activity_cadastrar_diagnostico" >
+        </activity>
+        <activity
+            android:name="com.mCare.diagnostico.EditarDiagnostico"
+            android:label="@string/title_activity_editar_diagnostico" >
+        </activity>
+        <activity
+            android:name="com.mCare.diagnostico.VisualizarDiagnostico"
+            android:label="@string/title_activity_visualizar_diagnostico" >
+        </activity>
+        <activity
+            android:name="com.mCare.diagnostico.ListaDiagnosticos"
+            android:label="@string/title_activity_lista_diagnosticos" >
+        </activity>
+<<<<<<< HEAD
+        
+=======
+        <activity
+            android:name="com.mCare.paciente.historico.ListaCamposConsulta"
+            android:label="@string/title_activity_lista_campos_consulta" >
+        </activity>
+        <activity
+            android:name="com.mCare.paciente.historico.ListaValoresCampo"
+            android:label="@string/title_activity_lista_valores_campo" >
+        </activity>
+>>>>>>> d35319fecb781b8c17d7780b40cf8acd67ecc500
+    </application>
 </manifest>

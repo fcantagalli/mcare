@@ -290,6 +290,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Visualizar consultas" />
+
+        <Button
+            android:id="@+id/buttonVisualizarHistorico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Visualizar Histórico"
+            android:layout_gravity="center" />
         
     </LinearLayout>
 
