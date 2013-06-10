@@ -22,6 +22,20 @@ import com.mCare.main.MainActivity;
 // The class has to extend the BroadcastReceiver to get the notification from the system
 public class Notificacao extends BroadcastReceiver {
 
+	private static Notificacao broadCast = null;
+	
+	private Notificacao(){
+		
+		super();
+	}
+	
+	public static Notificacao getInstance(){
+		if(broadCast == null){
+			broadCast = new Notificacao();
+		}
+		return broadCast;
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onReceive(Context context, Intent paramIntent) {

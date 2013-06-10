@@ -1,10 +1,7 @@
 package com.mCare.consulta.realizarConsulta;
 
-import java.util.ArrayList;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,19 +12,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mCare.R;
-import com.mCare.configuracaoConsulta.SelecionaCamposView;
 
 public class RealizarConsultaMain extends FragmentActivity implements ActionBar.TabListener {
 	
 	AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     ViewPager mViewPager;
-
+    
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -96,7 +89,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	}
 	
 	public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
-
+		
         public AppSectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -104,13 +97,17 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         @Override
         public Fragment getItem(int i) {
             switch (i) {
-                case 0: return new Consulta_Fragment();
+                case 0: {
+                		return new Consulta_Fragment();
+                	}
                 
                 //case 1: return new ListaPacientes();
                 
-                case 2: return new Midia_Fragment();
+                case 2:{
+                		return new Midia_Fragment();
+                }
             }
-            return new Consulta_Fragment();
+        	return new Consulta_Fragment();
         }
 
         @Override

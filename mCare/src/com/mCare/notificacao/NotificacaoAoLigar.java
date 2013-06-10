@@ -12,8 +12,8 @@ public class NotificacaoAoLigar extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context contexto, Intent intent) {
 		//Cria alarmes do dia
-		Notificacao n = new Notificacao();
-		n.criaNotificacoesDoDia(contexto);
+		//Notificacao n = new Notificacao();
+		//n.criaNotificacoesDoDia(contexto);
 
 		//Programa um alarme para verifica
 		voltaDiaSeguinte(contexto);

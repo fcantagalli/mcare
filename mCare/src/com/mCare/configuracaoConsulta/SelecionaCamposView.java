@@ -84,10 +84,13 @@ public class SelecionaCamposView extends Activity {
 		scroll.addView(layout);
 		setContentView(scroll);
 
-		colocaCampoNaView("Nome", 2);
-		colocaCampoNaView("Idade", 0);
+		colocaCampoNaView("Mini mental", 0);
+		colocaCampoNaView("relogio",0);
+		colocaCampoNaView("Avd",2);
+		colocaCampoNaView("Aivd",2);
 		colocaCampoNaView("Peso", 1);
-		colocaCampoNaView("Data de nascimento", 3);
+		colocaCampoNaView("Diagnósticos Clínicos",2);
+		colocaCampoNaView("Medicação Prévia",2);
 	}
 	
 	@Override
