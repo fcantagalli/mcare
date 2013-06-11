@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.mCare.consulta.Consulta;
 import com.mCare.diagnostico.Diagnostico;
+import com.mCare.medicamento.Medicamento;
 
 
 public class DbHelperDiagnostico {
@@ -45,6 +46,31 @@ public class DbHelperDiagnostico {
 		}
 	}
 	
+	public Diagnostico buscaDiagnostico(int id) {
+
+		String query = "SELECT id_diagnostico, nome "
+				+ " FROM " + dbhelper.TABLE_NAME_DIAGNOSTICO
+				+ " WHERE id_diagnostico = '" + id + "';";
+
+		Cursor c = dbhelper.exercutaSELECTSQL(query, null);
+		Diagnostico d = null;
+
+		if (c.moveToFirst()) {
+			while (!c.isAfterLast()) {
+
+				//Pega do select
+				int idDiagnostico = c.getInt(0);
+				String nomeDiagnostico = c.getString(1);
+				
+				//Coloca na classe
+				d = new Diagnostico(idDiagnostico,nomeDiagnostico);
+				
+				c.moveToNext();
+			}
+		}
+		return d;
+	}
+
 	public LinkedList<Diagnostico> listaDiagnosticos(){
 		
 		//DEFINE QUERY dependendo se quer favoritos ou nao
