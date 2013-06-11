@@ -154,10 +154,10 @@
         CREATE TABLE medicamento (id_medicamento INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER NULL);@
 
 		CREATE TABLE medicamento_paciente (
-			id_medicamento INTEGER PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
-			id_consulta INTEGER PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
-			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, 
-			data_consulta TEXT NOT NULL);@
+			id_medicamento INTEGER REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
+			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE,
+			data_consulta TEXT NOT NULL, PRIMARY KEY(id_medicamento, id_consulta));@
 			
         CREATE TABLE internacoes_hospitalares (
         	id_internacao INTEGER PRIMARY KEY AUTOINCREMENT, 
