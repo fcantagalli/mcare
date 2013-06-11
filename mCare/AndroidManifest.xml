@@ -155,15 +155,15 @@
             android:label="@string/title_activity_cadastrar_exame" >
         </activity>
         <activity
-            android:name="com.mCare.EditarExame"
+            android:name="com.mCare.exame.EditarExame"
             android:label="@string/title_activity_editar_exame" >
         </activity>
         <activity
-            android:name="com.mCare.ListaExames"
+            android:name="com.mCare.exame.ListaExames"
             android:label="@string/title_activity_lista_exames" >
         </activity>
         <activity
-            android:name="com.mCare.VisualizarExame"
+            ancom.mCare.exame.VisualizarExameualizarExame"
             android:label="@string/title_activity_visualizar_exame" >
         </activity>
     </application>
