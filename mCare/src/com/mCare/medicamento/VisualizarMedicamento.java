@@ -4,6 +4,7 @@ import com.mCare.R;
 import com.mCare.R.id;
 import com.mCare.R.layout;
 import com.mCare.R.menu;
+import com.mCare.db.DbHelperMedicamento;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -27,14 +28,18 @@ public class VisualizarMedicamento extends Fragment {
 		TextView dosagem = (TextView) rootView.findViewById(R.id.textViewDosagem);
 		TextView principioAtivo = (TextView) rootView.findViewById(R.id.textViewPrincipioAtivo);
 		
-		//Pega as informações
-		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
+		//Pega da tela anterior a informacao de qual medicamento eh este
+		final int id = getActivity().getIntent().getExtras().getInt("id", -1);
 		
-		//Coloca as informações nos campos
-		medicamento.setText(informacoes[0]);
-		tipo.setText(informacoes[1]);
-		dosagem.setText(informacoes[2]);
-		principioAtivo.setText(informacoes[3]);
+		//Pega do banco as informacoes do medicamento
+		DbHelperMedicamento db = new DbHelperMedicamento(getActivity());
+		Medicamento m = db.buscaMedicamento(id);
+		
+		//Coloca as informaï¿½ï¿½es nos campos
+		medicamento.setText(m.getNome());
+		tipo.setText(m.getTipo());
+		dosagem.setText(m.getDosagem());
+		principioAtivo.setText(m.getPricipioAtivo());
 		
 		return rootView;
 	}

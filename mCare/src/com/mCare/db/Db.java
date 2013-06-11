@@ -39,6 +39,9 @@ public class Db extends SQLiteOpenHelper {
 	public final String TABLE_NAME_INTERNACOES = "internacoes_hospitalares";
 	public final String TABLE_NAME_DIAGNOSTICO = "diagnostico";
 	public final String TABLE_NAME_DIAGNOSTICO_CONSULTA = "diagnostico_consulta";
+	public final String TABLE_NAME_EXAME = "exame";
+	public final String TABLE_NAME_RESULTADO_EXAME = "resultado_exame";
+	
 	public final String TABLE_NAME_FOTO = "foto";
 	public final String TABLE_NAME_VIDEO = "video";
 	public final String TABLE_NAME_AUDIO = "audio";
