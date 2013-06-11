@@ -154,10 +154,11 @@
         CREATE TABLE medicamento (id_medicamento INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT NOT NULL, tipo TEXT NOT NULL, dosagem TEXT NULL, principioativo TEXT NULL, favorito INTEGER NULL);@
 
 		CREATE TABLE medicamento_paciente (
-			id_medicamento INTEGER PRIMARY KEY REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
-			id_consulta INTEGER PRIMARY KEY REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_medicamento INTEGER REFERENCES medicamento(id_medicamento) ON UPDATE CASCADE ON DELETE CASCADE, 
+			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
 			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, 
-			data_consulta TEXT NOT NULL);@
+			data_consulta TEXT NOT NULL,
+			PRIMARY KEY(id_medicamento,id_consulta));@
 			
         CREATE TABLE internacoes_hospitalares (
         	id_internacao INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -183,14 +184,14 @@
         	id_exame INTEGER REFERENCES exame(id_exame) ON UPDATE CASCADE ON DELETE CASCADE, 
 			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
 			nome TEXT NOT NULL,
-			PRIMARY KEY(id_exame,id_consulta),
-			valor TEXT NOT NULL);@	
+			valor TEXT NOT NULL,
+			PRIMARY KEY(id_exame,id_consulta));@	
         	
         CREATE TABLE foto (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
+        CREATE TABLE video (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);
+        CREATE TABLE audio (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
 </string>
     <string name="DB_NAME">teste</string>
 

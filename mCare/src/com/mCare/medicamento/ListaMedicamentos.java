@@ -53,6 +53,7 @@ public class ListaMedicamentos extends Activity {
 
 		//coloca a lista do banco no layout
 		listViewMedicamentosFavoritos = (ListView) findViewById(R.id.lstMedicamentosFavoritos);
+		
 		listViewMedicamentosFavoritos.setOnItemClickListener(new OnItemClickListener() {
 
 			/*** Quando clica de forma rapida, visualiza o medicamento ***/
@@ -68,6 +69,7 @@ public class ListaMedicamentos extends Activity {
 				Toast.makeText(getApplicationContext(),"Voce clicou em:" +elementsFavoritos.get(arg2).toString(), Toast.LENGTH_LONG).show();
 			}
 		});
+		
 		listViewMedicamentosFavoritos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
 			/*** Quando clica de forma devagar, edita o medicamento ***/
@@ -100,7 +102,7 @@ public class ListaMedicamentos extends Activity {
 
 		//coloca a lista do banco no layout
 		listViewMedicamentosNaoFavoritos = (ListView) findViewById(R.id.lstMedicamentosNaoFavoritos);
-		listViewMedicamentosFavoritos.setOnItemClickListener(new OnItemClickListener() {
+		listViewMedicamentosNaoFavoritos.setOnItemClickListener(new OnItemClickListener() {
 			/*** Quando clica de forma rapida, visualiza o medicamento ***/
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
