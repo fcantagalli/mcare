@@ -163,7 +163,7 @@
             android:label="@string/title_activity_lista_exames" >
         </activity>
         <activity
-            ancom.mCare.exame.VisualizarExameualizarExame"
+            android:name ="com.mCare.exame.VisualizarExameualizarExame"
             android:label="@string/title_activity_visualizar_exame" >
         </activity>
     </application>

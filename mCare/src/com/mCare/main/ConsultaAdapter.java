@@ -67,8 +67,8 @@ public class ConsultaAdapter extends BaseAdapter {
 		TextView nome = (TextView) convertView.findViewById(R.id.nomePaciente);
 		TextView bairro = (TextView) convertView.findViewById(R.id.Bairro);
 		TextView horario = (TextView) convertView.findViewById(R.id.Horario);
-		//FrameLayout ligacao = (FrameLayout) convertView.findViewById(R.id.row_botao_ligacao);
-		//FrameLayout maps = (FrameLayout) convertView.findViewById(R.id.row_botao_maps);
+		FrameLayout ligacao = (FrameLayout) convertView.findViewById(R.id.);
+		FrameLayout maps = (FrameLayout) convertView.findViewById(R.id.row_botao_maps);
 		/*
 		ligacao.setOnClickListener(new View.OnClickListener() {
 			
