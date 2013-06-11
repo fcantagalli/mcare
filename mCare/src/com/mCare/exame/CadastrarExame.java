@@ -15,8 +15,16 @@ public class CadastrarExame extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastrar_exame);
 		
+		//Pega campos do layout
 		EditText nomeExame = (EditText) findViewById(R.id.campoNomeExame);
 		Spinner tipo = (Spinner) findViewById(R.id.spinner1);
+		
+		/********* MANDA CADASTRAR NO BANCO ***********/
+		/*LOGO DEPOIS QUE CADASTRAR:
+		//Manda informacoes de volta para a tela que chamou o CadastrarExame
+		this.getIntent().putExtra("id", id_exame);
+		this.getIntent().putExtra("nome", id_paciente);
+		this.getIntent().putExtra("tipo", id_paciente);*/
 	}
 
 	@Override

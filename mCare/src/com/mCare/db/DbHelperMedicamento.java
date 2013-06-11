@@ -184,8 +184,8 @@ public class DbHelperMedicamento {
 	public LinkedList<Medicamento> listaMedicamentos(boolean favorito){
 		
 		//DEFINE QUERY dependendo se quer favoritos ou nao
-		String query = "SELECT id_medicamento, nome " +
-						"FROM "+dbhelper.TABLE_NAME_MEDICAMENTO;
+		String query = " SELECT id_medicamento, nome " +
+						" FROM "+dbhelper.TABLE_NAME_MEDICAMENTO;
 		
 		if (favorito) {
 			query = query+ " WHERE favorito = 1;";
@@ -231,8 +231,8 @@ public class DbHelperMedicamento {
 		//Busca ultima consulta do paciente (pra saber se o medicamento foi descontinuado
 		int id_ultima_consulta = 0;
 		String query_consulta =
-				"SELECT max(id_consulta) " +
-				"FROM " + dbhelper.TABLE_NAME_CONSULTAS_MARCADAS +
+				" SELECT max(id_consulta) " +
+				" FROM " + dbhelper.TABLE_NAME_CONSULTAS_MARCADAS +
 				" WHERE fk_paciente = " + p.getBd_id();
 		
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query_consulta, null);
@@ -253,7 +253,7 @@ public class DbHelperMedicamento {
 		String query = "SELECT medicamento.id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
 						" FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
 						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento " +
-						"WHERE medicamento_paciente.id_paciente = " + p.getBd_id();
+						" WHERE medicamento_paciente.id_paciente = " + p.getBd_id();
 		
 		//Executa o SQL
 		cursor = dbhelper.exercutaSELECTSQL(query, null);
@@ -288,6 +288,9 @@ public class DbHelperMedicamento {
 			 * Nao sei se esta fazendo (nao consegui testar...)
 			 * *********************************************
 			 * Felipe : O comparator la embaixo precisa ser de medicamentos e nao integer. eu mudei isso, ve se era isso mesmo que voce queria.
+			 * 
+			 * 
+			 * Gabi: Na verdade eu nao tava usando ele... Da uma olhada se ta funcionando esse aqui de baixo qnd a gente tiver dados? :D
 			 */
 			Collections.sort(listaMedicamentosAtuais, new Comparator<Medicamento>() {
 		         @Override
@@ -322,32 +325,5 @@ public class DbHelperMedicamento {
 			
 			return;
 		}
-	}
-	
-	public class ComparadorInteiro implements Comparator<Medicamento>{
-		 
-	    @Override
-	    public int compare(Medicamento o1, Medicamento o2) {
-	        if(o1.getId()==o2.getId()){ // id medicamento forem iguais precisa olhar o id da consulta
-	        	if(o1.getIdConsulta() > o2.getIdConsulta()){
-	        		return 1;
-	        	}else{
-	        		if(o1.getIdConsulta() < o2.getIdConsulta()){
-	        			return -1;
-	        		}
-	        		else{
-	        			return 0;
-	        		}
-	        	}
-	        }
-	        else{
-	        	if(o1.getId() > o2.getId()){
-	        		return 1;
-	        	}
-	        	else{
-	        		return -1;
-	        	}
-	        }
-	    }
 	}
 }

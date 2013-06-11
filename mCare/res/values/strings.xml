@@ -179,7 +179,7 @@
         	nome TEXT NOL NULL,
         	tipocampovalor INTEGER NOT NULL);@
         	
-		CREATE TABLE exames_solicitados (
+		CREATE TABLE resultado_exame (
         	id_exame INTEGER REFERENCES exame(id_exame) ON UPDATE CASCADE ON DELETE CASCADE, 
 			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
 			nome TEXT NOT NULL,
@@ -188,10 +188,8 @@
         	
         CREATE TABLE foto (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
-        
         CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);
-</string>
+    </string>
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->

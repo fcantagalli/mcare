@@ -37,7 +37,7 @@
         android:id="@+id/spinnerTipoResultadoExame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:entries="@array/array_tipos_resultado_exame"
+        android:entries="@array/array_tipos_campo"
         android:padding="@dimen/MargenPadrao" />
 
     <Button

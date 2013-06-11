@@ -74,8 +74,8 @@ public class DbHelperDiagnostico {
 	public LinkedList<Diagnostico> listaDiagnosticos(){
 		
 		//DEFINE QUERY dependendo se quer favoritos ou nao
-		String query = "SELECT id_diagnostico, nome " +
-						"FROM "+dbhelper.TABLE_NAME_DIAGNOSTICO;
+		String query = " SELECT id_diagnostico, nome " +
+						" FROM "+dbhelper.TABLE_NAME_DIAGNOSTICO;
 		
 		//Executa o SQL
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
@@ -112,10 +112,10 @@ public class DbHelperDiagnostico {
 	public LinkedList<Diagnostico> listaDiagnosticos(Consulta c){
 	
 		//Busca todos os diagnosticos feitos naquela consulta
-		String query = "SELECT diagnostico.id_diagnostico, diagnostico.nome, diagnostico_consulta.id_consulta, diagnostico_consulta.data_consulta" +
-						"FROM diagnostico" +
-						"INNER JOIN diagnostico_consulta ON diagnostico.id_diagnostico = diagnostico_consulta.id_diagnostico " +
-						"WHERE diagnostico_consulta.id_consulta = " + c.getId();
+		String query = " SELECT diagnostico.id_diagnostico, diagnostico.nome, diagnostico_consulta.id_consulta, diagnostico_consulta.data_consulta" +
+						" FROM diagnostico " +
+						" INNER JOIN diagnostico_consulta ON diagnostico.id_diagnostico = diagnostico_consulta.id_diagnostico " +
+						" WHERE diagnostico_consulta.id_consulta = " + c.getId();
 		
 		//Executa o SQL
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
