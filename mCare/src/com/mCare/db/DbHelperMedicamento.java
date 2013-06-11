@@ -206,8 +206,8 @@ public class DbHelperMedicamento {
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				
-				int id = Integer.parseInt(cursor.getString(1));
-				String nome = cursor.getString(2);
+				int id = Integer.parseInt(cursor.getString(0));
+				String nome = cursor.getString(1);
 				
 				Medicamento m = new Medicamento(id, nome);
 				listaMedicamentos.add(m);

@@ -94,13 +94,13 @@ public class DbHelperExame {
 				int id_exame = Integer.parseInt(cursor.getString(0));
 				String nome = cursor.getString(1);
 				int tipo_resultado_exame = Integer.parseInt(cursor.getString(2));
-				int id_consulta = Integer.parseInt(cursor.getString(3));
-				String valor = cursor.getString(4);
+				//int id_consulta = Integer.parseInt(cursor.getString(3));
+				//String valor = cursor.getString(4);
 				
 				
 				Exame e = new Exame(id_exame, nome, tipo_resultado_exame);
-				e.setIdConsulta(id_consulta);
-				e.setValor(valor);
+				//e.setIdConsulta(id_consulta);
+				//e.setValor(valor);
 				
 				//Adiciona aos diagnosticos
 				listaExames.add(e);

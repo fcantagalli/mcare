@@ -16,6 +16,15 @@ public class Exame {
 		this.nome = nome;
 		this.tipo_resultado_exame = tipo_resultado_exame;
 	}
+	
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nome;
+	}
+
+
 
 	//ENCAPSULAMENTOS
 	public int getId() {

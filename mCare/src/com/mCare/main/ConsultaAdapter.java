@@ -25,9 +25,11 @@ public class ConsultaAdapter extends BaseAdapter {
 	
 	/**Classe utilizada para instanciar os objetos do XML**/
 	private LayoutInflater inflater;
+	private Context context;
 	
 	public ConsultaAdapter(Context context, List<Consulta> plistConsultas){
 		this.listConsultas = plistConsultas;
+		this.context = context;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
@@ -57,30 +59,30 @@ public class ConsultaAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup viewGroup) {
 		
 		/** pega o registro da lista**/
-		Consulta con = listConsultas.get(position);
+		final Consulta con = listConsultas.get(position);
 		
 		/** utiliza o XML row_consulta para exibir na tela*/		
 		convertView = inflater.inflate(R.layout.layout_row_consulta, null);
 		
 		/** instancia os objetos do XML **/
-		ImageView foto = (ImageView) convertView.findViewById(R.id.fotoPaciente);
+		//ImageView foto = (ImageView) convertView.findViewById(R.id.fotoPaciente);
 		TextView nome = (TextView) convertView.findViewById(R.id.nomePaciente);
 		TextView bairro = (TextView) convertView.findViewById(R.id.Bairro);
 		TextView horario = (TextView) convertView.findViewById(R.id.Horario);
-		FrameLayout ligacao = (FrameLayout) convertView.findViewById(R.id.);
-		FrameLayout maps = (FrameLayout) convertView.findViewById(R.id.row_botao_maps);
-		/*
+		FrameLayout ligacao = (FrameLayout) convertView.findViewById(R.id.callButtonRow);
+		//FrameLayout maps = (FrameLayout) convertView.findViewById(R.id.row_botao_maps);
+		
 		ligacao.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
 				// TODO Auto-generated method stub
-				Uri uri = Uri.parse("tel:"+"986481753");
+				Uri uri = Uri.parse("tel:"+con.getPaciente().getTelefone());
 		        Intent intent = new Intent(Intent.ACTION_CALL,uri);
-		        view.getContext().startActivity(intent);
+		        context.startActivity(intent);
 			}
 		});
-		
+		/*
 		maps.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -95,7 +97,7 @@ public class ConsultaAdapter extends BaseAdapter {
 		 * instanciados do XML
 		 */
 		nome.setText(con.getPaciente().getNome());
-		bairro.setText(con.getPaciente().getLogradouro());
+		bairro.setText(con.getPaciente().getBairro());
 		GregorianCalendar gc = con.getHora();
 		horario.setText(gc.get(gc.DAY_OF_MONTH)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+" às "+gc.get(gc.HOUR_OF_DAY)+":"+gc.get(gc.MINUTE));
 		if(gc.compareTo(GregorianCalendar.getInstance())<0){
@@ -111,6 +113,7 @@ public class ConsultaAdapter extends BaseAdapter {
 		context.startActivity(intent);
 	}*/
 	
+
 	String enderecoNavigation(String endereco, int numero){
 		String endFinal = "";
 		String[] separada = endereco.split(" ");
