@@ -13,13 +13,6 @@ public class Agenda_Fragment extends Lista_Consultas_Fragment {
 	public List<Consulta> retornaConsultas(DbHelperConsultas db) {
 		return db.consultasDoDia();
 	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-	}
-	
 	
 	
 }

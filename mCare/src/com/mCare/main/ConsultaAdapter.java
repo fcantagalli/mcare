@@ -1,28 +1,32 @@
 package com.mCare.main;
 
-import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import com.mCare.consulta.Consulta;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mCare.R;
+import com.mCare.consulta.Consulta;
 
 public class ConsultaAdapter extends BaseAdapter {
 
 	private List<Consulta> listConsultas;
-	
+	private Calendar c1;
+	private Calendar c2;
+	private Calendar c3;
+	private Calendar c4;
+	private Calendar c5;
+	private Calendar c6;
 	/**Classe utilizada para instanciar os objetos do XML**/
 	private LayoutInflater inflater;
 	private Context context;
@@ -63,7 +67,7 @@ public class ConsultaAdapter extends BaseAdapter {
 		
 		/** utiliza o XML row_consulta para exibir na tela*/		
 		convertView = inflater.inflate(R.layout.layout_row_consulta, null);
-		
+		convertView.setBackgroundResource(setColorBackground(con));
 		/** instancia os objetos do XML **/
 		//ImageView foto = (ImageView) convertView.findViewById(R.id.fotoPaciente);
 		TextView nome = (TextView) convertView.findViewById(R.id.nomePaciente);
@@ -77,8 +81,10 @@ public class ConsultaAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View view) {
 				// TODO Auto-generated method stub
+				Log.i("tel","numero de telefone: "+con.getPaciente().getTelefone());
 				Uri uri = Uri.parse("tel:"+con.getPaciente().getTelefone());
 		        Intent intent = new Intent(Intent.ACTION_CALL,uri);
+		        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		        context.startActivity(intent);
 			}
 		});
@@ -113,7 +119,42 @@ public class ConsultaAdapter extends BaseAdapter {
 		context.startActivity(intent);
 	}*/
 	
-
+	private void setCalendars(Consulta con){
+		GregorianCalendar gc = con.getHora();
+		if(c1 == null){
+			c1 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 6, 30);
+			c2 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 10, 0);
+			c3 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 13, 0);
+			c4 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 17, 0);
+			c5 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 19, 0);
+			c6 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 22, 0);
+		}	
+	}
+	
+	private int setColorBackground(Consulta con){
+		setCalendars(con);
+		if(con.getHora().compareTo(c1)==1){
+			if(con.getHora().compareTo(c2)==1){
+				if(con.getHora().compareTo(c3)==1){
+					if(con.getHora().compareTo(c4)==1){
+						if(con.getHora().compareTo(c5)==1){
+							if(con.getHora().compareTo(c6)==1){
+								return R.color.azul;
+							}
+							return R.color.roxo;
+						}
+						return R.color.lilas;
+					}
+					return R.color.vermelho;
+				}
+				return R.color.laranja;
+			}
+			return R.color.amarelo;
+		}else{
+			return R.color.azul;
+		}
+	}
+	
 	String enderecoNavigation(String endereco, int numero){
 		String endFinal = "";
 		String[] separada = endereco.split(" ");

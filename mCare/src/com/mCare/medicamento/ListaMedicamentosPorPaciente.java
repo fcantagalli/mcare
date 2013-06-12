@@ -1,93 +1,103 @@
 package com.mCare.medicamento;
 
-import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-import com.mCare.R;
-import com.mCare.R.layout;
-import com.mCare.R.menu;
-import com.mCare.db.DbHelperMedicamento;
-import com.mCare.db.DbHelperPaciente;
-import com.mCare.medicamento.ListaMedicamentos.MyIndexerAdapter;
-import com.mCare.paciente.Paciente;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.content.Context;
-import android.content.Intent;
+import android.database.DataSetObserver;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.mCare.R;
+import com.mCare.consulta.realizarConsulta.ExpandableAdapter;
+import com.mCare.consulta.realizarConsulta.GroupEntity;
+import com.mCare.db.DbHelperMedicamento;
+import com.mCare.paciente.Paciente;
 
 public class ListaMedicamentosPorPaciente extends Fragment {
 
 	Paciente p;
 	
-	LinkedList<Medicamento> elementsAtuais;
-	LinkedList<Medicamento> elementsAnteriores;
+	ArrayList<Medicamento> elementsAtuais;
+	ArrayList<Medicamento> elementsAnteriores;
 	ListView listViewMedicamentosAtuais;
-	ListView listViewMedicamentosAnteriores;
+	//ListView listViewMedicamentosAnteriores;
 	TextView tituloTelaMedicamentosPaciente;
-
+	ExpandableListView exList;
 	MyIndexerAdapter<Medicamento> adapterAtuais;
-	MyIndexerAdapter<Medicamento> adapterAnteriores;
-	
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		
 		
 		View rootView = inflater.inflate(R.layout.activity_lista_medicamentos_por_paciente,container, false);
 		
+		final int id =  getActivity().getIntent().getExtras().getInt("id_paciente", -1);
+		String nome_paciente = getActivity().getIntent().getExtras().getString("nome_paciente");
+		
+		Paciente p = new Paciente(id,nome_paciente);
+		
+		exList = (ExpandableListView) rootView.findViewById(R.id.expandableListView1);
+		
+		List<GroupEntity> listgrupo = new ArrayList<GroupEntity>();
+		
+		GroupEntity grupo = new GroupEntity(1,"Medicamentos","D");
+		
+		DbHelperMedicamento db = new DbHelperMedicamento(getActivity().getApplicationContext());
+		ArrayList<Medicamento> estaTomando = db.listaMedicamentos(p);
+		List<Medicamento> child = db.listaMedicamentos();  // provavelmente aqui vem a consulta no banco
+		
+		if(child== null){
+			child = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+		}
+		
+		//PARTE DE TESTE
+		//child.add(new Medicamento(1,"doril"));
+		//child.add(new Medicamento(2,"buscopan"));
+		
+		grupo.setListChild(child);
+		listgrupo.add(grupo);
+		
+		exList.setAdapter(new ExpandableAdapter(getActivity(),listgrupo));
+		// TODA A PARTE DE BAIXO E O CODIGO ANTIGO.
+		/*
 		//pega o paciente
 		final int id =  getActivity().getIntent().getExtras().getInt("id_paciente", -1);
-		DbHelperPaciente dbP = new DbHelperPaciente(getActivity());
-		p = dbP.buscaPaciente(id);
-		
+		String nome_paciente = getActivity().getIntent().getExtras().getString("nome_paciente");
+		//DbHelperPaciente dbP = new DbHelperPaciente(getActivity());
+		//p = dbP.buscaPaciente(id);
+		Paciente p = new Paciente(id,nome_paciente);
 		//MOSTRA TITULO DE ACORDO COM O PACIENTE
-		tituloTelaMedicamentosPaciente = (TextView) rootView.findViewById(R.id.tituloTelaMedicamentosPaciente);
 		tituloTelaMedicamentosPaciente.setText("Medicamentos do paciente "+ p.getNome());
 		
-		
-		//AO CLICAR EM UM MEDICAMENTO -> vai pra visualizar medicamento
-		DbHelperMedicamento db = new DbHelperMedicamento(getActivity()
-				.getApplicationContext());
+		DbHelperMedicamento db = new DbHelperMedicamento(getActivity().getApplicationContext());
 
-		db.listaMedicamentos(p); //Pega os medicamentos do banco e coloca em pacientes.medicamentos_atuais e pacientes_medicamentos_anteriores
+		elementsAtuais = db.listaMedicamentos(p); //Pega os medicamentos do banco e coloca em pacientes.medicamentos_atuais e pacientes_medicamentos_anteriores
 		
 		//-------MEDICAMENTOS ATUAIS-------
-		elementsAtuais = p.getMedicamentosAtuais();
+		//elementsAtuais = p.getMedicamentosAtuais();
 		if(elementsAtuais== null){
-			elementsAtuais = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+			elementsAtuais = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
 
 		//coloca a lista do banco no layout
-		listViewMedicamentosAtuais = (ListView) rootView.findViewById(R.id.lstMedicamentosAtuais);
+	//	listViewMedicamentosAtuais = (ListView) rootView.findViewById(R.id.lstMedicamentosAtuais);
 		listViewMedicamentosAtuais.setOnItemClickListener(new OnItemClickListener() {
-			/*** Quando clica de forma rapida, visualiza o medicamento ***/
+			/*** Quando clica de forma rapida, visualiza o medicamento 
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				
@@ -102,21 +112,19 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		});
 		
 		listViewMedicamentosAtuais.setFastScrollEnabled(true);
-		adapterAtuais = new MyIndexerAdapter<Medicamento>(
-				getActivity(), android.R.layout.simple_list_item_1, elementsAtuais);
+		adapterAtuais = new MyIndexerAdapter<Medicamento>(getActivity(), android.R.layout.simple_list_item_1, elementsAtuais);
 		listViewMedicamentosAtuais.setAdapter(adapterAtuais);
 		
-		
 		//-------MEDICAMENTOS ANTERIORES-------
-		elementsAnteriores = p.getMedicamentosAnteriores();
-		if(elementsAnteriores== null){
-			elementsAnteriores = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
-		}
+		//elementsAnteriores = p.getMedicamentosAnteriores();
+		//if(elementsAnteriores== null){
+		//	elementsAnteriores = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+		//}
 
 		//coloca a lista do banco no layout
-		listViewMedicamentosAnteriores = (ListView) rootView.findViewById(R.id.lstMedicamentosAnteriores);
+		/*listViewMedicamentosAnteriores = (ListView) rootView.findViewById(R.id.lstMedicamentosAnteriores);
 		listViewMedicamentosAnteriores.setOnItemClickListener(new OnItemClickListener() {
-			/*** Quando clica de forma rapida, visualiza o medicamento ***/
+			/*** Quando clica de forma rapida, visualiza o medicamento
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				
@@ -134,7 +142,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		adapterAnteriores = new MyIndexerAdapter<Medicamento>(
 				getActivity(), android.R.layout.simple_list_item_1, elementsAnteriores);
 		listViewMedicamentosAnteriores.setAdapter(adapterAnteriores);
-
+		*/
 		
 		return rootView;
 	}

@@ -226,7 +226,7 @@ public class DbHelperMedicamento {
 		}
 	}
 	
-	public void listaMedicamentos(Paciente p){
+	public ArrayList<Medicamento> listaMedicamentos(Paciente p){
 	
 		//Busca ultima consulta do paciente (pra saber se o medicamento foi descontinuado
 		int id_ultima_consulta = 0;
@@ -248,29 +248,34 @@ public class DbHelperMedicamento {
 				cursor.moveToNext();
 			}
 		}
+		else{
+			return null;
+		}
 		
 		//Busca todos os medicamentos que o paciente toma ou ja tomou 
 		String query = "SELECT medicamento.id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
 						" FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
-						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento " +
-						" WHERE medicamento_paciente.id_paciente = " + p.getBd_id();
+						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento" +
+						" AND medicamento_paciente.id_consulta = "+id_ultima_consulta+
+						" WHERE medicamento_paciente.fk_paciente = " + p.getBd_id();
 		
 		//Executa o SQL
 		cursor = dbhelper.exercutaSELECTSQL(query, null);
 		
 		Log.i("SQL", "cursor esta fechado? : " + cursor.isFirst());
+		ArrayList<Medicamento> listaMedicamentosAtuais = null;
 		if(cursor.moveToFirst()){
 			Log.i("SQL","cursor possui linhas");
 			
 			//Armazena resultado
-			LinkedList<Medicamento> listaMedicamentosAtuais = new LinkedList<Medicamento>();
-			LinkedList<Medicamento> listaMedicamentosAnteriores = new LinkedList<Medicamento>();
+			listaMedicamentosAtuais = new ArrayList<Medicamento>(cursor.getCount());
+			//LinkedList<Medicamento> listaMedicamentosAnteriores = new LinkedList<Medicamento>();
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				
-				int id_medicamento = Integer.parseInt(cursor.getString(0));
+				int id_medicamento = cursor.getInt(0);
 				String nome = cursor.getString(1);
-				int id_consulta = Integer.parseInt(cursor.getString(2));
+				int id_consulta = cursor.getInt(2);
 				GregorianCalendar hora = dbhelper.textToGregorianCalendar(cursor.getString(3));
 				
 				Medicamento m = new Medicamento(id_medicamento, nome);
@@ -303,7 +308,7 @@ public class DbHelperMedicamento {
 	        	    return c;
 		         }
 		     });
-			
+			/*
 			//Depois de ordenar, ver qual o ultimo id_consulta de cada medicamento
 			Medicamento medicamento_anterior = null;
 			//Testa do primeiro ao penultimo
@@ -322,8 +327,9 @@ public class DbHelperMedicamento {
 				listaMedicamentosAnteriores.add(m);
 				listaMedicamentosAtuais.remove(m);
 			}
+			*/
 			
-			return;
 		}
+		return listaMedicamentosAtuais;
 	}
 }

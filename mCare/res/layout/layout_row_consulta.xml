@@ -36,7 +36,8 @@
             style="@style/textoConsultas"
             android:layout_width="match_parent"
             android:gravity="top|center_vertical"
-            android:text="Nome Paciente" />
+            android:text="Nome Paciente"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/Bairro"
@@ -47,9 +48,11 @@
 
         <TextView
             android:id="@+id/Horario"
-            style="@style/textoConsultas"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="bottom|center_vertical"
+            android:textColor="@color/White"
+            android:textSize="20sp"
             android:text="Horario" />
     </LinearLayout>
 

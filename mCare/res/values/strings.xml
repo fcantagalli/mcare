@@ -186,9 +186,9 @@
         	id_exame INTEGER REFERENCES exame(id_exame) ON UPDATE CASCADE ON DELETE CASCADE, 
 			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE,
 			nome TEXT NOT NULL,
-			PRIMARY KEY(id_exame,id_consulta),
-			valor TEXT NOT NULL);@	
-        	
+			valor TEXT NOT NULL,
+			PRIMARY KEY(id_exame,id_consulta));@	
+        
         CREATE TABLE foto (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
         CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@

@@ -140,4 +140,11 @@
  <color name="DarkBlue">#00008B</color>
  <color name="Navy">#000080</color>
  <color name="Black">#000000</color>
+<color name = "amarelo">#eebd02</color>
+<color name = "laranja">#f4ae26</color>
+<color name = "vermelho">#e58300</color>
+<color name = "lilas">#976bd6</color>
+<color name = "roxo">#6b35b8</color>
+<color name = "azul">#494890</color>
+
 </resources>
