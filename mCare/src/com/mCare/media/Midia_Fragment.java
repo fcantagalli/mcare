@@ -132,22 +132,24 @@ public class Midia_Fragment extends Fragment {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-	        if (resultCode == Activity.RESULT_OK) {
-	            // Image captured and saved to fileUri specified in the Intent
-	            Toast.makeText(getActivity(), "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
-	        } else if (resultCode == Activity.RESULT_CANCELED) {
-	        	Toast.makeText(getActivity(), "A imagem não foi salva", Toast.LENGTH_LONG).show();
-	        } else {
-	        	Toast.makeText(getActivity(), "Não foi possível salvar a imagem", Toast.LENGTH_LONG).show();
-	        }
-	    }
-		
-		String caminho = data.getData().toString();
-		
-		Intent intent = new Intent(getActivity(), Descricao.class);
-		intent.putExtra("caminho_foto", caminho);
-		startActivity(intent);
+		if(data!=null){
+			if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+		        if (resultCode == Activity.RESULT_OK) {
+		            // Image captured and saved to fileUri specified in the Intent
+		        	String caminho = data.getData().toString();
+					Intent intent = new Intent(getActivity(), Descricao.class);
+					intent.putExtra("caminho_foto", caminho);
+					startActivity(intent);
+		            Toast.makeText(getActivity(), "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
+		        } else if (resultCode == Activity.RESULT_CANCELED) {
+		        	Toast.makeText(getActivity(), "A imagem não foi salva", Toast.LENGTH_LONG).show();
+		        } else {
+		        	Toast.makeText(getActivity(), "Não foi possível salvar a imagem", Toast.LENGTH_LONG).show();
+		        }
+		    }
+		}else{
+			Toast.makeText(getActivity(), "Imagem não capturada", Toast.LENGTH_LONG).show();
+		}
 		
 		//DbHelperMedia dbMidia = new DbHelperMedia(getActivity());
 		//GregorianCalendar now = new GregorianCalendar();
