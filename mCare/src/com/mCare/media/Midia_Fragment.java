@@ -3,10 +3,10 @@ package com.mCare.media;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -20,10 +20,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.mCare.db.DbHelperMedia;
 
 public class Midia_Fragment extends Fragment {
 
@@ -139,8 +136,12 @@ public class Midia_Fragment extends Fragment {
 		        	String caminho = data.getData().toString();
 					Intent intent = new Intent(getActivity(), Descricao.class);
 					intent.putExtra("caminho_foto", caminho);
+					
+					Bitmap foto = (Bitmap) data.getExtras().get("data");
+					intent.putExtra("foto", foto);
+					
 					startActivity(intent);
-		            Toast.makeText(getActivity(), "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
+		            //Toast.makeText(getActivity(), "Image saved to:\n" + data.getData(), Toast.LENGTH_LONG).show();
 		        } else if (resultCode == Activity.RESULT_CANCELED) {
 		        	Toast.makeText(getActivity(), "A imagem não foi salva", Toast.LENGTH_LONG).show();
 		        } else {
@@ -150,11 +151,7 @@ public class Midia_Fragment extends Fragment {
 		}else{
 			Toast.makeText(getActivity(), "Imagem não capturada", Toast.LENGTH_LONG).show();
 		}
-		
-		//DbHelperMedia dbMidia = new DbHelperMedia(getActivity());
-		//GregorianCalendar now = new GregorianCalendar();
-		
-		//dbMidia.insereMedia(dbMidia.FOTO, caminho, "descicao", now);	
+
 	}
 
 }

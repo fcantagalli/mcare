@@ -1,15 +1,22 @@
 package com.mCare.media;
 
+import java.util.GregorianCalendar;
+
 import android.app.Activity;
-import android.database.Cursor;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.sax.TextElementListener;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.mCare.R;
+import com.mCare.db.DbHelperMedia;
 
 public class Descricao extends Activity {
 
@@ -23,16 +30,35 @@ public class Descricao extends Activity {
 		Log.i("midia", "Caminho: " + caminho);
 
 		ImageView myImage = (ImageView) findViewById(R.id.imageViewFoto);
+		Bitmap foto = (Bitmap) getIntent().getExtras().get("foto");
+		myImage.setImageBitmap(foto);
 		
-		Cursor cursor = MediaStore.Images.Thumbnails.query(getContentResolver(), Uri.parse(caminho), null);
-		if (cursor != null) {
-		    cursor.moveToFirst();
-		    int imageID = cursor.getInt(cursor.getColumnIndex(MediaStore.Images.Media._ID));
-		    Uri uri = Uri.withAppendedPath( MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-		                                    Integer.toString(imageID) );
-		    myImage.setImageURI(uri);
+		Button finalizar = (Button) findViewById(R.id.buttonFinalizaDescricao);
+		finalizar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				gravaBanco();
+			}
+		});
+	}
+	
+	public void gravaBanco(){
+		EditText edit = (EditText) findViewById(R.id.editTextDescricao);
+		String descricao = edit.getText().toString();
+		if(descricao.length()!=0){
+			String caminho = getIntent().getExtras().getString("caminho_foto");
+			Log.i("midia", caminho);
+			DbHelperMedia dbMidia = new DbHelperMedia(this);
+			GregorianCalendar now = new GregorianCalendar();
+					
+			dbMidia.insereMedia(dbMidia.FOTO, caminho, descricao, now);	
+		}else{
+			Toast.makeText(this, "Insira uma descricao", Toast.LENGTH_LONG).show();
+			return;
 		}
-		
+		Toast.makeText(this, "Foto salva com sucesso!", Toast.LENGTH_LONG).show();
+		onBackPressed();
 	}
 
 	@Override
