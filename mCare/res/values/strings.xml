@@ -119,8 +119,6 @@
     <!--
          STRINGS PARA O BANCO DE DADOS 
     	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
-
-
     -->
 
     <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (
@@ -193,8 +191,7 @@
         
         CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE audio (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
-</string>
+        CREATE TABLE audio (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@</string>
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->
@@ -265,5 +262,6 @@
     <string name="title_activity_editar_exame">EditarExame</string>
     <string name="title_activity_lista_exames">ListaExames</string>
     <string name="title_activity_visualizar_exame">VisualizarExame</string>
+    <string name="title_activity_galeria_paciente">GaleriaPaciente</string>
 
 </resources>

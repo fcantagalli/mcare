@@ -163,8 +163,12 @@
             android:label="@string/title_activity_lista_exames" >
         </activity>
         <activity
-            android:name ="com.mCare.exame.VisualizarExameualizarExame"
+            android:name="com.mCare.exame.VisualizarExameualizarExame"
             android:label="@string/title_activity_visualizar_exame" >
+        </activity>
+        <activity
+            android:name="com.mCare.media.GaleriaPaciente"
+            android:label="@string/title_activity_galeria_paciente" >
         </activity>
     </application>
 
