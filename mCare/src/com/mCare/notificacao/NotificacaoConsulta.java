@@ -38,7 +38,7 @@ public class NotificacaoConsulta extends BroadcastReceiver {
 		Intent notificationIntent = new Intent(context, MainActivity.class);
 
 		// Attach the intent to a pending intent
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
 
 		// Create the notification
 
@@ -88,34 +88,24 @@ public class NotificacaoConsulta extends BroadcastReceiver {
 		Intent notificationIntent = new Intent(contexto, MainActivity.class);
 
 		// Attach the intent to a pending intent
-		PendingIntent contentIntent = PendingIntent.getActivity(contexto, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+		PendingIntent contentIntent = PendingIntent.getActivity(contexto, 0, notificationIntent, 0);
 
 		// Create the notification
 
 		Notification notification = null;
-		int apilevel = Build.VERSION.SDK_INT;
 		
 		int id = (int) quandoIraAparecer;
 		
-		if(apilevel >= 11){
-			Builder builder = new Notification.Builder(contexto).setContentTitle(tickerText).setContentText(message).setSmallIcon(icon).setContentIntent(contentIntent).setAutoCancel(true);
-			if(apilevel >= 17){
-				//Android 4.2
-				notification = builder.build();
-				notification.defaults = notification.DEFAULT_ALL;
-			}else{
-				// Android 3.x
-				notification = builder.getNotification();
-				notification.defaults = notification.DEFAULT_ALL;
-			}
-		}
-		else{
-			//Android 2.2
-			notification = new Notification(icon,tickerText,id);
-			//Informacoes
-			notification.setLatestEventInfo(contexto, title, message, contentIntent);
-			notification.defaults = notification.DEFAULT_ALL;
-		}
+			notification = new Notification.Builder(contexto)
+			.setContentTitle(tickerText)
+			.setContentText(message)
+			.setSmallIcon(icon).
+			setContentIntent(contentIntent)
+			.setAutoCancel(true)
+			.setWhen(quandoIraAparecer)
+			.setShowWhen(true).build();
+			
+		notification.flags |= Notification.FLAG_AUTO_CANCEL;	
 		
 		nm.notify(id,notification);
 
