@@ -1,6 +1,7 @@
-<<<<<<< <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@color/White" >
 
     <FrameLayout
         android:id="@+id/barrinha"
@@ -47,4 +48,20 @@
                 android:text="Data"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/Black" />
+        </LinearLayout>
 
+        <FrameLayout
+            android:id="@+id/row_botao_ligacao"
+            android:layout_width="56dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right" >
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/stat_sys_phone_call" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -36,7 +36,11 @@
         android:layout_height="wrap_content"
         android:drawSelectorOnTop="false"
         android:layout_below="@+id/adicionarLayout"
-        android:layout_marginTop="6dp" >
+        android:layout_marginTop="6dp"
+        android:dividerHeight="10dp"
+        android:divider="@android:color/transparent"
+        android:layout_marginLeft="@dimen/MargenPadrao"
+        android:layout_marginRight="@dimen/MargenPadrao" >
     </ListView>
 
 </RelativeLayout>
