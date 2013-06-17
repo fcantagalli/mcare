@@ -7,13 +7,13 @@ import java.util.Locale;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mCare.R;
@@ -89,9 +89,88 @@ public class ConsultaAdapter extends BaseAdapter {
 		horario.setText(gc.get(gc.DAY_OF_MONTH)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+" às "+gc.get(gc.HOUR_OF_DAY)+":"+gc.get(gc.MINUTE));
 		
 		FrameLayout barrinha = (FrameLayout) convertView.findViewById(R.id.barrinha);
-		barrinha.setBackgroundColor(convertView.getResources().getColor(R.color.CustomRed));
+		barrinha.setBackgroundColor(convertView.getResources().getColor(classificaData(gc)));
 
 		return convertView;
+	}
+	
+	public int classificaData(GregorianCalendar gc){
+		GregorianCalendar now = new GregorianCalendar(Locale.getDefault());
+		int dia = gc.get(GregorianCalendar.DAY_OF_MONTH);
+		int mes = gc.get(GregorianCalendar.MONTH);
+		//correcao do bug do mes:
+		mes--;
+		int ano = gc.get(GregorianCalendar.YEAR);
+		int hora = gc.get(GregorianCalendar.HOUR_OF_DAY);
+		int minutos = gc.get(GregorianCalendar.MINUTE);
+		
+		Log.i("phil", "mes da consulta: " + mes + " mes de agora: " + now.get(GregorianCalendar.MONTH));
+		Log.i("phil", "ano da consulta: " + ano + " ano de agora: " + now.get(GregorianCalendar.YEAR));
+		Log.i("phil", "dia da consulta: " + dia + " dia de agora: " + now.get(GregorianCalendar.DAY_OF_MONTH));
+		Log.i("phil", "hora da consulta: " + hora + " hora de agora: " + now.get(GregorianCalendar.HOUR_OF_DAY));
+		Log.i("phil", "minutos da consulta: " + minutos + " minutos da consulta: " + now.get(GregorianCalendar.MINUTE));
+		
+		//ano igual a hoje
+		if(ano==now.get(GregorianCalendar.YEAR)){
+			//mes igual a hoje
+			if(mes==now.get(GregorianCalendar.MONTH)){
+				//dia igual a hoje
+				if(dia==now.get(GregorianCalendar.DAY_OF_MONTH)){
+					//hora igual agora
+					if(hora==now.get(GregorianCalendar.HOUR_OF_DAY)){
+						//minuto igual agora
+						if(minutos==now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomRed;
+						}
+						
+						if(minutos > now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomGreen;
+						}
+						
+						if(minutos < now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomRed;
+						}
+						
+					}
+					//hora maior que agora
+					if(hora > now.get(GregorianCalendar.HOUR_OF_DAY)){
+						return R.color.CustomGreen;
+					}
+					//hora menor que agora
+					if(hora < now.get(GregorianCalendar.HOUR_OF_DAY)){
+						return R.color.CustomRed;
+					}
+					
+				}
+				//dia maior que hoje
+				if(dia > now.get(GregorianCalendar.DAY_OF_MONTH)){
+					return R.color.CustomBlue;
+				}
+				//dia menor que hoje
+				if(dia < now.get(GregorianCalendar.DAY_OF_MONTH)){
+					return R.color.CustomRed;
+				}
+				
+			}
+			//mes maior que hoje
+			if(mes > now.get(GregorianCalendar.MONTH)){
+				return R.color.CustomBlue;
+			}
+			//mes menor que hoje
+			if(mes < now.get(GregorianCalendar.MONTH)){
+				return R.color.CustomRed;
+			}
+			return -1;
+		}
+		//ano depois de hoje
+		if(ano > now.get(GregorianCalendar.YEAR)){
+			return R.color.CustomBlue;
+		}
+		//ano antes de hoje
+		if(ano < now.get(GregorianCalendar.YEAR)){
+			return R.color.CustomRed;
+		}
+		return -1;
 	}
 	
 	String enderecoNavigation(String endereco, int numero){

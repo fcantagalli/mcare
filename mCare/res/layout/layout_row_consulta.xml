@@ -33,26 +33,26 @@
 
             <TextView
                 android:id="@+id/textViewPaciente"
-                android:layout_width="wrap_content"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
-                android:textColor="@color/Black"
                 android:text="Nome Paciente"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Black" />
 
             <TextView
                 android:id="@+id/Horario"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/Black"
                 android:text="Data"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/Black" />
 
         </LinearLayout>
 
         <FrameLayout
             android:id="@+id/row_botao_ligacao"
-            android:layout_width="match_parent"
+            android:layout_width="56dp"
             android:layout_height="match_parent"
             android:layout_gravity="right" >
 

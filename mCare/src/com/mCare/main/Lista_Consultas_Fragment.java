@@ -85,8 +85,6 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 		
 		GregorianCalendar gc = new GregorianCalendar(Locale.getDefault());
 		String horario = "Dia: " + gc.get(GregorianCalendar.DAY_OF_MONTH) + " Mes: " + gc.get(GregorianCalendar.MONTH) + " Ano: " + gc.get(GregorianCalendar.YEAR) + " Hora: " + gc.get(GregorianCalendar.HOUR_OF_DAY) + " Minuto: " + gc.get(GregorianCalendar.MINUTE);
-		
-		Toast.makeText(getActivity(), "Horario:" + horario, Toast.LENGTH_LONG).show();
 
 		return rootView;
 	}
