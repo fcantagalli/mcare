@@ -42,9 +42,8 @@ public class CadastrarMedicamento extends Activity implements View.OnClickListen
 		dosagem = (EditText) findViewById(R.id.editTextCampoDosagem);
 		principioAtivo = (EditText) findViewById(R.id.editTextCampoPrincipioAtivo);
 		favorito = (RadioGroup) findViewById(R.id.campoFavorito);
-
 		// o tipo de medicamento eh uma caixa de selecao (Spinner)
-		ArrayAdapter<CharSequence> possiveisTipos = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_tipos_medicamento, android.R.layout.simple_list_item_1);
+		ArrayAdapter<CharSequence> possiveisTipos = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_tipos_medicamento, android.R.layout.simple_spinner_dropdown_item);
 		tipo.setAdapter(possiveisTipos);
 	}
 	
@@ -78,9 +77,9 @@ public class CadastrarMedicamento extends Activity implements View.OnClickListen
 		// inserindo no banco agora com todos os valores
 		DbHelperMedicamento db = new DbHelperMedicamento(v.getContext());
 		
-		Medicamento m = new Medicamento(-1, nome.getText().toString(), tipo.getSelectedItem().toString());
+		Medicamento m = new Medicamento(-1, nome.getText().toString(), (String) tipo.getSelectedItem());
 		m.setDosagem(dosagem.getText().toString());
-		
+		m.setPricipioAtivo(principioAtivo.getText().toString());
 		if (favorito.getCheckedRadioButtonId() == 0) { //a primeira opcao do campo 'favorito' eh "Sim"
 			m.setFavorito(true);
 		}

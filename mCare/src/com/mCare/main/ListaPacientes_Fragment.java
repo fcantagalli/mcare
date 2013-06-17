@@ -113,7 +113,7 @@ public class ListaPacientes_Fragment extends Fragment implements OnItemClickList
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		if(data == null){
+		if(data.getExtras() == Bundle.EMPTY){
 			return;
 		}
 		Paciente paciente = new Paciente( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"));

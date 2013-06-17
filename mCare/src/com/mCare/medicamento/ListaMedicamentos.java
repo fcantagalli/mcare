@@ -29,8 +29,8 @@ import com.mCare.db.DbHelperMedicamento;
 
 public class ListaMedicamentos extends Activity {
 
-	LinkedList<Medicamento> elementsFavoritos;
-	LinkedList<Medicamento> elementsNaoFavoritos;
+	ArrayList<Medicamento> elementsFavoritos;
+	ArrayList<Medicamento> elementsNaoFavoritos;
 	ListView listViewMedicamentosFavoritos;
 	ListView listViewMedicamentosNaoFavoritos;
 
@@ -48,7 +48,7 @@ public class ListaMedicamentos extends Activity {
 		elementsFavoritos = db.listaMedicamentos(true); //Pega os medicamentos FAVORITOS do banco
 		
 		if(elementsFavoritos== null){
-			elementsFavoritos = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+			elementsFavoritos = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
 
 		//coloca a lista do banco no layout
@@ -88,7 +88,7 @@ public class ListaMedicamentos extends Activity {
 		
 		listViewMedicamentosFavoritos.setFastScrollEnabled(true);
 		adapter = new MyIndexerAdapter<Medicamento>(
-				getApplicationContext(), android.R.layout.simple_list_item_1, elementsFavoritos);
+				getApplicationContext(), android.R.layout.simple_list_item_2, elementsFavoritos);
 		listViewMedicamentosFavoritos.setAdapter(adapter);
 		
 		
@@ -97,7 +97,7 @@ public class ListaMedicamentos extends Activity {
 		elementsNaoFavoritos = db.listaMedicamentos(false); //Pega os medicamentos NAO-FAVORITOS do banco
 		
 		if(elementsNaoFavoritos== null){
-			elementsNaoFavoritos = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+			elementsNaoFavoritos = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
 
 		//coloca a lista do banco no layout
@@ -184,7 +184,7 @@ public class ListaMedicamentos extends Activity {
 			
 			//Medicamentos favoritos
 			listViewMedicamentosFavoritos.setFastScrollEnabled(true);
-			adapter = new MyIndexerAdapter<Medicamento>(getApplicationContext(), android.R.layout.simple_list_item_1, elementsFavoritos);
+			adapter = new MyIndexerAdapter<Medicamento>(getApplicationContext(), android.R.layout.simple_list_item_2, elementsFavoritos);
 			listViewMedicamentosFavoritos.setAdapter(adapter);
 		}
 		//Nao favorito
@@ -215,7 +215,7 @@ public class ListaMedicamentos extends Activity {
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {
 
-		LinkedList<Medicamento> myElements;
+		ArrayList<Medicamento> myElements;
 		HashMap<String, Integer> alphaIndexer;
 		
 		String[] sections;
@@ -223,7 +223,7 @@ public class ListaMedicamentos extends Activity {
 		public MyIndexerAdapter(Context context, int textViewResourceId,
 				List<T> objects) {
 			super(context, textViewResourceId, objects);
-			myElements = (LinkedList<Medicamento>) objects;
+			myElements = (ArrayList<Medicamento>) objects;
 			// here is the tricky stuff
 			alphaIndexer = new HashMap<String, Integer>();
 			// in this hashmap we will store here the positions for

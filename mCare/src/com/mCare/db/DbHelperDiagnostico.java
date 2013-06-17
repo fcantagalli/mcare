@@ -1,6 +1,7 @@
 package com.mCare.db;
 
 import java.text.Collator;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
@@ -71,7 +72,7 @@ public class DbHelperDiagnostico {
 		return d;
 	}
 
-	public LinkedList<Diagnostico> listaDiagnosticos(){
+	public ArrayList<Diagnostico> listaDiagnosticos(){
 		
 		//DEFINE QUERY dependendo se quer favoritos ou nao
 		String query = " SELECT id_diagnostico, nome " +
@@ -85,7 +86,7 @@ public class DbHelperDiagnostico {
 			Log.i("SQL","cursor possui linhas");
 			
 			//Armazena resultado
-			LinkedList<Diagnostico> listaDiagnosticos = new LinkedList<Diagnostico>();
+			ArrayList<Diagnostico> listaDiagnosticos = new ArrayList<Diagnostico>();
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				
@@ -109,7 +110,7 @@ public class DbHelperDiagnostico {
 		}
 	}
 	
-	public LinkedList<Diagnostico> listaDiagnosticos(Consulta c){
+	public ArrayList<Diagnostico> listaDiagnosticos(Consulta c){
 	
 		//Busca todos os diagnosticos feitos naquela consulta
 		String query = " SELECT diagnostico.id_diagnostico, diagnostico.nome, diagnostico_consulta.id_consulta, diagnostico_consulta.data_consulta" +
@@ -125,7 +126,7 @@ public class DbHelperDiagnostico {
 			Log.i("SQL","cursor possui linhas");
 			
 			//Armazena resultado
-			LinkedList<Diagnostico> listaDiagnosticos = new LinkedList<Diagnostico>();
+			ArrayList<Diagnostico> listaDiagnosticos = new ArrayList<Diagnostico>();
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				

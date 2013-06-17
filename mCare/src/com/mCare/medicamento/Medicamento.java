@@ -1,5 +1,6 @@
 package com.mCare.medicamento;
 
+import java.security.Principal;
 import java.util.GregorianCalendar;
 
 public class Medicamento {
@@ -34,7 +35,15 @@ public class Medicamento {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return nome+"  "+dosagem+"\n"+pricipioAtivo;
+		String d = dosagem;
+		String p = pricipioAtivo;
+		if(d == null){
+			d = "";
+		}
+		if(p == null){
+			p = "";
+		}
+		return nome+"  "+d+"\n"+p;
 	}
 
 	//ENCAPSULAMENTO

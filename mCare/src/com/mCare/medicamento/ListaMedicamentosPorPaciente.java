@@ -25,7 +25,9 @@ import android.widget.TextView;
 import com.mCare.R;
 import com.mCare.consulta.realizarConsulta.ExpandableAdapter;
 import com.mCare.consulta.realizarConsulta.GroupEntity;
+import com.mCare.db.DbHelperDiagnostico;
 import com.mCare.db.DbHelperMedicamento;
+import com.mCare.diagnostico.Diagnostico;
 import com.mCare.paciente.Paciente;
 
 public class ListaMedicamentosPorPaciente extends Fragment {
@@ -34,11 +36,11 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 	
 	ArrayList<Medicamento> elementsAtuais;
 	ArrayList<Medicamento> elementsAnteriores;
-	ListView listViewMedicamentosAtuais;
+	//ListView listViewMedicamentosAtuais;
 	//ListView listViewMedicamentosAnteriores;
-	TextView tituloTelaMedicamentosPaciente;
+	//TextView tituloTelaMedicamentosPaciente;
 	ExpandableListView exList;
-	MyIndexerAdapter<Medicamento> adapterAtuais;
+	//MyIndexerAdapter<Medicamento> adapterAtuais;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -65,14 +67,31 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			child = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
 		
+		GroupEntity grupo2 = new GroupEntity(1,"Diagnosticos","A");
+		
+		DbHelperDiagnostico dbd = new DbHelperDiagnostico(getActivity().getApplicationContext());
+		ArrayList<Diagnostico> diagnosticos = dbd.listaDiagnosticos();
+		
+		//gambiarra
+		if(diagnosticos == null){
+			diagnosticos = new ArrayList<Diagnostico>();
+		}
+		ArrayList<Medicamento> md =new ArrayList<Medicamento>(diagnosticos.size());
+		for (Diagnostico d: diagnosticos){
+			md.add(new Medicamento(d.getId(),d.getNome()));
+		}
+		
+		grupo2.setListChild(md);
 		//PARTE DE TESTE
 		//child.add(new Medicamento(1,"doril"));
 		//child.add(new Medicamento(2,"buscopan"));
 		
 		grupo.setListChild(child);
 		listgrupo.add(grupo);
-		
-		exList.setAdapter(new ExpandableAdapter(getActivity(),listgrupo));
+		listgrupo.add(grupo2);
+		ExpandableAdapter adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
+ 		exList.setAdapter(adapter);
+ 		
 		// TODA A PARTE DE BAIXO E O CODIGO ANTIGO.
 		/*
 		//pega o paciente

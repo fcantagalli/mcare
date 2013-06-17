@@ -1,14 +1,18 @@
 package com.mCare.consulta.realizarConsulta;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mCare.medicamento.Medicamento;
 
 public class GroupEntity {
+	
 		 private Integer id;
 		 private String descricao;
 		 private String tipo;
 		 private List<Medicamento> listChild;
+		 Map<Integer, Boolean> childSelected = new HashMap<Integer, Boolean>();
 		 
 		 public GroupEntity() {
 			 

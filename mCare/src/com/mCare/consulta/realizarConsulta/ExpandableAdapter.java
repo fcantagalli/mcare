@@ -19,16 +19,19 @@ import com.mCare.medicamento.Medicamento;
 public class ExpandableAdapter extends BaseExpandableListAdapter {
 	private Context ctx;
 	private List<GroupEntity> lista;
-	private Map<Integer, Boolean> childSelected = new HashMap<Integer, Boolean>();
-
-	public ExpandableAdapter(Context ctx, List<GroupEntity> lista) {
+	
+	public ExpandableAdapter(Context ctx, List<GroupEntity> lista, List<Medicamento> listaMed) {
 		super();
 		this.ctx = ctx;
 		this.lista = lista;
+		if(listaMed != null){
+			for(Medicamento m : listaMed){
+				lista.get(1).childSelected.put(m.getId(), true);
+			}
+		}
 	}
 
 	// interface
-
 	public Object getChild(int groupPosition, int childPosition) {
 		return lista.get(groupPosition).getListChild().get(childPosition);
 	}
@@ -50,6 +53,9 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
 			holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);
 			holder.check.setText(child.getNome());
+			if(lista.get(groupPosition).childSelected.get(child.getId()) != null && lista.get(groupPosition).childSelected.get(child.getId())){
+				holder.check.setChecked(true);
+			}
 			holder.id = child.getId();
 			holder.check.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
@@ -58,11 +64,11 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 							+ " Holder:" + holder);
 
 					if (chk.isChecked()) {
-						if (!childSelected.containsKey(holder.id))
-							childSelected.put(holder.id, true);
+						if (!lista.get(groupPosition).childSelected.containsKey(holder.id))
+							lista.get(groupPosition).childSelected.put(holder.id, true);
 					} else {
-						if (childSelected.containsKey(holder.id))
-							childSelected.remove(holder.id);
+						if (lista.get(groupPosition).childSelected.containsKey(holder.id))
+							lista.get(groupPosition).childSelected.remove(holder.id);
 					}
 					holder.check.setChecked(chk.isChecked());
 				}
@@ -74,7 +80,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 			holder = (ViewChildHolder) convertView.getTag();
 		}
 		holder.check.setText(child.getNome());
-		holder.check.setChecked(childSelected.containsKey(holder.id));
+		holder.check.setChecked(lista.get(groupPosition).childSelected.containsKey(holder.id));
 
 		return convertView;
 	}

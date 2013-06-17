@@ -29,11 +29,9 @@ import com.mCare.db.DbHelperDiagnostico;
 
 public class ListaDiagnosticos extends Activity {
 
-	LinkedList<Diagnostico> elements;
+	ArrayList<Diagnostico> elements;
 	ListView listViewDiagnosticos;
 	MyIndexerAdapter<Diagnostico> adapter;
-	
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,7 @@ public class ListaDiagnosticos extends Activity {
 		elements = db.listaDiagnosticos(); //Pega os diagnosticos do banco
 		
 		if(elements== null){
-			elements = new LinkedList<Diagnostico>(); //Se nao tem nenhum, cria lista vazia
+			elements = new ArrayList<Diagnostico>(); //Se nao tem nenhum, cria lista vazia
 		}
 
 		//coloca a lista do banco no layout

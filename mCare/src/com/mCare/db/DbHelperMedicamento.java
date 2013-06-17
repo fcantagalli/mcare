@@ -40,7 +40,7 @@ public class DbHelperMedicamento {
 		cv.put("favorito", favorito);
 		
 		long id = dbhelper.insert(dbhelper.TABLE_NAME_MEDICAMENTO, cv);
-		
+		Log.i("med",m.getNome()+" "+m.getTipo()+" "+m.getDosagem()+" "+m.getPricipioAtivo());
 		return id;
 	}
 	
@@ -137,6 +137,8 @@ public class DbHelperMedicamento {
 				m.setDosagem(dosagem);
 				m.setPricipioAtivo(pricipioAtivo);
 				
+				Log.i("med",m.getNome()+" "+m.getTipo()+" "+m.getDosagem()+" "+m.getPricipioAtivo());
+				
 				if (favorito == 0) {
 					m.setFavorito(false);
 				}
@@ -167,6 +169,9 @@ public class DbHelperMedicamento {
 				Medicamento m = new Medicamento((int) id,nome,tipo);
 				m.setDosagem(dosagem);
 				m.setPricipioAtivo(principioativo);
+				
+				Log.i("med",m.getNome()+" "+m.getTipo()+" "+m.getDosagem()+" "+m.getPricipioAtivo());
+				
 				if(favorito == 1){
 					m.setFavorito(true);
 				}
@@ -181,10 +186,10 @@ public class DbHelperMedicamento {
 		
 	}
 	
-	public LinkedList<Medicamento> listaMedicamentos(boolean favorito){
+	public ArrayList<Medicamento> listaMedicamentos(boolean favorito){
 		
 		//DEFINE QUERY dependendo se quer favoritos ou nao
-		String query = " SELECT id_medicamento, nome " +
+		String query = " SELECT id_medicamento, nome, tipo, dosagem, principioativo, favorito" +
 						" FROM "+dbhelper.TABLE_NAME_MEDICAMENTO;
 		
 		if (favorito) {
@@ -202,14 +207,27 @@ public class DbHelperMedicamento {
 			Log.i("SQL","cursor possui linhas");
 			
 			//Armazena resultado
-			LinkedList<Medicamento> listaMedicamentos = new LinkedList<Medicamento>();
+			ArrayList<Medicamento> listaMedicamentos = new ArrayList<Medicamento>();
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
 				
-				int id = Integer.parseInt(cursor.getString(0));
+				int id = (int) cursor.getLong(0);
 				String nome = cursor.getString(1);
+				String tipo = cursor.getString(2);
+				String dosagem = cursor.getString(3);
+				String principioAtivo = cursor.getString(4);
+				int fav = cursor.getInt(5);
 				
-				Medicamento m = new Medicamento(id, nome);
+				Medicamento m = new Medicamento(id, nome,tipo);
+				m.setDosagem(dosagem);
+				m.setPricipioAtivo(principioAtivo);
+				if(fav == 1){
+					m.setFavorito(true);
+				}
+				else{
+					m.setFavorito(false);
+				}
+				
 				listaMedicamentos.add(m);
 				cursor.moveToNext();
 			}
