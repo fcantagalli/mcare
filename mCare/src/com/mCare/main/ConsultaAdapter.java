@@ -1,27 +1,26 @@
 package com.mCare.main;
 
-import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
-import com.mCare.consulta.Consulta;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mCare.R;
+import com.mCare.consulta.Consulta;
 
 public class ConsultaAdapter extends BaseAdapter {
 
 	private List<Consulta> listConsultas;
+	
 	
 	/**Classe utilizada para instanciar os objetos do XML**/
 	private LayoutInflater inflater;
@@ -98,18 +97,88 @@ public class ConsultaAdapter extends BaseAdapter {
 		bairro.setText(con.getPaciente().getLogradouro());
 		GregorianCalendar gc = con.getHora();
 		horario.setText(gc.get(gc.DAY_OF_MONTH)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+" às "+gc.get(gc.HOUR_OF_DAY)+":"+gc.get(gc.MINUTE));
-		if(gc.compareTo(GregorianCalendar.getInstance())<0){
-			
-		}
+		
+		LinearLayout barrinha = (LinearLayout) convertView.findViewById(R.id.barrinha);
+
+
+			barrinha = (LinearLayout) convertView.findViewById(R.id.barrinha);
+			barrinha.setBackgroundColor(convertView.getResources().getColor(classificaData(gc)));
+
+		
 		return convertView;
 	}
 	
-	/*private void botaoMapsNavigation(Context context,String endere�o){
-		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-		Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
-		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=rua+falchi+gianini+,+311"));
-		context.startActivity(intent);
-	}*/
+	public int classificaData(GregorianCalendar gc){
+		GregorianCalendar now = new GregorianCalendar(Locale.getDefault());
+		int dia = gc.get(GregorianCalendar.DAY_OF_MONTH);
+		int mes = gc.get(GregorianCalendar.MONTH);
+		int ano = gc.get(GregorianCalendar.YEAR);
+		int hora = gc.get(GregorianCalendar.HOUR_OF_DAY);
+		int minutos = gc.get(GregorianCalendar.MINUTE);
+		
+		//ano igual a hoje
+		if(ano==now.get(GregorianCalendar.YEAR)){
+			//mes igual a hoje
+			if(mes==now.get(GregorianCalendar.MONTH)){
+				//dia igual a hoje
+				if(dia==now.get(GregorianCalendar.DAY_OF_MONTH)){
+					//hora igual agora
+					if(hora==now.get(GregorianCalendar.HOUR_OF_DAY)){
+						//minuto igual agora
+						if(minutos==now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomYellow;
+						}
+						
+						if(minutos > now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomYellow;
+						}
+						
+						if(minutos < now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomRed;
+						}
+						
+					}
+					//hora maior que agora
+					if(hora > now.get(GregorianCalendar.HOUR_OF_DAY)){
+						//verifica o periodo e se ha algum atraso
+						
+					}
+					//hora menor que agora
+					if(hora < now.get(GregorianCalendar.HOUR_OF_DAY)){
+						return R.color.CustomRed;
+					}
+					
+				}
+				//dia maior que hoje
+				if(dia > now.get(GregorianCalendar.DAY_OF_MONTH)){
+					return R.color.CustomBlue;
+				}
+				//dia menor que hoje
+				if(dia < now.get(GregorianCalendar.DAY_OF_MONTH)){
+					return R.color.CustomRed;
+				}
+				
+			}
+			//mes maior que hoje
+			if(mes > now.get(GregorianCalendar.MONTH)){
+				return R.color.CustomBlue;
+			}
+			//mes menor que hoje
+			if(mes < now.get(GregorianCalendar.MONTH)){
+				return R.color.CustomRed;
+			}
+			return -1;
+		}
+		//ano depois de hoje
+		if(ano > now.get(GregorianCalendar.YEAR)){
+			return R.color.CustomBlue;
+		}
+		//ano antes de hoje
+		if(ano < now.get(GregorianCalendar.YEAR)){
+			return R.color.CustomRed;
+		}
+		return -1;
+	}
 	
 	String enderecoNavigation(String endereco, int numero){
 		String endFinal = "";
@@ -126,4 +195,5 @@ public class ConsultaAdapter extends BaseAdapter {
 			return endFinal;
 		}
 	}
+	
 }

@@ -1,56 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:baselineAligned="false"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
-    android:weightSum="100" >
-
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="7dp"
-        android:layout_weight="22" >
-
-        <ImageView
-            android:id="@+id/fotoPaciente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"
-            android:contentDescription="Imagem do paciente"
-            android:layout_gravity="center" />
-    	</FrameLayout>
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="34"
-        android:orientation="vertical"
-        android:weightSum="3" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:paddingTop="4dp"
+        android:weightSum="100" >
 
-        <TextView
-            android:id="@+id/nomePaciente"
-            style="@style/textoConsultas"
-            android:layout_width="match_parent"
-            android:gravity="top|center_vertical"
-            android:hint="Nome Paciente" />
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="7dp"
+            android:layout_weight="22" >
 
-        <TextView
-            android:id="@+id/Bairro"
-            style="@style/textoConsultas"
-            android:layout_width="match_parent"
-            android:gravity="left|center_vertical"
-            android:hint="Bairro" />
+            <ImageView
+                android:id="@+id/fotoPaciente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="Imagem do paciente"
+                android:src="@drawable/ic_launcher" />
+        </FrameLayout>
 
-        <TextView
-            android:id="@+id/Horario"
-            style="@style/textoConsultas"
-            android:layout_width="match_parent"
-            android:gravity="bottom|center_vertical"
-            android:hint="Horario" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="34"
+            android:orientation="vertical"
+            android:weightSum="3" >
+
+            <TextView
+                android:id="@+id/nomePaciente"
+                style="@style/textoConsultas"
+                android:layout_width="match_parent"
+                android:gravity="top|center_vertical"
+                android:hint="Nome Paciente" />
+
+            <TextView
+                android:id="@+id/Bairro"
+                style="@style/textoConsultas"
+                android:layout_width="match_parent"
+                android:gravity="left|center_vertical"
+                android:hint="Bairro" />
+
+            <TextView
+                android:id="@+id/Horario"
+                style="@style/textoConsultas"
+                android:layout_width="match_parent"
+                android:gravity="bottom|center_vertical"
+                android:hint="Horario" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="17dp"
+            android:src="@android:drawable/ic_menu_call" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/barrinha"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#1ca7c5"
+        android:orientation="vertical" >
 
     </LinearLayout>
 
