@@ -23,6 +23,7 @@ import com.mCare.R;
 import com.mCare.ServicesListener.InformationServices;
 import com.mCare.configuracaoConsulta.SelecionaCamposView;
 import com.mCare.diagnostico.ListaDiagnosticos;
+import com.mCare.exame.ListaExames;
 import com.mCare.medicamento.ListaMedicamentos;
 import com.mCare.weatherServices.WeatherInfo;
 
@@ -139,7 +140,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 			}
 			//exames
 			case R.id.action_configura_exames: {
-				
+				Intent intent = new Intent(getApplicationContext(),ListaExames.class);
+				startActivity(intent);
+				break;
 			}
 			//medicamentos
 			case R.id.action_configura_medicamentos:{

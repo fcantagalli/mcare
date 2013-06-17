@@ -30,6 +30,13 @@ public class Medicamento {
 		this.tipo = tipo;
 	}
 	
+	// TO STRING
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return nome+"  "+dosagem+"\n"+pricipioAtivo;
+	}
+
 	//ENCAPSULAMENTO
 	public String getNome() {
 		return nome;

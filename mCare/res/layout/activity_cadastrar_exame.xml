@@ -4,21 +4,41 @@
     android:layout_height="match_parent"
 	android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/campoNomeExame"
+    <!--  Nome do exame -->
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/MargenPadrao"
+        android:text="Nome do exame:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <AutoCompleteTextView
+        android:id="@+id/editTextCampoNomeExameEditar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nome do Exame" >
-		
-        <requestFocus />
-    </EditText>
+        android:hint="Nome do exame"
+        android:inputType="textCapSentences"
+        android:padding="@dimen/MargenPadrao"
+        android:textColor="@color/Black" />
 
+
+    <!-- Tipo do campo -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/MargenPadrao"
+        android:text="Tipo de resultado:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
     <Spinner
-        android:layout_marginTop="6dp"
-        android:id="@+id/spinner1"
+        android:id="@+id/spinnerTipoResultadoExame"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:entries="@array/array_tipos_campo"
+        android:padding="@dimen/MargenPadrao" />
 
     <Button
         android:id="@+id/button_salva_exame"

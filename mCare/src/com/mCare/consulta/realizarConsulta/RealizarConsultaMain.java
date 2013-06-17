@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.mCare.R;
+import com.mCare.exame.Exame;
 import com.mCare.media.Midia_Fragment;
 import com.mCare.medicamento.ListaMedicamentosPorPaciente;
 
@@ -109,13 +110,16 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
                 case 2:{
                 		return new Midia_Fragment();
                 }
+                case 3:{
+                		return new Midia_Fragment();
+                }
             }
         	return new Consulta_Fragment();
         }
 
         @Override
         public int getCount() {
-            return 3;
+            return 4;
         }
 
         @Override
@@ -124,6 +128,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         	case 0: return "Consulta";
         	case 1: return "Medicamentos";
         	case 2: return "Mídia";
+        	case 3: return "Exames";
         	}
         	
             return "ERROR";

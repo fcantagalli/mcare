@@ -1,6 +1,8 @@
 package com.mCare.diagnostico;
 
 import com.mCare.R;
+import com.mCare.db.DbHelperDiagnostico;
+
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,11 +21,15 @@ public class VisualizarDiagnostico  extends Fragment {
 		//Pega os campos da activity em xml
 		TextView diagnostico = (TextView) rootView.findViewById(R.id.textViewDiagnostico);
 		
-		//Pega as informações
-		String[] informacoes = {}; /*********** AQUI VEM AS INFORMACOES DO BANCO ***********/
+		//Pega da tela anterior a informacao de qual medicamento eh este
+		final int id =  getActivity().getIntent().getExtras().getInt("id", -1);
 		
-		//Coloca as informações nos campos
-		diagnostico.setText(informacoes[0]);
+		//Pega do banco as informacoes do medicamento
+		DbHelperDiagnostico db = new DbHelperDiagnostico(getActivity());
+		Diagnostico d = db.buscaDiagnostico(id);
+		
+		//Coloca as informaï¿½ï¿½es nos campos
+		diagnostico.setText(d.getNome());
 		
 		return rootView;
 	}

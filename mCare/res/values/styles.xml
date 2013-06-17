@@ -5,6 +5,7 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="@android:style/Theme.Light">
+        <item name="android:background">@color/White</item>
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
@@ -61,9 +62,9 @@
     <style name = "textoConsultas">
         <item name = "android:textSize">17sp</item>
         <item name = "android:layout_weight">1.0</item>
-        <item name = "android:layout_height">match_parent</item>
+        <item name = "android:layout_height">wrap_content</item>
         <item name = "android:layout_width">wrap_content</item>
-        <item name="android:textColor">@color/Black</item>
+        <item name="android:textColor">@color/White</item>
         <item name="android:textColorHint">@color/Black</item>
     </style>
     
