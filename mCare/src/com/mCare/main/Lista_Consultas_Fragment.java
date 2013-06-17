@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import com.mCare.R;
 import com.mCare.consulta.Consulta;
@@ -25,6 +26,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public abstract class Lista_Consultas_Fragment extends Fragment {
@@ -80,6 +82,9 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 				alert.show();
 			}
 		});
+		
+		GregorianCalendar gc = new GregorianCalendar(Locale.getDefault());
+		String horario = "Dia: " + gc.get(GregorianCalendar.DAY_OF_MONTH) + " Mes: " + gc.get(GregorianCalendar.MONTH) + " Ano: " + gc.get(GregorianCalendar.YEAR) + " Hora: " + gc.get(GregorianCalendar.HOUR_OF_DAY) + " Minuto: " + gc.get(GregorianCalendar.MINUTE);
 
 		return rootView;
 	}

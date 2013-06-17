@@ -1,105 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingBottom="4dp"
-    android:paddingTop="4dp"
-    android:weightSum="100" >
+<<<<<<< <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="7dp"
-        android:layout_weight="18" >
+        android:id="@+id/barrinha"
+        android:layout_width="6dp"
+        android:layout_height="75dp"
+        android:background="@color/CustomRed" >
+    </FrameLayout>
 
-        <ImageView
-            android:id="@+id/fotoPaciente"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:layout_width="75dp"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/fotoPaciente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/contato" />
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="Imagem do paciente"
-            android:src="@drawable/contato" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="42"
-        android:orientation="vertical"
-        android:weightSum="3" >
-
-        <TextView
-            android:id="@+id/nomePaciente"
-            style="@style/textoConsultas"
-            android:layout_width="match_parent"
-            android:textSize="20sp"
-            android:gravity="top|center_vertical"
-            android:text="Nome Paciente"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/Bairro"
-            style="@style/textoConsultas"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:gravity="left|center_vertical"
-            android:text="Bairro" />
-
-        <TextView
-            android:id="@+id/Horario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="bottom|center_vertical"
-            android:textSize="50sp"
-            android:text="Horario" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/callButtonRow"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="35" >
-
-        <ImageView
-            android:layout_width="42dp"
-            android:layout_height="42dp"
-            android:layout_gravity="center"
-            android:src="@android:drawable/stat_sys_phone_call" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="100" >
-
-        <FrameLayout
-            android:id="@+id/callButtonRow"
-            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="30" >
+            android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textViewPaciente"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:src="@drawable/atrasado" />
-        </FrameLayout>
+                android:layout_marginTop="9dp"
+                android:text="Nome Paciente"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Black" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="70" >
-
-            <ImageView
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/Horario"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|right"
-                android:src="@drawable/ic_action_setinha" />
-        </FrameLayout>
-    </LinearLayout>
+                android:text="Data"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/Black" />
 
-</LinearLayout>

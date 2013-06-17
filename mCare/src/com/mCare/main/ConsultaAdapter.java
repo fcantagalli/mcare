@@ -1,8 +1,8 @@
 package com.mCare.main;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mCare.R;
@@ -21,19 +22,13 @@ import com.mCare.consulta.Consulta;
 public class ConsultaAdapter extends BaseAdapter {
 
 	private List<Consulta> listConsultas;
-	private Calendar c1;
-	private Calendar c2;
-	private Calendar c3;
-	private Calendar c4;
-	private Calendar c5;
-	private Calendar c6;
+	
+	
 	/**Classe utilizada para instanciar os objetos do XML**/
 	private LayoutInflater inflater;
-	private Context context;
 	
 	public ConsultaAdapter(Context context, List<Consulta> plistConsultas){
 		this.listConsultas = plistConsultas;
-		this.context = context;
 		inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
@@ -67,92 +62,115 @@ public class ConsultaAdapter extends BaseAdapter {
 		
 		/** utiliza o XML row_consulta para exibir na tela*/		
 		convertView = inflater.inflate(R.layout.layout_row_consulta, null);
-		convertView.setBackgroundResource(setColorBackground(con));
-		/** instancia os objetos do XML **/
-		//ImageView foto = (ImageView) convertView.findViewById(R.id.fotoPaciente);
-		TextView nome = (TextView) convertView.findViewById(R.id.nomePaciente);
-		TextView bairro = (TextView) convertView.findViewById(R.id.Bairro);
-		TextView horario = (TextView) convertView.findViewById(R.id.Horario);
-		FrameLayout ligacao = (FrameLayout) convertView.findViewById(R.id.callButtonRow);
-		//FrameLayout maps = (FrameLayout) convertView.findViewById(R.id.row_botao_maps);
 		
+		/** instancia os objetos do XML **/
+		ImageView foto = (ImageView) convertView.findViewById(R.id.fotoPaciente);
+		TextView nome = (TextView) convertView.findViewById(R.id.textViewPaciente);
+		TextView horario = (TextView) convertView.findViewById(R.id.Horario);
+		FrameLayout ligacao = (FrameLayout) convertView.findViewById(R.id.row_botao_ligacao);
+		//FrameLayout maps = (FrameLayout) convertView.findViewById(R.id.row_botao_maps);
+
 		ligacao.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View view) {
 				// TODO Auto-generated method stub
-				Log.i("tel","numero de telefone: "+con.getPaciente().getTelefone());
-				Uri uri = Uri.parse("tel:"+con.getPaciente().getTelefone());
+				Uri uri = Uri.parse("tel:"+ con.getPaciente().getTelefone());
 		        Intent intent = new Intent(Intent.ACTION_CALL,uri);
-		        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		        context.startActivity(intent);
+		        view.getContext().startActivity(intent);
 			}
 		});
-		/*
-		maps.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View view) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=rua+falchi+gianini+,+311"));
-				view.getContext().startActivity(intent);
-			}
-		});*/
 		
 		/** essa parte � quando tivermos j� objetos com informacoes, entao jogamos as informacoes nos objetos
 		 * instanciados do XML
 		 */
 		nome.setText(con.getPaciente().getNome());
-		bairro.setText(con.getPaciente().getBairro());
 		GregorianCalendar gc = con.getHora();
 		horario.setText(gc.get(gc.DAY_OF_MONTH)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+" às "+gc.get(gc.HOUR_OF_DAY)+":"+gc.get(gc.MINUTE));
-		if(gc.compareTo(GregorianCalendar.getInstance())<0){
-			
-		}
+		
+		FrameLayout barrinha = (FrameLayout) convertView.findViewById(R.id.barrinha);
+		barrinha.setBackgroundColor(convertView.getResources().getColor(classificaData(gc)));
+
 		return convertView;
 	}
 	
-	/*private void botaoMapsNavigation(Context context,String endere�o){
-		/*Intent intent = new Intent(android.content.Intent.ACTION_VIEW, 
-		Uri.parse("http://maps.google.com/maps?saddr=20.344,34.34&daddr=20.5666,45.345"));
-		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=rua+falchi+gianini+,+311"));
-		context.startActivity(intent);
-	}*/
-	
-	private void setCalendars(Consulta con){
-		GregorianCalendar gc = con.getHora();
-		if(c1 == null){
-			c1 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 6, 30);
-			c2 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 10, 0);
-			c3 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 13, 0);
-			c4 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 17, 0);
-			c5 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 19, 0);
-			c6 = new GregorianCalendar(gc.get(gc.YEAR), gc.get(gc.MONTH), gc.get(gc.DAY_OF_MONTH), 22, 0);
-		}	
-	}
-	
-	private int setColorBackground(Consulta con){
-		setCalendars(con);
-		if(con.getHora().compareTo(c1)==1){
-			if(con.getHora().compareTo(c2)==1){
-				if(con.getHora().compareTo(c3)==1){
-					if(con.getHora().compareTo(c4)==1){
-						if(con.getHora().compareTo(c5)==1){
-							if(con.getHora().compareTo(c6)==1){
-								return R.color.azul;
-							}
-							return R.color.roxo;
+	public int classificaData(GregorianCalendar gc){
+		GregorianCalendar now = new GregorianCalendar(Locale.getDefault());
+		int dia = gc.get(GregorianCalendar.DAY_OF_MONTH);
+		int mes = gc.get(GregorianCalendar.MONTH);
+		//correcao do bug do mes:
+		mes--;
+		int ano = gc.get(GregorianCalendar.YEAR);
+		int hora = gc.get(GregorianCalendar.HOUR_OF_DAY);
+		int minutos = gc.get(GregorianCalendar.MINUTE);
+		
+		Log.i("phil", "mes da consulta: " + mes + " mes de agora: " + now.get(GregorianCalendar.MONTH));
+		Log.i("phil", "ano da consulta: " + ano + " ano de agora: " + now.get(GregorianCalendar.YEAR));
+		Log.i("phil", "dia da consulta: " + dia + " dia de agora: " + now.get(GregorianCalendar.DAY_OF_MONTH));
+		Log.i("phil", "hora da consulta: " + hora + " hora de agora: " + now.get(GregorianCalendar.HOUR_OF_DAY));
+		Log.i("phil", "minutos da consulta: " + minutos + " minutos da consulta: " + now.get(GregorianCalendar.MINUTE));
+		
+		//ano igual a hoje
+		if(ano==now.get(GregorianCalendar.YEAR)){
+			//mes igual a hoje
+			if(mes==now.get(GregorianCalendar.MONTH)){
+				//dia igual a hoje
+				if(dia==now.get(GregorianCalendar.DAY_OF_MONTH)){
+					//hora igual agora
+					if(hora==now.get(GregorianCalendar.HOUR_OF_DAY)){
+						//minuto igual agora
+						if(minutos==now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomRed;
 						}
-						return R.color.lilas;
+						
+						if(minutos > now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomGreen;
+						}
+						
+						if(minutos < now.get(GregorianCalendar.MINUTE)){
+							return R.color.CustomRed;
+						}
+						
 					}
-					return R.color.vermelho;
+					//hora maior que agora
+					if(hora > now.get(GregorianCalendar.HOUR_OF_DAY)){
+						return R.color.CustomGreen;
+					}
+					//hora menor que agora
+					if(hora < now.get(GregorianCalendar.HOUR_OF_DAY)){
+						return R.color.CustomRed;
+					}
+					
 				}
-				return R.color.laranja;
+				//dia maior que hoje
+				if(dia > now.get(GregorianCalendar.DAY_OF_MONTH)){
+					return R.color.CustomBlue;
+				}
+				//dia menor que hoje
+				if(dia < now.get(GregorianCalendar.DAY_OF_MONTH)){
+					return R.color.CustomRed;
+				}
+				
 			}
-			return R.color.amarelo;
-		}else{
-			return R.color.azul;
+			//mes maior que hoje
+			if(mes > now.get(GregorianCalendar.MONTH)){
+				return R.color.CustomBlue;
+			}
+			//mes menor que hoje
+			if(mes < now.get(GregorianCalendar.MONTH)){
+				return R.color.CustomRed;
+			}
+			return -1;
 		}
+		//ano depois de hoje
+		if(ano > now.get(GregorianCalendar.YEAR)){
+			return R.color.CustomBlue;
+		}
+		//ano antes de hoje
+		if(ano < now.get(GregorianCalendar.YEAR)){
+			return R.color.CustomRed;
+		}
+		return -1;
 	}
 	
 	String enderecoNavigation(String endereco, int numero){
@@ -170,4 +188,5 @@ public class ConsultaAdapter extends BaseAdapter {
 			return endFinal;
 		}
 	}
+	
 }

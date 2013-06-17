@@ -81,9 +81,7 @@ public class NovoContatoAdapter extends BaseAdapter{
 		LinearLayout geral = (LinearLayout) activity.findViewById(R.id.geralContainer);
 		LinearLayout telefonesContainer = (LinearLayout) activity.findViewById(R.id.telefonesContainer);
 
-		
-		Log.i("phil", "tamanho da lista: " + activity.findViewById(R.id.listViewContatos).getHeight());
-		Log.i("phil", "tamanho do container da lista: " + telefonesContainer.getHeight());
+
 		//geral.removeView(restoContainer);
 		
 		convertView = inflater.inflate(R.layout.row_novocontato, null);

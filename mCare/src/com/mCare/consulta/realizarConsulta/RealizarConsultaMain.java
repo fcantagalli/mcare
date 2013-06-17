@@ -8,14 +8,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.mCare.R;
-import com.mCare.exame.Exame;
 import com.mCare.media.Midia_Fragment;
 import com.mCare.medicamento.ListaMedicamentosPorPaciente;
 
@@ -52,6 +50,12 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
             actionBar.addTab(actionBar.newTab().setText(mAppSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
         }
+	}
+	
+	private void salvaDados(){
+		FragmentManager fm = getSupportFragmentManager();
+		
+	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
 	}
 	
 	@Override

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mCare"
     android:versionCode="1"
@@ -163,8 +164,12 @@
             android:label="@string/title_activity_lista_exames" >
         </activity>
         <activity
-            android:name ="com.mCare.exame.VisualizarExameualizarExame"
+            android:name="com.mCare.exame.VisualizarExameualizarExame"
             android:label="@string/title_activity_visualizar_exame" >
+        </activity>
+        <activity
+            android:name="com.mCare.media.GaleriaPaciente"
+            android:label="@string/title_activity_galeria_paciente" >
         </activity>
     </application>
 
