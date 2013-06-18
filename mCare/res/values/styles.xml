@@ -13,8 +13,70 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
+    <style name="AppTheme" parent="@style/Theme.Mcarebonito">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    
+    <style name="Theme.Mcarebonito" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_mcarebonito</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Mcarebonito</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Mcarebonito</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Mcarebonito</item>
+        <item name="android:actionBarTabTextStyle">@style/ActionBar.TitleTextStyle.Mcarebonito</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Mcarebonito</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Mcarebonito</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_mcarebonito</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_mcarebonito</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Mcarebonito</item>
+    </style>
+
+	<style name="ActionBar.TitleTextStyle.Mcarebonito" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+		<item name="android:textColor">@color/tabs_font_mcarebonito</item>
+	</style>
+  
+    <style name="ActionBar.Solid.Mcarebonito" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
+        <item name="android:background">@drawable/ab_solid_mcarebonito</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_mcarebonito</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_mcarebonito</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Mcarebonito</item>
+    </style>
+
+    <style name="ActionBar.Transparent.Mcarebonito" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_mcarebonito</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Mcarebonito</item>
+    </style>
+
+    <style name="PopupMenu.Mcarebonito" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_mcarebonito</item>	
+    </style>
+
+    <style name="DropDownListView.Mcarebonito" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_mcarebonito</item>
+    </style>
+
+    <style name="ActionBarTabStyle.Mcarebonito" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_mcarebonito</item>
+        <item name="android:textAppearance">@style/ActionBar.TitleTextStyle.Mcarebonito</item>
+    </style>
+
+    <style name="DropDownNav.Mcarebonito" parent="@android:style/Widget.Holo.Light.Spinner">
+        <item name="android:background">@drawable/spinner_background_ab_mcarebonito</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_mcarebonito</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_mcarebonito</item>
+    </style>
+    
+    <style name="ProgressBar.Mcarebonito" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_mcarebonito</item>
+    </style>
+    
+    <style name="ActionButton.CloseMode.Mcarebonito" parent="@android:style/Widget.Holo.Light.ActionButton.CloseMode">
+        <item name="android:background">@drawable/btn_cab_done_mcarebonito</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.Mcarebonito.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Mcarebonito</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Mcarebonito</item>
     </style>
     
     <style name="Theme.NoTitle" parent="@android:style/Theme.NoTitleBar"> </style>

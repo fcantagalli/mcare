@@ -1,6 +1,7 @@
 package com.mCare.main;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
@@ -104,7 +105,9 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 			smsIntent.setType("vnd.android-dir/mms-sms");
 			smsIntent.putExtra("address",  "" + escolhida.getPaciente().getTelefone());
-			smsIntent.putExtra("sms_body", "Estou 30 minutos atrasado(a), aguarde-me!!");
+			String data = Utils.formataHora(escolhida.getHora());
+			smsIntent.putExtra("sms_body", "Caro(a)"+escolhida.getPaciente().getNome()+",\n Estou atrasado para nossa consulta das"+
+					data);
 			startActivity(smsIntent);
 			break;
 		}

@@ -3,6 +3,8 @@
     
     <color name="pressed_example">#CC7D941B</color>
     
+    <color name="pressed_mcarebonito">#CCCCCCCC</color>
+	<color name="tabs_font_mcarebonito">#FFFFFFFF</color> 
  <color name="White">#FFFFFF</color>
  <color name="Ivory">#FFFFF0</color>
  <color name="LightYellow">#FFFFE0</color>
