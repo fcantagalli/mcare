@@ -96,14 +96,12 @@ public class NotificacaoConsulta extends BroadcastReceiver {
 		
 		int id = (int) quandoIraAparecer;
 		
-			notification = new Notification.Builder(contexto)
-			.setContentTitle(tickerText)
-			.setContentText(message)
-			.setSmallIcon(icon).
-			setContentIntent(contentIntent)
-			.setAutoCancel(true)
-			.setWhen(quandoIraAparecer)
-			.setShowWhen(true).build();
+		notification = new Notification.Builder(contexto)
+		.setContentTitle(tickerText)
+		.setContentText(message)
+		.setSmallIcon(icon)
+		.setContentIntent(contentIntent)
+		.setAutoCancel(true).build();
 			
 		notification.flags |= Notification.FLAG_AUTO_CANCEL;	
 		
