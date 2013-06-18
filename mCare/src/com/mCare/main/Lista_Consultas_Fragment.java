@@ -1,10 +1,18 @@
 package com.mCare.main;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+
+import com.mCare.R;
+import com.mCare.consulta.Consulta;
+import com.mCare.consulta.VisualizaInfoConsultaAgendada;
+import com.mCare.consulta.agendarConsulta.AgendarConsulta;
+import com.mCare.consulta.realizarConsulta.RealizarConsultaMain;
+import com.mCare.db.DbHelperConsultas;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,10 +22,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -27,6 +34,8 @@ import com.mCare.consulta.VisualizaInfoConsultaAgendada;
 import com.mCare.consulta.agendarConsulta.AgendarConsulta;
 import com.mCare.consulta.realizarConsulta.RealizarConsultaMain;
 import com.mCare.db.DbHelperConsultas;
+import android.widget.AdapterView.OnItemClickListener;
+
 
 public abstract class Lista_Consultas_Fragment extends Fragment {
 	

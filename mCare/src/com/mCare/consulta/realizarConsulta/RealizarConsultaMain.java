@@ -21,6 +21,9 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	
 	AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     ViewPager mViewPager;
+    static Consulta_Fragment consulta_fragment = null;
+    static Midia_Fragment midia_fragment = null;
+    static ListaMedicamentosPorPaciente lista_medicamentos_paciente = null;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	
 	private void salvaDados(){
 		FragmentManager fm = getSupportFragmentManager();
-		
+
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
 	}
 	
@@ -104,18 +107,27 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         public Fragment getItem(int i) {
             switch (i) {
                 case 0: {
-                		return new Consulta_Fragment();
+                	if(consulta_fragment==null){
+                		consulta_fragment = new Consulta_Fragment();
+                	}
+                	return consulta_fragment;
                 }
                 
                 case 1: {
-                		return new ListaMedicamentosPorPaciente();
+                	if(lista_medicamentos_paciente==null){
+                		lista_medicamentos_paciente = new ListaMedicamentosPorPaciente();
+                	}
+                	return lista_medicamentos_paciente;
                 }
                 
                 case 2:{
-                		return new Midia_Fragment();
+                	if(midia_fragment==null){
+                		midia_fragment = new Midia_Fragment();
+                	}
+                	return midia_fragment;
                 }
                 case 3:{
-                		return new Midia_Fragment();
+                	return new Midia_Fragment();
                 }
             }
         	return new Consulta_Fragment();
