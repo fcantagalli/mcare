@@ -39,13 +39,11 @@ public class Consulta_Fragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		ScrollView scroll = new ScrollView(getActivity());
-		scroll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT));
+		scroll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
 		LinearLayout layout = new LinearLayout(getActivity());
 		layout.setOrientation(LinearLayout.VERTICAL);
-		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT));
+		layout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		layout.setPadding(16, 16, 16, 16);
 
 		// arraylist para guardar os ids dos campos (views)
@@ -56,8 +54,7 @@ public class Consulta_Fragment extends Fragment {
 		nomes = db.pegaColunas();
 
 		Button finalizar = new Button(getActivity());
-		finalizar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
-				LayoutParams.WRAP_CONTENT));
+		finalizar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 		finalizar.setText("Finalizar");
 		finalizar.setOnClickListener(new OnClickListener() {
 
@@ -67,6 +64,7 @@ public class Consulta_Fragment extends Fragment {
 
 			}
 		});
+		
 		layout.addView(finalizar);
 		mostraCampos(layout);
 
@@ -100,8 +98,7 @@ public class Consulta_Fragment extends Fragment {
 			// campo tipo inteiro
 			case 0: {
 				EditText inteiro = new EditText(getActivity());
-				inteiro.setLayoutParams(new LayoutParams(
-						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				inteiro.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				inteiro.setInputType(InputType.TYPE_CLASS_NUMBER);
 				inteiro.setHint(nome.toLowerCase());
 				inteiro.setId(i);
@@ -112,8 +109,7 @@ public class Consulta_Fragment extends Fragment {
 			// campo tipo decimal
 			case 1: {
 				EditText decimal = new EditText(getActivity());
-				decimal.setLayoutParams(new LayoutParams(
-						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				decimal.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				decimal.setInputType(InputType.TYPE_CLASS_NUMBER
 						| InputType.TYPE_NUMBER_FLAG_DECIMAL);
 				decimal.setHint(nome.toLowerCase());
@@ -125,8 +121,7 @@ public class Consulta_Fragment extends Fragment {
 			// campo tipo text
 			case 2: {
 				EditText text = new EditText(getActivity());
-				text.setLayoutParams(new LayoutParams(
-						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				text.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				text.setInputType(InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 				text.setHint(nome.toLowerCase());
 				text.setId(i);
@@ -137,8 +132,7 @@ public class Consulta_Fragment extends Fragment {
 			// campo tipo data
 			case 3: {
 				DatePicker datePicker = new DatePicker(getActivity());
-				datePicker.setLayoutParams(new LayoutParams(
-						LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+				datePicker.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 				datePicker.setCalendarViewShown(false);
 				datePicker.setId(i);
 				id_campos.add(datePicker.getId());
@@ -150,7 +144,8 @@ public class Consulta_Fragment extends Fragment {
 	}
 
 	public void salvaInformacoes() {
-		long id_consulta = (Long) getActivity().getIntent().getExtras().get("id_consulta");
+		long id_consulta = (Long) getActivity().getIntent().getExtras()
+				.get("id_consulta");
 		String[] nomesColunas = new String[nomes.size()];
 		int[] tiposColunas = new int[id_campos.size()];
 		for (int i = 0; i < nomesColunas.length; i++) {
@@ -191,19 +186,14 @@ public class Consulta_Fragment extends Fragment {
 					int valor = Integer.parseInt(inteiro.getText().toString());
 					sql = sql + valor;
 				} else {
-					Toast.makeText(
-							getActivity(),
-							"Preencha o campo "
-									+ nomes.get(i + 5).split("@")[0],
-							Toast.LENGTH_LONG).show();
+					Toast.makeText(getActivity(),"Preencha o campo " + nomes.get(i + 5).split("@")[0], Toast.LENGTH_LONG).show();
 					return;
 				}
 				break;
 			}
 			// campo tipo decimal
 			case 1: {
-				EditText decimal = (EditText) getActivity().findViewById(
-						id_campos.get(i));
+				EditText decimal = (EditText) getActivity().findViewById(id_campos.get(i));
 				if (decimal.getText().toString().compareTo("") != 0) {
 					double valor = Double.parseDouble(decimal.getText()
 							.toString());
@@ -220,8 +210,7 @@ public class Consulta_Fragment extends Fragment {
 			}
 			// campo tipo text
 			case 2: {
-				EditText text = (EditText) getActivity().findViewById(
-						id_campos.get(i));
+				EditText text = (EditText) getActivity().findViewById(id_campos.get(i));
 				Log.i("phil", "campo: " + text.getText().toString());
 				if (text.getText().toString().compareTo("") != 0) {
 					String valor = "'" + text.getText().toString() + "'";
@@ -256,16 +245,17 @@ public class Consulta_Fragment extends Fragment {
 
 		Db executa = Db.getInstance(getActivity());
 
-		executa.executaSQL(new String[]{sql});
-		
+		executa.executaSQL(new String[] { sql });
+
 		dbConsulta.deletaConsulta(consulta.getId());
-		
-		Toast.makeText(getActivity(), "Consulta salva com sucesso!", Toast.LENGTH_LONG).show();
+
+		Toast.makeText(getActivity(), "Consulta salva com sucesso!",
+				Toast.LENGTH_LONG).show();
 		getActivity().onBackPressed();
-		//id
-		//nome coluna
-		//tipo
-		//conteudo
+		// id
+		// nome coluna
+		// tipo
+		// conteudo
 	}
 
 	public String adiciona0(int numero) {
