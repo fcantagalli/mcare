@@ -262,7 +262,7 @@ public class DbHelperMedicamento {
 			//Armazena resultado
 			while(!cursor.isAfterLast()){
 				Log.i("SQL","passou no is afterlast");
-				id_ultima_consulta = Integer.parseInt(cursor.getString(0));
+				id_ultima_consulta = cursor.getInt(0);
 				cursor.moveToNext();
 			}
 		}

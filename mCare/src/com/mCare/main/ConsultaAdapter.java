@@ -74,10 +74,10 @@ public class ConsultaAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View view) {
-				// TODO Auto-generated method stub
-				Uri uri = Uri.parse("tel:"+ con.getPaciente().getTelefone());
-		        Intent intent = new Intent(Intent.ACTION_CALL,uri);
-		        view.getContext().startActivity(intent);
+				String uri = "tel:" + con.getPaciente().getTelefone();
+				Intent callIntent = new Intent(Intent.ACTION_CALL);
+				callIntent.setData(Uri.parse(uri));
+				view.getContext().startActivity(callIntent);
 			}
 		});
 		

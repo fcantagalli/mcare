@@ -92,16 +92,8 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 	
 	public void selecionaOpcaoMenu(int which, Consulta escolhida) {
 		switch (which) {
-		//telefonar
-		case 0: {
-			String uri = "tel:" + escolhida.getPaciente().getTelefone();
-			Intent callIntent = new Intent(Intent.ACTION_CALL);
-			callIntent.setData(Uri.parse(uri));
-			startActivity(callIntent);
-			break;
-		}
 		//enviar sms
-		case 1: {
+		case 0: {
 			Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 			smsIntent.setType("vnd.android-dir/mms-sms");
 			smsIntent.putExtra("address",  "" + escolhida.getPaciente().getTelefone());
@@ -112,13 +104,13 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			break;
 		}
 		//tracar rota
-		case 2: {
+		case 1: {
 			Intent navigationIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" + escolhida.getPaciente().getLogradouro() + ", " + escolhida.getPaciente().getNumero()));
 			startActivity(navigationIntent);
 			break;
 		}
 		//visualizar informacoes consulta agendada
-		case 3: {
+		case 2: {
 			Intent infoConsultaIntent = new Intent(this.getActivity().getApplicationContext(), VisualizaInfoConsultaAgendada.class);
 			String horarioConsulta = escolhida.getHora().get(GregorianCalendar.HOUR) + ":" + escolhida.getHora().get(GregorianCalendar.MINUTE);
 			String enderecoConsulta = escolhida.getPaciente().getLogradouro() + " nº" + escolhida.getPaciente().getNumero() + " " + escolhida.getPaciente().getBairro();
@@ -129,7 +121,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			startActivity(infoConsultaIntent);
 			break;
 		}
-		case 4: {
+		case 3: {
 			Intent realizarConsulta = new Intent(getActivity(), RealizarConsultaMain.class);
 			realizarConsulta.putExtra("nome_paciente", escolhida.getPaciente().getNome());
 			realizarConsulta.putExtra("id_consulta", escolhida.getId());

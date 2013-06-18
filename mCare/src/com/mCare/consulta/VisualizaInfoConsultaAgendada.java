@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.consulta.realizarConsulta.RealizarConsultaMain;
@@ -56,6 +57,8 @@ public class VisualizaInfoConsultaAgendada extends Activity {
 		String nomePaciente = getIntent().getExtras().getStringArray("informacoes")[0];
 		realizaConsulta.putExtra("nome_paciente", nomePaciente);
 		realizaConsulta.putExtra("id_consulta", id_consulta);
+		int id_paciente = getIntent().getExtras().getInt("id_paciente");
+		realizaConsulta.putExtra("id_paciente", id_paciente);
 		startActivity(realizaConsulta);
 	}
 	@Override

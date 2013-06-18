@@ -50,7 +50,6 @@
     <!-- FIM -->
 
     <string-array name="opcoes_consulta_array">
-        <item>Ligar</item>
         <item>Enviar mensagem</item>
         <item>Traçar rota</item>
         <item>Visualizar consulta</item>
