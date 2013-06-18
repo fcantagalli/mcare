@@ -122,7 +122,7 @@
             android:label="@string/title_activity_midia__fragment" >
         </activity>
 
-        <receiver android:name="com.mCare.notificacao.NotificacaoConsulta" >
+        <receiver android:name=".NotificacaoConsulta" >
         </receiver>
 
         <activity
