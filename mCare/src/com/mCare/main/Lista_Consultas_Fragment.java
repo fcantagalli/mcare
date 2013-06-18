@@ -27,7 +27,6 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public abstract class Lista_Consultas_Fragment extends Fragment {
@@ -98,8 +97,8 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			smsIntent.setType("vnd.android-dir/mms-sms");
 			smsIntent.putExtra("address",  "" + escolhida.getPaciente().getTelefone());
 			String data = Utils.formataHora(escolhida.getHora());
-			smsIntent.putExtra("sms_body", "Caro(a)"+escolhida.getPaciente().getNome()+",\n Estou atrasado para nossa consulta das"+
-					data);
+			smsIntent.putExtra("sms_body", "Caro(a) "+escolhida.getPaciente().getNome()+",\nEstou atrasado para nossa consulta das "+
+					data + "hrs");
 			startActivity(smsIntent);
 			break;
 		}
