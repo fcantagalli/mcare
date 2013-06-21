@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Set;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -44,8 +43,8 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 	
 	ArrayList<Medicamento> elementsAtuais;
 	ArrayList<Medicamento> elementsAnteriores;
-	ExpandableListView exList;
-	ExpandableAdapter adapter;
+	static ExpandableListView exList;
+	static ExpandableAdapter adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {

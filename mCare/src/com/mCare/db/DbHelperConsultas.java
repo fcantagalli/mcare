@@ -36,7 +36,6 @@ public class DbHelperConsultas {
 		cv.put("data_hora",dbhelper.formataData(gc));
 		cv.put("descricao", consulta.getDescricao());
 		cv.put("tipo_con", consulta.getTipo());
-		
 		deucerto = dbhelper.insert(dbhelper.TABLE_NAME_CONSULTAS_MARCADAS, cv);
 		return deucerto;
 	}
