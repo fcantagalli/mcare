@@ -40,6 +40,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 	//ListView listViewMedicamentosAnteriores;
 	//TextView tituloTelaMedicamentosPaciente;
 	ExpandableListView exList;
+	ExpandableAdapter adapter;
 	//MyIndexerAdapter<Medicamento> adapterAtuais;
 	
 	@Override
@@ -89,7 +90,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		grupo.setListChild(child);
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-		ExpandableAdapter adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
+		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
  		exList.setAdapter(adapter);
  		
 		// TODA A PARTE DE BAIXO E O CODIGO ANTIGO.
@@ -166,7 +167,22 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		return rootView;
 	}
 	
-	
+	public boolean salvaDados(){
+		
+		GroupEntity c = (GroupEntity) adapter.getGroup(0);
+		
+		
+		
+		for(Medicamento m : c.listChild){
+			Boolean tem = c.childSelected.get(m.getId());
+			
+			if(tem != null && tem ){
+				
+			}
+		}
+		
+		return true;
+	}
 
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {
