@@ -26,7 +26,9 @@ import com.mCare.R;
 import com.mCare.consulta.realizarConsulta.ExpandableAdapter;
 import com.mCare.consulta.realizarConsulta.GroupEntity;
 import com.mCare.db.DbHelperDiagnostico;
+import com.mCare.db.DbHelperDiagnostico_Consulta;
 import com.mCare.db.DbHelperMedicamento;
+import com.mCare.db.DbHelperMedicamento_Paciente;
 import com.mCare.diagnostico.Diagnostico;
 import com.mCare.paciente.Paciente;
 
@@ -36,11 +38,8 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 	
 	ArrayList<Medicamento> elementsAtuais;
 	ArrayList<Medicamento> elementsAnteriores;
-	//ListView listViewMedicamentosAtuais;
-	//ListView listViewMedicamentosAnteriores;
-	//TextView tituloTelaMedicamentosPaciente;
 	ExpandableListView exList;
-	//MyIndexerAdapter<Medicamento> adapterAtuais;
+	ExpandableAdapter adapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -89,7 +88,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		grupo.setListChild(child);
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-		ExpandableAdapter adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
+		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
  		exList.setAdapter(adapter);
  		
 		// TODA A PARTE DE BAIXO E O CODIGO ANTIGO.
@@ -166,7 +165,37 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		return rootView;
 	}
 	
-	
+	public boolean salvaDados(){
+		
+		GroupEntity c = (GroupEntity) adapter.getGroup(0);
+		
+		long id_consulta = getActivity().getIntent().getExtras().getLong("id_consulta");
+		int id =  getActivity().getIntent().getExtras().getInt("id_paciente", -1);
+		
+		DbHelperMedicamento_Paciente dbm = new DbHelperMedicamento_Paciente(getActivity().getApplicationContext());
+		
+		for(Medicamento m : c.listChild){
+			Boolean tem = c.childSelected.get(m.getId());
+			
+			if(tem != null && tem ){
+				dbm.insereMedicamento_Paciente(m.getId(),id_consulta , id);
+			}
+		}
+		
+		c = (GroupEntity) adapter.getGroup(1);
+		
+		DbHelperDiagnostico_Consulta dbd = new DbHelperDiagnostico_Consulta(getActivity().getApplicationContext());
+		
+		for (Medicamento m: c.listChild){
+			Boolean tem = c.childSelected.get(m.getId());
+			
+			if(tem != null && tem ){
+				dbd.insereDiagnostico_Consulta(m.getId(), id_consulta);
+			}
+		}
+		
+		return true;
+	}
 
 
 	class MyIndexerAdapter<T> extends ArrayAdapter<T> implements SectionIndexer {

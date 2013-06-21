@@ -11,8 +11,8 @@ public class GroupEntity {
 		 private Integer id;
 		 private String descricao;
 		 private String tipo;
-		 private List<Medicamento> listChild;
-		 Map<Integer, Boolean> childSelected = new HashMap<Integer, Boolean>();
+		 public List<Medicamento> listChild;
+		 public Map<Integer, Boolean> childSelected = new HashMap<Integer, Boolean>();
 		 
 		 public GroupEntity() {
 			 
