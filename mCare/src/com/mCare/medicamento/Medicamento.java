@@ -24,13 +24,20 @@ public class Medicamento {
 	//CONSTRUTORES
 	public Medicamento(int id, String nome){
 		this.id = id;
-		this.nome = nome;
+		this.setNome(nome);
 	}
 	
 	public Medicamento(int id, String nome, String tipo){
 		this.id = id;
-		this.nome = nome;
-		this.tipo = tipo;
+		this.setNome(nome);
+		this.setTipo(tipo);
+	}
+	
+	public Medicamento(int id, String nome, String tipo, String natureza_verdadeira){
+		this.id = id;
+		this.setNome(nome);
+		this.setTipo(tipo);
+		this.setNaturezaVerdadeira(natureza_verdadeira);
 	}
 	
 	// TO STRING
