@@ -34,6 +34,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 	private TextView textTemp;
 	private ImageView imgTemp;
 	
+	private static Consultas_Fragment consultas_fragment = null;
+	private static Agenda_Fragment agenda_fragment = null;
+	private static ListaPacientes_Fragment listaPacientes_Fragment = null;
+	
 	public static final String TIPO_MEDICO = "tipo_medico";
 	public static String tipo_medico;
 
@@ -216,8 +220,15 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		textTemp.setVisibility(View.VISIBLE);
 		imgTemp.setVisibility(View.VISIBLE);
 	}
-
 	
+	@Override
+	protected void onActivityResult(int arg0, int arg1, Intent data) {
+		Log.i("MainActivity", "chamou o onActivityResult");
+		consultas_fragment = new Consultas_Fragment();
+		agenda_fragment = new Agenda_Fragment();
+		super.onActivityResult(arg0, arg1, data);
+	}
+
 	public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
         public AppSectionsPagerAdapter(FragmentManager fm) {
@@ -227,13 +238,29 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         @Override
         public Fragment getItem(int i) {
             switch (i) {
-                case 0: return new Agenda_Fragment();
+                case 0:{
+                	if(agenda_fragment==null){
+                		return new Agenda_Fragment();
+                	}
+                	return agenda_fragment;
+                }
                 
-                case 1: return new ListaPacientes_Fragment();
+                case 1:{
+                	if(listaPacientes_Fragment==null){
+                		return new ListaPacientes_Fragment();
+                	}
+                	return listaPacientes_Fragment;
+                }
                 
-                case 2: return new Consultas_Fragment();
+                case 2:{
+                	if(consultas_fragment==null){
+                		return new Consultas_Fragment();
+                	}
+                	return consultas_fragment;
+                }
             }
-            return new com.mCare.main.Agenda_Fragment();
+            //espero que nunca aconteca!
+            return null;
         }
 
         @Override

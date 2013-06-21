@@ -77,7 +77,9 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	}
 	
 	private void salvaDados(){
-		consulta_fragment.salvaInformacoes();
+		if(!consulta_fragment.salvaInformacoes()){
+			return;
+		}
 		lista_medicamentos_paciente.salvaDados();
 		Toast.makeText(this, "Consulta realizada com sucesso!", Toast.LENGTH_LONG).show();
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
@@ -164,7 +166,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         public CharSequence getPageTitle(int position) {
         	switch(position){
         	case 0: return "Consulta";
-        	case 1: return "Medicamentos";
+        	case 1: return "Dados Adicionais";
         	case 2: return "Mídia";
         	case 3: return "Exames";
         	}

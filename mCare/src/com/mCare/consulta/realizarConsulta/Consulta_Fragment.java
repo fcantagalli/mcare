@@ -53,19 +53,6 @@ public class Consulta_Fragment extends Fragment {
 				getActivity().getApplicationContext());
 		nomes = db.pegaColunas();
 
-		Button finalizar = new Button(getActivity());
-		finalizar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-		finalizar.setText("Finalizar");
-		finalizar.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				salvaInformacoes();
-
-			}
-		});
-		
-		layout.addView(finalizar);
 		mostraCampos(layout);
 
 		scroll.addView(layout);
@@ -143,7 +130,7 @@ public class Consulta_Fragment extends Fragment {
 		}
 	}
 
-	public void salvaInformacoes() {
+	public boolean salvaInformacoes() {
 		long id_consulta = (Long) getActivity().getIntent().getExtras()
 				.get("id_consulta");
 		String[] nomesColunas = new String[nomes.size()];
@@ -186,8 +173,8 @@ public class Consulta_Fragment extends Fragment {
 					int valor = Integer.parseInt(inteiro.getText().toString());
 					sql = sql + valor;
 				} else {
-					Toast.makeText(getActivity(),"Preencha o campo " + nomes.get(i + 5).split("@")[0], Toast.LENGTH_LONG).show();
-					return;
+					Toast.makeText(getActivity(),"Preencha o campo " + nomes.get(i + 5).split("@")[0].replace("_", " "), Toast.LENGTH_LONG).show();
+					return false;
 				}
 				break;
 			}
@@ -202,9 +189,9 @@ public class Consulta_Fragment extends Fragment {
 					Toast.makeText(
 							getActivity(),
 							"Preencha o campo "
-									+ nomes.get(i + 5).split("@")[0],
+									+ nomes.get(i + 5).split("@")[0].replace("_", " "),
 							Toast.LENGTH_LONG).show();
-					return;
+					return false;
 				}
 				break;
 			}
@@ -219,9 +206,9 @@ public class Consulta_Fragment extends Fragment {
 					Toast.makeText(
 							getActivity(),
 							"Preencha o campo "
-									+ nomes.get(i + 5).split("@")[0],
+									+ nomes.get(i + 5).split("@")[0].replace("_", " "),
 							Toast.LENGTH_LONG).show();
-					return;
+					return false;
 				}
 				break;
 			}
@@ -256,6 +243,7 @@ public class Consulta_Fragment extends Fragment {
 		// nome coluna
 		// tipo
 		// conteudo
+		return true;
 	}
 
 	public String adiciona0(int numero) {
