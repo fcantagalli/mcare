@@ -36,6 +36,17 @@ public class DbHelperExame {
 		return id;
 	}
 	
+	public long insereExame(String nome, int tipo_resultado_exame){
+		ContentValues cv = new ContentValues();
+		
+		cv.put("nome", nome);
+		cv.put("tipocampovalor", tipo_resultado_exame);
+		
+		long id = dbhelper.insert(dbhelper.TABLE_NAME_EXAME, cv);
+		
+		return id;
+	}
+	
 	public boolean deletaExame(long id){
 		
 		int i = dbhelper.delete(dbhelper.TABLE_NAME_EXAME, "id_exame=?", new String[]{""+id});
