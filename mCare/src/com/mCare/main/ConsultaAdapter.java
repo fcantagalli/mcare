@@ -102,7 +102,7 @@ public class ConsultaAdapter extends BaseAdapter {
 		 */
 		nome.setText(con.getPaciente().getNome());
 		GregorianCalendar gc = con.getHora();
-		horario.setText(gc.get(gc.DAY_OF_MONTH)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+" às "+gc.get(gc.HOUR_OF_DAY)+":"+gc.get(gc.MINUTE));
+		horario.setText(Utils.adiciona0(""+gc.get(gc.DAY_OF_MONTH)) + "/" + Utils.adiciona0(""+gc.get(gc.MONTH)) + "/" + Utils.adiciona0(""+gc.get(gc.YEAR)) + " às " + Utils.adiciona0("" + gc.get(gc.HOUR_OF_DAY)) + ":" + Utils.adiciona0("" + gc.get(gc.MINUTE)));
 		
 		FrameLayout barrinha = (FrameLayout) convertView.findViewById(R.id.barrinha);
 		barrinha.setBackgroundColor(convertView.getResources().getColor(classificaData(gc)));
@@ -119,12 +119,6 @@ public class ConsultaAdapter extends BaseAdapter {
 		int ano = gc.get(GregorianCalendar.YEAR);
 		int hora = gc.get(GregorianCalendar.HOUR_OF_DAY);
 		int minutos = gc.get(GregorianCalendar.MINUTE);
-		
-		Log.i("phil", "mes da consulta: " + mes + " mes de agora: " + now.get(GregorianCalendar.MONTH));
-		Log.i("phil", "ano da consulta: " + ano + " ano de agora: " + now.get(GregorianCalendar.YEAR));
-		Log.i("phil", "dia da consulta: " + dia + " dia de agora: " + now.get(GregorianCalendar.DAY_OF_MONTH));
-		Log.i("phil", "hora da consulta: " + hora + " hora de agora: " + now.get(GregorianCalendar.HOUR_OF_DAY));
-		Log.i("phil", "minutos da consulta: " + minutos + " minutos da consulta: " + now.get(GregorianCalendar.MINUTE));
 		
 		//ano igual a hoje
 		if(ano==now.get(GregorianCalendar.YEAR)){

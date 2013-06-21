@@ -137,21 +137,22 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 		}
 	}
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(data != null){
-			ListView listaConsultas = (ListView) getActivity().findViewById(R.id.lstConsultas);
-			
-			DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
-			lstConsultas = retornaConsultas(dbConsultas);
-			if(lstConsultas == null){
-				lstConsultas = new LinkedList<Consulta>();
-			}
-			
-			ConsultaAdapter adapter = new ConsultaAdapter(getActivity().getApplicationContext(), lstConsultas);
-			listaConsultas.setAdapter(adapter);
-			super.onActivityResult(requestCode, resultCode, data);
+	public void updadeList() {
+		Log.i("Lista_Consulta_Fragment", "update list foi chamado!");
+		ListView listaConsultas = (ListView) getActivity().findViewById(
+				R.id.lstConsultas);
+
+		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity()
+				.getApplicationContext());
+		lstConsultas = retornaConsultas(dbConsultas);
+		if (lstConsultas == null) {
+			lstConsultas = new LinkedList<Consulta>();
 		}
+
+		ConsultaAdapter adapter = new ConsultaAdapter(getActivity()
+				.getApplicationContext(), lstConsultas);
+		listaConsultas.setAdapter(adapter);
+
 	}
 	
 	abstract List<Consulta> retornaConsultas(DbHelperConsultas db);

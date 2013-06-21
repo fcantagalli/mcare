@@ -111,7 +111,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 		ArrayList<Medicamento> childrenExames = new ArrayList<Medicamento>(exames.size()); //SAO NA VERDADE EXAMES
 		for (Exame e: exames){
-			childrenExames.add(new Medicamento(e.getId(),e.getNome()));		//SAO NA VERDADE EXAMES
+			childrenExames.add(new Medicamento(e.getId(),e.getNome(),String.valueOf(e.getTipoResultadoExame())));		//SAO NA VERDADE EXAMES
 		}
 		
 		/*
@@ -132,11 +132,11 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			//child.add(new Medicamento(1,"doril"));
 			//child.add(new Medicamento(2,"buscopan"));
 		grupo2.setListChild(childrenDiagnosticos);
-		//grupo3.setListChild(childrenDiagnosticos);
+		grupo3.setListChild(childrenExames);
 		
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-		//listgrupo.add(grupo3);
+		listgrupo.add(grupo3);
 		
 		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
 		

@@ -77,7 +77,9 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	}
 	
 	private void salvaDados(){
-		consulta_fragment.salvaInformacoes();
+		if(!consulta_fragment.salvaInformacoes()){
+			return;
+		}
 		lista_medicamentos_paciente.salvaDados();
 		Toast.makeText(this, "Consulta realizada com sucesso!", Toast.LENGTH_LONG).show();
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
