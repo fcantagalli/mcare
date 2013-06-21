@@ -5,24 +5,26 @@ import java.util.GregorianCalendar;
 import android.content.ContentValues;
 import android.content.Context;
 
-public class DbHelperMedicamento_Paciente {
+public class DbHelperDiagnostico_Consulta {
+
 	
-	public Db dbhelper;
+public Db dbhelper;
 	
-	public DbHelperMedicamento_Paciente(Context context){
+	public DbHelperDiagnostico_Consulta(Context context) {
+		// TODO Auto-generated constructor stub
 		dbhelper = Db.getInstance(context);
 	}
 	
-	public long insereMedicamento_Paciente(long id_medicamento, long id_consulta, int fk_paciente){
+	public long insereDiagnostico_Consulta(long id_diagnostico, long id_consulta){
 		ContentValues cv = new ContentValues();
 		
-		cv.put("id_medicamento", id_medicamento);
+		cv.put("id_diagnostico", id_diagnostico);
 		cv.put("id_consulta", id_consulta);
-		cv.put("fk_paciente", fk_paciente);
 		cv.put("data_consulta", dbhelper.formataData(new GregorianCalendar()));
 		
 		long id = dbhelper.insert(dbhelper.TABLE_NAME_MEDICAMENTO_PACIENTE, cv);
 		return id;
 	}
+	
 	
 }
