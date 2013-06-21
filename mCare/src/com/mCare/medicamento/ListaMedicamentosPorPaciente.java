@@ -112,7 +112,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 		ArrayList<Medicamento> childrenExames = new ArrayList<Medicamento>(exames.size()); //SAO NA VERDADE EXAMES
 		for (Exame e: exames){
-			childrenExames.add(new Medicamento(e.getId(),e.getNome()));		//SAO NA VERDADE EXAMES
+			childrenExames.add(new Medicamento(e.getId(),e.getNome(),String.valueOf(e.getTipoResultadoExame())));		//SAO NA VERDADE EXAMES
 		}
 		
 		/*
