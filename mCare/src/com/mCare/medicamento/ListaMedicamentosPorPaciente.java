@@ -132,11 +132,11 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			//child.add(new Medicamento(1,"doril"));
 			//child.add(new Medicamento(2,"buscopan"));
 		grupo2.setListChild(childrenDiagnosticos);
-		//grupo3.setListChild(childrenDiagnosticos);
+		grupo3.setListChild(childrenExames);
 		
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-		//listgrupo.add(grupo3);
+		listgrupo.add(grupo3);
 		
 		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
 		
