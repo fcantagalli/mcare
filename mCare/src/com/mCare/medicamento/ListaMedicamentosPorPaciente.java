@@ -62,9 +62,13 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		ArrayList<Medicamento> estaTomando = db.listaMedicamentos(p);
 		List<Medicamento> child = db.listaMedicamentos();  // provavelmente aqui vem a consulta no banco
 		
+		
 		if(child== null){
 			child = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
 		}
+		
+		Log.i("fe","Child::::"+child);
+		Log.i("fe",""+estaTomando);
 		
 		GroupEntity grupo2 = new GroupEntity(1,"Diagnosticos","A");
 		

@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -76,6 +77,7 @@ public class ConsultaAdapter extends BaseAdapter {
 			public void onClick(View view) {
 				String uri = "tel:" + con.getPaciente().getTelefone();
 				Intent callIntent = new Intent(Intent.ACTION_CALL);
+				callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				callIntent.setData(Uri.parse(uri));
 				view.getContext().startActivity(callIntent);
 			}
