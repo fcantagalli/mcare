@@ -33,6 +33,7 @@ import com.mCare.db.DbHelperDiagnostico_Consulta;
 import com.mCare.db.DbHelperExame;
 import com.mCare.db.DbHelperMedicamento;
 import com.mCare.db.DbHelperMedicamento_Paciente;
+import com.mCare.db.DbHelperResultado_Exame;
 import com.mCare.diagnostico.Diagnostico;
 import com.mCare.exame.Exame;
 import com.mCare.paciente.Paciente;
@@ -67,16 +68,17 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		ArrayList<Medicamento> estaTomando = db.listaMedicamentos(p);
 		
 		//favoritos primeiro
-		List<Medicamento> childrenMedicamentos = db.listaMedicamentos(true);  // provavelmente aqui vem a consulta no banco
+		List<Medicamento> medicamentos = db.listaMedicamentos(true);
+		List<Medicamento> childrenMedicamentos = new ArrayList<Medicamento>(medicamentos.size());
 		
-		if(childrenMedicamentos== null){
-			childrenMedicamentos = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
+		for (Medicamento m: medicamentos){
+			childrenMedicamentos.add(new Medicamento(m.getId(),m.getNome(), "Medicamento"));
 		}
 		
 		//depois nao favoritos
-		List<Medicamento> childrenMedicamentosNaoFavoritos = db.listaMedicamentos(false);  // provavelmente aqui vem a consulta no banco
-		if(childrenMedicamentosNaoFavoritos != null){
-			childrenMedicamentos.addAll(childrenMedicamentosNaoFavoritos); //Adiciona a lista se houver 
+		List<Medicamento> medicamentosNaoFavoritos = db.listaMedicamentos(false);  // provavelmente aqui vem a consulta no banco
+		for (Medicamento m: medicamentosNaoFavoritos){
+			childrenMedicamentos.add(new Medicamento(m.getId(),m.getNome(), "Medicamento"));
 		}
 		
 		Log.i("fe","Child::::"+childrenMedicamentos);
@@ -95,7 +97,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 		ArrayList<Medicamento> childrenDiagnosticos =new ArrayList<Medicamento>(diagnosticos.size()); //SAO NA VERDADE DIAGNOSTICOS
 		for (Diagnostico d: diagnosticos){
-			childrenDiagnosticos.add(new Medicamento(d.getId(),d.getNome()));		//SAO NA VERDADE DIAGNOSTICOS
+			childrenDiagnosticos.add(new Medicamento(d.getId(),d.getNome(),"Diagnostico"));		//SAO NA VERDADE DIAGNOSTICOS
 		}
 		
 		
@@ -111,7 +113,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 		ArrayList<Medicamento> childrenExames = new ArrayList<Medicamento>(exames.size()); //SAO NA VERDADE EXAMES
 		for (Exame e: exames){
-			childrenExames.add(new Medicamento(e.getId(),e.getNome()));		//SAO NA VERDADE EXAMES
+			childrenExames.add(new Medicamento(e.getId(),e.getNome(),String.valueOf(e.getTipoResultadoExame()), "Exame"));		//SAO NA VERDADE EXAMES
 		}
 		
 		/*
@@ -132,11 +134,11 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			//child.add(new Medicamento(1,"doril"));
 			//child.add(new Medicamento(2,"buscopan"));
 		grupo2.setListChild(childrenDiagnosticos);
-		//grupo3.setListChild(childrenDiagnosticos);
+		grupo3.setListChild(childrenExames);
 		
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-		//listgrupo.add(grupo3);
+		listgrupo.add(grupo3);
 		
 		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
 		
@@ -244,6 +246,19 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			
 			if(tem != null && tem ){
 				dbd.insereDiagnostico_Consulta(m.getId(), id_consulta);
+			}
+		}
+		
+		/**** RESULTADO_EXAME ****/
+		c = (GroupEntity) adapter.getGroup(2);
+		
+		DbHelperResultado_Exame dbdb = new DbHelperResultado_Exame(getActivity().getApplicationContext());
+		
+		for (Medicamento m: c.listChild){
+			Boolean tem = c.childSelected.get(m.getId());
+			
+			if(tem != null && tem ){
+				dbdb.insereResultado_Exame(m.getId(), id_consulta, m.getNome(), m.getTipo());
 			}
 		}
 		

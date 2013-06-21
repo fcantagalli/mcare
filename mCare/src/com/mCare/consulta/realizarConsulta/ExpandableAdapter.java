@@ -43,43 +43,70 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 		final ViewChildHolder holder;
 		final Medicamento child = lista.get(groupPosition).getListChild()
 				.get(childPosition);
+		
+		/*** VERIFICA natureza verdadeira do objeto que estava na lista.
+		 * Se for medicamento ou diagnostico, eh um checkbox
+		 * Se for exame, eh um edittext ***/
+		String tipo_campo = "Checkbox";
+		if (child.getNaturezaVerdadeira().equals("Exame")) {
+			tipo_campo = "EditText";
+		}
 
+		
 		if (convertView == null) {
 			convertView = LayoutInflater.from(ctx).inflate(R.layout.list_item_child, null);// carregando layout
 			holder = new ViewChildHolder();
-
 			
-			holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);
-			holder.check.setText(child.getNome());
-			if(lista.get(groupPosition).childSelected.get(child.getId()) != null && lista.get(groupPosition).childSelected.get(child.getId())){
-				holder.check.setChecked(true);
-			}
-			holder.id = child.getId();
-			holder.check.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					CheckBox chk = (CheckBox) v;
-					Log.d("Check", "Selecionado " + holder.check.getText()
-							+ " Holder:" + holder);
-
-					if (chk.isChecked()) {
-						if (!lista.get(groupPosition).childSelected.containsKey(holder.id))
-							lista.get(groupPosition).childSelected.put(holder.id, true);
-					} else {
-						if (lista.get(groupPosition).childSelected.containsKey(holder.id))
-							lista.get(groupPosition).childSelected.remove(holder.id);
-					}
-					holder.check.setChecked(chk.isChecked());
+			
+			/* SE FOR CHECKBOX */
+			if (tipo_campo.equals("Checkbox")) {
+				holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);
+				holder.check.setText(child.getNome());
+				if(lista.get(groupPosition).childSelected.get(child.getId()) != null && lista.get(groupPosition).childSelected.get(child.getId())){
+					holder.check.setChecked(true);
 				}
+				holder.id = child.getId();
+				holder.check.setOnClickListener(new View.OnClickListener() {
+					public void onClick(View v) {
+						CheckBox chk = (CheckBox) v;
+						Log.d("Check", "Selecionado " + holder.check.getText()
+								+ " Holder:" + holder);
+	
+						if (chk.isChecked()) {
+							if (!lista.get(groupPosition).childSelected.containsKey(holder.id))
+								lista.get(groupPosition).childSelected.put(holder.id, true);
+						} else {
+							if (lista.get(groupPosition).childSelected.containsKey(holder.id))
+								lista.get(groupPosition).childSelected.remove(holder.id);
+						}
+						holder.check.setChecked(chk.isChecked());
+					}
+	
+				});
+			}
+			
+			/* SE FOR EDITTEXT */
+			if (tipo_campo.equals("EditText")) {
+				holder.edit = (EditText) convertView.findViewById(R.id.editText1);
+				holder.id = child.getId();
+			}
+			
 
-			});
+			//Para todos
 			convertView.setTag(holder);
 
 		} else {
 			holder = (ViewChildHolder) convertView.getTag();
 		}
-		holder.check.setText(child.getNome());
-		holder.check.setChecked(lista.get(groupPosition).childSelected.containsKey(holder.id));
-
+		
+		
+		/* SE FOR CHECKBOX, deixa checado se precisar */
+		if (tipo_campo.equals("Checkbox")) {
+			holder.check.setText(child.getNome());
+			holder.check.setChecked(lista.get(groupPosition).childSelected.containsKey(holder.id));
+		}
+		
+		
 		return convertView;
 	}
 
