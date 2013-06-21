@@ -56,7 +56,8 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	}
 	
 	private void salvaDados(){
-		FragmentManager fm = getSupportFragmentManager();
+		consulta_fragment.salvaInformacoes();
+		
 
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
 	}
