@@ -1,9 +1,6 @@
 package com.mCare.consulta.realizarConsulta;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.mCare.R;
@@ -50,6 +48,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 			convertView = LayoutInflater.from(ctx).inflate(R.layout.list_item_child, null);// carregando layout
 			holder = new ViewChildHolder();
 
+			
 			holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);
 			holder.check.setText(child.getNome());
 			if(lista.get(groupPosition).childSelected.get(child.getId()) != null && lista.get(groupPosition).childSelected.get(child.getId())){
@@ -86,7 +85,8 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 
 	static class ViewChildHolder {
 		int id;
-		CheckBox check;
+		CheckBox check; //Para checkboxes
+		EditText edit; //Para edit texts
 	}
 
 	public int getChildrenCount(int groupPosition) {
