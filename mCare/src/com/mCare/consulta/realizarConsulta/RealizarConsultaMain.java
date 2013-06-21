@@ -8,9 +8,13 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mCare.R;
@@ -37,9 +41,26 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	    ((View) homeIcon.getParent()).setVisibility(View.VISIBLE);
 	    ((View) homeIcon).setVisibility(View.VISIBLE);
 		
-		actionBar.setTitle("Paciente: " + getIntent().getExtras().getString("nome_paciente"));
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.action_bar_realizar_consulta);
+		
+		//titulo da activity
+		TextView titulo = (TextView) actionBar.getCustomView().findViewById(R.id.textViewTitulo);
+		Log.i("RealizarConsultaMain", "referencia de titulo: " + titulo);
+		titulo.setText("Paciente: " + getIntent().getExtras().getString("nome_paciente"));
+		
+		actionBar.setDisplayShowHomeEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		
+		//botao de finalizar da actionbar
+		Button finalizar = (Button) actionBar.getCustomView().findViewById(R.id.buttonFinalizar);
+		finalizar.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				salvaDados();
+			}
+		});
 		
 		mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mAppSectionsPagerAdapter);
@@ -57,8 +78,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	
 	private void salvaDados(){
 		consulta_fragment.salvaInformacoes();
-		
-
+		Toast.makeText(this, "Consulta realizada com sucesso!", Toast.LENGTH_LONG).show();
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
 	}
 	

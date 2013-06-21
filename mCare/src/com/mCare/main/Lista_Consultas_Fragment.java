@@ -97,8 +97,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			smsIntent.setType("vnd.android-dir/mms-sms");
 			smsIntent.putExtra("address",  "" + escolhida.getPaciente().getTelefone());
 			String data = Utils.formataHora(escolhida.getHora());
-			smsIntent.putExtra("sms_body", "Caro(a) "+escolhida.getPaciente().getNome()+",\nEstou atrasado para nossa consulta das "+
-					data + "hrs");
+			smsIntent.putExtra("sms_body", "Caro(a) "+escolhida.getPaciente().getNome()+",\nEstou atrasado para nossa consulta das "+ data + "hrs");
 			startActivity(smsIntent);
 			break;
 		}
