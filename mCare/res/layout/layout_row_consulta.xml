@@ -34,7 +34,7 @@
 
             <TextView
                 android:id="@+id/textViewPaciente"
-                android:layout_width="190dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="9dp"
                 android:text="Nome Paciente"
@@ -43,7 +43,7 @@
 
             <TextView
                 android:id="@+id/Horario"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data"
                 android:textAppearance="?android:attr/textAppearanceMedium"
@@ -52,7 +52,7 @@
 
         <FrameLayout
             android:id="@+id/row_botao_ligacao"
-            android:layout_width="56dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_gravity="right" >
 
@@ -62,6 +62,20 @@
                 android:layout_gravity="center"
                 android:src="@android:drawable/stat_sys_phone_call" />
         </FrameLayout>
+        
+         <FrameLayout
+            android:id="@+id/row_botao_mensagem"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right" >
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/sym_action_email" />
+        </FrameLayout>
+        
     </LinearLayout>
 
 </LinearLayout>

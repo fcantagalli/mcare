@@ -1,18 +1,10 @@
 package com.mCare.main;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-
-import com.mCare.R;
-import com.mCare.consulta.Consulta;
-import com.mCare.consulta.VisualizaInfoConsultaAgendada;
-import com.mCare.consulta.agendarConsulta.AgendarConsulta;
-import com.mCare.consulta.realizarConsulta.RealizarConsultaMain;
-import com.mCare.db.DbHelperConsultas;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,14 +12,22 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.mCare.R;
+import com.mCare.consulta.Consulta;
+import com.mCare.consulta.VisualizaInfoConsultaAgendada;
+import com.mCare.consulta.agendarConsulta.AgendarConsulta;
+import com.mCare.consulta.realizarConsulta.RealizarConsultaMain;
+import com.mCare.db.DbHelperConsultas;
 
 public abstract class Lista_Consultas_Fragment extends Fragment {
 	
@@ -91,11 +91,18 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 	
 	public void selecionaOpcaoMenu(int which, Consulta escolhida) {
 		switch (which) {
-		//enviar sms
+		//enviar sms em cascata
 		case 0: {
 			Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 			smsIntent.setType("vnd.android-dir/mms-sms");
-			smsIntent.putExtra("address",  "" + escolhida.getPaciente().getTelefone());
+			String telefones = "";
+			for(int i=0; i<lstConsultas.size(); i++){
+				telefones += lstConsultas.get(i).getPaciente().getTelefone();
+				if(i!=lstConsultas.size()-1){
+					telefones += ",";
+				}
+			}
+			smsIntent.putExtra("address",  "" + telefones);
 			String data = Utils.formataHora(escolhida.getHora());
 			smsIntent.putExtra("sms_body", "Caro(a) "+escolhida.getPaciente().getNome()+",\nEstou atrasado para nossa consulta das "+ data + "hrs");
 			startActivity(smsIntent);

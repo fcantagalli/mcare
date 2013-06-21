@@ -4,6 +4,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -68,7 +69,21 @@ public class ConsultaAdapter extends BaseAdapter {
 		TextView nome = (TextView) convertView.findViewById(R.id.textViewPaciente);
 		TextView horario = (TextView) convertView.findViewById(R.id.Horario);
 		FrameLayout ligacao = (FrameLayout) convertView.findViewById(R.id.row_botao_ligacao);
-		//FrameLayout maps = (FrameLayout) convertView.findViewById(R.id.row_botao_maps);
+		FrameLayout sms = (FrameLayout) convertView.findViewById(R.id.row_botao_mensagem);
+		
+		sms.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+				smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				smsIntent.setType("vnd.android-dir/mms-sms");
+				smsIntent.putExtra("address",  "" + con.getPaciente().getTelefone());
+				String data = Utils.formataHora(con.getHora());
+				smsIntent.putExtra("sms_body", "Caro(a) "+con.getPaciente().getNome()+",\nEstou atrasado para nossa consulta das "+ data + "hrs");
+				v.getContext().startActivity(smsIntent);
+			}
+		});
 
 		ligacao.setOnClickListener(new View.OnClickListener() {
 			
@@ -76,6 +91,7 @@ public class ConsultaAdapter extends BaseAdapter {
 			public void onClick(View view) {
 				String uri = "tel:" + con.getPaciente().getTelefone();
 				Intent callIntent = new Intent(Intent.ACTION_CALL);
+				callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				callIntent.setData(Uri.parse(uri));
 				view.getContext().startActivity(callIntent);
 			}

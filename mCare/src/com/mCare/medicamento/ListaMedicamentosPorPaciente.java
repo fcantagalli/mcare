@@ -76,10 +76,12 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		//depois nao favoritos
 		List<Medicamento> childrenMedicamentosNaoFavoritos = db.listaMedicamentos(false);  // provavelmente aqui vem a consulta no banco
-		
 		if(childrenMedicamentosNaoFavoritos != null){
 			childrenMedicamentos.addAll(childrenMedicamentosNaoFavoritos); //Adiciona a lista se houver 
 		}
+		
+		Log.i("fe","Child::::"+childrenMedicamentos);
+		Log.i("fe",""+estaTomando);
 		
 		
 		/**** DEFINE LISTA DE DIAGNOSTICOS ****/

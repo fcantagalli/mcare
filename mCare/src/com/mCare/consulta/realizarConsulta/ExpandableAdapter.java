@@ -26,7 +26,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 		this.lista = lista;
 		if(listaMed != null){
 			for(Medicamento m : listaMed){
-				lista.get(1).childSelected.put(m.getId(), true);
+				lista.get(0).childSelected.put(m.getId(), true);
 			}
 		}
 	}
@@ -47,8 +47,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 				.get(childPosition);
 
 		if (convertView == null) {
-			convertView = LayoutInflater.from(ctx).inflate(
-					R.layout.list_item_child, null);// carregando layout
+			convertView = LayoutInflater.from(ctx).inflate(R.layout.list_item_child, null);// carregando layout
 			holder = new ViewChildHolder();
 
 			holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);

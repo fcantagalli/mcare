@@ -157,8 +157,9 @@ public class DbHelperMedicamento {
 		ArrayList<Medicamento> result = null;
 		if(c.moveToFirst()){
 			result = new ArrayList<Medicamento>(c.getCount());
+			Log.i("med","numero de linhas: "+c.getCount());
 			
-			if(!c.isAfterLast()){
+			while(!c.isAfterLast()){
 				long id = c.getLong(0);
 				String nome = c.getString(1);
 				String tipo = c.getString(2);
@@ -182,6 +183,7 @@ public class DbHelperMedicamento {
 				c.moveToNext();
 			}
 		}
+		
 		return result;
 		
 	}
@@ -250,7 +252,7 @@ public class DbHelperMedicamento {
 		int id_ultima_consulta = 0;
 		String query_consulta =
 				" SELECT max(id_consulta) " +
-				" FROM " + dbhelper.TABLE_NAME_CONSULTAS_MARCADAS +
+				" FROM " + "consulta" +
 				" WHERE fk_paciente = " + p.getBd_id();
 		
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query_consulta, null);
