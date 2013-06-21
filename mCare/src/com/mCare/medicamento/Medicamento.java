@@ -1,6 +1,5 @@
 package com.mCare.medicamento;
 
-import java.security.Principal;
 import java.util.GregorianCalendar;
 
 public class Medicamento {
@@ -16,6 +15,9 @@ public class Medicamento {
 	private long id_consulta;
 	private long id_paciente;
 	private GregorianCalendar hora;
+	
+	//Campo para verificar se eh um Medicamento, Diagnostico ou Exame (usado nas ListViews do ListaMedicamentosPaciente = Dados Adicionais)
+	private String natureza_verdadeira;
 	
 	
 	
@@ -107,5 +109,13 @@ public class Medicamento {
 		this.hora = hora;
 	}
 	
+	
+	//Campo para verificar se eh um Medicamento, Diagnostico ou Exame (usado nas ListViews do ListaMedicamentosPaciente = Dados Adicionais)
+	public String getNaturezaVerdadeira() {
+		return natureza_verdadeira;
+	}
+	public void setNaturezaVerdadeira(String natureza_verdadeira) {
+		this.natureza_verdadeira = natureza_verdadeira;
+	}
 	
 }

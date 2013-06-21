@@ -128,18 +128,19 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		
 		/**** ADICIONA CONTEUDO AS LISTAS ****/
-		grupo3.setListChild(childrenDiagnosticos);
-		grupo2.setListChild(childrenDiagnosticos);
-				//PARTE DE TESTE
-				//child.add(new Medicamento(1,"doril"));
-				//child.add(new Medicamento(2,"buscopan"));
 		grupo.setListChild(childrenMedicamentos);
+			//PARTE DE TESTE
+			//child.add(new Medicamento(1,"doril"));
+			//child.add(new Medicamento(2,"buscopan"));
+		grupo2.setListChild(childrenDiagnosticos);
+		//grupo3.setListChild(childrenDiagnosticos);
 		
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-		listgrupo.add(grupo3);
+		//listgrupo.add(grupo3);
 		
 		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
+		
  		exList.setAdapter(adapter);
  		
 		// TODA A PARTE DE BAIXO E O CODIGO ANTIGO.
