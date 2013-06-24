@@ -10,7 +10,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.mCare.R;
 import com.mCare.medicamento.Medicamento;
 
@@ -47,19 +46,12 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 		/*** VERIFICA natureza verdadeira do objeto que estava na lista.
 		 * Se for medicamento ou diagnostico, eh um checkbox
 		 * Se for exame, eh um edittext ***/
-		String tipo_campo = "Checkbox";
-		if (child.getNaturezaVerdadeira().equals("Exame")) {
-			tipo_campo = "EditText";
-		}
-
 		
 		if (convertView == null) {
 			convertView = LayoutInflater.from(ctx).inflate(R.layout.list_item_child, null);// carregando layout
 			holder = new ViewChildHolder();
 			
 			
-			/* SE FOR CHECKBOX */
-			if (tipo_campo.equals("Checkbox")) {
 				holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);
 				holder.check.setText(child.getNome());
 				if(lista.get(groupPosition).childSelected.get(child.getId()) != null && lista.get(groupPosition).childSelected.get(child.getId())){
@@ -83,14 +75,6 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 					}
 	
 				});
-			}
-			
-			/* SE FOR EDITTEXT */
-			if (tipo_campo.equals("EditText")) {
-				holder.edit = (EditText) convertView.findViewById(R.id.editText1);
-				holder.id = child.getId();
-			}
-			
 
 			//Para todos
 			convertView.setTag(holder);
@@ -98,14 +82,6 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 		} else {
 			holder = (ViewChildHolder) convertView.getTag();
 		}
-		
-		
-		/* SE FOR CHECKBOX, deixa checado se precisar */
-		if (tipo_campo.equals("Checkbox")) {
-			holder.check.setText(child.getNome());
-			holder.check.setChecked(lista.get(groupPosition).childSelected.containsKey(holder.id));
-		}
-		
 		
 		return convertView;
 	}

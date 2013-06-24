@@ -4,7 +4,7 @@ public class Exame {
 
 	private int id;
 	private String nome;
-	private int tipo_resultado_exame;
+	private int tipo_resultado_exame; // 0 -> inteiro 1 -> decimal 2-> Texto 3 -> Data
 	
 	//Campos de resultado_exame
 	private int id_consulta;

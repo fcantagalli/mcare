@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mCare"
     android:versionCode="1"
@@ -27,7 +26,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">/
+        android:theme="@style/AppTheme" >
+/
         <activity
             android:name="com.mCare.main.MainActivity"
             android:label="@string/app_name" >
@@ -122,7 +122,7 @@
             android:label="@string/title_activity_midia__fragment" >
         </activity>
 
-        <receiver android:name=".NotificacaoConsulta" >
+        <receiver android:name="com.mCare.NotificacaoConsulta" >
         </receiver>
 
         <activity
@@ -170,6 +170,10 @@
         <activity
             android:name="com.mCare.media.GaleriaPaciente"
             android:label="@string/title_activity_galeria_paciente" >
+        </activity>
+        <activity
+            android:name="com.mCare.consulta.realizarConsulta.Exame_Fragment"
+            android:label="@string/title_activity_exame__fragment" >
         </activity>
     </application>
 

@@ -126,6 +126,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			startActivity(infoConsultaIntent);
 			break;
 		}
+		// realiza consulta
 		case 3: {
 			Intent realizarConsulta = new Intent(getActivity(), RealizarConsultaMain.class);
 			realizarConsulta.putExtra("nome_paciente", escolhida.getPaciente().getNome());
