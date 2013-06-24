@@ -140,8 +140,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 
 	public void updadeList() {
 		Log.i("Lista_Consulta_Fragment", "update list foi chamado!");
-		ListView listaConsultas = (ListView) getActivity().findViewById(
-				R.id.lstConsultas);
+		ListView listaConsultas = (ListView) getActivity().findViewById(R.id.lstConsultas);
 
 		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity()
 				.getApplicationContext());

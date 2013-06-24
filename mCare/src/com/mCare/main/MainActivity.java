@@ -226,7 +226,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		Log.i("MainActivity", "chamou o onActivityResult");
 		consultas_fragment = new Consultas_Fragment();
 		agenda_fragment = new Agenda_Fragment();
-		super.onActivityResult(arg0, arg1, data);
 	}
 
 	public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {

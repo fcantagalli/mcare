@@ -56,7 +56,7 @@ public class Midia_Fragment extends Fragment {
 			}
 		});
 		layout.addView(fotos);
-
+		/*
 		Button videos = new Button(getActivity());
 		videos.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT));
@@ -71,8 +71,8 @@ public class Midia_Fragment extends Fragment {
 						CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
 			}
 		});
-		layout.addView(videos);
-
+		layout.addView(videos);*/
+		/*
 		Button audio = new Button(getActivity());
 		audio.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT));
@@ -80,7 +80,7 @@ public class Midia_Fragment extends Fragment {
 		audio.setText("Áudio");
 		layout.addView(audio);
 
-		scroll.addView(layout);
+		scroll.addView(layout);*/
 
 		return scroll;
 	}

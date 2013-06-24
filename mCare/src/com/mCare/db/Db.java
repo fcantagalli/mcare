@@ -81,9 +81,11 @@ public class Db extends SQLiteOpenHelper {
 	
 	public long insert(String tableName, ContentValues cv){
 		SQLiteDatabase db = getWritableDatabase();
+		//db.beginTransaction();
 		long id = -1;
 		try{
 			id = db.insertOrThrow(tableName, "", cv);
+			//db.setTransactionSuccessful();
 		}catch(SQLException e){
 			id = -1;
 			Toast.makeText(context, "não foi possível inserir o registro na tabela "+tableName,Toast.LENGTH_SHORT).show();
