@@ -44,8 +44,9 @@ public class Midia_Fragment extends Fragment {
 		layout.setPadding(16, 16, 16, 16);
 
 		Button fotos = new Button(getActivity());
-		fotos.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
+		fotos.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,
 				LayoutParams.WRAP_CONTENT));
+
 		fotos.setPadding(6, 6, 6, 6);
 		fotos.setText("Fotos");
 		fotos.setOnClickListener(new OnClickListener() {
@@ -71,16 +72,16 @@ public class Midia_Fragment extends Fragment {
 						CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
 			}
 		});
-		layout.addView(videos);*/
-		/*
+		layout.addView(videos);
+		
 		Button audio = new Button(getActivity());
 		audio.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT));
 		audio.setPadding(6, 6, 6, 6);
 		audio.setText("Áudio");
 		layout.addView(audio);
-
-		scroll.addView(layout);*/
+		*/
+		scroll.addView(layout);
 
 		return scroll;
 	}

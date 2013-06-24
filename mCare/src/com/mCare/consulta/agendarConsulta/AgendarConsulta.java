@@ -162,7 +162,9 @@ public class AgendarConsulta extends Activity {
 		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso!", Toast.LENGTH_LONG).show();
 		
 		foiAgendada = true;
-		
+	
+		setResult(Activity.RESULT_OK);
+
 		onBackPressed();
 	}
 	
