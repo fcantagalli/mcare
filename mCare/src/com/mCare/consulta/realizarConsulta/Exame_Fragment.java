@@ -52,16 +52,18 @@ public class Exame_Fragment extends Fragment {
 		return rootView;
 	}
 	
+	
 	public void salvaExames(long id_consulta){
 		DbHelperResultado_Exame db = new DbHelperResultado_Exame(getActivity());
-		
-		for(int i= 0 ; i < adapter.listExames.size() ; i++){
-			adapter.listExames.get(i).setValor(adapter.textViews.get(i).getText().toString());
-		}
-		
-		for(Exame e : adapter.listExames){
-			if(e.getValor() != null){
-				db.insereResultado_Exame(e.getId(), id_consulta , e.getNome(), e.getValor());
+		if(adapter != null){
+			for(int i= 0 ; i < adapter.listExames.size() ; i++){
+				adapter.listExames.get(i).setValor(adapter.textViews.get(i).getText().toString());
+			}
+			
+			for(Exame e : adapter.listExames){
+				if(e.getValor() != null){
+					db.insereResultado_Exame(e.getId(), id_consulta , e.getNome(), e.getValor());
+				}
 			}
 		}
 	}

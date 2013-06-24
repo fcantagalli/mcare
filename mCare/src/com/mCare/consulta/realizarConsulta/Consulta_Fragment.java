@@ -34,6 +34,7 @@ public class Consulta_Fragment extends Fragment {
 
 	ArrayList<String> nomes;
 	ArrayList<Integer> id_campos;
+	ArrayList<View> listEt;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +49,7 @@ public class Consulta_Fragment extends Fragment {
 
 		// arraylist para guardar os ids dos campos (views)
 		id_campos = new ArrayList<Integer>();
+		listEt = new ArrayList<View>();
 
 		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(
 				getActivity().getApplicationContext());
@@ -90,6 +92,7 @@ public class Consulta_Fragment extends Fragment {
 				inteiro.setHint(nome.toLowerCase());
 				inteiro.setId(i);
 				id_campos.add(inteiro.getId());
+				listEt.add(inteiro);
 				layout.addView(inteiro);
 				break;
 			}
@@ -102,6 +105,7 @@ public class Consulta_Fragment extends Fragment {
 				decimal.setHint(nome.toLowerCase());
 				decimal.setId(i);
 				id_campos.add(decimal.getId());
+				listEt.add(decimal);
 				layout.addView(decimal);
 				break;
 			}
@@ -113,7 +117,9 @@ public class Consulta_Fragment extends Fragment {
 				text.setHint(nome.toLowerCase());
 				text.setId(i);
 				id_campos.add(text.getId());
+				listEt.add(text);
 				layout.addView(text);
+
 				break;
 			}
 			// campo tipo data
@@ -123,6 +129,7 @@ public class Consulta_Fragment extends Fragment {
 				datePicker.setCalendarViewShown(false);
 				datePicker.setId(i);
 				id_campos.add(datePicker.getId());
+				listEt.add(datePicker);
 				layout.addView(datePicker);
 				break;
 			}
@@ -166,8 +173,10 @@ public class Consulta_Fragment extends Fragment {
 			switch (tiposColunas[i]) {
 			// campo tipo inteiro
 			case 0: {
-				EditText inteiro = (EditText) getActivity().findViewById(
-						id_campos.get(i));
+				//EditText inteiro = (EditText) getActivity().findViewById(id_campos.get(i));
+				EditText inteiro = (EditText) listEt.get(i);
+				Log.i("phil",""+inteiro);
+				
 				Log.i("phil", "campo: " + inteiro.getText().toString());
 				if (inteiro.getText().toString().compareTo("") != 0) {
 					int valor = Integer.parseInt(inteiro.getText().toString());
@@ -180,7 +189,8 @@ public class Consulta_Fragment extends Fragment {
 			}
 			// campo tipo decimal
 			case 1: {
-				EditText decimal = (EditText) getActivity().findViewById(id_campos.get(i));
+				//EditText decimal = (EditText) getActivity().findViewById(id_campos.get(i));
+				EditText decimal = (EditText) listEt.get(i);
 				if (decimal.getText().toString().compareTo("") != 0) {
 					double valor = Double.parseDouble(decimal.getText()
 							.toString());
@@ -197,7 +207,8 @@ public class Consulta_Fragment extends Fragment {
 			}
 			// campo tipo text
 			case 2: {
-				EditText text = (EditText) getActivity().findViewById(id_campos.get(i));
+				//EditText text = (EditText) getActivity().findViewById(id_campos.get(i));
+				EditText text = (EditText) listEt.get(i);
 				Log.i("phil", "campo: " + text.getText().toString());
 				if (text.getText().toString().compareTo("") != 0) {
 					String valor = "'" + text.getText().toString() + "'";
@@ -214,7 +225,8 @@ public class Consulta_Fragment extends Fragment {
 			}
 			// campo tipo data
 			case 3: {
-				DatePicker datePicker = new DatePicker(getActivity());
+				//DatePicker datePicker = new DatePicker(getActivity());
+				DatePicker datePicker = (DatePicker) listEt.get(i); 
 				String valor = "'" + datePicker.getYear() + "-"
 						+ adiciona0(datePicker.getMonth()) + "-"
 						+ adiciona0(datePicker.getDayOfMonth()) + "'";

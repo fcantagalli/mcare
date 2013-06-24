@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mCare.R;
+import com.mCare.exame.Exame;
 import com.mCare.media.Midia_Fragment;
 import com.mCare.medicamento.ListaMedicamentosPorPaciente;
 
@@ -78,11 +79,21 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	}
 	
 	private void salvaDados(){
-		if(!consulta_fragment.salvaInformacoes()){
+		
+		Consulta_Fragment cf = (Consulta_Fragment) mAppSectionsPagerAdapter.getItem(0);
+		
+		if(cf == null ){
 			return;
 		}
-		lista_medicamentos_paciente.salvaDados();
-		exame_fragment.salvaExames((long) this.getIntent().getExtras().getLong("id_consulta"));
+		if(!cf.salvaInformacoes()){
+			return;
+		}
+		ListaMedicamentosPorPaciente lista_med = (ListaMedicamentosPorPaciente) mAppSectionsPagerAdapter.getItem(1);
+		//lista_medicamentos_paciente.salvaDados();
+		lista_med.salvaDados();
+		Exame_Fragment ef = (Exame_Fragment) mAppSectionsPagerAdapter.getItem(3);
+		//exame_fragment.salvaExames((long) this.getIntent().getExtras().getLong("id_consulta"));
+		ef.salvaExames(this.getIntent().getExtras().getLong("id_consulta"));
 		Toast.makeText(this, "Consulta realizada com sucesso!", Toast.LENGTH_LONG).show();
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
 	}

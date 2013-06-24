@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
-            android:text="Observações:"
+            android:text="Descrição:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
