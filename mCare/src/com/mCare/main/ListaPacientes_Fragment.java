@@ -41,37 +41,17 @@ public class ListaPacientes_Fragment extends Fragment implements OnItemClickList
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-
+		Log.i("ListaPacientes_Fragment", "fui chamado (OnCreateView)");
 		View rootView = inflater.inflate(R.layout.activity_lista_pacientes,container, false);
 
-		DbHelperPaciente db = new DbHelperPaciente(getActivity()
-				.getApplicationContext());
+		DbHelperPaciente db = new DbHelperPaciente(getActivity().getApplicationContext());
 
 		elements = db.listaPacientes();
 		
 
 		if(elements== null){
-
 			elements = new ArrayList<Paciente>();
 		}
-
-		//elements = new ArrayList<Paciente>();
-		
-		// OBS: esse trecho abaixo foi usado para teste, ele gera 300 Pacientes
-		// com nomes aleatorios
-		// e adiciona na lista elements
-		
-		/*  String s = "QWERTZUIOPASDFGHJKLYXCVBNM"; Random r = new Random(); for
-		  (int i = 0; i < 300; i++) {
-		  
-		  elements.add(new Paciente(1,s.substring(r.nextInt(s.length()))));
-		  
-		  }
-		 
-
-		 Collections.sort(elements); // Must be sorted! // ja retorna ordenado
-		*/
-		// listview
 		
 		listViewPacientes = (ListView) rootView.findViewById(R.id.listTelaPacientes);
 		listViewPacientes.setOnItemClickListener(this);
@@ -109,27 +89,30 @@ public class ListaPacientes_Fragment extends Fragment implements OnItemClickList
 	}
 
 	
-	
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		DbHelperPaciente db = new DbHelperPaciente(getActivity());
 
-		if(data.getExtras() == Bundle.EMPTY){
-			return;
+		elements = db.listaPacientes();
+		
+		Log.i("ListaPacientes_Fragment", "elements: " + elements + " listView: " + listViewPacientes);
+		
+		if(elements== null){
+			elements = new ArrayList<Paciente>();
 		}
-		Paciente paciente = new Paciente( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"));
-		Log.i("inf","informacoes paciente cadastrado : "+ "nome : "+paciente.getNome()+"    Id : "+paciente.getBd_id());
-		elements.add(paciente);
-		Collections.sort(elements);
-		listViewPacientes.setFastScrollEnabled(true);
-		adapter = new MyIndexerAdapter<Paciente>(getActivity(), android.R.layout.simple_list_item_1, elements);
-		listViewPacientes.setAdapter(adapter);
-
+		
+		if(listViewPacientes!=null){
+			adapter = new MyIndexerAdapter<Paciente>(getActivity(), android.R.layout.simple_list_item_1, elements);
+			listViewPacientes.setAdapter(adapter);
+		}else{
+			Log.i("ListaPacientes_Fragment", "listViewPacientes eh null");
+		}
 	}
 
-	//ic_btn_speak_now
-	//ic_menu_camera
-	//ic_menu_gallery
-	//ic_menu_slideshow
+
+	public void updateList(Intent data) {
+		
+	}
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

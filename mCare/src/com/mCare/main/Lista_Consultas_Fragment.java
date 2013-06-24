@@ -32,6 +32,7 @@ import com.mCare.db.DbHelperConsultas;
 public abstract class Lista_Consultas_Fragment extends Fragment {
 	
 	List<Consulta> lstConsultas;
+	ListView list;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +52,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 		});
 
 		// Referencias para a tela de agenda do dia em geral
-		ListView list = (ListView) rootView.findViewById(R.id.lstConsultas);
+		list = (ListView) rootView.findViewById(R.id.lstConsultas);
 		
 		lstConsultas = new ArrayList<Consulta>();
 		
@@ -138,21 +139,20 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 		}
 	}
 
-	public void updadeList() {
-		Log.i("Lista_Consulta_Fragment", "update list foi chamado!");
-		ListView listaConsultas = (ListView) getActivity().findViewById(R.id.lstConsultas);
-
-		DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity()
-				.getApplicationContext());
-		lstConsultas = retornaConsultas(dbConsultas);
-		if (lstConsultas == null) {
-			lstConsultas = new LinkedList<Consulta>();
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.i("Lista_Consultas_Fragment", "chamou onActivityResult");
+		if(data!=null){
+			DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity());
+			lstConsultas = retornaConsultas(dbConsultas);
+			
+			if (lstConsultas == null) {
+				lstConsultas = new LinkedList<Consulta>();
+			}
+			
+			ConsultaAdapter adapter = new ConsultaAdapter(getActivity(), lstConsultas);
+			list.setAdapter(adapter);			
 		}
-
-		ConsultaAdapter adapter = new ConsultaAdapter(getActivity()
-				.getApplicationContext(), lstConsultas);
-		listaConsultas.setAdapter(adapter);
-
 	}
 	
 	abstract List<Consulta> retornaConsultas(DbHelperConsultas db);

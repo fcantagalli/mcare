@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -38,6 +39,9 @@ public class ListaExames extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_exames);
+		
+		getActionBar().setTitle("Configurar exame");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		DbHelperExame db = new DbHelperExame(getApplicationContext());
 		
@@ -65,6 +69,16 @@ public class ListaExames extends Activity {
 			}
 		});
 		
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home: onBackPressed();
+		break;
+		default: return super.onOptionsItemSelected(item);
+		}
+		return true;
 	}
 	
 	@Override
