@@ -68,9 +68,9 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		ArrayList<Medicamento> estaTomando = db.listaMedicamentos(p);
 		
 		//favoritos primeiro
-		List<Medicamento> medicamentos = db.listaMedicamentos(true);
-		List<Medicamento> childrenMedicamentos = new ArrayList<Medicamento>(medicamentos.size());
-		
+		List<Medicamento> medicamentos = db.listaMedicamentos();
+		//List<Medicamento> childrenMedicamentos = new ArrayList<Medicamento>(medicamentos.size());
+		/*
 		for (Medicamento m: medicamentos){
 			childrenMedicamentos.add(new Medicamento(m.getId(),m.getNome(), "Medicamento"));
 		}
@@ -80,8 +80,8 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		for (Medicamento m: medicamentosNaoFavoritos){
 			childrenMedicamentos.add(new Medicamento(m.getId(),m.getNome(), "Medicamento"));
 		}
-		
-		Log.i("fe","Child::::"+childrenMedicamentos);
+		*/
+		Log.i("fe","Child::::"+medicamentos);
 		Log.i("fe",""+estaTomando);
 		
 		
@@ -102,6 +102,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		
 		/**** DEFINE LISTA DE EXAMES ****/
+		/*
 		GroupEntity grupo3 = new GroupEntity(1,"Exames","E");
 		
 		DbHelperExame dbdb = new DbHelperExame(getActivity().getApplicationContext());
@@ -114,7 +115,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		ArrayList<Medicamento> childrenExames = new ArrayList<Medicamento>(exames.size()); //SAO NA VERDADE EXAMES
 		for (Exame e: exames){
 			childrenExames.add(new Medicamento(e.getId(),e.getNome(),String.valueOf(e.getTipoResultadoExame()), "Exame"));		//SAO NA VERDADE EXAMES
-		}
+		}*/
 		
 		/*
 		 * EditText decimal = new EditText(getActivity());
@@ -129,16 +130,16 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		
 		/**** ADICIONA CONTEUDO AS LISTAS ****/
-		grupo.setListChild(childrenMedicamentos);
+		grupo.setListChild(medicamentos);
 			//PARTE DE TESTE
 			//child.add(new Medicamento(1,"doril"));
 			//child.add(new Medicamento(2,"buscopan"));
 		grupo2.setListChild(childrenDiagnosticos);
-		grupo3.setListChild(childrenExames);
+		//grupo3.setListChild(childrenExames);
 		
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-		listgrupo.add(grupo3);
+	//	listgrupo.add(grupo3);
 		
 		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
 		
@@ -250,7 +251,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 		
 		/**** RESULTADO_EXAME ****/
-		c = (GroupEntity) adapter.getGroup(2);
+		/*c = (GroupEntity) adapter.getGroup(2);
 		
 		DbHelperResultado_Exame dbdb = new DbHelperResultado_Exame(getActivity().getApplicationContext());
 		
@@ -260,7 +261,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			if(tem != null && tem ){
 				dbdb.insereResultado_Exame(m.getId(), id_consulta, m.getNome(), m.getTipo());
 			}
-		}
+		}*/
 		
 		return true;
 	}

@@ -25,9 +25,10 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	
 	AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     ViewPager mViewPager;
-    static Consulta_Fragment consulta_fragment = null;
-    static Midia_Fragment midia_fragment = null;
-    static ListaMedicamentosPorPaciente lista_medicamentos_paciente = null;
+    static Consulta_Fragment consulta_fragment;
+    static Midia_Fragment midia_fragment;
+    static ListaMedicamentosPorPaciente lista_medicamentos_paciente;
+    static Exame_Fragment exame_fragment;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +82,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 			return;
 		}
 		lista_medicamentos_paciente.salvaDados();
+		exame_fragment.salvaExames((long) this.getIntent().getExtras().getLong("id_consulta"));
 		Toast.makeText(this, "Consulta realizada com sucesso!", Toast.LENGTH_LONG).show();
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
 	}
@@ -151,7 +153,10 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
                 	return midia_fragment;
                 }
                 case 3:{
-                	return new Midia_Fragment();
+                	if(exame_fragment == null){
+                		exame_fragment = new Exame_Fragment();
+                	}
+                	return exame_fragment;
                 }
             }
         	return new Consulta_Fragment();

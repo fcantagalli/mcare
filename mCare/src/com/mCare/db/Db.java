@@ -90,10 +90,8 @@ public class Db extends SQLiteOpenHelper {
 			id = -1;
 			Toast.makeText(context, "não foi possível inserir o registro na tabela "+tableName,Toast.LENGTH_SHORT).show();
 		}
-		finally{
-			//db.endTransaction();
-		}
-		//db.close();
+		
+		db.close();
 		return id;
 	}
 	
