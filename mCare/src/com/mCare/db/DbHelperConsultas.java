@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -88,11 +90,14 @@ public class DbHelperConsultas {
 	
  	public LinkedList<Consulta> consultasDoDia(){
 		
-		//String diaAtual = dbhelper.formataData(new GregorianCalendar());
+ 		GregorianCalendar gca = new GregorianCalendar();
+ 		gca.set(gca.MONTH, gca.get(gca.MONTH)+1);
+		String diaAtual = dbhelper.formataData(gca);
+ 		Log.i("SQL","data de agora"+diaAtual);
  		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta,sexo ,telefone, tipo_tel FROM consultas_marcadas as consulta " +
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
 				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
-				"WHERE date(consulta.data_hora) = date('now'); " +
+				"WHERE date(consulta.data_hora) = date('"+diaAtual+"') " +
 				"GROUP BY id_consulta "+
 				"ORDER BY data_hora;";
 

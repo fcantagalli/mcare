@@ -28,8 +28,8 @@ import com.mCare.main.Utils;
 
 public class Exame_Fragment extends Fragment {
 
-	private ListView lstExame;
-	private ExameAdapter adapter;
+	private static ListView lstExame;
+	private static ExameAdapter adapter;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
