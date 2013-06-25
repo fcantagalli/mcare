@@ -4,8 +4,6 @@ import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
-import java.util.TimeZone;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -97,7 +95,7 @@ public class DbHelperConsultas {
  		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta,sexo ,telefone, tipo_tel FROM consultas_marcadas as consulta " +
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
 				"INNER JOIN telefone as t ON t.fk_paciente = p.id_paciente " +
-				"WHERE date(consulta.data_hora) = date('"+diaAtual+"') " +
+				"WHERE date(consulta.data_hora) = date('now'); " +
 				"GROUP BY id_consulta "+
 				"ORDER BY data_hora;";
 

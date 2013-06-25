@@ -35,12 +35,15 @@ public class Consulta_Fragment extends Fragment {
 	ArrayList<String> nomes;
 	ArrayList<Integer> id_campos;
 	ArrayList<View> listEt;
+	long id_consulta;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		ScrollView scroll = new ScrollView(getActivity());
 		scroll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+		
+		id_consulta = (Long) getActivity().getIntent().getExtras().get("id_consulta");
 
 		LinearLayout layout = new LinearLayout(getActivity());
 		layout.setOrientation(LinearLayout.VERTICAL);
@@ -138,8 +141,6 @@ public class Consulta_Fragment extends Fragment {
 	}
 
 	public boolean salvaInformacoes() {
-		long id_consulta = (Long) getActivity().getIntent().getExtras()
-				.get("id_consulta");
 		String[] nomesColunas = new String[nomes.size()];
 		int[] tiposColunas = new int[id_campos.size()];
 		for (int i = 0; i < nomesColunas.length; i++) {
@@ -151,7 +152,7 @@ public class Consulta_Fragment extends Fragment {
 
 		DbHelperConsultas dbConsulta = new DbHelperConsultas(getActivity());
 		Consulta consulta = dbConsulta.buscaConsulta(id_consulta);
-
+		Log.i("Consulta_Fragment", "referencia da consulta:" + consulta + " referencia do paciente: " + consulta.getPaciente());
 		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getActivity());
 
 		String sql = "INSERT INTO consulta (";
