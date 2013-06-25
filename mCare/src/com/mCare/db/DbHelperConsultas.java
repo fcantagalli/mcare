@@ -87,7 +87,7 @@ public class DbHelperConsultas {
 	
 	
  	public LinkedList<Consulta> consultasDoDia(){
-		
+		Log.i("DbHelperConsultas", "chamou o consultas do dia!");
 		//String diaAtual = dbhelper.formataData(new GregorianCalendar());
  		String query = "SELECT consulta.fk_paciente, data_hora, descricao, tipo_con, nome, logradouro, numero, bairro, cidade, id_consulta,sexo ,telefone, tipo_tel FROM consultas_marcadas as consulta " +
 				"INNER JOIN paciente as p ON p.id_paciente = consulta.fk_paciente " +
@@ -97,8 +97,10 @@ public class DbHelperConsultas {
 				"ORDER BY data_hora;";
 
 		Cursor cursor = dbhelper.exercutaSELECTSQL(query, null);
+		Log.i("DbHelperConsultas", "referencia do cursor: " + cursor + " n colunas: " + cursor.getColumnCount() + " n linhas: " + cursor.getCount());
 		// Se encontrou
 		if(cursor.moveToFirst()){
+			Log.i("DbHelperConsultas", "cursor tem algo");
 			long ant;
 			LinkedList<Consulta> listaConsultas = new LinkedList<Consulta>();
 			while(!cursor.isAfterLast()){
