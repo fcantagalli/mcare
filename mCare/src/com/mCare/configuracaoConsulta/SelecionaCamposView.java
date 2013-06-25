@@ -89,8 +89,6 @@ public class SelecionaCamposView extends Activity {
 		colocaCampoNaView("Avd",2);
 		colocaCampoNaView("Aivd",2);
 		colocaCampoNaView("Peso", 1);
-		colocaCampoNaView("Diagnósticos Clínicos",2);
-		colocaCampoNaView("Medicação Prévia",2);
 	}
 	
 	@Override
