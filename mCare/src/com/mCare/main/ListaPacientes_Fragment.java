@@ -135,7 +135,6 @@ public class ListaPacientes_Fragment extends Fragment implements OnItemClickList
 		public MyIndexerAdapter(Context context, int textViewResourceId,
 				List<T> objects) {
 			super(context, textViewResourceId, objects);
-			// myElements = (ArrayList<Paciente>) objects;
 			// here is the tricky stuff
 			alphaIndexer = new HashMap<String, Integer>();
 			// in this hashmap we will store here the positions for
@@ -180,7 +179,7 @@ public class ListaPacientes_Fragment extends Fragment implements OnItemClickList
 
 		@Override
 		public int getPositionForSection(int section) {
-			// Log.v("getPositionForSection", ""+section);
+			
 			String letter = sections[section];
 
 			return alphaIndexer.get(letter);

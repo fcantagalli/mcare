@@ -220,18 +220,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 		textTemp.setVisibility(View.VISIBLE);
 		imgTemp.setVisibility(View.VISIBLE);
 	}
-	/*
-	@Override
-	protected void onActivityResult(int arg0, int arg1, Intent data) {
-		Log.i("MainActivity", "chamou o onActivityResult");
-		consultas_fragment = new Consultas_Fragment();
-		agenda_fragment = new Agenda_Fragment();
-		listaPacientes_Fragment = new ListaPacientes_Fragment();
-		if(data!=null){
-			listaPacientes_Fragment.updateList(data);
-		}
-	}*/
-
+	
 	public static class AppSectionsPagerAdapter extends FragmentPagerAdapter {
 
         public AppSectionsPagerAdapter(FragmentManager fm) {

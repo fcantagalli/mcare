@@ -72,18 +72,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		if(medicamentos == null){
 			medicamentos = new ArrayList<Medicamento>();
 		}
-		//List<Medicamento> childrenMedicamentos = new ArrayList<Medicamento>(medicamentos.size());
-		/*
-		for (Medicamento m: medicamentos){
-			childrenMedicamentos.add(new Medicamento(m.getId(),m.getNome(), "Medicamento"));
-		}
 		
-		//depois nao favoritos
-		List<Medicamento> medicamentosNaoFavoritos = db.listaMedicamentos(false);  // provavelmente aqui vem a consulta no banco
-		for (Medicamento m: medicamentosNaoFavoritos){
-			childrenMedicamentos.add(new Medicamento(m.getId(),m.getNome(), "Medicamento"));
-		}
-		*/
 		Log.i("fe","Child::::"+medicamentos);
 		Log.i("fe",""+estaTomando);
 		
@@ -94,7 +83,7 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		DbHelperDiagnostico dbd = new DbHelperDiagnostico(getActivity().getApplicationContext());
 		ArrayList<Diagnostico> diagnosticos = dbd.listaDiagnosticos();
 		
-		//gambiarra
+		/****/
 		if(diagnosticos == null){
 			diagnosticos = new ArrayList<Diagnostico>();
 		}
@@ -104,120 +93,19 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 		
 		
-		/**** DEFINE LISTA DE EXAMES ****/
-		/*
-		GroupEntity grupo3 = new GroupEntity(1,"Exames","E");
-		
-		DbHelperExame dbdb = new DbHelperExame(getActivity().getApplicationContext());
-		LinkedList<Exame> exames = dbdb.listaExames();
-		
-		//gambiarra
-		if(exames == null){
-			exames = new LinkedList<Exame>();
-		}
-		ArrayList<Medicamento> childrenExames = new ArrayList<Medicamento>(exames.size()); //SAO NA VERDADE EXAMES
-		for (Exame e: exames){
-			childrenExames.add(new Medicamento(e.getId(),e.getNome(),String.valueOf(e.getTipoResultadoExame()), "Exame"));		//SAO NA VERDADE EXAMES
-		}*/
-		
-		/*
-		 * EditText decimal = new EditText(getActivity());
-			decimal.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-			decimal.setInputType(InputType.TYPE_CLASS_NUMBER
-					| InputType.TYPE_NUMBER_FLAG_DECIMAL);
-			decimal.setHint(nome.toLowerCase());
-			decimal.setId(i);
-			id_campos.add(decimal.getId());
-			layout.addView(decimal);
-		 */
-		
-		
 		/**** ADICIONA CONTEUDO AS LISTAS ****/
 		grupo.setListChild(medicamentos);
-			//PARTE DE TESTE
-			//child.add(new Medicamento(1,"doril"));
-			//child.add(new Medicamento(2,"buscopan"));
 		grupo2.setListChild(childrenDiagnosticos);
-		//grupo3.setListChild(childrenExames);
 		
+		/**
+		 * Adiciona os topicos
+		 */
 		listgrupo.add(grupo);
 		listgrupo.add(grupo2);
-	//	listgrupo.add(grupo3);
 		
 		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
 		
  		exList.setAdapter(adapter);
- 		
-		// TODA A PARTE DE BAIXO E O CODIGO ANTIGO.
-		/*
-		//pega o paciente
-		final int id =  getActivity().getIntent().getExtras().getInt("id_paciente", -1);
-		String nome_paciente = getActivity().getIntent().getExtras().getString("nome_paciente");
-		//DbHelperPaciente dbP = new DbHelperPaciente(getActivity());
-		//p = dbP.buscaPaciente(id);
-		Paciente p = new Paciente(id,nome_paciente);
-		//MOSTRA TITULO DE ACORDO COM O PACIENTE
-		tituloTelaMedicamentosPaciente.setText("Medicamentos do paciente "+ p.getNome());
-		
-		DbHelperMedicamento db = new DbHelperMedicamento(getActivity().getApplicationContext());
-
-		elementsAtuais = db.listaMedicamentos(p); //Pega os medicamentos do banco e coloca em pacientes.medicamentos_atuais e pacientes_medicamentos_anteriores
-		
-		//-------MEDICAMENTOS ATUAIS-------
-		//elementsAtuais = p.getMedicamentosAtuais();
-		if(elementsAtuais== null){
-			elementsAtuais = new ArrayList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
-		}
-
-		//coloca a lista do banco no layout
-	//	listViewMedicamentosAtuais = (ListView) rootView.findViewById(R.id.lstMedicamentosAtuais);
-		listViewMedicamentosAtuais.setOnItemClickListener(new OnItemClickListener() {
-			/*** Quando clica de forma rapida, visualiza o medicamento 
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
-				Medicamento m = elementsAtuais.get(arg2);
-				
-				Intent myIntent = new Intent(getActivity(), VisualizarMedicamento.class);
-				myIntent.putExtra("ID", m.getId());
-				getActivity().startActivity(myIntent);
-				
-				Toast.makeText(getActivity(),"Voce clicou em:" +elementsAtuais.get(arg2).toString(), Toast.LENGTH_LONG).show();
-			}
-		});
-		
-		listViewMedicamentosAtuais.setFastScrollEnabled(true);
-		adapterAtuais = new MyIndexerAdapter<Medicamento>(getActivity(), android.R.layout.simple_list_item_1, elementsAtuais);
-		listViewMedicamentosAtuais.setAdapter(adapterAtuais);
-		
-		//-------MEDICAMENTOS ANTERIORES-------
-		//elementsAnteriores = p.getMedicamentosAnteriores();
-		//if(elementsAnteriores== null){
-		//	elementsAnteriores = new LinkedList<Medicamento>(); //Se nao tem nenhum, cria lista vazia
-		//}
-
-		//coloca a lista do banco no layout
-		/*listViewMedicamentosAnteriores = (ListView) rootView.findViewById(R.id.lstMedicamentosAnteriores);
-		listViewMedicamentosAnteriores.setOnItemClickListener(new OnItemClickListener() {
-			/*** Quando clica de forma rapida, visualiza o medicamento
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
-				Medicamento m = elementsAnteriores.get(arg2);
-				
-				Intent myIntent = new Intent(getActivity(), VisualizarMedicamento.class);
-				myIntent.putExtra("ID", m.getId());
-				getActivity().startActivity(myIntent);
-				
-				Toast.makeText(getActivity(),"Voce clicou em:" +elementsAnteriores.get(arg2).toString(), Toast.LENGTH_LONG).show();
-			}
-		});
-		
-		listViewMedicamentosAnteriores.setFastScrollEnabled(true);
-		adapterAnteriores = new MyIndexerAdapter<Medicamento>(
-				getActivity(), android.R.layout.simple_list_item_1, elementsAnteriores);
-		listViewMedicamentosAnteriores.setAdapter(adapterAnteriores);
-		*/
 		
 		return rootView;
 	}
@@ -252,19 +140,6 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 				dbd.insereDiagnostico_Consulta(m.getId(), id_consulta);
 			}
 		}
-		
-		/**** RESULTADO_EXAME ****/
-		/*c = (GroupEntity) adapter.getGroup(2);
-		
-		DbHelperResultado_Exame dbdb = new DbHelperResultado_Exame(getActivity().getApplicationContext());
-		
-		for (Medicamento m: c.listChild){
-			Boolean tem = c.childSelected.get(m.getId());
-			
-			if(tem != null && tem ){
-				dbdb.insereResultado_Exame(m.getId(), id_consulta, m.getNome(), m.getTipo());
-			}
-		}*/
 		
 		return true;
 	}

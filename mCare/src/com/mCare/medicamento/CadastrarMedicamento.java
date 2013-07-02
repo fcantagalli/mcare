@@ -22,9 +22,7 @@ public class CadastrarMedicamento extends Activity implements View.OnClickListen
 	EditText dosagem;
 	EditText principioAtivo;
 	RadioGroup favorito;
-	
 
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
