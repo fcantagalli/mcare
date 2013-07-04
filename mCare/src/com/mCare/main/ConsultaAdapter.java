@@ -78,6 +78,7 @@ public class ConsultaAdapter extends BaseAdapter {
 				Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 				smsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 				smsIntent.setType("vnd.android-dir/mms-sms");
+				Log.i("ConsultaAdapter", "telefone do paciente: " + con.getPaciente().getTelefone());
 				smsIntent.putExtra("address",  "" + con.getPaciente().getTelefone());
 				String data = Utils.formataHora(con.getHora());
 				smsIntent.putExtra("sms_body", "Caro(a) "+con.getPaciente().getNome()+",\nEstou atrasado para nossa consulta das "+ data + "hrs");

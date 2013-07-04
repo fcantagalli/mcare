@@ -3,8 +3,7 @@ package com.mCare.paciente.historico;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -23,13 +22,14 @@ import com.mCare.db.DbHelperConsultasRealizadas;
 public class ListaValoresCampo extends Activity {
 	
 	ArrayList<String> valores;
+	String nomeCampo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_valores_campo);
 
-		String nomeCampo = (String) getIntent().getExtras().get("nome_campo");
+		nomeCampo = (String) getIntent().getExtras().get("nome_campo");
 		long idPaciente = getIntent().getExtras().getLong("id_paciente");
 		
 		ScrollView scroll = (ScrollView) findViewById(R.id.scrollViewListaValoresCampo);
@@ -116,7 +116,7 @@ public class ListaValoresCampo extends Activity {
 	}
 	
 	public void gerarEstatisticas(){
-		double media = 0;
+		/*double media = 0;
 		for(String s: valores){
 			media += Double.parseDouble(s);
 		}
@@ -152,7 +152,11 @@ public class ListaValoresCampo extends Activity {
 		AlertDialog dialog = builder.create();
 		dialog.show();
 		
-		Log.i("phil", "Media: " + media + " Desvio: " + desvio); 
+		Log.i("phil", "Media: " + media + " Desvio: " + desvio); */
+		Intent x = new Intent(this, HistoricoGrafico.class);
+		x.putExtra("valores", valores);
+		x.putExtra("nomeCampo", nomeCampo);
+		startActivity(x);
 	}
 	
 	public static String format(double x) {

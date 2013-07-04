@@ -119,6 +119,7 @@ public class DbHelperConsultas {
 				long id_consulta = cursor.getLong(9);
 				byte sexo = (byte) cursor.getInt(10);
 				Paciente p = new Paciente(idPaciente,nome,null,sexo,logradouro,bairro,numero,cidade);
+				Log.i("DbHelperConsultas", "telefone do paciente: " + cursor.getString(11));
 				p.setTelefone(cursor.getString(11));
 				p.setTipo_tel(cursor.getString(12));
 				Consulta c = new Consulta(p,gc,tipo_con,descricao);
