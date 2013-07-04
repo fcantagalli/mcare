@@ -175,6 +175,10 @@
             android:name="com.mCare.consulta.realizarConsulta.Exame_Fragment"
             android:label="@string/title_activity_exame__fragment" >
         </activity>
+        <activity
+            android:name="com.mCare.paciente.historico.HistoricoGrafico"
+            android:label="@string/title_activity_historico_grafico" >
+        </activity>
     </application>
 
 </manifest>
