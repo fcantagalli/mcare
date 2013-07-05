@@ -1,15 +1,47 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent">
- 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewMedia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:padding="6dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewDesvio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:padding="6dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewMaximo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:padding="6dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewMinimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:padding="6dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
     <com.androidplot.xy.XYPlot
             android:id="@+id/mySimpleXYPlot"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_marginTop="100px"
+            android:layout_marginTop="10px"
             android:layout_marginLeft="10px"
             android:layout_marginRight="10px"
-            title="A Simple XYPlot Example"/>
- 
+            title="Gráfico"/>
+
 </LinearLayout>

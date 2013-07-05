@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.db.DbHelperConsultasRealizadas;
@@ -116,7 +117,7 @@ public class ListaValoresCampo extends Activity {
 	}
 	
 	public void gerarEstatisticas(){
-		/*double media = 0;
+		double media = 0;
 		for(String s: valores){
 			media += Double.parseDouble(s);
 		}
@@ -139,23 +140,15 @@ public class ListaValoresCampo extends Activity {
 			}
 		}
 		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Média: " + media + "\nDesvio padrão: " + format(desvio) + "\nMáximo: " + maximo + "\nMínimo: " + minimo);
-		builder.setTitle("Estatísticas:");
-		
-		builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-	           public void onClick(DialogInterface dialog, int id) {
-	               dialog.dismiss();
-	           }
-	    });
-	
-		AlertDialog dialog = builder.create();
-		dialog.show();
-		
-		Log.i("phil", "Media: " + media + " Desvio: " + desvio); */
+		Log.i("phil", "Media: " + media + " Desvio: " + desvio); 
 		Intent x = new Intent(this, HistoricoGrafico.class);
+		x.putExtra("media", media);
+		x.putExtra("desvio", desvio);
+		x.putExtra("maximo", maximo);
+		x.putExtra("minimo", minimo);
 		x.putExtra("valores", valores);
 		x.putExtra("nomeCampo", nomeCampo);
+	
 		startActivity(x);
 	}
 	

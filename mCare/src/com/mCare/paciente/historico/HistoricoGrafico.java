@@ -5,9 +5,11 @@ import java.util.Arrays;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.androidplot.ui.SizeLayoutType;
-import com.androidplot.ui.SizeMetrics;
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.XYPlot;
@@ -24,12 +26,56 @@ public class HistoricoGrafico extends Activity
     private XYPlot mySimpleXYPlot;
  
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico_grafico);
- 
-        // initialize our XYPlot reference:
+        
+        getActionBar().setTitle("Estatísticas:");
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+        
+        criaGrafico();
+        pegaEstatisticas();       
+    }
+    
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()){
+		case android.R.id.home: onBackPressed();
+		break;
+		default: return super.onOptionsItemSelected(item);
+		}
+		return true;
+	}
+    
+    public void pegaEstatisticas(){
+    	double media = getIntent().getExtras().getDouble("media");
+    	double desvio = getIntent().getExtras().getDouble("desvio");
+    	double maximo = getIntent().getExtras().getDouble("maximo");
+    	double minimo = getIntent().getExtras().getDouble("minimmo");
+    	
+    	TextView tMedia = (TextView) findViewById(R.id.textViewMedia);
+    	tMedia.setText("Média: " + reduzTamanho(media));
+    	TextView tDesvio = (TextView) findViewById(R.id.textViewDesvio);
+    	tDesvio.setText("Desvio: " + reduzTamanho(desvio));
+    	TextView tMaximo = (TextView) findViewById(R.id.textViewMaximo);
+    	tMaximo.setText("Máximo: " + maximo);
+    	TextView tMinimo = (TextView) findViewById(R.id.textViewMinimo);
+    	tMinimo.setText("Minimo: " + minimo);
+    }
+    
+    public String reduzTamanho(double valor){
+    	String string = "" + valor;
+    	String novoTamanho = "";
+    	if(string.length() > 4){
+    		for(int i=0; i<4; i++){
+    			novoTamanho += string.charAt(i);
+    		}
+    	}
+    	return novoTamanho;
+    }
+    
+    public void criaGrafico(){
+    	 // initialize our XYPlot reference:
         mySimpleXYPlot = (XYPlot) findViewById(R.id.mySimpleXYPlot);
         
         ArrayList<String> valores = (ArrayList<String>) getIntent().getExtras().get("valores");
