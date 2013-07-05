@@ -32,18 +32,18 @@ public class NotificacaoConsulta extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent paramIntent) {
 		// Request the notification manager
+		Log.i("noti","ENTROU NO ON RECEIVE");
 		NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 		// Create a new intent which will be fired if you click on the notification
 		Intent notificationIntent = new Intent(context, MainActivity.class);
 
 		// Attach the intent to a pending intent
-		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// Create the notification
-
 		Bundle b = paramIntent.getExtras();
-		String tickerText = b.getString("ticketText");
+		String tickerText = b.getString("tickerText");
 		String title = b.getString("title");
 		String message = b.getString("message");
 		int icon = b.getInt("icon");
@@ -79,35 +79,21 @@ public class NotificacaoConsulta extends BroadcastReceiver {
 	
 	@SuppressWarnings("deprecation")
 	@SuppressLint("NewApi")
-	public void create(Context contexto,long quandoIraAparecer,CharSequence tickerText, CharSequence title, CharSequence message, int icon){
-		//Pending Intent para executar a intent ao selecionar a notificacao
-		
-		NotificationManager nm = (NotificationManager) contexto.getSystemService(Context.NOTIFICATION_SERVICE);
+	public static void create(Context contexto,long quandoIraAparecer,CharSequence tickerText, CharSequence title, CharSequence message, int icon){
 
 		// Create a new intent which will be fired if you click on the notification
-		Intent notificationIntent = new Intent(contexto, MainActivity.class);
-
+		Intent notificationIntent = new Intent("NOTIFICACAO");
+		notificationIntent.setAction("NOTIFICACAO");
+		notificationIntent.putExtra("tickerText", tickerText).putExtra("title", title).putExtra("message", message).putExtra("icon", icon);
+		
 		// Attach the intent to a pending intent
-		PendingIntent contentIntent = PendingIntent.getActivity(contexto, 0, notificationIntent, 0);
-
-		// Create the notification
-
-		Notification notification = null;
+		PendingIntent contentIntent = PendingIntent.getBroadcast(contexto, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 		
-		int id = (int) quandoIraAparecer;
-		
-		notification = new Notification.Builder(contexto)
-		.setContentTitle(tickerText)
-		.setContentText(message)
-		.setSmallIcon(icon)
-		.setContentIntent(contentIntent)
-		.setAutoCancel(true).build();
-			
-		notification.flags |= Notification.FLAG_AUTO_CANCEL;	
-		
-		nm.notify(id,notification);
-
-		
+		AlarmManager alarmManager = (AlarmManager) contexto.getSystemService(Context.ALARM_SERVICE);
+		Log.i("noti","tempo do sist : "+System.currentTimeMillis());
+		alarmManager.set(AlarmManager.RTC_WAKEUP, quandoIraAparecer, contentIntent);
+		Log.i("noti","tempo: "+quandoIraAparecer);
+		Log.i("noti","passou pelo metodo de criar notificaçao");
 	}
 	
 	public void cancell(Context contexto, int id){

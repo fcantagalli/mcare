@@ -3,6 +3,8 @@ package com.mCare.consulta.agendarConsulta;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -103,7 +105,10 @@ public class AgendarConsulta extends Activity {
 		String dataHorario = "Data: " + datePicker.getYear() + " " + datePicker.getMonth()+1 + " " + datePicker.getDayOfMonth();
 		String horario = "Horario: " + timePicker.getCurrentHour() + " " + timePicker.getCurrentMinute();
 		Log.wtf("agendar", dataHorario + " ----- " + horario);
-		GregorianCalendar calendar = new GregorianCalendar(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
+		GregorianCalendar calendar = new GregorianCalendar(TimeZone.getDefault(),Locale.getDefault());
+		calendar.set(datePicker.getYear(),datePicker.getMonth()+1 , datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
+		Log.i("noti","  "+datePicker.getYear()+"   "+datePicker.getMonth()+1+"  "+datePicker.getDayOfMonth()+"  "+ timePicker.getCurrentHour()+"  "+ timePicker.getCurrentMinute());
+		//GregorianCalendar calendar = new GregorianCalendar(datePicker.getYear(), datePicker.getMonth()+1, datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
 		
 		//final AutoCompleteTextView autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
 		
@@ -155,9 +160,9 @@ public class AgendarConsulta extends Activity {
 		dbConsulta.insereConsulta(consulta);
 		
 		// 3600000 equivale a 1 hora de antecedencia
+		calendar.set(Calendar.MONTH, datePicker.getMonth());
 		Log.i("fe","qual a string de tempo : "+dbConsulta.dbhelper.formataData(calendar));
-		NotificacaoConsulta notificacao = new NotificacaoConsulta();
-		notificacao.create(this,(calendar.getTimeInMillis()+3600000) , "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta às "+consulta.getHora().get(Calendar.HOUR_OF_DAY)+" : "+consulta.getHora().get(Calendar.MINUTE)+" \n no endereço: " +consulta.getPaciente().getLogradouro() + ", "+consulta.getPaciente().getNumero(), R.drawable.ic_launcher);
+		NotificacaoConsulta.create(this,calendar.getTimeInMillis() , "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta às "+consulta.getHora().get(Calendar.HOUR_OF_DAY)+" : "+consulta.getHora().get(Calendar.MINUTE)+" \n no endereço: " +consulta.getPaciente().getLogradouro() + ", "+consulta.getPaciente().getNumero(), R.drawable.ic_launcher);
 		
 		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso!", Toast.LENGTH_LONG).show();
 		
