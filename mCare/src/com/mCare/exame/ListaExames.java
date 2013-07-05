@@ -84,7 +84,7 @@ public class ListaExames extends Activity {
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-		if(data.getExtras() == Bundle.EMPTY){
+		if(data == null){
 			return;
 		}
 		Exame exame = new Exame( (int) data.getExtras().getLong("id"), (String)data.getExtras().getString("nome"), 

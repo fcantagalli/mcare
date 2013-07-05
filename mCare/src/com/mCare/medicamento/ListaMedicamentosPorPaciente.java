@@ -69,6 +69,9 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		//favoritos primeiro
 		List<Medicamento> medicamentos = db.listaMedicamentos();
+		if(medicamentos == null){
+			medicamentos = new ArrayList<Medicamento>();
+		}
 		//List<Medicamento> childrenMedicamentos = new ArrayList<Medicamento>(medicamentos.size());
 		/*
 		for (Medicamento m: medicamentos){

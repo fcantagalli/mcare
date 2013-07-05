@@ -26,10 +26,10 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 	
 	AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     ViewPager mViewPager;
-    static Consulta_Fragment consulta_fragment;
-    static Midia_Fragment midia_fragment;
-    static ListaMedicamentosPorPaciente lista_medicamentos_paciente;
-    static Exame_Fragment exame_fragment;
+    static Consulta_Fragment consulta_fragment = null;
+    static Midia_Fragment midia_fragment = null;
+    static ListaMedicamentosPorPaciente lista_medicamentos_paciente = null;
+    static Exame_Fragment exame_fragment = null;
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
