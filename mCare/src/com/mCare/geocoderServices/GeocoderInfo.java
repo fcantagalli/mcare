@@ -12,7 +12,7 @@ public class GeocoderInfo {
 	String country;
 	String country_code;
 	
-	GeocoderInfo(){
+	public GeocoderInfo(){
 		result = "";
 		road = "";
 		city_district = "";

@@ -3,6 +3,7 @@ package com.mCare.ServicesListener;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 
 import com.mCare.R;
 import com.mCare.geocoderServices.GeocoderInfo;
@@ -16,6 +17,8 @@ public class InformationServices {
 	
 	Context context;
 	MainActivity main;
+	private static final String CIDADE = "cidade";
+	boolean cidadeExiste;
 	
 	public InformationServices(Context context){
 		this.context = context;
@@ -34,7 +37,16 @@ public class InformationServices {
 		//chamada quando pegou as informacoes do geocoder
 		if(geocoderInfo != null){
 			String cityName = geocoderInfo.getCity();
+			// caso tenha conseguido pegar a cidade
 			if(cityName != null){
+				// se nao tiver salvo a cidade ainda, salva ela aqui
+				if(cidadeExiste == false){
+					SharedPreferences sp = context.getSharedPreferences(MainActivity.TIPO_MEDICO,Context.MODE_PRIVATE);
+					SharedPreferences.Editor spe = sp.edit();
+
+					spe.putString(CIDADE, cityName);
+					spe.commit();
+				}
 				YahooWeatherUtils yahooWeatherUtils = YahooWeatherUtils.getInstance();
 				yahooWeatherUtils.queryYahooWeather(context, cityName, this);
 			}else{
@@ -47,13 +59,29 @@ public class InformationServices {
 	public void getTemp(MainActivity main){
 		this.main = main;
 		LocationInfo location = new LocationInfo(context, main);
-		double[] latLong = location.getLatitudeLongitude();
-		if(latLong != null){
-			GeocoderUtils geocoderUtils = new GeocoderUtils();
-			geocoderUtils.queryOpenStreetMaps(context, latLong[0], latLong[1], this);
-		}else{
-			showProblemAlert("Não foi possível determinar sua localização, tente novamente mais tarde");
+		SharedPreferences sp = context.getSharedPreferences(MainActivity.TIPO_MEDICO, 0);
+
+		String cidade = sp.getString(CIDADE, "@");
+
+		if (cidade.equals("@")) {
+
+			// a cidade ainda não está salva, precisa procurar no gps
+			cidadeExiste = false;
+			double[] latLong = location.getLatitudeLongitude();
+			if(latLong != null){
+				GeocoderUtils geocoderUtils = new GeocoderUtils();
+				geocoderUtils.queryOpenStreetMaps(context, latLong[0], latLong[1], this);
+			}else{
+				showProblemAlert("Não foi possível determinar sua localização, tente novamente mais tarde");
+			}
+			
+		} else {
+			cidadeExiste = true;
+			GeocoderInfo gi = new GeocoderInfo();
+			gi.setCity(cidade);
+			gotGeocoderInfo(gi);
 		}
+		
 	}
 	
 	public void showProblemAlert(String message){

@@ -3,8 +3,7 @@ package com.mCare.paciente.historico;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -16,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.db.DbHelperConsultasRealizadas;
@@ -23,13 +23,14 @@ import com.mCare.db.DbHelperConsultasRealizadas;
 public class ListaValoresCampo extends Activity {
 	
 	ArrayList<String> valores;
+	String nomeCampo;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_valores_campo);
 
-		String nomeCampo = (String) getIntent().getExtras().get("nome_campo");
+		nomeCampo = (String) getIntent().getExtras().get("nome_campo");
 		long idPaciente = getIntent().getExtras().getLong("id_paciente");
 		
 		ScrollView scroll = (ScrollView) findViewById(R.id.scrollViewListaValoresCampo);
@@ -139,20 +140,16 @@ public class ListaValoresCampo extends Activity {
 			}
 		}
 		
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Média: " + media + "\nDesvio padrão: " + format(desvio) + "\nMáximo: " + maximo + "\nMínimo: " + minimo);
-		builder.setTitle("Estatísticas:");
-		
-		builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-	           public void onClick(DialogInterface dialog, int id) {
-	               dialog.dismiss();
-	           }
-	    });
-	
-		AlertDialog dialog = builder.create();
-		dialog.show();
-		
 		Log.i("phil", "Media: " + media + " Desvio: " + desvio); 
+		Intent x = new Intent(this, HistoricoGrafico.class);
+		x.putExtra("media", media);
+		x.putExtra("desvio", desvio);
+		x.putExtra("maximo", maximo);
+		x.putExtra("minimo", minimo);
+		x.putExtra("valores", valores);
+		x.putExtra("nomeCampo", nomeCampo);
+	
+		startActivity(x);
 	}
 	
 	public static String format(double x) {

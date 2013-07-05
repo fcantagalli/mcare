@@ -97,6 +97,12 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 			smsIntent.setType("vnd.android-dir/mms-sms");
 			String telefones = "";
+			DbHelperConsultas dbConsultas = new DbHelperConsultas(getActivity().getApplicationContext());
+			lstConsultas = retornaConsultas(dbConsultas);
+			if(lstConsultas == null){
+				Log.i("Lista_Consultas_Fragment", "listaConsultas eh null");
+				lstConsultas = new LinkedList<Consulta>();
+			}
 			for(int i=0; i<lstConsultas.size(); i++){
 				telefones += lstConsultas.get(i).getPaciente().getTelefone();
 				if(i!=lstConsultas.size()-1){
@@ -104,7 +110,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 				}
 			}
 			smsIntent.putExtra("address",  "" + telefones);
-			String data = Utils.formataHora(escolhida.getHora());
+			Log.i("Lista_Consultas_Fragment", "telefones: " + telefones);
 			smsIntent.putExtra("sms_body", "Caro(a) paciente" + ",\nEstou atrasado para nossa consulta de hoje");
 			startActivity(smsIntent);
 			break;

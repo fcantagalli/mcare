@@ -263,5 +263,6 @@
     <string name="title_activity_visualizar_exame">VisualizarExame</string>
     <string name="title_activity_galeria_paciente">GaleriaPaciente</string>
     <string name="title_activity_exame__fragment">Exames</string>
+    <string name="title_activity_historico_grafico">HistoricoGrafico</string>
 
 </resources>

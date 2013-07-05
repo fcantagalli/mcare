@@ -39,7 +39,8 @@
 			</intent-filter>
 		</receiver>
 		
-		<!-- FIM PITACOS DO SUMAN -->
+		<!-- FIM PITACOS DO SUMAN -->
+
         <activity
             android:name="com.mCare.main.MainActivity"
             android:label="@string/app_name" >
@@ -49,7 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.mCare.novocontato.NovoContato"
             android:label="@string/title_activity_novo_contato" >
@@ -184,6 +184,10 @@
         <activity
             android:name="com.mCare.consulta.realizarConsulta.Exame_Fragment"
             android:label="@string/title_activity_exame__fragment" >
+        </activity>
+        <activity
+            android:name="com.mCare.paciente.historico.HistoricoGrafico"
+            android:label="@string/title_activity_historico_grafico" >
         </activity>
     </application>
 
