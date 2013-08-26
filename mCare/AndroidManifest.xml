@@ -27,19 +27,20 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-		
+
         <!-- PITACOS DO SUMAN -->
-		
-		<receiver 
-		    android:name=".notificacao.NotificacaoConsulta"
-		    android:enabled="true" >
-			<intent-filter>
-				<action android:name="NOTIFICACAO" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-		</receiver>
-		
-		<!-- FIM PITACOS DO SUMAN -->
+
+        <receiver
+            android:name="com.mCare.notificacao.NotificacaoConsulta"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="NOTIFICACAO" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <!-- FIM PITACOS DO SUMAN -->
 
         <activity
             android:name="com.mCare.main.MainActivity"
@@ -134,7 +135,6 @@
             android:name="com.mCare.media.Midia_Fragment"
             android:label="@string/title_activity_midia__fragment" >
         </activity>
-
         <activity
             android:name="com.mCare.diagnostico.CadastrarDiagnostico"
             android:label="@string/title_activity_cadastrar_diagnostico" >

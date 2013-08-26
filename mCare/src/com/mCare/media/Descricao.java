@@ -52,7 +52,7 @@ public class Descricao extends Activity {
 			DbHelperMedia dbMidia = new DbHelperMedia(this);
 			GregorianCalendar now = new GregorianCalendar();
 					
-			dbMidia.insereMedia(dbMidia.FOTO, caminho, descricao, now);	
+			dbMidia.insereMedia(dbMidia.FOTO,getIntent().getExtras().getInt("id_paciente") ,caminho, descricao, now);	
 		}else{
 			Toast.makeText(this, "Insira uma descricao", Toast.LENGTH_LONG).show();
 			return;

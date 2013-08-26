@@ -17,7 +17,7 @@ public class InformationServices {
 	
 	Context context;
 	MainActivity main;
-	private static final String CIDADE = "cidade";
+	public static final String CIDADE = "cidade";
 	boolean cidadeExiste;
 	
 	public InformationServices(Context context){

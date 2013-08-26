@@ -1,9 +1,13 @@
 package com.mCare.db;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import com.mCare.media.Foto;
+import com.mCare.diagnostico.Diagnostico;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 
 public class DbHelperMedia {
 
@@ -18,17 +22,34 @@ public class DbHelperMedia {
 		dbhelper = Db.getInstance(context);
 	}
 	
-	public long insereMedia(int tipoDado,String caminho, String descricao, GregorianCalendar gc){
+	public long insereMedia(int tipoDado,int fk_paciente,String caminho, String descricao, GregorianCalendar gc){
 		
 		ContentValues cv = new ContentValues();
 		
 		cv.put("caminho", caminho);
 		cv.put("descricao", descricao);
 		cv.put("data", dbhelper.formataData(gc));
+		cv.put("fk_paciente", fk_paciente);
 		
 		long id = dbhelper.insert(tabela(tipoDado), cv);
 		
 		return id;
+	}
+	// busca as fotos do paciente informado.
+	public ArrayList<Foto> buscaFotosPaciente(int id_paciente){
+		
+		Cursor c = dbhelper.serach(false, tabela(FOTO), null, "fk_paciente="+id_paciente, null, null, null,"data", null);
+		ArrayList<Foto> fotos = null;
+		if (c.moveToFirst()) {
+			fotos = new ArrayList<Foto>(c.getCount());
+			while (!c.isAfterLast()) {
+				
+				
+				
+				c.moveToNext();
+			}
+		}
+		return fotos;
 	}
 	
 	public boolean deleteMedia(int tipoDado, long id){

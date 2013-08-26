@@ -117,7 +117,7 @@
 
     <!--
          STRINGS PARA O BANCO DE DADOS 
-    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
+    	OBS: o sinal "@" no final de cada create table é para a separacao em um array pela função split()
     -->
 
     <string name="SQL_CREATE_TABLES">        CREATE TABLE paciente (
@@ -186,11 +186,11 @@
 			valor TEXT NOT NULL,
 			PRIMARY KEY(id_exame,id_consulta));@	
         
-        CREATE TABLE foto (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
+        CREATE TABLE foto (id INTEGER PRIMARY KEY AUTOINCREMENT,fk_paciente INTEGER REFERENCES paciente(id_paciente) NOT NULL , caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
+        CREATE TABLE video(id INTEGER PRIMARY KEY AUTOINCREMENT,fk_paciente INTEGER REFERENCES paciente(id_paciente), caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@
         
-        CREATE TABLE audio (id INTEGER PRIMARY KEY AUTOINCREMENT, caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@</string>
+        CREATE TABLE audio (id INTEGER PRIMARY KEY AUTOINCREMENT,fk_paciente INTEGER REFERENCES paciente(id_paciente), caminho TEXT NOT NULL, descricao TEXT NULL, data TEXT NULL);@</string>
     <string name="DB_NAME">teste</string>
 
     <!-- ############ -->
@@ -264,5 +264,6 @@
     <string name="title_activity_galeria_paciente">GaleriaPaciente</string>
     <string name="title_activity_exame__fragment">Exames</string>
     <string name="title_activity_historico_grafico">HistoricoGrafico</string>
+    <string name="title_activity_fotos_paciente">FotosPaciente</string>
 
 </resources>

@@ -22,4 +22,11 @@
         android:orderInCategory="2"
         android:showAsAction="never"
         android:title="Configurar diagnósticos"/>
+     
+     <item
+        android:id="@+id/action_atualizaCidade"
+        android:orderInCategory="5"
+        android:showAsAction="never"
+        android:title="Atualizar posicao para cidade atual" />
+        
 </menu>

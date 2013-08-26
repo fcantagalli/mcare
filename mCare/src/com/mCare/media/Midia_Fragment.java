@@ -137,7 +137,7 @@ public class Midia_Fragment extends Fragment {
 		        	String caminho = data.getData().toString();
 					Intent intent = new Intent(getActivity(), Descricao.class);
 					intent.putExtra("caminho_foto", caminho);
-					
+					intent.putExtra("id_paciente", (Integer) getActivity().getIntent().getExtras().get("id_paciente"));
 					Bitmap foto = (Bitmap) data.getExtras().get("data");
 					intent.putExtra("foto", foto);
 					

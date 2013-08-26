@@ -158,11 +158,11 @@ public class AgendarConsulta extends Activity {
 		
 		DbHelperConsultas dbConsulta = new DbHelperConsultas(getApplicationContext());
 		dbConsulta.insereConsulta(consulta);
-		
-		// 3600000 equivale a 1 hora de antecedencia
+		// parte relativa a notificação
+		// 1800000 equivale a 30min de antecedencia
 		calendar.set(Calendar.MONTH, datePicker.getMonth());
 		Log.i("fe","qual a string de tempo : "+dbConsulta.dbhelper.formataData(calendar));
-		NotificacaoConsulta.create(this,calendar.getTimeInMillis() , "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta às "+consulta.getHora().get(Calendar.HOUR_OF_DAY)+" : "+consulta.getHora().get(Calendar.MINUTE)+" \n no endereço: " +consulta.getPaciente().getLogradouro() + ", "+consulta.getPaciente().getNumero(), R.drawable.ic_launcher);
+		NotificacaoConsulta.create(this,(calendar.getTimeInMillis()-1800000) , "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta às "+consulta.getHora().get(Calendar.HOUR_OF_DAY)+" : "+consulta.getHora().get(Calendar.MINUTE)+" \n no endereço: " +consulta.getPaciente().getLogradouro() + ", "+consulta.getPaciente().getNumero(), R.drawable.ic_launcher);
 		
 		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso!", Toast.LENGTH_LONG).show();
 		

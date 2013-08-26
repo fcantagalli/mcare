@@ -154,6 +154,16 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 				startActivity(intent);
 				break;
 			}
+			case R.id.action_atualizaCidade:{
+				SharedPreferences sp = getSharedPreferences(TIPO_MEDICO,MODE_PRIVATE);
+				SharedPreferences.Editor spe = sp.edit();
+
+				spe.remove(InformationServices.CIDADE);
+				spe.commit();
+				
+				InformationServices information = new InformationServices(getApplicationContext());
+				information.getTemp(this);
+			}
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
