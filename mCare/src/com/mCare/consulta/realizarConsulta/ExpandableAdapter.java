@@ -16,13 +16,14 @@ import com.mCare.medicamento.Medicamento;
 public class ExpandableAdapter extends BaseExpandableListAdapter {
 	private Context ctx;
 	private List<GroupEntity> lista;
-	
-	public ExpandableAdapter(Context ctx, List<GroupEntity> lista, List<Medicamento> listaMed) {
-		super();
+
+	public ExpandableAdapter(Context ctx, List<GroupEntity> lista,
+			List<Medicamento> listaMed) {
+		// super();
 		this.ctx = ctx;
 		this.lista = lista;
-		if(listaMed != null){
-			for(Medicamento m : listaMed){
+		if (listaMed != null) {
+			for (Medicamento m : listaMed) {
 				lista.get(0).childSelected.put(m.getId(), true);
 			}
 		}
@@ -40,56 +41,63 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 	public View getChildView(final int groupPosition, final int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
 		final ViewChildHolder holder;
-		final Medicamento child = lista.get(groupPosition).getListChild()
-				.get(childPosition);
+		final Medicamento child = lista.get(groupPosition).getListChild().get(childPosition);
 		
-		/*** VERIFICA natureza verdadeira do objeto que estava na lista.
-		 * Se for medicamento ou diagnostico, eh um checkbox
-		 * Se for exame, eh um edittext ***/
-		
+		Log.i("fe","quais ele passa :::  "+child);
+
+		/***
+		 * VERIFICA natureza verdadeira do objeto que estava na lista. Se for
+		 * medicamento ou diagnostico, eh um checkbox Se for exame, eh um
+		 * edittext
+		 ***/
+
 		if (convertView == null) {
 			convertView = LayoutInflater.from(ctx).inflate(R.layout.list_item_child, null);// carregando layout
 			holder = new ViewChildHolder();
-			
-			
-				holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);
-				holder.check.setText(child.getNome());
-				if(lista.get(groupPosition).childSelected.get(child.getId()) != null && lista.get(groupPosition).childSelected.get(child.getId())){
-					holder.check.setChecked(true);
-				}
-				holder.id = child.getId();
-				holder.check.setOnClickListener(new View.OnClickListener() {
-					public void onClick(View v) {
-						CheckBox chk = (CheckBox) v;
-						Log.d("Check", "Selecionado " + holder.check.getText()
-								+ " Holder:" + holder);
-	
-						if (chk.isChecked()) {
-							if (!lista.get(groupPosition).childSelected.containsKey(holder.id))
-								lista.get(groupPosition).childSelected.put(holder.id, true);
-						} else {
-							if (lista.get(groupPosition).childSelected.containsKey(holder.id))
-								lista.get(groupPosition).childSelected.remove(holder.id);
-						}
-						holder.check.setChecked(chk.isChecked());
-					}
-	
-				});
 
-			//Para todos
+			holder.check = (CheckBox) convertView.findViewById(R.id.checkBox1);
+			holder.check.setText(child.getNome());
+			if (lista.get(groupPosition).childSelected.get(child.getId()) != null
+					&& lista.get(groupPosition).childSelected.get(child.getId())) {
+				holder.check.setChecked(true);
+			}
+			holder.id = child.getId();
+			holder.check.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					CheckBox chk = (CheckBox) v;
+					Log.d("Check", "Selecionado " + holder.check.getText()
+							+ " Holder:" + holder);
+
+					if (chk.isChecked()) {
+						if (!lista.get(groupPosition).childSelected
+								.containsKey(holder.id))
+							lista.get(groupPosition).childSelected.put(
+									holder.id, true);
+					} else {
+						if (lista.get(groupPosition).childSelected
+								.containsKey(holder.id))
+							lista.get(groupPosition).childSelected
+									.remove(holder.id);
+					}
+					holder.check.setChecked(chk.isChecked());
+				}
+
+			});
+
+			// Para todos
 			convertView.setTag(holder);
 
 		} else {
-			holder = (ViewChildHolder) convertView.getTag();
+			//holder = (ViewChildHolder) convertView.getTag();
 		}
-		
+
 		return convertView;
 	}
 
 	static class ViewChildHolder {
 		int id;
-		CheckBox check; //Para checkboxes
-		EditText edit; //Para edit texts
+		CheckBox check; // Para checkboxes
+		EditText edit; // Para edit texts
 	}
 
 	public int getChildrenCount(int groupPosition) {
@@ -113,16 +121,36 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 		ViewGroupHolder holder;
 		GroupEntity grupo = lista.get(groupPosition);
 		if (convertView == null) {
-			convertView = LayoutInflater.from(ctx).inflate(R.layout.list_item_group, null);// carregando layout
+			convertView = LayoutInflater.from(ctx).inflate(
+					R.layout.list_item_group, null);// carregando layout
+			convertView.setOnClickListener(new View.OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			convertView.setOnLongClickListener(new View.OnLongClickListener() {
+				
+				@Override
+				public boolean onLongClick(View v) {
+					// TODO Auto-generated method stub
+					return false;
+				}
+			});
+			
+			convertView.setBackgroundResource(R.color.DarkGray);
 			holder = new ViewGroupHolder();
 
-			holder.txtDescricao = (TextView) convertView.findViewById(R.id.txt_item_group);
+			holder.txtDescricao = (TextView) convertView
+					.findViewById(R.id.txt_item_group);
 			convertView.setTag(holder);
+			holder.txtDescricao.setText(grupo.getDescricao());
+			
 		} else {
-			holder = (ViewGroupHolder) convertView.getTag();
+			//holder = (ViewGroupHolder) convertView.getTag();
 		}
-
-		holder.txtDescricao.setText(grupo.getDescricao());
 
 		return convertView;
 	}

@@ -24,8 +24,8 @@ import com.mCare.medicamento.ListaMedicamentosPorPaciente;
 
 public class RealizarConsultaMain extends FragmentActivity implements ActionBar.TabListener {
 	
-	AppSectionsPagerAdapter mAppSectionsPagerAdapter;
-    ViewPager mViewPager;
+	static AppSectionsPagerAdapter mAppSectionsPagerAdapter;
+    static ViewPager mViewPager;
     static Consulta_Fragment consulta_fragment = null;
     static Midia_Fragment midia_fragment = null;
     static ListaMedicamentosPorPaciente lista_medicamentos_paciente = null;
@@ -76,24 +76,28 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
             actionBar.addTab(actionBar.newTab().setText(mAppSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
         }
+        
+        consulta_fragment = (Consulta_Fragment) mAppSectionsPagerAdapter.getItem(0);
+        lista_medicamentos_paciente = (ListaMedicamentosPorPaciente) mAppSectionsPagerAdapter.getItem(1);
+        midia_fragment = (Midia_Fragment) mAppSectionsPagerAdapter.getItem(2);
+        exame_fragment = (Exame_Fragment) mAppSectionsPagerAdapter.getItem(3);
 	}
 	
 	private void salvaDados(){
 		
-		Consulta_Fragment cf = (Consulta_Fragment) mAppSectionsPagerAdapter.getItem(0);
+		if(consulta_fragment == null ){
+			return;
+		}
+		if(!consulta_fragment.salvaInformacoes()){
+			return;
+		}
+//		ListaMedicamentosPorPaciente lista_med = (ListaMedicamentosPorPaciente) mAppSectionsPagerAdapter.getItem(1);
 		
-		if(cf == null ){
-			return;
-		}
-		if(!cf.salvaInformacoes()){
-			return;
-		}
-		ListaMedicamentosPorPaciente lista_med = (ListaMedicamentosPorPaciente) mAppSectionsPagerAdapter.getItem(1);
-		//lista_medicamentos_paciente.salvaDados();
-		lista_med.salvaDados();
-		Exame_Fragment ef = (Exame_Fragment) mAppSectionsPagerAdapter.getItem(3);
-		//exame_fragment.salvaExames((long) this.getIntent().getExtras().getLong("id_consulta"));
-		ef.salvaExames(this.getIntent().getExtras().getLong("id_consulta"));
+		lista_medicamentos_paciente.salvaDados();
+//		lista_med.salvaDados();
+//		Exame_Fragment ef = (Exame_Fragment) mAppSectionsPagerAdapter.getItem(3);
+		exame_fragment.salvaExames((long) this.getIntent().getExtras().getLong("id_consulta"));
+//		ef.salvaExames(this.getIntent().getExtras().getLong("id_consulta"));
 		Toast.makeText(this, "Consulta realizada com sucesso!", Toast.LENGTH_LONG).show();
 	//	ListaMedicamentosPorPaciente listaMed = (ListaMedicamentosPorPaciente) fm.findFragmentById();
 	}

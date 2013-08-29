@@ -45,6 +45,8 @@ public class AgendarConsulta extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_agendar_consulta);
 		
+		
+		//instancia botao de finalizar e seta oque sera feito no click
 		Button finalizar = (Button) findViewById(R.id.buttonAgendarConsulta);
 		finalizar.setOnClickListener(new OnClickListener() {
 			@Override
@@ -53,12 +55,16 @@ public class AgendarConsulta extends Activity {
 			}
 		});
 		
+		
 		DatePicker datePicker = (DatePicker) findViewById(R.id.datePickerAgendarConsulta);
 		datePicker.setCalendarViewShown(false);
 		
+		// altera actionBar
 		getActionBar().setTitle("Agendar Consulta");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
+		
+		// instancia e popula autoComplete
 		autoComplete = (AutoCompleteTextView) findViewById(R.id.editTextCampoNomePaciente);
 		String[] nomesPacientes = getPacientes();
 		if(nomesPacientes!=null){
@@ -66,6 +72,7 @@ public class AgendarConsulta extends Activity {
 			autoComplete.setAdapter(adapter_nomes);
 		}
 		
+		// spinner dos tipos das consultas
 		tipoConsulta = (Spinner) findViewById(R.id.spinnerTipoConsulta);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipos_consulta, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -99,6 +106,12 @@ public class AgendarConsulta extends Activity {
 		return true;
 	}
 	
+	
+	/**
+	 * Metodo para recuperar todas as informacoes de todos os objetos de infomacoes, verificado se ha campos vazios.
+	 * verifica os campos obrigatorios e salva no banco de dados.
+	 * 
+	 */
 	public void agendarConsulta(){
 		DatePicker datePicker = (DatePicker) findViewById(R.id.datePickerAgendarConsulta);
 		TimePicker timePicker = (TimePicker) findViewById(R.id.timePickerAgendarConsulta);
@@ -172,7 +185,11 @@ public class AgendarConsulta extends Activity {
 
 		onBackPressed();
 	}
-	
+	/**
+	 * Metodo que retorna uma lista com todos os pacientes cadastrados no banco de dados.
+	 * 
+	 * @return Lista com todos os pacientes cadastrados no banco de dados.
+	 */
 	public String[] getPacientes(){
 		DbHelperPaciente db = new DbHelperPaciente(getApplicationContext());
 		ArrayList<Paciente> pacientes = db.listaPacientes();
