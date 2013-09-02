@@ -11,11 +11,7 @@
     <ExpandableListView
         android1:id="@+id/expandableListView1"
         android1:layout_width="match_parent"
-        android1:layout_height="wrap_content" 
-        android:descendantFocusability="beforeDescendants">
-        
-        
-        
+        android1:layout_height="wrap_content">
     </ExpandableListView>
 
 </LinearLayout>

@@ -149,4 +149,5 @@
  <color name="CustomYellow">#FFBB33</color>
  <color name="CustomGreen">#99CC00</color>
  <color name="CustomBlue">#33B5E5</color>
+ <color name="teste">#dddddd</color>
 </resources>

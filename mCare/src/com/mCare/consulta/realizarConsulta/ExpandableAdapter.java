@@ -123,6 +123,9 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 		if (convertView == null) {
 			convertView = LayoutInflater.from(ctx).inflate(
 					R.layout.list_item_group, null);// carregando layout
+			/**
+			 * para travar click
+			 *
 			convertView.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
@@ -131,6 +134,9 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 					
 				}
 			});
+			/**
+			 * para travar click longo
+			 *
 			convertView.setOnLongClickListener(new View.OnLongClickListener() {
 				
 				@Override
@@ -139,8 +145,8 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
 					return false;
 				}
 			});
-			
-			convertView.setBackgroundResource(R.color.DarkGray);
+			*/
+			convertView.setBackgroundResource(R.color.teste);
 			holder = new ViewGroupHolder();
 
 			holder.txtDescricao = (TextView) convertView

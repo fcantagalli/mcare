@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,26 +29,31 @@ import com.mCare.main.Utils;
 
 public class Exame_Fragment extends Fragment {
 
-	private static ListView lstExame;
-	private static ExameAdapter adapter;
+	static ListView lstExame = null;
+	static ExameAdapter adapter = null;
+	static LinkedList<Exame> exames = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
 		View rootView = inflater.inflate(R.layout.activity_exame__fragment,container, false);
 
 		lstExame = (ListView) rootView.findViewById(R.id.listView1);
+		
+		if(exames == null){
+			DbHelperExame dbdb = new DbHelperExame(getActivity().getApplicationContext());
+			exames = dbdb.listaExames();
+			if (exames == null) {
 
-		DbHelperExame dbdb = new DbHelperExame(getActivity().getApplicationContext());
-		LinkedList<Exame> exames = dbdb.listaExames();
-
-		if (exames == null) {
-
-			exames = new LinkedList<Exame>();
+				exames = new LinkedList<Exame>();
+			}
 		}
 		
-		adapter = new ExameAdapter(getActivity().getApplicationContext(), exames);
-
+		if(adapter == null){
+			adapter = new ExameAdapter(getActivity().getApplicationContext(), exames);
+			
+		}
 		lstExame.setAdapter(adapter);
+		Log.i("fe", "passou no oncreateview0");
 		
 		return rootView;
 	}
@@ -72,6 +78,7 @@ public class Exame_Fragment extends Fragment {
 
 		List<Exame> listExames;
 		List<EditText> textViews;
+		List<View> listConvertViews;
 
 		/** Classe utilizada para instanciar os objetos do XML **/
 		private LayoutInflater inflater;
@@ -79,6 +86,7 @@ public class Exame_Fragment extends Fragment {
 		public ExameAdapter(Context context, List<Exame> plistExames) {
 			this.listExames = plistExames;
 			textViews = new ArrayList<EditText>(plistExames.size());
+			listConvertViews = new ArrayList<View>();
 			inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
 
@@ -112,6 +120,13 @@ public class Exame_Fragment extends Fragment {
 			/** pega o registro da lista **/
 			final Exame con = listExames.get(position);
 
+			try{
+				convertView = listConvertViews.get(position);
+				textViews.get(position).setBackgroundResource(R.color.White);
+			}catch(IndexOutOfBoundsException e){
+				
+			}
+			
 			if (convertView == null) {
 				/** utiliza o XML row_consulta para exibir na tela */
 				convertView = inflater.inflate(R.layout.row_exame, null);
@@ -133,9 +148,10 @@ public class Exame_Fragment extends Fragment {
 					default: campo.setInputType(InputType.TYPE_CLASS_TEXT);
 							break;
 				}
-				
+				listConvertViews.add(convertView);
 				textViews.add(campo);
 			}
+			
 			return convertView;
 		}
 		

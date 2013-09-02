@@ -8,7 +8,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+import android.R.drawable;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -21,6 +23,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
@@ -64,6 +67,15 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		exList = (ExpandableListView) rootView.findViewById(R.id.expandableListView1); //CONTEUDO DA LISTA
 		
+		exList.setOnGroupClickListener(new OnGroupClickListener() {
+			@Override
+			public boolean onGroupClick(ExpandableListView parent, View v,
+					int groupPosition, long id) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		});
+		exList.setGroupIndicator(null);
 		if(listgrupo == null) listgrupo = new ArrayList<GroupEntity>(); //CONTEM OS TOPICOS
 		
 		/**** DEFINE LISTA DE MEDICAMENTOS ****/
