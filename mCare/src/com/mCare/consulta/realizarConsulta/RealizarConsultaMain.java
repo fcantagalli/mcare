@@ -49,7 +49,7 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
 		//titulo da activity
 		TextView titulo = (TextView) actionBar.getCustomView().findViewById(R.id.textViewTitulo);
 		Log.i("RealizarConsultaMain", "referencia de titulo: " + titulo);
-		titulo.setText("Paciente: " + getIntent().getExtras().getString("nome_paciente"));
+		titulo.setText("Patient: " + getIntent().getExtras().getString("nome_paciente"));
 		
 		actionBar.setDisplayShowHomeEnabled(true);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -185,10 +185,10 @@ public class RealizarConsultaMain extends FragmentActivity implements ActionBar.
         @Override
         public CharSequence getPageTitle(int position) {
         	switch(position){
-        	case 0: return "Consulta";
-        	case 1: return "Dados Adicionais";
-        	case 2: return "Mídia";
-        	case 3: return "Exames";
+        	case 0: return "Consultation";
+        	case 1: return "Additional Data";
+        	case 2: return "Media";
+        	case 3: return "Exams";
         	}
         	
             return "ERROR";

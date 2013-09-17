@@ -10,8 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:textColor="@color/Black"
-        android:text="nome do exame"
+        
+        android:text="Exam name"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText

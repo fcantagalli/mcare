@@ -26,7 +26,7 @@ public class InfPaciente extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_inf_paciente);
 		
-		getActionBar().setTitle("Informações do paciente");
+		getActionBar().setTitle("Patient Details");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		final int id =  getIntent().getExtras().getInt("ID", -1);
@@ -61,8 +61,8 @@ public class InfPaciente extends Activity {
 			
 			tipo_end.setText(p.getTipo_endereco()+" ");
 			logradouro.setText(p.getLogradouro());
-			numero.setText("Numero: "+p.getNumero());
-			cidade.setText("Cidade: "+ p.getCidade());
+			numero.setText("Number: "+p.getNumero());
+			cidade.setText("City: "+ p.getCidade());
 			
 			if(p.getComplemento() != null){
 				complemento.setText(p.getComplemento());
@@ -72,14 +72,14 @@ public class InfPaciente extends Activity {
 			}
 			
 			if(p.getCep() != null){
-				cep.setText("CEP: "+p.getCep());
+				cep.setText("Postal Code: "+p.getCep());
 			}
 			else{
 				cep.setVisibility(View.GONE);
 			}
 			
 			if(p.getBairro()!=null){
-				bairro.setText("Bairro: "+p.getBairro());
+				bairro.setText("District: "+p.getBairro());
 			}else{
 				bairro.setVisibility(View.INVISIBLE);
 			}
@@ -137,10 +137,10 @@ public class InfPaciente extends Activity {
 
 	private String sexo(byte sexo){
 		if(sexo == 1){
-			return "Masculino";
+			return "Male";
 		}
 		else{
-			return "Feminino";
+			return "Female";
 		}
 	}
 	

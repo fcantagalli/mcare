@@ -13,13 +13,14 @@ public class DbHelperMedicamento_Paciente {
 		dbhelper = Db.getInstance(context);
 	}
 	
-	public long insereMedicamento_Paciente(long id_medicamento, long id_consulta, int fk_paciente){
+	public long insereMedicamento_Paciente(long id_medicamento, long id_consulta, int fk_paciente, String hours, int days){
 		ContentValues cv = new ContentValues();
-		
 		cv.put("id_medicamento", id_medicamento);
 		cv.put("id_consulta", id_consulta);
 		cv.put("fk_paciente", fk_paciente);
 		cv.put("data_consulta", dbhelper.formataData(new GregorianCalendar()));
+		cv.put("hours", hours);
+		cv.put("days", days);
 		
 		long id = dbhelper.insert(dbhelper.TABLE_NAME_MEDICAMENTO_PACIENTE, cv);
 		return id;

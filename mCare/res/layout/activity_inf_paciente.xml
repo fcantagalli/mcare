@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginTop="10dp"
-                android:text="Telefone:"
+                android:text="Phone:"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -51,7 +51,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Data de Nascimento :"
+                    android:text="Date of Birth :"
                     android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="Data Nascimento"
+                    android:hint="Date of Birth"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -75,7 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Sexo :"
+                    android:text="Sex :"
                     android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                      />
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="não fornecido"
+                    android:hint="@string/not_provided"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -94,7 +94,7 @@
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
-                android:text="Endereço:"
+                android:text="Address:"
                 android:gravity="bottom"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             
@@ -109,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Tipo"
+                    android:text="Type"
                     android:textSize="16sp" />
 
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="logradouro"
+                    android:hint="Street"
                     android:textSize="16sp" />
             </LinearLayout>
             
@@ -133,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Tipo"
+                    android:text="Type"
                     android:textSize="16sp" />
 
                 <TextView
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="complemento"
+                    android:hint="Extra Info"
                     android:textSize="16sp" />
             </LinearLayout>
             
@@ -157,7 +157,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="cep"
+                    android:text="Postal Code"
                     android:textSize="16sp" />
 
                 <TextView
@@ -166,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:text="bairro"
+                    android:text="District"
                     android:textSize="16sp" />
                 
             </LinearLayout>
@@ -182,7 +182,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="cidade"
+                    android:text="City"
                     android:textSize="16sp" />
             </LinearLayout>
              
@@ -196,7 +196,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Escolaridade :"
+                    android:text="Education level:"
                     android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -206,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="não fornecido"
+                    android:hint="@string/not_provided"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -220,7 +220,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Parente :"
+                    android:text="Relative :"
                     android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -230,7 +230,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="não fornecido"
+                    android:hint="@string/not_provided"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -244,7 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Celular do Parente :"
+                    android:text="Relative Cellphone: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textSize="16sp" />
 
@@ -254,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="não fornecido"
+                    android:hint="@string/not_provided"
                     android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
@@ -269,7 +269,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Telefone do Parente :"
+                    android:text="Patient Telephone:"
                     android:textSize="16sp"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -279,23 +279,30 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="5dp"
-                    android:hint="não fornecido"
+                    android:hint="@string/not_provided"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Button" />
         
         <Button
             android:id="@+id/buttonVisualizarConsultas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Visualizar consultas" />
+            android:text="View Consultations" />
 
         <Button
             android:id="@+id/buttonVisualizarHistorico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Visualizar Histórico"
+            android:text="View History"
             android:layout_gravity="center" />
         
     </LinearLayout>

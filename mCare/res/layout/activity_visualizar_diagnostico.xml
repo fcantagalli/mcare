@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/MargenPadrao"
-        android:text="Diagnostico"
+        android:text="Diagnosis"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/MargenPadrao"
-        android:text="Teste"
+        android:text="Test"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
 </LinearLayout>

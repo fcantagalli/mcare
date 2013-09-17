@@ -48,7 +48,7 @@ public class Midia_Fragment extends Fragment {
 				LayoutParams.WRAP_CONTENT));
 
 		fotos.setPadding(6, 6, 6, 6);
-		fotos.setText("Fotos");
+		fotos.setText("Photo");
 		fotos.setOnClickListener(new OnClickListener() {
 
 			@Override

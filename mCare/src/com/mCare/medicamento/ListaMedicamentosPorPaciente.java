@@ -1,6 +1,7 @@
 package com.mCare.medicamento;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -26,9 +27,11 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.ListView;
 import android.widget.SectionIndexer;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.mCare.R;
+import com.mCare.consulta.realizarConsulta.ColorExpListAdapter;
 import com.mCare.consulta.realizarConsulta.ExpandableAdapter;
 import com.mCare.consulta.realizarConsulta.GroupEntity;
 import com.mCare.db.DbHelperDiagnostico;
@@ -43,6 +46,35 @@ import com.mCare.paciente.Paciente;
 
 public class ListaMedicamentosPorPaciente extends Fragment {
 
+	String listdesc[][][][];/* = 
+		{
+	        { // Medicamentos
+	          {  // aspirina
+	            { "Medicines", "aspirina" },
+	            { "campos","#D3D3D3" },
+	            { "campos","#D3D3D3" }
+			    
+	          },
+	          {  // ass
+	            { "Medicines", "Ass" },
+			    { "campos","#EAEAEA" },
+			    { "campos","#D3D3D3" }
+	          },
+	          {
+	        	  {"Medicines","alguma"},
+	        	  {"campo","#EAEAEA"},
+	        	  { "campos","#D3D3D3" }}
+	        },
+	        { // diagnosticos
+	          {  // lightblue
+	            { "diagnosticos", "asma" },
+	          },
+	          {  // darkblue
+	            { "diagnosticos", "tuberculose" },
+	          }
+	        }
+		};
+	*/
 	Paciente p;
 	
 	ArrayList<Medicamento> elementsAtuais;
@@ -51,12 +83,12 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 	GroupEntity grupo = null;
 	GroupEntity grupo2 = null;
 	ArrayList<Medicamento> estaTomando;
-	static ExpandableListView exList;
-	static ExpandableAdapter adapter;
+	
+	private ExpandableListView exList;
+	private ColorExpListAdapter colorExpListAdapter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-		
 		
 		View rootView = inflater.inflate(R.layout.activity_lista_medicamentos_por_paciente,container, false);
 		
@@ -64,23 +96,13 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		String nome_paciente = getActivity().getIntent().getExtras().getString("nome_paciente");
 		
 		Paciente p = new Paciente(id,nome_paciente);
+		exList = (ExpandableListView) rootView.findViewById(R.id.expandableListView1); //CONTEUDO DA LISTA		
 		
-		exList = (ExpandableListView) rootView.findViewById(R.id.expandableListView1); //CONTEUDO DA LISTA
-		
-		exList.setOnGroupClickListener(new OnGroupClickListener() {
-			@Override
-			public boolean onGroupClick(ExpandableListView parent, View v,
-					int groupPosition, long id) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-		});
-		exList.setGroupIndicator(null);
-		if(listgrupo == null) listgrupo = new ArrayList<GroupEntity>(); //CONTEM OS TOPICOS
+		if(listgrupo == null) listgrupo = new ArrayList<GroupEntity>(2); //CONTEM OS TOPICOS
 		
 		/**** DEFINE LISTA DE MEDICAMENTOS ****/
 		if(grupo == null){
-			grupo = new GroupEntity(1,"Medicamentos","D");
+			grupo = new GroupEntity(1,"Medicines","M");
 			DbHelperMedicamento db = new DbHelperMedicamento(getActivity().getApplicationContext());
 			estaTomando = db.listaMedicamentos(p);
 		
@@ -97,12 +119,12 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			/**** ADICIONA CONTEUDO AS LISTAS ****/
 			grupo.setListChild(medicamentos);
 			/** adiciona o topico medicamento*/
-			listgrupo.add(grupo);
+			listgrupo.add(0,grupo);
 		}
 		
 		/**** DEFINE LISTA DE DIAGNOSTICOS ****/
 		if(grupo2 == null){
-			grupo2 = new GroupEntity(2,"Diagnosticos","A");
+			grupo2 = new GroupEntity(2,"Diagnosis","D");
 		
 			DbHelperDiagnostico dbd = new DbHelperDiagnostico(getActivity().getApplicationContext());
 			ArrayList<Diagnostico> diagnosticos = dbd.listaDiagnosticos();
@@ -122,38 +144,36 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 			/**** ADICIONA CONTEUDO AS LISTAS ****/
 			grupo2.setListChild(childrenDiagnosticos);
 			/** adiciona o topico diagnostico*/
-			listgrupo.add(grupo2);
+			listgrupo.add(1,grupo2);
 		}
 
-		adapter = new ExpandableAdapter(getActivity(),listgrupo,estaTomando);
-		
- 		exList.setAdapter(adapter);
-		exList.expandGroup(0);
-		exList.expandGroup(1);
-		//exList.setBackgroundResource(R.color.WhiteSmoke);
+		listdesc = transformaEmMatriz(grupo.listChild, grupo2.listChild);
+		colorExpListAdapter = new ColorExpListAdapter(listgrupo,estaTomando,getActivity(),exList,listdesc);
+		exList.setAdapter(colorExpListAdapter);
 		return rootView;
 	}
 	
 	public boolean salvaDados(){
 		
 		/**** MEDICAMENTO_PACIENTE ****/
-		GroupEntity c = (GroupEntity) adapter.getGroup(0);
+		GroupEntity c = listgrupo.get(0);
 		
 		long id_consulta = getActivity().getIntent().getExtras().getLong("id_consulta");
 		int id =  getActivity().getIntent().getExtras().getInt("id_paciente", -1);
 		
 		DbHelperMedicamento_Paciente dbm = new DbHelperMedicamento_Paciente(getActivity().getApplicationContext());
 		
-		for(Medicamento m : c.listChild){
-			Boolean tem = c.childSelected.get(m.getId());
+		for(int i = 0; i < c.listChild.size() ; i++){
+			Boolean tem = c.childSelected.get(c.listChild.get(i).getId());
 			
 			if(tem != null && tem ){
-				dbm.insereMedicamento_Paciente(m.getId(),id_consulta , id);
+				dbm.insereMedicamento_Paciente(c.listChild.get(i).getId(),id_consulta , 
+				id,c.getHours()[i].getText().toString(),SpinnerToNumberOfDays(c.getDays()[i]));
 			}
 		}
 		
 		/**** DIAGNOSTICO_CONSULTA ****/
-		c = (GroupEntity) adapter.getGroup(1);
+		c = (GroupEntity) listgrupo.get(1);
 		
 		DbHelperDiagnostico_Consulta dbd = new DbHelperDiagnostico_Consulta(getActivity().getApplicationContext());
 		
@@ -167,6 +187,64 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		return true;
 	}
+	
+	int SpinnerToNumberOfDays(Spinner s){
+		String data = (String) s.getSelectedItem();
+		int days = 0;
+		
+		if( data == "How Many Days"){
+			days = 0; // explicit
+		}
+		String[] aux = data.split(" ");
+		if(aux[1] == "Days"){
+			days = Integer.parseInt(aux[0]);
+		}
+		else if (aux[1] == "Months"){
+			days = Integer.parseInt(aux[0])*30;
+		}
+			
+		return days;
+	}
+	
+	String[][][][] transformaEmMatriz(List<Medicamento> meds, List<Medicamento> diag){
+		
+		String[][][][] matriz = new String[2][][][];
+		String[][][] m;
+		String[][][] d;
+		if(meds.size() > 0){
+			m = new String[meds.size()][2][2]; // array para os medicamentos
+		}
+		else{
+			m = new String[1][1][1];
+			m[0][0][0] = "Medicines"; 
+		}
+		if(diag.size() > 0 ){
+			d = new String[diag.size()][2][2]; // array para os diagnosticos
+		}
+		else{
+			d = new String[1][1][1];
+			d[0][0][0] = "Diagnosis";
+		}
+		for(int i = 0; i< meds.size(); i++){
+			m[i][0][0] = "Medicines";
+			m[i][0][1] = meds.get(i).getNome();
+			
+			m[i][1][0] = "campos";
+			m[i][1][1] = "#EAEAEA";
 
+		}
 
+		for(int i = 0; i< diag.size(); i++){
+			d[i][0][0] = "Medicines";
+			d[i][0][1] = diag.get(i).getNome();
+			
+			d[i][1][0] = "campos";
+			d[i][1][1] = "#EAEAEA";
+
+		}
+		matriz[0] =m;
+		matriz[1] = d;
+		
+		return matriz;
+	}
 }

@@ -15,7 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
-            android:text="Paciente:"
+            android:text="Patient:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
             android:layout_marginBottom="@dimen/MargenPadrao"
-            android:text="Teste"
+            android:text="Test"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
-            android:text="Horário:"
+            android:text="Time:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
             android:layout_marginBottom="@dimen/MargenPadrao"
-            android:text="Teste"
+            android:text="Test"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
-            android:text="Data:"
+            android:text="Date:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
             android:layout_marginBottom="@dimen/MargenPadrao"
-            android:text="Teste"
+            android:text="Test"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
-            android:text="Endereço:"
+            android:text="Address:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
             android:layout_marginBottom="@dimen/MargenPadrao"
-            android:text="Teste"
+            android:text="Test"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
-            android:text="Descrição:"
+            android:text="Description:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
             android:layout_marginBottom="@dimen/MargenPadrao"
-            android:text="Teste"
+            android:text="Test"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
-            android:text="Tipo:"
+            android:text="Type:"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textStyle="bold" />
 
@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/MargenPadrao"
             android:layout_marginBottom="@dimen/MargenPadrao"
-            android:text="Teste"
+            android:text="Test"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
@@ -124,7 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="6dp"
-            android:text="Realizar consulta" />
+            android:text="Accomplish Consultation" />
     </LinearLayout>
 
 </ScrollView>

@@ -273,7 +273,7 @@ public class DbHelperMedicamento {
 		}
 		
 		//Busca todos os medicamentos que o paciente toma ou ja tomou 
-		String query = "SELECT medicamento.id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
+		String query = "SELECT medicamento.id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta, medicamento_paciente.hours, medicamento_paciente.days" +
 						" FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
 						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento" +
 						" AND medicamento_paciente.id_consulta = "+id_ultima_consulta+
@@ -297,10 +297,14 @@ public class DbHelperMedicamento {
 				String nome = cursor.getString(1);
 				int id_consulta = cursor.getInt(2);
 				GregorianCalendar hora = dbhelper.textToGregorianCalendar(cursor.getString(3));
+				String hours = cursor.getString(4);
+				int days = cursor.getInt(5);
 				
 				Medicamento m = new Medicamento(id_medicamento, nome);
 				m.setIdConsulta(id_consulta);
 				m.setHora(hora);
+				m.setHours(hours);
+				m.setDays(days);
 				
 				//Adiciona aos medicamentos atuais
 				listaMedicamentosAtuais.add(m);

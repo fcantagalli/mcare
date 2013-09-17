@@ -25,7 +25,7 @@ public class CriaCampoView extends Activity implements OnItemSelectedListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cria_campo_view);
 		
-		getActionBar().setTitle("Informações sobre o novo campo:");
+		getActionBar().setTitle("Informations about the new field:");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		//popula spinner com os tipos do campo (enconta na classe strings.xml)

@@ -32,6 +32,7 @@ public class Exame_Fragment extends Fragment {
 	static ListView lstExame = null;
 	static ExameAdapter adapter = null;
 	static LinkedList<Exame> exames = null;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
@@ -49,7 +50,7 @@ public class Exame_Fragment extends Fragment {
 		}
 		
 		if(adapter == null){
-			adapter = new ExameAdapter(getActivity().getApplicationContext(), exames);
+			adapter = new ExameAdapter(getActivity(), exames);
 			
 		}
 		lstExame.setAdapter(adapter);

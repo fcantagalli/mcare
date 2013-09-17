@@ -33,7 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:inputType="textCapWords|textPersonName"
-                android:hint="Nome Completo">
+                android:hint="Full Name">
 
                 <requestFocus />
             </EditText>
@@ -65,7 +65,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="7dp"
                     android:layout_weight="0.57"
-                    android:text="Telefones:"
+                    android:text="Telephones:"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textStyle="bold" />
 
@@ -83,13 +83,13 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                  >
 
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -107,11 +107,12 @@
                 <EditText
                     android:id="@+id/editTextNumero1"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignParentTop="true"
                     android:layout_toLeftOf="@+id/imageViewCancelar"
                     android:ems="10"
-                    android:hint="Telefone"
+                    android:hint="Phone number"
                     android:inputType="phone" />
 
             </RelativeLayout>
@@ -119,13 +120,13 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                  >
 
                 <Spinner
                     android:id="@+id/spinner2"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -142,11 +143,12 @@
                 <EditText
                     android:id="@+id/editTextNumero2"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignTop="@id/spinner2"
                     android:layout_toLeftOf="@id/imageViewCancelar2"
                     android:ems="10"
-                    android:hint="Telefone"
+                    android:hint="Phone number"
                     android:inputType="phone" />
 
             </RelativeLayout>
@@ -154,7 +156,7 @@
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                  >
 
                 <Spinner
@@ -179,10 +181,11 @@
                     android:id="@+id/editTextNumero3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
                     android:layout_alignTop="@id/spinner3"
                     android:layout_toLeftOf="@id/imageViewCancelar3"
                     android:ems="10"
-                    android:hint="Telefone"
+                    android:hint="Phone number"
                     android:inputType="phone" />
 
             </RelativeLayout>
@@ -203,7 +206,7 @@
                 android:id="@+id/textViewEnderecos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Endereços:"
+                android:text="Address:"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold"
                 android:inputType="textPostalAddress" />
@@ -215,7 +218,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/textViewEnderecos"
                 android:ems="10"
-                android:hint="Endereco" />
+                android:hint="Address" />
 
             <Spinner
                 android:id="@+id/spinnerEndereco"
@@ -242,7 +245,7 @@
                     android:layout_marginRight="@dimen/MargenPadrao"
                     android:layout_weight="55"
                     android:ems="10"
-                    android:hint="Numero"
+                    android:hint="Number"
                     android:inputType="number" />
 
                 <EditText
@@ -251,7 +254,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="45"
                     android:ems="10"
-                    android:hint="Complemento"
+                    android:hint="Extra Info"
                     android:inputType="textPostalAddress"/>
             </LinearLayout>
 
@@ -270,7 +273,7 @@
                     android:layout_marginRight="@dimen/MargenPadrao"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="CEP"
+                    android:hint="Postal Code"
                     android:inputType="number" />
 
                 <EditText
@@ -279,7 +282,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Bairro"
+                    android:hint="District"
                     android:inputType="textCapWords" />
             </LinearLayout>
 
@@ -291,7 +294,7 @@
                  android:layout_alignParentRight="true"
                  android:layout_below="@+id/linearLayout3"
                  android:ems="10"
-                 android:hint="Cidade"
+                 android:hint="City"
                  android:inputType="textCapWords" />
             
             <TextView
@@ -303,7 +306,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/editText12"
                 android:drawableTop="@android:drawable/divider_horizontal_textfield"
-                android:text="Email"
+                android:text="E-mail"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:visibility="gone" />
 
@@ -327,7 +330,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/editText7"
-                android:text="Data de Nascimento"
+                android:text="Date of Birth"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
             
             <DatePicker
@@ -348,7 +351,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/datePicker1"
-                android:text="Escolaridade"
+                android:text="Education Level"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <Spinner
@@ -365,7 +368,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/spinnerEsc"
-                android:text="Parente"
+                android:text="Relative"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
@@ -376,7 +379,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/textView7"
                 android:ems="10"
-                android:hint="Nome do Parente"
+                android:hint="Relative Name"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -387,7 +390,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/editText10"
                 android:ems="10"
-                android:hint="Celular do Parente"
+                android:hint="Relative Cell Phone"
                 android:inputType="phone" />
 
             <EditText
@@ -398,7 +401,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/editText9"
                 android:ems="10"
-                android:hint="Telefone do parente"
+                android:hint="Relative Telephone"
                 android:inputType="phone" />
 
         </RelativeLayout>

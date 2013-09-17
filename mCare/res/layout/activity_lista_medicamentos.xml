@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/imageViewCadastrarMedicamento"
-            android:text="Cadastrar novo medicamento"
+            android:text="New Medicine"
             android:layout_marginTop="4dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -46,7 +46,7 @@
 	        android:layout_width="match_parent"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="6dp"
-	        android:text="FAVORITOS" />
+	        android:text="Favorite" />
 	    
 	    <ListView
 	        android:id="@+id/lstMedicamentosFavoritos"
@@ -62,7 +62,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginTop="12dp"
-	        android:text="OUTROS MEDICAMENTOS" 
+	        android:text="Others Medicines" 
 	        style="@style/RotulosFormulario" />
 	    
 	    <ListView

@@ -10,6 +10,8 @@ public class Medicamento {
 	private String dosagem;
 	private String pricipioAtivo;
 	private boolean favorito;
+	private String hours;
+	private int days;
 	
 	//Campos de Medicamento_Paciente
 	private long id_consulta;
@@ -56,6 +58,21 @@ public class Medicamento {
 	}
 
 	//ENCAPSULAMENTO
+	public String getHours() {
+		return hours;
+	}
+
+	public void setHours(String hours) {
+		this.hours = hours;
+	}
+
+	public int getDays() {
+		return days;
+	}
+
+	public void setDays(int days) {
+		this.days = days;
+	}
 	public String getNome() {
 		return nome;
 	}

@@ -39,7 +39,7 @@ public class ListaConsultasPaciente extends Activity implements OnItemClickListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista_consultas_paciente);
 		
-		getActionBar().setTitle("Consultas:");
+		getActionBar().setTitle("Consultations:");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	
 		DbHelperConsultasRealizadas db = new DbHelperConsultasRealizadas(getApplicationContext());
@@ -106,7 +106,7 @@ public class ListaConsultasPaciente extends Activity implements OnItemClickListe
 			int size = elements.size();
 			for (int i = size - 1; i >= 0; i--) {
 				GregorianCalendar gc = elements.get(i).getHora();
-				String element = gc.get(gc.DAY_OF_WEEK)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+"  às "+gc.get(gc.HOUR_OF_DAY)+" : "+gc.get(gc.MINUTE);
+				String element = gc.get(gc.DAY_OF_WEEK)+"/"+gc.get(gc.MONTH)+"/"+gc.get(gc.YEAR)+"  at "+gc.get(gc.HOUR_OF_DAY)+" : "+gc.get(gc.MINUTE);
 				alphaIndexer.put(element.substring(0, 1), i);
 				// We store the first letter of the word, and its index.
 				// The Hashmap will replace the value for identical keys are

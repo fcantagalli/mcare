@@ -93,14 +93,14 @@
             style="@style/ButtonsAgenda"
             android:layout_marginRight="8dp"
             android:layout_height="wrap_content"
-            android:text="Ligar" />
+            android:text="Call" />
 
         <Button
             android:id="@+id/botaoMensagem"
             style="@style/ButtonsAgenda"
             android:layout_marginLeft="8dp"
             android:layout_height="wrap_content"
-			android:text="Enviar Mensagem"
+			android:text="Send Message"
 			 />
 
     </TableRow>
@@ -117,13 +117,7 @@
             android:layout_height="wrap_content"
             android:drawSelectorOnTop="false">
         </ListView>
-        <!--  
-         <TextView android:id="@android:id/empty"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:background="#FF0000"
-         	android:text="No data"/>
-		-->
+
     </LinearLayout>
 
 </LinearLayout>

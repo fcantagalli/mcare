@@ -32,7 +32,7 @@ public class SelecionaCamposView extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		getActionBar().setTitle("Configurar consulta");
+		getActionBar().setTitle("Setup Consultation");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		ScrollView scroll = new ScrollView(this);
@@ -50,7 +50,7 @@ public class SelecionaCamposView extends Activity {
 		this.layout = layout;
 
 		buttonAddField = new Button(this, null, android.R.attr.buttonStyleSmall);
-		buttonAddField.setText("Adicionar novo campo");
+		buttonAddField.setText("Add new field");
 		buttonAddField.setLayoutParams(new LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		buttonAddField.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,7 @@ public class SelecionaCamposView extends Activity {
 		});
 
 		Button fim = new Button(this, null, android.R.attr.buttonStyleSmall);
-		fim.setText("Finalizar");
+		fim.setText("Save Consultation");
 		fim.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
 				LayoutParams.WRAP_CONTENT));
 		fim.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +72,7 @@ public class SelecionaCamposView extends Activity {
 				ConsultaModel model = new ConsultaModel(nomesCampo, tiposCampo, getApplicationContext());
 				model.createTable();
 				if(model.createTable()){
-					Toast.makeText(getApplicationContext(), "Configuração da consulta criada com sucesso", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Consultation successfully created", Toast.LENGTH_SHORT).show();
 					onBackPressed();
 				}
 			}
@@ -85,10 +85,10 @@ public class SelecionaCamposView extends Activity {
 		setContentView(scroll);
 
 		colocaCampoNaView("Mini mental", 0);
-		colocaCampoNaView("Relógio",0);
+		colocaCampoNaView("Watch",0);
 		colocaCampoNaView("Avd",2);
 		colocaCampoNaView("Aivd",2);
-		colocaCampoNaView("Peso", 1);
+		colocaCampoNaView("Weight", 1);
 	}
 	
 	@Override
@@ -122,11 +122,11 @@ public class SelecionaCamposView extends Activity {
 			break;
 		// campo tipo decimal
 		case 1:
-			edit.setHint("6.78");
+			edit.setHint("165.3");
 			break;
 		// campo tipo text
 		case 2:
-			edit.setHint("Texto exemplo");
+			edit.setHint(nome+" value");
 			break;
 		// campo tipo data
 		case 3:
@@ -134,7 +134,7 @@ public class SelecionaCamposView extends Activity {
 			break;
 		// caso que nunca ocorrera
 		default:
-			edit.setHint("null");
+			edit.setHint("");
 			break;
 		}
 		Log.i("Phil", "Campo adicionado: " + nome + " Tipo: " + tipo);
