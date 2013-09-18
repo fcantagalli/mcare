@@ -157,18 +157,30 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		
 		/**** MEDICAMENTO_PACIENTE ****/
 		GroupEntity c = listgrupo.get(0);
-		
+		Log.i("dddd","entrou no salvaDados");
 		long id_consulta = getActivity().getIntent().getExtras().getLong("id_consulta");
 		int id =  getActivity().getIntent().getExtras().getInt("id_paciente", -1);
+		String data = getActivity().getIntent().getExtras().getString("data_consulta"); 
 		
 		DbHelperMedicamento_Paciente dbm = new DbHelperMedicamento_Paciente(getActivity().getApplicationContext());
 		
 		for(int i = 0; i < c.listChild.size() ; i++){
 			Boolean tem = c.childSelected.get(c.listChild.get(i).getId());
-			
+
 			if(tem != null && tem ){
-				dbm.insereMedicamento_Paciente(c.listChild.get(i).getId(),id_consulta , 
-				id,c.getHours()[i].getText().toString(),SpinnerToNumberOfDays(c.getDays()[i]));
+				Log.i("dddd","vai chamar o metodo para inserir");
+				dbm.insereMedicamento_Paciente(
+				(long) c.listChild.get(i).getId(),
+				id_consulta , 
+				id,
+				(String) c.getTreadManyTime()[i].getSelectedItem(),
+				(String) c.getTreadManyType()[i].getSelectedItem(),
+				(String) c.getMedFreq()[i].getSelectedItem(),
+				(String) c.getMedFreqTime()[i].getText().toString(),
+				c.getRecommendations()[i].getText().toString(),
+				(String) c.getMissDosePeriod()[i].getSelectedItem(),
+				(String) c.getMissDoseType()[i].getSelectedItem(), 
+				c.getMissDoseRecomm()[i].getText().toString());
 			}
 		}
 		

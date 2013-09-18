@@ -6,6 +6,7 @@ import java.util.Map;
 
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.mCare.medicamento.Medicamento;
 
@@ -16,23 +17,117 @@ public class GroupEntity {
 	private String tipo;
 	public List<Medicamento> listChild;
 	public Map<Integer, Boolean> childSelected = new HashMap<Integer, Boolean>();
-	Spinner[] days;
-	EditText[] hours;
-
+	Spinner[] treadManyTime;
+	Spinner[] treadManyType;
+	Spinner[] medFreq;
+	TextView[] medFreqTime;
+	EditText[] Recommendations;
+	Spinner[] missDosePeriod;
+	Spinner[] missDoseType;
+	EditText[] missDoseRecomm;
+	
 	public GroupEntity(Integer id, String descricao, String tipo) {
 		this.id = id;
 		this.descricao = descricao;
 		this.tipo = tipo;
 	}
 	
-	public Spinner[] getDays(){
-		return days;
+	public Spinner[] getTreadManyTime() {
+		return treadManyTime;
 	}
 
-	public EditText[] getHours(){
-		return hours;
+
+
+	public void setTreadManyTime(Spinner[] treadManyTime) {
+		this.treadManyTime = treadManyTime;
 	}
-	
+
+
+
+	public Spinner[] getTreadManyType() {
+		return treadManyType;
+	}
+
+
+
+	public void setTreadManyType(Spinner[] treadManyType) {
+		this.treadManyType = treadManyType;
+	}
+
+
+
+	public Spinner[] getMedFreq() {
+		return medFreq;
+	}
+
+
+
+	public void setMedFreq(Spinner[] medFreq) {
+		this.medFreq = medFreq;
+	}
+
+
+
+	public TextView[] getMedFreqTime() {
+		return medFreqTime;
+	}
+
+
+
+	public void setMedFreqTime(TextView[] medFreqTime) {
+		this.medFreqTime = medFreqTime;
+	}
+
+
+
+	public EditText[] getRecommendations() {
+		return Recommendations;
+	}
+
+
+
+	public void setRecommendations(EditText[] recommendations) {
+		Recommendations = recommendations;
+	}
+
+
+
+	public Spinner[] getMissDosePeriod() {
+		return missDosePeriod;
+	}
+
+
+
+	public void setMissDosePeriod(Spinner[] missDosePeriod) {
+		this.missDosePeriod = missDosePeriod;
+	}
+
+
+
+	public Spinner[] getMissDoseType() {
+		return missDoseType;
+	}
+
+
+
+	public void setMissDoseType(Spinner[] missDoseType) {
+		this.missDoseType = missDoseType;
+	}
+
+
+
+	public EditText[] getMissDoseRecomm() {
+		return missDoseRecomm;
+	}
+
+
+
+	public void setMissDoseRecomm(EditText[] missDoseRecomm) {
+		this.missDoseRecomm = missDoseRecomm;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -67,8 +162,14 @@ public class GroupEntity {
 	}
 
 	private void setContainers(){
-		this.days = new Spinner[listChild.size()];
-		this.hours = new EditText[listChild.size()];
+		treadManyTime = new Spinner[listChild.size()];
+		treadManyType =  new Spinner[listChild.size()];;
+		medFreq = new Spinner[listChild.size()];;
+		medFreqTime = new TextView[listChild.size()];
+		Recommendations = new EditText[listChild.size()];
+		missDosePeriod = new Spinner[listChild.size()];;
+		missDoseType = new Spinner[listChild.size()];;
+		missDoseRecomm = new EditText[listChild.size()];
 	}
 	
 	@Override

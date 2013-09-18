@@ -84,7 +84,7 @@ public class SelecionaCamposView extends Activity {
 		scroll.addView(layout);
 		setContentView(scroll);
 
-		colocaCampoNaView("Mini mental", 0);
+		colocaCampoNaView("Recommendation", 2);
 		colocaCampoNaView("Watch",0);
 		colocaCampoNaView("Avd",2);
 		colocaCampoNaView("Aivd",2);

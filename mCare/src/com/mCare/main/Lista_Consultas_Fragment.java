@@ -139,6 +139,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			realizarConsulta.putExtra("nome_paciente", escolhida.getPaciente().getNome());
 			realizarConsulta.putExtra("id_consulta", escolhida.getId());
 			realizarConsulta.putExtra("id_paciente", escolhida.getPaciente().getBd_id());
+			realizarConsulta.putExtra("data_consulta", escolhida.getHora().get(GregorianCalendar.DAY_OF_MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.YEAR));
 			startActivity(realizarConsulta);
 			break;
 		}

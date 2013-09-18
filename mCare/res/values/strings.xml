@@ -157,8 +157,14 @@
 			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
 			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, 
 			data_consulta TEXT NOT NULL,
-			hours TEXT NULL,
-			days INTEGER NULL,
+			tread_many_time TEXT NULL,
+			tread_many_time_type TEXT NULL,
+			med_period TEXT NULL,
+			med_period_time TEXT NULL,
+			med_recommendation TEXT NULL,
+			miss_dose_period TEXT NULL,
+			miss_dose_type TEXT NULL,
+			miss_dose_recomm TEXT NULL,
 			PRIMARY KEY(id_medicamento,id_consulta));@
 			
         CREATE TABLE internacoes_hospitalares (
@@ -232,7 +238,7 @@
     </string-array>
     
     <string-array name="many_days">
-        <item>Days</item>
+        <item>How Many</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -247,6 +253,35 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+    </string-array>
+    
+    <string-array name="time_type">
+        <item>Days</item>
+        <item>Weeks</item>
+        <item>Months</item>
+    </string-array>
+    
+    <string-array name="time_period">
+        <item>Period</item>
+        <item>Each 4 Hours</item>
+        <item>Each 6 Hours</item>
+        <item>Each 8 Hours</item>
+        <item>Each 12 Hours</item>
+        <item>Each 24 Hours</item>
+    </string-array>
+    
+    <string-array name="missing_period">
+        <item>Period</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <string-array name="missing_period_type">
+        <item>Hours</item>
+        <item>Days</item>
     </string-array>
     
     <string-array name="many_months">
