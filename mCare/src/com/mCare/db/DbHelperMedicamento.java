@@ -272,7 +272,7 @@ public class DbHelperMedicamento {
 			return null;
 		}
 		
-		//Busca todos os medicamentos que o paciente toma ou ja tomou 
+		//Busca todos os medicamentos que o paciente toma 
 		String query = "SELECT medicamento.id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
 						" FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
 						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento" +

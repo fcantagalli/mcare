@@ -1,9 +1,13 @@
 package com.example.testeexpandable;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +21,12 @@ public class MyCustomAdapter extends BaseExpandableListAdapter {
 	
 	private LayoutInflater inflater;
 	private ArrayList<Parent> mParent;
+	private Context context;
 	
 	public MyCustomAdapter(Context context, ArrayList<Parent> parent){
 		mParent = parent;
 		inflater = LayoutInflater.from(context);
+		this.context = context;
 	}
 
 	@Override
@@ -58,6 +64,28 @@ public class MyCustomAdapter extends BaseExpandableListAdapter {
 						}else{
 							mParent.get(holder.groupPosition).group_check_state.set(holder.childPosition, false);
 						}
+						
+						String filename = "test.txt";
+						File file = new File(context.getFilesDir(), filename);
+						String string = "Sending Text by other modules";
+						FileOutputStream outputStream;
+
+						try {
+						  outputStream = context.openFileOutput(filename, Context.MODE_WORLD_READABLE);
+						  outputStream.write(string.getBytes());
+						  outputStream.close();
+						} catch (Exception e) {
+						  e.printStackTrace();
+						}
+						File send = context.getFileStreamPath("test.txt");
+						Intent sendIntent = new Intent();
+						sendIntent.setAction(Intent.ACTION_SEND);
+						sendIntent.putExtra(Intent.EXTRA_TEXT, "Aqui estão as recomendacoes do remedio. nao esqueça");
+						sendIntent.putExtra(Intent.EXTRA_EMAIL,new String[]{"bihletti@gmail.com"});
+						sendIntent.putExtra(Intent.EXTRA_SUBJECT, "XML medicine data");
+						sendIntent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(send));
+						sendIntent.setType("text/plain");
+						context.startActivity(Intent.createChooser(sendIntent, context.getResources().getText(R.string.send_to)));
 					}
 				});
 	            
@@ -71,11 +99,7 @@ public class MyCustomAdapter extends BaseExpandableListAdapter {
 	            }
 				checkbox.setText(mParent.get(groupPosition).getMarrayChildren().get(childPosition));
 	        }
-	        
-	        //TextView textView = (TextView) convertView.findViewById(R.id.textView1);
-	        //"i" is the position of the parent/group in the list and 
-	        //"i1" is the position of the child
-	       // textView.setText(mParent.get(groupPosition).getMarrayChildren().get(childPosition));
+	       
 	        CheckBox checkbox = (CheckBox) convertView.findViewById(R.id.checkBox1);
 	        checkbox.setText(mParent.get(groupPosition).getMarrayChildren().get(childPosition));
 			

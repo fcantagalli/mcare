@@ -11,21 +11,21 @@
         android:layout_height="35dp"
         android:drawableBottom="@android:drawable/divider_horizontal_dark"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
+        android:textSize="17sp"
+        android:paddingLeft="10dp"
         android:text="Treatment Duration :"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="18sp" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
+        android:paddingLeft="10dp"
         android:background="@color/AliceBlue2"
         android:weightSum="2" >
 
         <Spinner
             android:id="@+id/spinner_days"
             android:layout_width="wrap_content"
-            android:layout_marginLeft="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
@@ -40,7 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:paddingLeft="20dp"
+        android:paddingLeft="12dp"
         android:orientation="horizontal" >
         
         <TextView
@@ -57,7 +57,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:paddingLeft="5dp"
+        android:paddingLeft="10dp"
         android:background="@color/AliceBlue2" >
 
         <Spinner
@@ -89,7 +89,9 @@
         android:id="@+id/text_recommendations"
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:hint="Recommendations"
+        android:layout_marginLeft="10dp"
+        android:gravity="center|bottom"
+        android:hint="Recommendation to take the medicine"
         android:ems="10" >
 
         <requestFocus />
@@ -98,7 +100,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:paddingLeft="20dp"
+        android:paddingLeft="10dp"
         android:background="@color/AliceBlue2"
         android:orientation="horizontal" >
 
@@ -106,7 +108,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Missing Dose :"
+            android:text="Missed Dose When:"
             android:gravity="center_vertical"
             android:textSize="17sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -124,8 +126,10 @@
     <EditText
         android:id="@+id/text_recommendation_delay"
         android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
         android:layout_height="35dp"
-        android:hint="Recommendation for delay dose"
-        android:ems="10" />
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Recommendation for delayed dose" />
 
 </LinearLayout>
