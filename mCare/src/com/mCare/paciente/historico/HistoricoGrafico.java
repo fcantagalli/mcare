@@ -5,6 +5,7 @@ import java.util.Arrays;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -30,11 +31,11 @@ public class HistoricoGrafico extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico_grafico);
         
-        getActionBar().setTitle("Estatísticas:");
+        getActionBar().setTitle("Statistics:");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
         
+		pegaEstatisticas();
         criaGrafico();
-        pegaEstatisticas();       
     }
     
 	@Override
@@ -48,19 +49,20 @@ public class HistoricoGrafico extends Activity
 	}
     
     public void pegaEstatisticas(){
+    	
     	double media = getIntent().getExtras().getDouble("media");
     	double desvio = getIntent().getExtras().getDouble("desvio");
     	double maximo = getIntent().getExtras().getDouble("maximo");
-    	double minimo = getIntent().getExtras().getDouble("minimmo");
+    	double minimo = getIntent().getExtras().getDouble("minimo");
     	
     	TextView tMedia = (TextView) findViewById(R.id.textViewMedia);
-    	tMedia.setText("Média: " + reduzTamanho(media));
+    	tMedia.setText("Average: " + reduzTamanho(media));
     	TextView tDesvio = (TextView) findViewById(R.id.textViewDesvio);
-    	tDesvio.setText("Desvio: " + reduzTamanho(desvio));
+    	tDesvio.setText("Standard Deviation: " + reduzTamanho(desvio));
     	TextView tMaximo = (TextView) findViewById(R.id.textViewMaximo);
-    	tMaximo.setText("Máximo: " + maximo);
+    	tMaximo.setText("Max: " + maximo);
     	TextView tMinimo = (TextView) findViewById(R.id.textViewMinimo);
-    	tMinimo.setText("Minimo: " + minimo);
+    	tMinimo.setText("Min: " + minimo);
     }
     
     public String reduzTamanho(double valor){
@@ -89,14 +91,15 @@ public class HistoricoGrafico extends Activity
         	for(int i=0; i<series1Numbers.length; i++){
         		series1Numbers[i] = Double.parseDouble(valores.get(i));
         	}
+        	Log.i("graph","valores nao e null");
         }
- 
+        
         // Turn the above arrays into XYSeries':
         XYSeries series1 = new SimpleXYSeries(
                 Arrays.asList(series1Numbers),          // SimpleXYSeries takes a List so turn our array into a List
                 SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, // Y_VALS_ONLY means use the element index as the x value
                 nomeCampo);                             // Set the display title of the series
- 
+        Log.i("graph","criou o objeto XYSeries");
         // same as above
         //XYSeries series2 = new SimpleXYSeries(Arrays.asList(series2Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series2");
  
@@ -105,15 +108,18 @@ public class HistoricoGrafico extends Activity
  
         // add a new series' to the xyplot:
         mySimpleXYPlot.addSeries(series1, series1Format);
- 
+        Log.i("graph","passou do add series");
         // same as above:
         //mySimpleXYPlot.addSeries(series2, new LineAndPointFormatter(Color.rgb(0, 0, 200), Color.rgb(0, 0, 100), null, null));
  
         // reduce the number of range labels
-        //mySimpleXYPlot.setTicksPerRangeLabel(valores.size());
-        //mySimpleXYPlot.setTicksPerDomainLabel(valores.size()/2);
-        mySimpleXYPlot.setDomainStep(XYStepMode.INCREMENT_BY_VAL, 1);
-        mySimpleXYPlot.setDomainLabel("Consultas");
-        mySimpleXYPlot.setRangeStep(XYStepMode.INCREMENT_BY_VAL, 1);
+       // mySimpleXYPlot.setTicksPerRangeLabel(valores.size());
+       // mySimpleXYPlot.setTicksPerDomainLabel(valores.size()/2);
+        mySimpleXYPlot.setDomainStep(XYStepMode.INCREMENT_BY_VAL, 1.0);
+        mySimpleXYPlot.setDomainLabel("Consultations");
+        mySimpleXYPlot.setRangeBottomMax(getIntent().getExtras().getDouble("minimo")-(int)getIntent().getExtras().getDouble("minimo")/8);
+        mySimpleXYPlot.setRangeTopMin(getIntent().getExtras().getDouble("maximo")+(int)getIntent().getExtras().getDouble("maximo")/8);
+        mySimpleXYPlot.setRangeStep(XYStepMode.SUBDIVIDE, 16);
+
     }
 }

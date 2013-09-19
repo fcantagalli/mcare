@@ -297,10 +297,14 @@ public class DbHelperMedicamento {
 				String nome = cursor.getString(1);
 				int id_consulta = cursor.getInt(2);
 				GregorianCalendar hora = dbhelper.textToGregorianCalendar(cursor.getString(3));
+				//String hours = cursor.getString(4);
+				//int days = cursor.getInt(5);
 				
 				Medicamento m = new Medicamento(id_medicamento, nome);
 				m.setIdConsulta(id_consulta);
 				m.setHora(hora);
+				//m.setHours(hours);
+				//m.setDays(days);
 				
 				//Adiciona aos medicamentos atuais
 				listaMedicamentosAtuais.add(m);

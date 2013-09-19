@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/MargenPadrao"
-        android:text="Exame:"
+        android:text="Exam:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/MargenPadrao"
-        android:text="Tipo de resultado:"
+        android:text="Result Type:"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView

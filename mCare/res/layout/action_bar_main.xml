@@ -30,7 +30,7 @@
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignParentRight="true"
-        android:text="carregando..."
+        android:text="Loading..."
         android:layout_marginRight="6dp"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 

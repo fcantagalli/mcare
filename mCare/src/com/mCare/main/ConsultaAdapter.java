@@ -81,7 +81,7 @@ public class ConsultaAdapter extends BaseAdapter {
 				Log.i("ConsultaAdapter", "telefone do paciente: " + con.getPaciente().getTelefone());
 				smsIntent.putExtra("address",  "" + con.getPaciente().getTelefone());
 				String data = Utils.formataHora(con.getHora());
-				smsIntent.putExtra("sms_body", "Caro(a) "+con.getPaciente().getNome()+",\nEstou atrasado para nossa consulta das "+ data + "hrs");
+				smsIntent.putExtra("sms_body", "Dear "+con.getPaciente().getNome()+",\nI'm late for our consultation at "+ data + "hours");
 				v.getContext().startActivity(smsIntent);
 			}
 		});
@@ -103,7 +103,7 @@ public class ConsultaAdapter extends BaseAdapter {
 		 */
 		nome.setText(con.getPaciente().getNome());
 		GregorianCalendar gc = con.getHora();
-		horario.setText(Utils.adiciona0(""+gc.get(gc.DAY_OF_MONTH)) + "/" + Utils.adiciona0(""+gc.get(gc.MONTH)) + "/" + Utils.adiciona0(""+gc.get(gc.YEAR)) + " às " + Utils.adiciona0("" + gc.get(gc.HOUR_OF_DAY)) + ":" + Utils.adiciona0("" + gc.get(gc.MINUTE)));
+		horario.setText(Utils.adiciona0(""+gc.get(gc.DAY_OF_MONTH)) + "/" + Utils.adiciona0(""+gc.get(gc.MONTH)) + "/" + Utils.adiciona0(""+gc.get(gc.YEAR)) + " at " + Utils.adiciona0("" + gc.get(gc.HOUR_OF_DAY)) + ":" + Utils.adiciona0("" + gc.get(gc.MINUTE)));
 		
 		FrameLayout barrinha = (FrameLayout) convertView.findViewById(R.id.barrinha);
 		barrinha.setBackgroundColor(convertView.getResources().getColor(classificaData(gc)));

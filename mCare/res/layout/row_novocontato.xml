@@ -22,7 +22,7 @@
         android:layout_toLeftOf="@+id/imageView1"
         android:ems="10"
         android:inputType="phone"
-        android:hint = "Telefone" >
+        android:hint = "Telephone" >
 
         <requestFocus />
     </EditText>

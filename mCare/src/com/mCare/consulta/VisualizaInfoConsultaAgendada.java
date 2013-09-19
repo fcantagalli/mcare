@@ -47,7 +47,7 @@ public class VisualizaInfoConsultaAgendada extends Activity {
 			}
 		});
 		
-		getActionBar().setTitle("Informações sobre a consulta:");
+		getActionBar().setTitle("Consultation Details:");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 	

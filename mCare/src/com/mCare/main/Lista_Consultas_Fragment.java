@@ -111,7 +111,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			}
 			smsIntent.putExtra("address",  "" + telefones);
 			Log.i("Lista_Consultas_Fragment", "telefones: " + telefones);
-			smsIntent.putExtra("sms_body", "Caro(a) paciente" + ",\nEstou atrasado para nossa consulta de hoje");
+			smsIntent.putExtra("sms_body", "Dear Patient" + ",\nI'm late for our consultation today");
 			startActivity(smsIntent);
 			break;
 		}
@@ -124,7 +124,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 		//visualizar informacoes consulta agendada
 		case 2: {
 			Intent infoConsultaIntent = new Intent(this.getActivity().getApplicationContext(), VisualizaInfoConsultaAgendada.class);
-			String horarioConsulta = escolhida.getHora().get(GregorianCalendar.HOUR) + ":" + escolhida.getHora().get(GregorianCalendar.MINUTE);
+			String horarioConsulta = escolhida.getHora().get(GregorianCalendar.HOUR_OF_DAY) + ":" + escolhida.getHora().get(GregorianCalendar.MINUTE);
 			String enderecoConsulta = escolhida.getPaciente().getLogradouro() + " nº" + escolhida.getPaciente().getNumero() + " " + escolhida.getPaciente().getBairro();
 			String dataConsulta = escolhida.getHora().get(GregorianCalendar.DAY_OF_MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.YEAR);
 			String[] informacoes = {escolhida.getPaciente().getNome(), horarioConsulta, dataConsulta, escolhida.getDescricao(), enderecoConsulta, escolhida.getTipo()}; 
@@ -139,6 +139,7 @@ public abstract class Lista_Consultas_Fragment extends Fragment {
 			realizarConsulta.putExtra("nome_paciente", escolhida.getPaciente().getNome());
 			realizarConsulta.putExtra("id_consulta", escolhida.getId());
 			realizarConsulta.putExtra("id_paciente", escolhida.getPaciente().getBd_id());
+			realizarConsulta.putExtra("data_consulta", escolhida.getHora().get(GregorianCalendar.DAY_OF_MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.MONTH) + "/" + escolhida.getHora().get(GregorianCalendar.YEAR));
 			startActivity(realizarConsulta);
 			break;
 		}

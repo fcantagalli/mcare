@@ -29,6 +29,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="4dp"
-        android:text="Finalizar" />
+        android:text="Conclude" />
 
 </RelativeLayout>

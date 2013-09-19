@@ -82,7 +82,7 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
 
 			// AlertDialog para escolha do tipo de medico que ele ?:
 			AlertDialog.Builder alert = new AlertDialog.Builder(this);
-			alert.setTitle("Bem Vindo ao aplicativo mCare\nEscolha sua area de atuação: ");
+			alert.setTitle("Welcome to mCare\nChoose your area of expertise: ");
 			final String[] tiposMedico = getResources().getStringArray(
 					R.array.Tipos_de_medico);
 			alert.setItems(tiposMedico, new DialogInterface.OnClickListener() {
@@ -273,9 +273,9 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         @Override
         public CharSequence getPageTitle(int position) {
         	switch(position){
-        	case 0: return "Agenda";
-        	case 1: return "Pacientes";
-        	case 2: return "Consultas";
+        	case 0: return "Schedule";
+        	case 1: return "Patients";
+        	case 2: return "Consultations";
         	}
         	
             return "ERROR";

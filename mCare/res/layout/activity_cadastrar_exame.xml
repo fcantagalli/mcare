@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/MargenPadrao"
-        android:text="Nome do exame:"
+        android:text="Exam name:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <AutoCompleteTextView
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nome do exame"
+        android:hint="Exams"
         android:inputType="textCapSentences"
         android:padding="@dimen/MargenPadrao"
         android:textColor="@color/Black" />
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/MargenPadrao"
-        android:text="Tipo de resultado:"
+        android:text="Result type:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
     
     <Spinner
@@ -45,6 +45,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Salvar Exame" />
+        android:text="Save exam" />
 	
 </LinearLayout>

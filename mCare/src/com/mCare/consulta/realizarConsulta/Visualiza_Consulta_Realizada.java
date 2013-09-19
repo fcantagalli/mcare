@@ -26,7 +26,7 @@ public class Visualiza_Consulta_Realizada extends Activity {
 		ScrollView scroll = new ScrollView(this);
 		scroll.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 		
-		getActionBar().setTitle("Informações da consulta:");
+		getActionBar().setTitle("Consultation Details:");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		LinearLayout layout = new LinearLayout(this);
@@ -51,9 +51,9 @@ public class Visualiza_Consulta_Realizada extends Activity {
 			Log.i("phil", Arrays.asList(conteudos).toString());
 		//}
 
-			criaTextView(layout, "Data:", conteudos[2]);
-			criaTextView(layout, "Descricao:", conteudos[3]);
-			criaTextView(layout, "Tipo:", conteudos[4]);
+			criaTextView(layout, "Date:", conteudos[2]);
+			criaTextView(layout, "Description:", conteudos[3]);
+			criaTextView(layout, "Type:", conteudos[4]);
 			
 			for(int i=5; i<nomesColunas.length; i++){
 				String nome = nomesColunas[i].split("@")[0].replace("_", " ") + ":";

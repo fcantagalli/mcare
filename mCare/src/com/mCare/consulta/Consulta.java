@@ -21,7 +21,7 @@ public class Consulta implements Comparable<Consulta> {
 	
 	@Override
 	public String toString() {
-		return "Data: " + hora.get(GregorianCalendar.DAY_OF_MONTH) + "/" + hora.get(GregorianCalendar.MONTH) + "/" + hora.get(GregorianCalendar.YEAR) + "\nDescrição: " + descricao;
+		return "Date: " + hora.get(GregorianCalendar.DAY_OF_MONTH) + "/" + hora.get(GregorianCalendar.MONTH) + "/" + hora.get(GregorianCalendar.YEAR) + "\nDescription: " + descricao;
 	}
 
 

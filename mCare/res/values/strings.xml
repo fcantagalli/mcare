@@ -1,118 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Strings fixas dos XMLs -->
     <string name="app_name">mCare</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_cadastro_consulta">CadastroConsulta</string>
-    <string name="minhastring">bianca delicia</string>
+    <string name="title_activity_cadastro_consulta">Register Consultation</string>
     <string name="title_activity_inf_paciente">InfPaciente</string>
     <string name="title_activity_novo__contato">Novo_Contato</string>
     <string name="title_activity_novo_contato">NovoContato</string>
     <string name="title_activity_consulta_individual">ConsultaIndividual</string>
     <string name="title_activity_lista_consultas">ListaConsultas</string>
     <string name="title_activity_editar_consulta">Editar_consulta</string>
-
+	<string name="not_provided">not provided</string>
     <!-- Resources para MEDICAMENTOS (activities de cadastro e edicao) -->
     <string-array name="array_tipos_medicamento">
-        <item>Comprimido</item>
-        <item>Cápsula</item>
+        <item>Pill</item>
+        <item>capsule</item>
         <item>Gel</item>
-        <item>Gotas</item>
-        <item>Injetável</item>
-        <item>Pomada</item>
-        <item>Solução</item>
-        <item>Suspensão</item>
-        <item>Xarope</item>
-        <item>Outros</item>
+        <item>Drop</item>
+        <item>Injectable</item>
+        <item>Pomade</item>
+        <item>Solution</item>
+        <item>Suspension</item>
+        <item>Syrup</item>
+        <item>Others</item>
     </string-array>
 
     <!-- Resources para a activity_cria_campo_view -->
-    <string name="nome_do_campo">Nome do campo:</string>
-    <string name="campo_nome_hint">Digite o nome do campo</string>
-    <string name="tipo_do_campo">Tipo do campo:</string>
+    <string name="nome_do_campo">Field Name:</string>
+    <string name="campo_nome_hint">Type the field name</string>
+    <string name="tipo_do_campo">Field Type:</string>
 
     <string-array name="array_tipos_campo">
-        <item>Número inteiro</item>
-        <item>Número decimal</item>
-        <item>Texto</item>
-        <item>Data</item>
+        <item>Integer Number</item>
+        <item>Decimal Number</item>
+        <item>Text</item>
+        <item>Date</item>
     </string-array>
     <string-array name="nomes_campo">
-        <item>Nome</item>
-        <item>Idade</item>
-        <item>Data de nascimento</item>
-        <item>Medicações</item>
-        <item>Descrição</item>
-        <item>Observações</item>
-        <item>Problema</item>
+        <item>Name</item>
+        <item>Age</item>
+        <item>Date of Birth</item>
+        <item>Medications</item>
+        <item>Description</item>
+        <item>Observations</item>
+        <item>Problem</item>
     </string-array>
     <!-- FIM -->
 
     <string-array name="opcoes_consulta_array">
-        <item>Enviar mensagem em cascata</item>
-        <item>Traçar rota</item>
-        <item>Visualizar consulta</item>
-        <item>Realizar consulta</item>
+        <item>Send messages on cascade</item>
+        <item>Trace rout</item>
+        <item>Consultation Info</item>
+        <item>Accomplish consultation</item>
     </string-array>
 
     <!-- Resources para a activity_seleciona_campos_view -->
 
-    <string name="tipo_campo_hint">Selecione o tipo do campo</string>
-    <string name="botao_salvar_campo">Salvar Campo</string>
+    <string name="tipo_campo_hint">Select the field type</string>
+    <string name="botao_salvar_campo">Save Field</string>
 
     <!-- Strings genericas -->
-    <string name="confirmar">Confirmar</string>
-    <string name="salvar">Salvar</string>
+    <string name="confirmar">Confirm</string>
+    <string name="salvar">Saver</string>
     <string name="ok">OK</string>
     <string name="title_activity_lista_pacientes">ListaPacientes</string>
 
     <string-array name="Tipos_de_medico">
-        <item>Acupunturista</item>
-        <item>Alergista</item>
-        <item>Anestesista</item>
-        <item>Angiologista</item>
-        <item>Cardiologista</item>
-        <item>Cirurgião Cardiovascular</item>
-        <item>Cirurgião Geral</item>
-        <item>Cirurgião Plástico</item>
-        <item>Coloproctologista</item>
-        <item>Dermatologista</item>
-        <item>Endocrinologista</item>
-        <item>Gastroenterologista</item>
-        <item>Geneticista</item>
-        <item>Geriatra</item>
-        <item>Ginecologista</item>
-        <item>Hematologista</item>
-        <item>Hemoterapista</item>
-        <item>Homeopata</item>
-        <item>Imunologista</item>
-        <item>Infectologista</item>
-        <item>Mastologista</item>
-        <item>Metabologista</item>
-        <item>Nefrologista</item>
-        <item>Neonatologista</item>
-        <item>Neurocirurgião</item>
-        <item>Neurologista</item>
-        <item>Nutrologia</item>
-        <item>Obstetra</item>
-        <item>Ocologista</item>
-        <item>Oftalmologista</item>
-        <item>Ortopedista</item>
-        <item>Otorrinolaringologista</item>
-        <item>Patologista</item>
-        <item>Pediatra</item>
-        <item>Pneumologista</item>
-        <item>Psiquiatra</item>
-        <item>Radiologista</item>
-        <item>Radioterapista</item>
-        <item>Traumatologista</item>
-        <item>Urologista</item>
+        <item>Acupuncturist</item>
+        <item>Alergist</item>
+        <item>Anesthetist</item>
+        <item>Phlebologist</item>
+        <item>Cardiologist</item>
+        <item>Cardiovascular Surgeon</item>
+        <item>Surgeon General</item>
+        <item>Plastic Surgeon</item>
+        <item>Coloproctologists</item>
+        <item>Dermatologist</item>
+        <item>Endocrinologist</item>
+        <item>Gastroenterologist</item>
+        <item>Genetics</item>
+        <item>Geriatrician</item>
+        <item>Gynecologist</item>
+        <item>Hematologist</item>
+        <item>Hemotherapist</item>
+        <item>Homeopath</item>
+        <item>Immunologist</item>
+        <item>Infectologist</item>
+        <item>Mastologist</item>
+        <item>Metabologist</item>
+        <item>Nephrologist</item>
+        <item>Neonatologist</item>
+        <item>Neurosurgeon</item>
+        <item>Neurologist</item>
+        <item>Nutrology</item>
+        <item>Obstetrician</item>
+        <item>Oncologist</item>
+        <item>Ophthalmologist</item>
+        <item>Orthopaedic</item>
+        <item>Otorhinolaringologist</item>
+        <item>Pathologist</item>
+        <item>Pediatrician</item>
+        <item>Pulmonologist</item>
+        <item>Psychiatrist</item>
+        <item>Radiologist</item>
+        <item>Radio-oncology</item>
+        <item>Traumatology</item>
+        <item>Urologist</item>
     </string-array>
     <string-array name="tipos_consulta">
-        <item>Rotina</item>
-        <item>Retorno</item>
-        <item>Urgência</item>
+        <item>Routine</item>
+        <item>Return</item>
+        <item>Urgency</item>
     </string-array>
 
     <!--
@@ -157,6 +157,14 @@
 			id_consulta INTEGER REFERENCES consultas(id_consulta) ON UPDATE CASCADE ON DELETE CASCADE, 
 			fk_paciente REFERENCES paciente(id_paciente) ON UPDATE CASCADE ON DELETE CASCADE, 
 			data_consulta TEXT NOT NULL,
+			tread_many_time TEXT NULL,
+			tread_many_time_type TEXT NULL,
+			med_period TEXT NULL,
+			med_period_time TEXT NULL,
+			med_recommendation TEXT NULL,
+			miss_dose_period TEXT NULL,
+			miss_dose_type TEXT NULL,
+			miss_dose_recomm TEXT NULL,
 			PRIMARY KEY(id_medicamento,id_consulta));@
 			
         CREATE TABLE internacoes_hospitalares (
@@ -196,37 +204,100 @@
     <!-- ############ -->
 
     <string-array name="opcoesTelefone">
-        <item>Celular</item>
+        <item>Cell Phone</item>
         <item>Comercial</item>
-        <item>Residencial</item>
-        <item>Principal</item>
-        <item>Outros</item>
+        <item>Home</item>
+        <item>Main</item>
+        <item>Others</item>
     </string-array>
     <string-array name="tiposEndereco">
-        <item>Rua</item>
-        <item>Avenida</item>
-        <item>Praça</item>
+        <item>Road</item>
+        <item>Avenue</item>
+        <item>Square</item>
     </string-array>
     <string-array name="escolaridade">
-        <item> NÃO SABE LER/ESCREVER</item>
-        <item>ALFABETIZADO</item>
-        <item>ENSINO FUNDAMENTAL INCOMPLETO</item>
-        <item>ENSINO FUNDAMENTAL COMPLETO</item>
-        <item>ENSINO MÉDIO INCOMPLETO</item>
-        <item>ENSINO MÉDIO COMPLETO</item>
-        <item>SUPERIOR INCOMPLETO</item>
-        <item>SUPERIOR COMPLETO</item>
-        <item>ESPECIALIZAÇÃO/RESIDÊNCIA</item>
-        <item>CURSO TÉCNICO COMPLETO</item>
-        <item>PÓS-GRADUAÇÃO</item>
-        <item>MESTRADO</item>
-        <item>DOUTORADO</item>
+        <item> DO NOT KNOW HOW TO READ/WRITE</item>
+        <item>LITERATE</item>
+        <item>BASIC EDUCATION INCOMPLETE</item>
+        <item>BASIC EDUCATION COMPLETE</item>
+        <item>HIGH SCHOOL INCOMPLETE</item>
+        <item>HIGH SCHOOL COMPLETE</item>
+        <item>UNDERGRADUATE/GRADUATE INCOMPLETE</item>
+        <item>UNDERGRADUATE/GRADUATE COMPLETE</item>
+        <item>SPECIALIZATION</item>
+        <item>TECHNICAL COURSE</item>
+        <item>POSTGRADUATE</item>
+        <item>PhD</item>
     </string-array>
+    
     <string-array name="tiposTel">
-        <item>Celular</item>
-        <item>Residencial</item>
+        <item>Cell Phone</item>
+        <item>Home</item>
         <item>Comercial</item>
-        <item>Outros</item>
+        <item>Others</item>
+    </string-array>
+    
+    <string-array name="many_days">
+        <item>How Many</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    
+    <string-array name="many_weeks">
+        <item>Weeks</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    
+    <string-array name="time_type">
+        <item>Days</item>
+        <item>Weeks</item>
+        <item>Months</item>
+    </string-array>
+    
+    <string-array name="time_period">
+        <item>Period</item>
+        <item>Each 4 Hours</item>
+        <item>Each 6 Hours</item>
+        <item>Each 8 Hours</item>
+        <item>Each 12 Hours</item>
+        <item>Each 24 Hours</item>
+    </string-array>
+    
+    <string-array name="missing_period">
+        <item>Period</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    
+    <string-array name="missing_period_type">
+        <item>Hours</item>
+        <item>Days</item>
+    </string-array>
+    
+    <string-array name="many_months">
+        <item>Months</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
     </string-array>
 
     <string name="title_activity_efetua_ligacao">EfetuaLigacao</string>

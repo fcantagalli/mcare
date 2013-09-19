@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/AdicionaPaciente"
-            android:text="Adicionar novo contato"
+            android:text="Add new Contact"
             android:layout_marginTop="4dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 

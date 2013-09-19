@@ -60,7 +60,7 @@ public class AgendarConsulta extends Activity {
 		datePicker.setCalendarViewShown(false);
 		
 		// altera actionBar
-		getActionBar().setTitle("Agendar Consulta");
+		getActionBar().setTitle("Schedule a Consultation");
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		
@@ -115,8 +115,8 @@ public class AgendarConsulta extends Activity {
 	public void agendarConsulta(){
 		DatePicker datePicker = (DatePicker) findViewById(R.id.datePickerAgendarConsulta);
 		TimePicker timePicker = (TimePicker) findViewById(R.id.timePickerAgendarConsulta);
-		String dataHorario = "Data: " + datePicker.getYear() + " " + datePicker.getMonth()+1 + " " + datePicker.getDayOfMonth();
-		String horario = "Horario: " + timePicker.getCurrentHour() + " " + timePicker.getCurrentMinute();
+		String dataHorario = "Date: " + datePicker.getYear() + " " + datePicker.getMonth()+1 + " " + datePicker.getDayOfMonth();
+		String horario = "Time: " + timePicker.getCurrentHour() + " " + timePicker.getCurrentMinute();
 		Log.wtf("agendar", dataHorario + " ----- " + horario);
 		GregorianCalendar calendar = new GregorianCalendar(TimeZone.getDefault(),Locale.getDefault());
 		calendar.set(datePicker.getYear(),datePicker.getMonth()+1 , datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
@@ -175,9 +175,9 @@ public class AgendarConsulta extends Activity {
 		// 1800000 equivale a 30min de antecedencia
 		calendar.set(Calendar.MONTH, datePicker.getMonth());
 		Log.i("fe","qual a string de tempo : "+dbConsulta.dbhelper.formataData(calendar));
-		NotificacaoConsulta.create(this,(calendar.getTimeInMillis()-1800000) , "Paciente: " + consulta.getPaciente().getNome(), "Consulta agendada", "Você tem uma consulta às "+consulta.getHora().get(Calendar.HOUR_OF_DAY)+" : "+consulta.getHora().get(Calendar.MINUTE)+" \n no endereço: " +consulta.getPaciente().getLogradouro() + ", "+consulta.getPaciente().getNumero(), R.drawable.ic_launcher);
+		NotificacaoConsulta.create(this,(calendar.getTimeInMillis()-3600000) , "Patient: " + consulta.getPaciente().getNome(), "Consultation Scheduled", "You have a consultation at "+consulta.getHora().get(Calendar.HOUR_OF_DAY)+" : "+consulta.getHora().get(Calendar.MINUTE)+" \n on Address: " +consulta.getPaciente().getLogradouro() + ", "+consulta.getPaciente().getNumero(), R.drawable.ic_launcher);
 		
-		Toast.makeText(getApplicationContext(), "Consulta agendada com sucesso!", Toast.LENGTH_LONG).show();
+		Toast.makeText(getApplicationContext(), "Consultation scheduled successfully!", Toast.LENGTH_LONG).show();
 		
 		foiAgendada = true;
 	

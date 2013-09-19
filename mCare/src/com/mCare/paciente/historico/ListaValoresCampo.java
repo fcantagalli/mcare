@@ -35,7 +35,7 @@ public class ListaValoresCampo extends Activity {
 		
 		ScrollView scroll = (ScrollView) findViewById(R.id.scrollViewListaValoresCampo);
 		
-		getActionBar().setTitle("Valores de: " + nomeCampo.split("@")[0].replace("_", " "));
+		getActionBar().setTitle("Values of: " + nomeCampo.split("@")[0].replace("_", " "));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		LinearLayout layout = new LinearLayout(this);
@@ -59,7 +59,7 @@ public class ListaValoresCampo extends Activity {
 			
 			Button estatisticas = new Button(this);
 			estatisticas.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-			estatisticas.setText("Gerar estatísticas");
+			estatisticas.setText("Show Statistics");
 			estatisticas.setOnClickListener(new OnClickListener() {
 				
 				@Override
@@ -101,7 +101,7 @@ public class ListaValoresCampo extends Activity {
 	public void criaTextView(LinearLayout layout, String nome, String conteudo){
 		TextView nome_view = new TextView(this);
 		nome_view.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-		nome_view.setText("Data: " + nome);
+		nome_view.setText("Date: " + nome);
 		nome_view.setEms(10);
 		nome_view.setTextSize(20);
 		nome_view.setPadding(0, 30, 0, 0);
@@ -110,7 +110,7 @@ public class ListaValoresCampo extends Activity {
 		
 		TextView conteudo_view = new TextView(this);
 		conteudo_view.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-		conteudo_view.setText("Valor: " + conteudo);
+		conteudo_view.setText("Value: " + conteudo);
 		conteudo_view.setEms(10);
 		conteudo_view.setTextSize(17);
 		layout.addView(conteudo_view);
@@ -140,7 +140,7 @@ public class ListaValoresCampo extends Activity {
 			}
 		}
 		
-		Log.i("phil", "Media: " + media + " Desvio: " + desvio); 
+		Log.i("phil", "Mean: " + media + " Standard Deviation: " + desvio); 
 		Intent x = new Intent(this, HistoricoGrafico.class);
 		x.putExtra("media", media);
 		x.putExtra("desvio", desvio);

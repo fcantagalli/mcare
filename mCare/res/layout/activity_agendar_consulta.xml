@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/MargenPadrao"
-            android:text="Paciente:"
+            android:text="Patient:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <AutoCompleteTextView
@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Nome do paciente"
+            android:hint="Patient name"
             android:inputType="textCapSentences"
             android:padding="@dimen/MargenPadrao"
             android:textColor="@color/Black" />
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/MargenPadrao"
-            android:text="Data:"
+            android:text="Date:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <DatePicker
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/MargenPadrao"
-            android:text="Horário:"
+            android:text="Time:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TimePicker
@@ -62,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/MargenPadrao"
-            android:text="Descrição:"
+            android:text="Description:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/MargenPadrao"
-            android:text="Tipo da consulta:"
+            android:text="Consultation Type:"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/MargenPadrao"
-            android:text="Agendar Consulta"
+            android:text="Schedule a Consultation"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

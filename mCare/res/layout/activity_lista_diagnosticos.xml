@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/imageViewCadastrarDiagnostico"
-            android:text="Cadastrar novo diagnostico"
+            android:text="New Diagnosis"
             android:layout_marginTop="4dp"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </RelativeLayout>
