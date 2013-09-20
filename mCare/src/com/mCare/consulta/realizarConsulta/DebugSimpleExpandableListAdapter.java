@@ -191,7 +191,7 @@ public class DebugSimpleExpandableListAdapter extends SimpleExpandableListAdapte
 		for (int i = 0; i < level2GroupCount; ++i) {
 			++rowCtr; // for the group row
 			if ((level2view != null) && (level2view.isGroupExpanded(i))) {
-				rowCtr += /* listdesc[level1][i].length */7; // then add the
+				rowCtr += /* listdesc[level1][i].length */6; // then add the
 															// children too
 															// (minus the group
 															// descriptor)
@@ -244,7 +244,7 @@ public class DebugSimpleExpandableListAdapter extends SimpleExpandableListAdapte
 	private class HoursClickListener implements View.OnClickListener {
 
 		private TextView textHours;
-		private CharSequence[] horas = {"6:00","7:00","8:00","9:00","10:00","12:00","13:00","14:00","16:00","18:00","20:00","21:00","22:00","24:00"};
+		private CharSequence[] horas = {"6:00","7:00","8:00","9:00","10:00","12:00","13:00","14:00","15:00", "16:00","18:00","20:00","21:00","22:00","23:00","24:00"};
 		private boolean[] checked;
 		private AlertDialog.Builder builder;
 
@@ -281,48 +281,6 @@ public class DebugSimpleExpandableListAdapter extends SimpleExpandableListAdapte
 			// http://www.javabeat.net/2013/05/alertdialog-box-android/#sthash.PW2DpGnC.dpuf
 		}
 		
-		/*private Dialog createTextDialog() {
-			 
-	        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-	        builder.setTitle("Hello User");
-	        builder.setMessage("What is your name:");
-	 
-	         // Use an EditText view to get user input.
-	         final EditText input = new EditText(context);
-	         input.setId(0);
-	         builder.setView(input);
-	 
-	        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-	 
-	            @Override
-	            public void onClick(DialogInterface dialog, int whichButton) {
-	                String value = input.getText().toString();
-	                Log.d(LOG_TAG, "Novo horario: " + value);
-	                // arrumando o array horas
-	                horas = Arrays.copyOf(horas, horas.length+1);
-	                horas[horas.length-1] = value;
-	                
-	                //arrumando o array checked
-	                checked = Arrays.copyOf(checked, checked.length+1);
-	                checked[checked.length-1] = false;
-	                
-	                return;
-	            }
-	        });
-	 
-	        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-	 
-	            @Override
-	            public void onClick(DialogInterface dialog, int which) {
-	                dialog.cancel();
-	            }
-	        });
-	 
-	        builder.create();
-	        return builder.show();
-	        
-	    }*/
-
 		OnMultiChoiceClickListener multiChoice = new OnMultiChoiceClickListener() {
 			
 			@Override
@@ -351,6 +309,8 @@ public class DebugSimpleExpandableListAdapter extends SimpleExpandableListAdapte
 							text+= horas[i]+" ,";
 						}
 					}
+					
+					text = text.substring(0, text.length()-1);
 					
 					textHours.setText(text);
 					// Displaying a toast message

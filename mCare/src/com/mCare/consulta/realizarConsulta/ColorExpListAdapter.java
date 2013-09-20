@@ -207,7 +207,7 @@ public class ColorExpListAdapter extends BaseExpandableListAdapter {
         for( int i = 0 ; i < level2GroupCount ; ++i ) {
             ++rowCtr;       // for the group row
 			if( ( level2view != null ) && ( level2view.isGroupExpanded( i ) ) ){
-				rowCtr += /*listdesc[level1][i].length*/4;	// then add the children too (minus the group descriptor)
+				rowCtr += /*listdesc[level1][i].length*/6;	// then add the children too (minus the group descriptor)
 				Log.i("rowcount","esta espandido  "+i);
 			}
 				

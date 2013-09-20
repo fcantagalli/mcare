@@ -85,9 +85,9 @@ public class SelecionaCamposView extends Activity {
 		setContentView(scroll);
 
 		colocaCampoNaView("Recommendation", 2);
-		colocaCampoNaView("Watch",0);
-		colocaCampoNaView("Avd",2);
-		colocaCampoNaView("Aivd",2);
+		colocaCampoNaView("Clock test",0);
+		colocaCampoNaView("ADL",2);
+		colocaCampoNaView("IADL",2);
 		colocaCampoNaView("Weight", 1);
 	}
 	

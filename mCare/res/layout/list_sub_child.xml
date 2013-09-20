@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="245dp"
+    android:layout_height="210dp"
     android:background="@color/AliceBlue"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:drawableBottom="@android:drawable/divider_horizontal_dark"
-        android:gravity="center_vertical"
-        android:textSize="17sp"
-        android:paddingLeft="10dp"
-        android:text="Treatment Duration :"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+   
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:paddingLeft="10dp"
         android:background="@color/AliceBlue2"
+        android:orientation="horizontal"
         android:weightSum="2" >
 
+        <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:drawableBottom="@android:drawable/divider_horizontal_dark"
+        android:gravity="center_vertical"
+        android:textSize="17sp"
+        android:text="Treatment Duration: "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+        
         <Spinner
             android:id="@+id/spinner_days"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:layout_weight="1" />
 
         <Spinner
@@ -40,7 +43,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="35dp"
-        android:paddingLeft="12dp"
+        android:paddingLeft="10dp"
         android:orientation="horizontal" >
         
         <TextView
@@ -48,10 +51,15 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textSize="17sp"
-        android:text="Medication Dosing Frequency :"
+        android:text="Dosing Frequency :"
         android:gravity="center_vertical"
         android:textAppearance="?android:attr/textAppearanceMedium" />
         
+        <Spinner
+            android:id="@+id/spinner_period"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -59,43 +67,53 @@
         android:layout_height="35dp"
         android:paddingLeft="10dp"
         android:background="@color/AliceBlue2" >
-
-        <Spinner
-            android:id="@+id/spinner_period"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"/>
         
         <Button
          android:id="@+id/button_plus_hours"
          android:layout_width="wrap_content"
          android:layout_height="match_parent"
          android:layout_gravity="center_vertical"
-         android:textSize="17sp"
+         android:textSize="18sp"
          android:text="Set Time" />
         
         <TextView
-        android:id="@+id/text_hours_medicine"
-        android:layout_width="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_height="match_parent"
-        android:textSize="16sp"
-        android:gravity="center_vertical"
-       	android:hint="Ex: 6:00 , 18:00"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:id="@+id/text_hours_medicine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:hint="Ex: 6:00 , 18:00"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/text_recommendations"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="10dp"
-        android:gravity="center|bottom"
-        android:hint="Recommendation to take the medicine"
-        android:ems="10" >
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp" >
 
-        <requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Msg: "
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <EditText
+            android:id="@+id/text_recommendations"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="center|bottom"
+            android:hint="Msg to take the medicine" >
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -108,7 +126,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Missed Dose When:"
+            android:text="Missed dose after:"
             android:gravity="center_vertical"
             android:textSize="17sp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -116,20 +134,35 @@
         <Spinner
             android:id="@+id/spinner_missing_delay"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:gravity="center" />
         <Spinner
             android:id="@+id/spinner_missing_type"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/text_recommendation_delay"
+     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_height="35dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Recommendation for delayed dose" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp" >
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Msg: "
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+		    <EditText
+		        android:id="@+id/text_recommendation_delay"
+		        android:layout_width="match_parent"
+		        android:layout_height="35dp"
+		        android:ems="10"
+		        android:gravity="center"
+		        android:hint="Msg for delayed dose" >
+		     </EditText>   
+	</LinearLayout>
+	
 </LinearLayout>
