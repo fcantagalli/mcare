@@ -67,6 +67,7 @@ public class DebugSimpleExpandableListAdapter extends SimpleExpandableListAdapte
 
 		View v = super.getChildView(groupPosition, childPosition, isLastChild,
 				convertView, parent);
+		
 		// Spinner dos days
 		Spinner days = (Spinner) v.findViewById(R.id.spinner_days);
 		ArrayAdapter<CharSequence> adapterDay = ArrayAdapter

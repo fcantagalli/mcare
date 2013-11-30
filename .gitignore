@@ -31,3 +31,8 @@ gen/
 .metadata/
 .metadata/*
 /mCare/nbproject/private/
+
+#Other Projetcts #
+MongoDB/
+MongodbAndroid/
+TesteExpandable/

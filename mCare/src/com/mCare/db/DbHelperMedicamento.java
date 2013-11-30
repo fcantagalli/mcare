@@ -113,10 +113,13 @@ public class DbHelperMedicamento {
 	
 	public Medicamento buscaMedicamento(int id) {
 
+		Log.i("med", "id do medicamento "+ id);
+		
 		String query = "SELECT id_medicamento, nome, tipo, dosagem, principioativo, favorito "
 				+ " FROM " + dbhelper.TABLE_NAME_MEDICAMENTO
 				+ " WHERE id_medicamento = '" + id + "';";
 
+		Log.i("med",query);
 		Cursor c = dbhelper.exercutaSELECTSQL(query, null);
 		Medicamento m = null;
 
