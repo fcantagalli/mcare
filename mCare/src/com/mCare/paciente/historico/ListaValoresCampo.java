@@ -118,6 +118,7 @@ public class ListaValoresCampo extends Activity {
 	
 	public void gerarEstatisticas(){
 		double media = 0;
+
 		for(String s: valores){
 			media += Double.parseDouble(s);
 		}

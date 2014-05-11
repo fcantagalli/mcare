@@ -113,13 +113,10 @@ public class DbHelperMedicamento {
 	
 	public Medicamento buscaMedicamento(int id) {
 
-		Log.i("med", "id do medicamento "+ id);
-		
 		String query = "SELECT id_medicamento, nome, tipo, dosagem, principioativo, favorito "
 				+ " FROM " + dbhelper.TABLE_NAME_MEDICAMENTO
 				+ " WHERE id_medicamento = '" + id + "';";
 
-		Log.i("med",query);
 		Cursor c = dbhelper.exercutaSELECTSQL(query, null);
 		Medicamento m = null;
 
@@ -276,7 +273,8 @@ public class DbHelperMedicamento {
 		}
 		
 		//Busca todos os medicamentos que o paciente toma 
-		String query = "SELECT medicamento.id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta" +
+		String query = "SELECT medicamento.id_medicamento, medicamento.nome, medicamento_paciente.id_consulta, medicamento_paciente.data_consulta, medicamento_paciente.tread_many_time, medicamento_paciente.tread_many_time_type," +
+				        " medicamento_paciente.med_period, medicamento_paciente.med_period_time, medicamento_paciente.med_recommendation, medicamento_paciente.miss_dose_period, medicamento_paciente.miss_dose_type, medicamento_paciente.miss_dose_recomm, medicamento.tipo, medicamento.dosagem" +
 						" FROM " + dbhelper.TABLE_NAME_MEDICAMENTO +
 						" INNER JOIN medicamento_paciente ON medicamento.id_medicamento = medicamento_paciente.id_medicamento" +
 						" AND medicamento_paciente.id_consulta = "+id_ultima_consulta+
@@ -303,9 +301,32 @@ public class DbHelperMedicamento {
 				//String hours = cursor.getString(4);
 				//int days = cursor.getInt(5);
 				
+				String tread_many_time = cursor.getString(4);
+				String tread_many_time_type = cursor.getString(5);
+				String med_period = cursor.getString(6);
+				String med_period_time = cursor.getString(7);
+				String med_recommendation = cursor.getString(8);
+				String miss_dose_period = cursor.getString(9);
+				String miss_dose_type = cursor.getString(10);
+				String miss_dose_recomm = cursor.getString(11);
+				
+				String tipo = cursor.getString(12);
+				String dosagem = cursor.getString(13);
+				Log.i("helperMedicamento", "dosagem: " + dosagem);
+				
 				Medicamento m = new Medicamento(id_medicamento, nome);
 				m.setIdConsulta(id_consulta);
 				m.setHora(hora);
+				m.setTread_many_time(tread_many_time);
+				m.setTread_many_time_type(tread_many_time_type);
+				m.setMed_period(med_period);
+				m.setMed_period_time(med_period_time);
+				m.setMed_recommendation(med_recommendation);
+				m.setMiss_dose_period(miss_dose_period);
+				m.setMiss_dose_type(miss_dose_type);
+				m.setMiss_dose_recomm(miss_dose_recomm);
+				m.setTipo(tipo);
+				m.setDosagem(dosagem);
 				//m.setHours(hours);
 				//m.setDays(days);
 				
@@ -335,26 +356,7 @@ public class DbHelperMedicamento {
 	        	    return c;
 		         }
 		     });
-			/*
-			//Depois de ordenar, ver qual o ultimo id_consulta de cada medicamento
-			Medicamento medicamento_anterior = null;
-			//Testa do primeiro ao penultimo
-			for (Medicamento m: listaMedicamentosAtuais) {
-				if (medicamento_anterior.getId() != m.getId()) { //mudou de medicamento => testa o anterior (a ultima consulta daquele medicamento)
-					if (medicamento_anterior.getIdConsulta() < id_ultima_consulta) { //Medicamento foi descontinuado!!!
-						listaMedicamentosAnteriores.add(m);
-						listaMedicamentosAtuais.remove(m);
-					}				
-				}
-				medicamento_anterior = m;
-			}
-			//Testa o ultimo
-			Medicamento m = listaMedicamentosAtuais.getLast();
-			if (m.getIdConsulta() < id_ultima_consulta) { //Medicamento foi descontinuado!!!
-				listaMedicamentosAnteriores.add(m);
-				listaMedicamentosAtuais.remove(m);
-			}
-			*/
+
 			
 		}
 		return listaMedicamentosAtuais;

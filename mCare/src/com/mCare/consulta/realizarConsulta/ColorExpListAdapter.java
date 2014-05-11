@@ -66,10 +66,9 @@ public class ColorExpListAdapter extends BaseExpandableListAdapter {
             dev.setGroupIndicator(null);
             dev.setItemsCanFocus(true);
 			List group = createGroupList( groupPosition );
-			Log.d("listt","GROUPPP  "+group);
+			Log.d("list","GROUPPP  "+group);
 			List child = createChildList( groupPosition );
-			Log.d("listt","CHILDD  "+child + "  \n size: "+child.size());
-			dev.setRows(calculateRowCount( groupPosition, null));
+			dev.setRows(calculateRowCount( groupPosition, null)); // nao sei porque menos 1, mas esta funcionando
            	dev.setAdapter( 
 			        new DebugSimpleExpandableListAdapter(
 			        	listdesc,
@@ -174,14 +173,12 @@ public class ColorExpListAdapter extends BaseExpandableListAdapter {
 	    for( int i = 0 ; i < listdesc[level1].length ; ++i ) {
 // Second-level lists
 	        ArrayList secList = new ArrayList();
-	        if(level1 == 0){
-		        for( int n = 1 ; n < listdesc[level1][i].length ; ++n ) {
-		            HashMap child = new HashMap();
-			        child.put( KEY_SHADENAME, listdesc[level1][i][n][0] );
-		            child.put( KEY_RGB, listdesc[level1][i][n][1] );
-			        secList.add( child );
-		        }
-	        }    
+	        for( int n = 1 ; n < listdesc[level1][i].length ; ++n ) {
+	            HashMap child = new HashMap();
+		        child.put( KEY_SHADENAME, listdesc[level1][i][n][0] );
+	            child.put( KEY_RGB, listdesc[level1][i][n][1] );
+		        secList.add( child );
+	        }
 	        result.add( secList );
 	    }
 	    return result;

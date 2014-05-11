@@ -285,7 +285,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/buttonExportaXML"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -303,6 +303,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View History"
+            android:layout_gravity="center" />
+
+        <Button
+            android:id="@+id/buttonComparaValores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compare"
             android:layout_gravity="center" />
         
     </LinearLayout>

@@ -12,7 +12,7 @@
     <string name="title_activity_consulta_individual">ConsultaIndividual</string>
     <string name="title_activity_lista_consultas">ListaConsultas</string>
     <string name="title_activity_editar_consulta">Editar_consulta</string>
-	<string name="not_provided">not provided</string>
+    <string name="not_provided">not provided</string>
     <!-- Resources para MEDICAMENTOS (activities de cadastro e edicao) -->
     <string-array name="array_tipos_medicamento">
         <item>Pill</item>
@@ -229,14 +229,12 @@
         <item>POSTGRADUATE</item>
         <item>PhD</item>
     </string-array>
-    
     <string-array name="tiposTel">
         <item>Cell Phone</item>
         <item>Home</item>
         <item>Comercial</item>
         <item>Others</item>
     </string-array>
-    
     <string-array name="many_days">
         <item>How Many</item>
         <item>1</item>
@@ -246,7 +244,6 @@
         <item>5</item>
         <item>6</item>
     </string-array>
-    
     <string-array name="many_weeks">
         <item>Weeks</item>
         <item>1</item>
@@ -254,13 +251,11 @@
         <item>3</item>
         <item>4</item>
     </string-array>
-    
     <string-array name="time_type">
         <item>Days</item>
         <item>Weeks</item>
         <item>Months</item>
     </string-array>
-    
     <string-array name="time_period">
         <item>Period</item>
         <item>Each 4 Hours</item>
@@ -269,7 +264,6 @@
         <item>Each 12 Hours</item>
         <item>Each 24 Hours</item>
     </string-array>
-    
     <string-array name="missing_period">
         <item>delayed</item>
         <item>1</item>
@@ -278,12 +272,10 @@
         <item>4</item>
         <item>5</item>
     </string-array>
-    
     <string-array name="missing_period_type">
         <item>Hours</item>
         <item>Days</item>
     </string-array>
-    
     <string-array name="many_months">
         <item>Months</item>
         <item>1</item>
@@ -336,5 +328,6 @@
     <string name="title_activity_exame__fragment">Exames</string>
     <string name="title_activity_historico_grafico">HistoricoGrafico</string>
     <string name="title_activity_fotos_paciente">FotosPaciente</string>
+    <string name="title_activity_seleciona_campos_compara">SelecionaCamposCompara</string>
 
 </resources>

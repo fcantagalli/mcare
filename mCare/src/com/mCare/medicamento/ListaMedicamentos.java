@@ -110,9 +110,8 @@ public class ListaMedicamentos extends Activity {
 				Medicamento m = elementsNaoFavoritos.get(arg2);
 				
 				Intent myIntent = new Intent(getApplicationContext(), VisualizarMedicamento.class);
-				myIntent.putExtra("id", m.getId());
-				myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-				getApplication().startActivity(myIntent);
+				myIntent.putExtra("ID", m.getId());
+				getApplicationContext().startActivity(myIntent);
 				
 				Toast.makeText(getApplicationContext(),"Voce clicou em:" +elementsNaoFavoritos.get(arg2).toString(), Toast.LENGTH_LONG).show();
 			}

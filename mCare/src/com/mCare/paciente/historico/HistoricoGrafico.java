@@ -4,12 +4,11 @@ import java.util.Arrays;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidplot.xy.LineAndPointFormatter;
 import com.androidplot.xy.SimpleXYSeries;
@@ -31,7 +30,7 @@ public class HistoricoGrafico extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico_grafico);
         
-        getActionBar().setTitle("Statistics:");
+        getActionBar().setTitle("Statistics: " + getIntent().getExtras().getString("nomeCampo").split("@")[0].replace("_", " "));
 		getActionBar().setDisplayHomeAsUpEnabled(true);
         
 		pegaEstatisticas();
@@ -104,7 +103,12 @@ public class HistoricoGrafico extends Activity
         //XYSeries series2 = new SimpleXYSeries(Arrays.asList(series2Numbers), SimpleXYSeries.ArrayFormat.Y_VALS_ONLY, "Series2");
  
         // Create a formatter to use for drawing a series using LineAndPointRenderer:
-        LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.rgb(0, 200, 0), Color.rgb(0, 100, 0), null, null);                                  // fill color (none)
+        LineAndPointFormatter series1Format = new LineAndPointFormatter(Color.rgb(255, 255, 0), Color.rgb(0, 100, 0), null, null);
+        // fill color (none)
+        
+        Paint paint = series1Format.getLinePaint();
+        paint.setStrokeWidth(13);
+        series1Format.setLinePaint(paint);
  
         // add a new series' to the xyplot:
         mySimpleXYPlot.addSeries(series1, series1Format);

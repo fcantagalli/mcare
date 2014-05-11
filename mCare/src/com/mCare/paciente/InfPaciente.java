@@ -1,9 +1,11 @@
 package com.mCare.paciente;
 
+import java.io.File;
 import java.util.GregorianCalendar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -12,15 +14,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.consulta.ListaConsultasPaciente;
 import com.mCare.db.DbHelperPaciente;
+import com.mCare.paciente.historico.ListComparaCamposArrayAdapter;
 import com.mCare.paciente.historico.ListaCamposConsulta;
+import com.mCare.paciente.historico.SelecionaCamposCompara;
 
 public class InfPaciente extends Activity {
-
+	
+	int id_paciente;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,6 +34,7 @@ public class InfPaciente extends Activity {
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		final int id =  getIntent().getExtras().getInt("ID", -1);
+		id_paciente = id;
 		
 		DbHelperPaciente db = new DbHelperPaciente(this);
 		Paciente p = db.buscaPaciente(id);
@@ -51,6 +56,32 @@ public class InfPaciente extends Activity {
 		TextView cidade = (TextView) findViewById(R.id.campoCidade);
 		Button visualizarConsultas = (Button) findViewById(R.id.buttonVisualizarConsultas);
 		Button visualizarHistorico = (Button) findViewById(R.id.buttonVisualizarHistorico);
+		Button exportaXML = (Button) findViewById(R.id.buttonExportaXML);
+		Button comparaValores =  (Button) findViewById(R.id.buttonComparaValores);
+		
+		comparaValores.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getApplicationContext(),SelecionaCamposCompara.class);
+				Log.i("infPaciente", "id_paciente: " + id_paciente);
+				intent.putExtra("id_paciente", "" + id_paciente);
+				startActivity(intent);
+				
+			}
+		});
+		
+		exportaXML.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//exportaXML();
+				exportaJSON();
+				
+			}
+		});
+		
+		exportaXML.setText("Export XML");
 		
 		if(p != null){
 			nome.setText(p.getNome());
@@ -123,6 +154,72 @@ public class InfPaciente extends Activity {
 			}
 		});
 
+	}
+	
+	public void exportaJSON(){
+		JSONBuilder json = new JSONBuilder(id_paciente, this);
+		json.criaJSON();
+		File send = getApplication().getFileStreamPath("testJSON.json");
+		send.setReadable(true, false);
+		Log.i("xml", "pode ler? " + send.canRead());
+		Log.i("xml", "pode escrever? " + send.canWrite());
+		Log.i("xml", "existe? " + send.exists());
+		Log.i("xml", "caminho: " + send.getPath());
+		Log.i("xml", "toString() " + send.toString());
+		Log.i("xml", "url" + Uri.fromFile(send));
+		
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, "Aqui estão as recomendacoes do remedio. nao esqueça");
+		sendIntent.putExtra(Intent.EXTRA_SUBJECT, "XML medicine file");
+		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(send));
+		sendIntent.setType("text/xml");
+		
+		startActivity(Intent.createChooser(sendIntent, "Send File"));
+	}
+	
+	public void exportaXML(){
+		XMLBuilder xml = new XMLBuilder(id_paciente, getApplicationContext());
+		xml.criaXML();
+		
+		File send = getApplication().getFileStreamPath("test.xml");
+		send.setReadable(true, false);
+		Log.i("xml", "pode ler? " + send.canRead());
+		Log.i("xml", "pode escrever? " + send.canWrite());
+		Log.i("xml", "existe? " + send.exists());
+		Log.i("xml", "caminho: " + send.getPath());
+		Log.i("xml", "toString() " + send.toString());
+		Log.i("xml", "url" + Uri.fromFile(send));
+		
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, "Aqui estão as recomendacoes do remedio. nao esqueça");
+		sendIntent.putExtra(Intent.EXTRA_SUBJECT, "XML medicine file");
+		sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(send));
+		sendIntent.setType("text/xml");
+		//addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(Intent.createChooser(sendIntent, "Send File"));
+		
+		/*
+		String filename = "test.xml";
+		File file = new File(context.getFilesDir(), filename);
+		String string = "Sending Text by other modules";
+		FileOutputStream outputStream;
+		try {
+		  outputStream = context.openFileOutput(filename, Context.MODE_WORLD_READABLE);
+		  outputStream.write(string.getBytes());
+		  outputStream.close();
+		} catch (Exception e) {
+		  e.printStackTrace();
+		}
+		File send = context.getFileStreamPath("test.xml");
+		Intent sendIntent = new Intent();
+		sendIntent.setAction(Intent.ACTION_SEND);
+		sendIntent.putExtra(Intent.EXTRA_TEXT, "Aqui estão as recomendacoes do remedio. nao esqueça");
+		sendIntent.putExtra(Intent.EXTRA_SUBJECT, "XML medicine file");
+		sendIntent.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(send));
+		sendIntent.setType("image/jpeg");
+		context.startActivity(Intent.createChooser(sendIntent, context.getResources().getText(R.string.send_to)));*/
 	}
 	
 	@Override

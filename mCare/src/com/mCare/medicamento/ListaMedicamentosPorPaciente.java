@@ -148,7 +148,6 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 
 		listdesc = transformaEmMatriz(grupo.listChild, grupo2.listChild);
-		Log.i("meds","matrix: " +Arrays.deepToString(listdesc));
 		colorExpListAdapter = new ColorExpListAdapter(listgrupo,estaTomando,getActivity(),exList,listdesc);
 		exList.setAdapter(colorExpListAdapter);
 		return rootView;
@@ -248,8 +247,11 @@ public class ListaMedicamentosPorPaciente extends Fragment {
 		}
 
 		for(int i = 0; i< diag.size(); i++){
-			d[i][0][0] = "Diagnosis";
+			d[i][0][0] = "Medicines";
 			d[i][0][1] = diag.get(i).getNome();
+			
+			d[i][1][0] = "campos";
+			d[i][1][1] = "#EAEAEA";
 
 		}
 		matriz[0] =m;

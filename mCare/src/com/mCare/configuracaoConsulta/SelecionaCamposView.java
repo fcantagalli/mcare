@@ -118,7 +118,7 @@ public class SelecionaCamposView extends Activity {
 		switch (tipo) {
 		// campo tipo inteiro
 		case 0:
-			edit.setHint("12");
+			edit.setHint("9");
 			break;
 		// campo tipo decimal
 		case 1:

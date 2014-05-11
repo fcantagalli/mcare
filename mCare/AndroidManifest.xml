@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <!-- Para notificacoes -->
@@ -189,6 +190,14 @@
         <activity
             android:name="com.mCare.paciente.historico.HistoricoGrafico"
             android:label="@string/title_activity_historico_grafico" >
+        </activity>
+        <activity
+            android:name="com.mCare.paciente.historico.ComparaHistoricoGrafico"
+            android:label="@string/title_activity_historico_grafico" >
+        </activity>
+        <activity
+            android:name="com.mCare.paciente.historico.SelecionaCamposCompara"
+            android:label="@string/title_activity_seleciona_campos_compara" >
         </activity>
     </application>
 

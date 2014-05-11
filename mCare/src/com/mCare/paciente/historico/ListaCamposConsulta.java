@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.mCare.R;
 import com.mCare.db.DbHelperConsultasRealizadas;
@@ -46,6 +46,7 @@ public class ListaCamposConsulta extends Activity implements OnItemClickListener
 		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, nomesDisplay);
 		listCampos.setAdapter(arrayAdapter);
 		listCampos.setOnItemClickListener(this);
+		
 	}
 
 	@Override
