@@ -127,7 +127,10 @@ public class JSONBuilder {
 			send = new File(context.getFilesDir(), "testJSON.json");
 			writeFile = new FileWriter(send);
 			//Escreve no arquivo conteudo do Objeto JSON
-			writeFile.write(jsonObject.toJSONString());
+			ArrayList<String> cripted = criptografia.Criptorgrafia.encriptar(jsonObject.toJSONString());
+			writeFile.write(cripted.get(0));
+			writeFile.append('\n');
+			writeFile.write(cripted.get(1));
 			writeFile.close();
 		}
 		catch(IOException e){
